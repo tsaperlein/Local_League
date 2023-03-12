@@ -4,7 +4,13 @@ id_ομάδας (primary key)
 όνομα_προπονητή
 logo_ομάδας (προαιρετικό)
 κατηγορία_ομάδας
-όνομα_γηπέδου_ομάδας
+field_id (FK)
+
+--- Field
+field_id
+name
+location
+capacity
 
 --- Παίκτης
 id_παίκτη (primary key)
@@ -19,7 +25,7 @@ id_ομάδας (foreign key)
 id_αγώνα (primary key)
 ημερομηνία
 ώρα εκκίνησης
-όνομα_γηπέδου_ομάδας_εντός έδρας (ίσως foreginn key)
+home_field_id (FK)
 id_ομάδας_εντος_έδρας (foreign key)
 id_ομάδας_εκτός_έδρας (foreign key)
 
@@ -49,3 +55,8 @@ type
 player_id
 match_id
 time_of_card
+
+
+Notes:
+New entity location to connect the user with the rest DB or create new DB with only username and password?
+New entity field (?)
