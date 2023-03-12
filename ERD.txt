@@ -1,60 +1,55 @@
---- Ομάδα
-id_ομάδας (primary key)
-όνομα_ομάδας
-όνομα_προπονητή
-logo_ομάδας (προαιρετικό)
-κατηγορία_ομάδας
+--- TEAM
+team_id (PK)
+name
+coach_name
+team_category
 field_id (FK)
 
---- Field
+--- FIELD
 field_id
 name
 location
 capacity
 
---- Παίκτης
-id_παίκτη (primary key)
-όνομα_παίκτη
-ηλικία
-εθνικότητα
-θέση
-αριθμός_φανέλας
-id_ομάδας (foreign key)
+--- PLAYER
+player_id (PK)
+name
+age
+nationality
+position
+jersey_number
+team_id (FK)
 
---- Αγώνας
-id_αγώνα (primary key)
-ημερομηνία
-ώρα εκκίνησης
+--- MATCH
+match_id (PK)
+date
+starting_time
+duration (minutes)
+end_phase (regular, overtime, penalties)
 home_field_id (FK)
-id_ομάδας_εντος_έδρας (foreign key)
-id_ομάδας_εκτός_έδρας (foreign key)
+home_team_id (FK)
+away_team_id (FK)
 
---- Διαιτητής
-id_διαιτητή (primary key)
-όνομα_διαιτητή
-ρόλος (διαιτητής, βοηθός διαιτητή)
-εθνικότητα
-id_αγώνα (foreign key)
+--- REFEREE
+referee_id (PK)
+name
+role (main, assistant)
+nationality
+match_id (FK)
 
---- Goal
-id_goal
-id_αγώνα
-id_παίκτη
-ώρα_σκοραρίσματος (δεν θα το πούμε έτσι)
+--- STATISTIC
+statistic_id
+type (goal, yellow card, red card, corner, offside)
+minute
+player_id (FK)
 
---- Άτομο
-id_χρήστη (primary key)
-ρόλος (admin, user)
+--- PERSON
+person_id (PK)
+role (admin, user)
 username
 password
-ηλικία
+age
 email
-
---- Card
-type
-player_id
-match_id
-time_of_card
 
 
 Notes:
