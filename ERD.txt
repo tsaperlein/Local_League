@@ -43,3 +43,9 @@ username
 password
 ηλικία
 email
+
+--- Card
+type
+player_id
+match_id
+time_of_card
