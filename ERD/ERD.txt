@@ -3,7 +3,7 @@ team_id (PK)
 name
 coach_name
 team_category
-logo
+logo (image link)
 field_id (FK)
 
 --- FIELD
