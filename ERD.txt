@@ -3,6 +3,7 @@ team_id (PK)
 name
 coach_name
 team_category
+logo
 field_id (FK)
 
 --- FIELD
@@ -50,10 +51,9 @@ password
 age
 email
 
-
-- Notes:
-New entity LOCATION to connect the PERSON with the rest DB (or how to connect the PERSON with the rest DB) or create new DB with entity PERSON?
-New entity field (?)
+- NOTES:
+Δεν είναι υποχρεωτικό να συνδέσουμε την οντότητα PERSON με κάποια άλλη οντότητα
+Επίσης θεωρητικά ένας είναι ο Admin
 
 --- RELATIONS ---
 REFEREE         (officiates)                MATCH
