@@ -26,20 +26,19 @@ date
 starting_time
 duration (minutes)
 end_phase (regular, overtime, penalties)
-home_field_id (FK)
 home_team_id (FK)
 away_team_id (FK)
 
 --- REFEREE
 referee_id (PK)
-name
+referee_name
 role (main, assistant)
 nationality
 match_id (FK)
 
 --- STATISTIC
 statistic_id
-type (goal, yellow card, red card, corner, offside)
+type (goal, yellow card, red card, προαιρετικό->[corner, offside])
 minute
 player_id (FK)
 
@@ -52,6 +51,14 @@ age
 email
 
 
-Notes:
-New entity location to connect the user with the rest DB or create new DB with only username and password?
+- Notes:
+New entity LOCATION to connect the PERSON with the rest DB (or how to connect the PERSON with the rest DB) or create new DB with entity PERSON?
 New entity field (?)
+
+--- RELATIONS ---
+REFEREE         (officiates)                MATCH
+PLAYER          (records)                   STATISTIC
+PLAYER          (represents or plays for)   TEAM
+[HOME] TEAM     (hosts)                     MATCH
+[AWAY] TEAM     (visits)                    MATCH
+TEAM            (competes at)               FIELD
