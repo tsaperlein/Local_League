@@ -2,7 +2,6 @@
 team_id (PK)
 name
 coach_name
-team_category
 logo (image link)
 field_id (FK)
 
@@ -23,16 +22,13 @@ team_id (FK)
 
 --- MATCH
 match_id (PK)
-date
-starting_time
+datetime
 duration (minutes)
 end_phase (regular, overtime, penalties)
-home_team_id (FK)
-away_team_id (FK)
 
 --- REFEREE
 referee_id (PK)
-referee_name
+name
 role (main, assistant)
 nationality
 match_id (FK)
@@ -59,6 +55,5 @@ email
 REFEREE         (officiates)                MATCH
 PLAYER          (records)                   STATISTIC
 PLAYER          (represents or plays for)   TEAM
-[HOME] TEAM     (hosts)                     MATCH
-[AWAY] TEAM     (visits)                    MATCH
+TEAM            (particiapates)             MATCH
 TEAM            (competes at)               FIELD
