@@ -103,14 +103,3 @@ CREATE TABLE person (
 	role TEXT NOT NULL DEFAULT 'user',
 	PRIMARY KEY (person_id)
 );
-
-
-
-
-
-
-
-
-
-
-
