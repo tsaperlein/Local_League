@@ -3,66 +3,26 @@
   padding: 0;
 }
 
-@media (max-width: 768px) {
-  .header {
-    height: 50px;
-  }
-  
-  .header-extension {
-    max-width: 200px;
-    height: 50px;
-    max-height: 50px;
-    min-width: 200px;
-    min-height: 50px;
-  }
-  
-  .header-image img {
-    height: 50px;
-    width: auto;
-    object-fit: contain;
-    max-width: 60vw;
-    min-width: 200px;
-    min-height: 50px;
-  }
-}
-
-@media (min-width: 769px) {
-  .header-extension {
-    max-width: 400px;
-  }
-}
-
-/* Shared styles for all screens */
 .header {
   display: flex;
   align-items: center;
   justify-content: center;
+  min-height: auto; /* Set minimum height */
+  min-width: 300px; /* Set minimum width */
+  transition: all 0.5s ease-in-out; /* Add transition */
   background-color: black;
-  transition: height 0s ease;
-  height: 10vh;
-  max-height: 10vh;
-  min-height: 50px;
-  max-width: 60vw;
-  min-width: 200px;
 }
 
-.header-extension {
-  background-color: black;
-  margin: 0 10px;
-  height: 10vh;
-  max-height: 10vh;
-  max-width: 60vw;
-  min-width: 200px;
-  transition: all 0s ease;
+.header img {
+  width: 100%; /* Scale image evenly */
+  height: auto;
+  object-fit: cover; /* Ensure even scaling */
+  transition: all 0.5s ease-in-out; /* Add transition */
+  margin-bottom: -4px; /* Remove gap between image and header */
 }
 
-.header-image img {
-  margin: 0;
-  height: 10vh;
-  max-height: 10vh;
-  width: auto;
-  object-fit: contain;
-  max-width: 60vw;
-  min-width: 200px;
-  transition: all 0s ease;
+@media (max-width: 600px) {
+  .header {
+      min-width: 150px; /* Set new minimum width for smaller screens */
+  }
 }
