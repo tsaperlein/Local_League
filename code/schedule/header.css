@@ -1,28 +1,115 @@
+html {
+  font-size: 10px;
+}
+
 * {
   margin: 0;
   padding: 0;
+  font-family: Helvetica, sans-serif;
+  font-size: 2vw;
 }
 
-.header {
+header {
+  position: sticky;
+}
+
+.header-logo {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: auto; /* Set minimum height */
-  min-width: 300px; /* Set minimum width */
-  transition: all 0.5s ease-in-out; /* Add transition */
+  min-height: auto;
+  transition: all 0.5s ease-in-out;
   background-color: black;
 }
 
-.header img {
-  width: 100%; /* Scale image evenly */
+.header-image img {
+  max-width: 60vw;
+  width: 100%;
+  /* Set width to 50% of viewport */
   height: auto;
-  object-fit: cover; /* Ensure even scaling */
-  transition: all 0.5s ease-in-out; /* Add transition */
-  margin-bottom: -4px; /* Remove gap between image and header */
+  object-fit: cover;
+  transition: all 0.5s ease-in-out;
+  margin: 0 auto;
+  margin-bottom: -0.5vw;
 }
 
-@media (max-width: 600px) {
-  .header {
-      min-width: 150px; /* Set new minimum width for smaller screens */
+@media (max-width: 800px) {
+  .header-image img {
+    max-width: 500px;
   }
+
+  nav.header-options ul {
+    max-width: auto;
+  }
+}
+
+@media (min-width: 1100px) {
+  nav.header-options ul li a {
+    font-size: 1.5vw;
+  }
+}
+
+nav.header-options {
+  position: sticky;
+  height: 4vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s ease-in-out;
+  background-color: rgba(33, 104, 120, 1);
+  opacity: 1;
+}
+
+nav.header-options ul {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-around;
+  list-style-type: none;
+  max-width: 980px;
+  padding: 0 auto;
+}
+
+nav.header-options ul li {
+  height: 100%;
+  transition: all 0.3s ease-in-out;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 20px;
+}
+
+nav.header-options ul li a {
+  text-decoration: none;
+  color: white;
+  font-weight: 600;
+  transition: all 0.1s ease-in-out;
+}
+
+nav.header-options ul li:hover {
+  padding: 0 20px;
+  background-color: rgba(0, 0, 0, 0.2);
+  transition: all 0.1s ease-in-out;
+}
+
+nav.header-options:hover {
+  opacity: 0.95;
+  transition: opacity 0.3s ease-in-out;
+}
+
+nav.header-options:hover a {
+  color: rgb(177, 177, 177);
+  transition: all 0.3s ease-in-out;
+}
+
+nav.header-options li:hover a {
+  color: white;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+nav.header-options ul li a:hover {
+  color: white;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
 }
