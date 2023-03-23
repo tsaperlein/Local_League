@@ -1,10 +1,8 @@
-body{
-    background-image: url("../../images/llwallpaper.png");
-    background-position: absolute;
-    width: 1881px;
-    height: 3112px;
-    left: -75px;
-    top: 304px;
+.wallpaper{
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background-size: cover;
     background-repeat: no-repeat;
+    transition: all 0.5s ease-in-out;
 }
