@@ -1,4 +1,4 @@
-div.footer * {
+footer * {
     list-style: none;
     font-family: Comfortaa, Helvetica, sans-serif;
     padding: 0;
@@ -6,54 +6,51 @@ div.footer * {
     transition: all 0.3s ease-in-out;
 }
 
-div.footer label {
+footer label {
     font-weight: 600;;
     font-size: 2vw;
     color: #00ff0d;
 }
 
-div.footer a {
+footer a {
     font-size: 1.5vw;
 }
 
-div.footer li a {
+footer li a {
     color: #fff;
     text-decoration: none;
 }
 
-.footer {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-around;
-    min-height: auto;
+footer li a:hover {
+    color: #c9c9c9;
+}
+
+footer div.info-box:hover {
+    filter: drop-shadow(0 0 10px rgb(0, 0, 0, 0.8));
+}
+
+footer {
     transition: all 0.5s ease-in-out;
     background-color: rgb(20, 63, 72);
     position: static;
     bottom: 0;
     width: 100%;
-    height: 15vw;
+    height: 20vw;
 }
 
-div.footer-page-icon {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: start;
+.footer-page-icon {
     width: auto;
     height: 12vw;
 }
 
-div.footer-page-icon img {
+.footer-page-icon img {
     width: auto;
     height: 100%;
 }
 
 .footer-links,
-.footer-contact-info {
-    display: flex;
-    justify-content: center;
-    align-items: start;
+.footer-contact-info,
+.footer-connect-with-us {
     height: 70%;
 }
 
@@ -61,33 +58,9 @@ div.footer-page-icon img {
     width: 30%;
 }
 
-.footer-contact-info-options
-.footer-links-options {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: start;
-}
-
-.footer-connect-with-us {
-    display: flex;
-    flex-direction: column;
-    justify-content: start;
-    align-items: center;
-    height: 70%;
-}
-
 .connection-icons {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
     width: 15vw;
     height: 70%;
-}
-
-.info-box:last-child {
-    margin-right: 0;
 }
 
 .info-box a img {
@@ -97,11 +70,11 @@ div.footer-page-icon img {
 }
 
 @media (min-width: 1650px) {
-    div.footer a {
+    footer a {
         font-size: 24px;
     }
 
-    div.footer label {
+    footer label {
         font-size: 34px;
     }
 
@@ -118,11 +91,11 @@ div.footer-page-icon img {
         padding-top: 3px;
     }
 
-    div.footer a {
+    footer a {
         font-size: 12px;
     }
 
-    div.footer label {
+    footer label {
         font-size: 16px;
     }
 
@@ -135,7 +108,7 @@ div.footer-page-icon img {
         max-height: 30px;
     }
 
-    .footer {
-        height: 130px;
+    footer {
+        height: 170px;
     }
 }

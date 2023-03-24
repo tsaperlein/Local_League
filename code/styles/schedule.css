@@ -1,0 +1,39 @@
+.background-image {
+    position: relative; /* Make sure the child element is positioned relative to this */
+    height: 150vh; /* Set the height of the container to 100vh */
+    overflow-x: hidden; /* Allow overflow content */
+}
+
+.background-image img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.schedule-container {
+    background-color: rgba(240, 248, 255, 0.819);
+    height: calc(100% - 100px);
+    width: calc(100% - 100px);
+    position: relative;
+    margin: 50px;
+    z-index: 1;
+}
+
+.arrow {
+    border: solid black;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 3px;
+}
+.right {
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+}
+.left {
+    transform: rotate(135deg);
+    -webkit-transform: rotate(135deg);
+} 

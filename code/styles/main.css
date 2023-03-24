@@ -1,0 +1,20 @@
+main {
+    background-color: black;
+    padding-top: 12vw;
+}
+
+@media (max-width: 800px) { /* Mobile */
+    main { 
+        padding-top: 15vw;
+    }
+}
+@media (min-width: 1100px) {  /* Desktop */
+    main {
+        padding-top: 12vw;
+    }
+}
+@media (min-width: 1750px) {
+    main {
+        padding-top: 195px;
+    }
+  }
