@@ -15,7 +15,7 @@
 }
 
 .standings {
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(255, 255, 255, 0.6);
     height: calc(100% - 650px);
     position: relative;
     margin-top: 200px;
@@ -37,7 +37,7 @@
 }
 
 .standings-table table tr {
-    height: 45px;
+    height: 60px;
 }
 
 .standings-table table tr:first-child {
@@ -66,6 +66,12 @@
     background-color: rgb(162, 3, 3);
 }
 
+.rank{
+    width: 50px;
+    text-align: center;
+    background-color: rgb(143, 143, 143);
+}
+
 .team {
     position: relative;
     text-align: left;
@@ -83,6 +89,6 @@
 }
 
 .matches{
-    width: 60px;
+    width: 50px;
     text-align: right;
 }
