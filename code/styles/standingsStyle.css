@@ -15,52 +15,74 @@
 }
 
 .standings {
-    background-color: rgba(240, 248, 255, 0.5);
-    height: calc(100% - 450px);
+    background-color: rgba(255, 255, 255, 0.5);
+    height: calc(100% - 650px);
     position: relative;
     margin-top: 200px;
     margin-left: 50px;
     margin-right: 50px;
     z-index: 1;
+    overflow-y: scroll; /* Allow overflow content */
 }
 
 .standings-table {
-    width: 100%;
-    height: 100%;
     display: flex;
     flex-direction: column;
-    align-items: space-between;
+    padding: 10px;
 }
 
 .standings-table table {
-    width: 100%;
     border-collapse: collapse;
-    transform: translate(20px, 100px);
     position: relative;
+}
+
+.standings-table table tr {
+    height: 45px;
 }
 
 .standings-table table tr:first-child {
     border-bottom: 3px solid black;
 }
 
-.standings-table table td:nth-child(1){
+.standings-table table td:nth-child(n){
     width: 150px;
 }
 
-.standings-table table tr:nth-child(2) td:nth-child(1) {
-    background-color: green;
-    color: rgb(0, 0, 0);
-    border-radius: 5px;
+.rank1{
+    width: 50px;
+    text-align: center;
+    background-color: rgb(58, 162, 3);
 }
 
-.standings-table table tr:nth-child(3) td:nth-child(1) {
-    background-color: rgb(255, 234, 0);
-    color: rgb(0, 0, 0);
-    border-radius: 5px;
+.rank2{
+    width: 50px;
+    text-align: center;
+    background-color: rgb(162, 154, 3);
 }
 
-.standings-table table tr:nth-child(4) td:nth-child(1) {
-    background-color: rgb(255, 0, 0);
-    color: rgb(0, 0, 0);
-    border-radius: 5px;
+.rank3{
+    width: 50px;
+    text-align: center;
+    background-color: rgb(162, 3, 3);
+}
+
+.team {
+    position: relative;
+    text-align: left;
+    width: 180px;
+}
+
+.team img{
+    width: 24px;
+    height: 27px;
+    left: 0;
+}
+
+.team-name{
+    margin-left: 15px;
+}
+
+.matches{
+    width: 60px;
+    text-align: right;
 }
