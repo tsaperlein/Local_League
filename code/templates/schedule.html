@@ -10,11 +10,12 @@
     <link rel="stylesheet" href="../styles/header.css">
     <link rel="stylesheet" href="../styles/schedule.css">
     <link rel="stylesheet" href="../styles/footer.css">
-    <link rel="stylesheet" href="../../tools/css/bootstrap.css">
-
-    <link href='https://unpkg.com/css.gg@2.0.0/icons/css/arrow-left.css' rel='stylesheet'>
+    <link rel="stylesheet" type="text/css" href="../../tools/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
 
     <script src="../javascript/schedule.js" async></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 </head>
 <body class="d-flex flex-column">
     <header class="header">
@@ -43,77 +44,32 @@
 
     <main class="main-content">
         <div class="background-image">
-            <img src="../../background-images/4.jpg" alt="Background Image">
-            <div class="schedule-container">
-                <div class="current-week-button">
-                    <button class="gg-arrow-left"></button>
-                    </li>
-                    <button type="button" class="btn btn-default btn-sm">
-                        <p>Week 1</p>
-                    </button>
-                    <button type="button" class="btn btn-default btn-sm">
-                        <span class="glyphicon glyphicon-chevron-right"></span>
-                    </button>
-                </div>
-                <div class="schedule">
-
-                    <div class="schedule-header">
-                        <h1>Schedule</h1>
+            <img src="../../background-images/4.jpg" alt="Background Image: Soccer field with a ball on the grass">
+            <div class="schedule-container d-flex flex-column">
+                <div class="schedule-options container d-flex flex-row">
+                    <div class="week-picker d-flex align-content-center">
+                        <div class="btn-group d-flex flex-row" role="group">
+                            <button id="prev-week" type="button" class="btn btn-light">&lt;</button>
+                            <button id="current-week" type="button" class="btn btn-light">Mar 3-Mar 10</button>
+                            <button id="next-week" type="button" class="btn btn-light">&gt;</button>
+                        </div>
                     </div>
-                    <div class="schedule-content">
-                        <div class="schedule-content-header">
-                            <div class="schedule-content-header-item">
-                                <h2>Team</h2>
-                            </div>
-                            <div class="schedule-content-header-item">
-                                <h2>Opponent</h2>
-                            </div>
-                            <div class="schedule-content-header-item">
-                                <h2>Date</h2>
-                            </div>
-                            <div class="schedule-content-header-item">
-                                <h2>Time</h2>
-                            </div>
-                            <div class="schedule-content-header-item">
-                                <h2>Location</h2>
-                            </div>
-                        </div>
-                        <div class="schedule-content-body">
-                            <div class="schedule-content-body-item">
-                                <h2>Team 1</h2>
-                            </div>
-                            <div class="schedule-content-body-item">
-                                <h2>Team 2</h2>
-                            </div>
-                            <div class="schedule-content-body-item">
-                                <h2>01/01/2021</h2>
-                            </div>
-                            <div class="schedule-content-body-item">
-                                <h2>12:00</h2>
-                            </div>
-                            <div class="schedule-content-body-item">
-                                <h2>Location 1</h2>
-                            </div>
-                        </div>
-                        <div class="schedule-content-body">
-                            <div class="schedule-content-body-item">
-                                <h2>Team 1</h2>
-                            </div>
-                            <div class="schedule-content-body-item">
-                                <h2>Team 3</h2>
-                            </div>
-                            <div class="schedule-content-body-item">
-                                <h2>01/01/2021</h2>
-                            </div>
-                            <div class="schedule-content-body-item">
-                                <h2>12:00</h2>
-                            </div>
-                            <div class="schedule-content-body-item">
-                                <h2>Location 1</h2>
-                            </div>
+                    <div id="calendar-container" style="display:none;">
+                        <div id="calendar"></div>
+                    </div>
+                    <div class="team-selection dropdown d-flex align-content-center">
+                        <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-placeholder="All teams">
+                        All Teams
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="#" data-team="all-teams">All Teams</a>
+                            <a class="dropdown-item" href="#" data-team="team1">Team 1</a>
+                            <a class="dropdown-item" href="#" data-team="team2">Team 2</a>
+                            <a class="dropdown-item" href="#" data-team="team3">Team 3</a>
                         </div>
                     </div>
                 </div>
+                <div class="matches-container d-flex flex-column"></div>
             </div>
         </div>
     </main>
