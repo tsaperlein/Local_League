@@ -88,6 +88,10 @@
     left: 0;
 }
 
+.team a:hover{
+    
+}
+
 .team-name {
     margin-left: 15px;
 }
