@@ -77,3 +77,41 @@ Object.entries(matchesByDate).forEach(([date, matches]) => {
   groupElement.appendChild(matchesWrapper);
   matchesContainer.appendChild(groupElement);
 });
+
+  // Toggle between login/register forms
+  $('#toggle-register').click(function() {
+    $('#login-form').toggle();
+    $('#register-form').toggle();
+    $('#login-modal-label').text(function(i, text){
+      return text === "Log In/Register" ? "Register" : "Log In/Register";
+    });
+    $(this).text(function(i, text){
+      return text === "Register" ? "Log In" : "Register";
+    });
+  });
+
+  // Example login function
+  function login() {
+    // Code to log in user
+    showAccount();
+    $('#login-modal').modal('hide');
+  }
+
+  // Example register function
+  function register() {
+    // Code to register user
+    showAccount();
+    $('#login-modal').modal('hide');
+  }
+
+  // Submit login form
+  $('#login-form').submit(function(event) {
+    event.preventDefault(); // Prevent form from submitting
+    login();
+  });
+
+  // Submit register form
+  $('#register-form').submit(function(event) {
+    event.preventDefault(); // Prevent form from submitting
+    register();
+  });

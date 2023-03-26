@@ -112,6 +112,15 @@ nav.header-options ul li a:hover {
   cursor: pointer;
 }
 
+button.login-register-button {
+  background-color: rgb(21, 65, 75);
+  color: white;
+}
+
+button.login-register-button:hover {
+  color: white;
+}
+
 @media (max-width: 800px) {
   .header-image img {
     min-width: 500px;

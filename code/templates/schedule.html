@@ -21,26 +21,79 @@
     <header class="header">
         <div class="header-logo d-flex justify-content-center align-items-center">
             <div class="header-image">
-                <img src="../../images/header.png" alt="">
+            <img src="../../images/header.png" alt="">
             </div>
         </div>
         <nav class="header-options d-flex justify-content-center">
             <ul class="d-flex justify-content-around">
-                <li>
-                    <a href="main-page.html">Main Page</a>
-                </li>
-                <li>
-                    <a href="schedule.html">Schedule</a>
-                </li>
-                <li>
-                    <a href="standings.html">Standings</a>
-                </li>
-                <li>
-                    <a href="account.html">Account</a>
-                </li>
+            <li>
+                <a href="main-page.html">Main Page</a>
+            </li>
+            <li>
+                <a href="schedule.html">Schedule</a>
+            </li>
+            <li>
+                <a href="standings.html">Standings</a>
+            </li>
+            <li id="account-li" style="display: none;">
+                <a href="account.html">Account</a>
+            </li>
+            <li>
+                <button type="button" class="login-register-button btn" data-toggle="modal" data-target="#login-modal">
+                LogIn/Register
+                </button>
+            </li>
             </ul>
         </nav>
     </header>
+
+    <!-- Modal -->
+    <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="login-modal-label" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="login-modal-label">Log In/Register</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <!-- Log in form -->
+                    <form id="login-form">
+                        <div class="form-group">
+                            <label for="login-email">Email address</label>
+                            <input type="email" class="form-control" id="login-email" placeholder="Enter email">
+                        </div>
+                        <div class="form-group">
+                            <label for="login-password">Password</label>
+                            <input type="password" class="form-control" id="login-password" placeholder="Password">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Log In</button>
+                    </form>
+                    <!-- Register form -->
+                    <form id="register-form" style="display: none;">
+                        <div class="form-group">
+                            <label for="register-email">Email address</label>
+                            <input type="email" class="form-control" id="register-email" placeholder="Enter email">
+                        </div>
+                        <div class="form-group">
+                            <label for="register-password">Password</label>
+                            <input type="password" class="form-control" id="register-password" placeholder="Password">
+                        </div>
+                        <div class="form-group">
+                            <label for="confirm-password">Confirm Password</label>
+                            <input type="password" class="form-control" id="confirm-password" placeholder="Confirm Password">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Register</button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="toggle-register">Register</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <main class="main-content">
         <div class="background-image">
