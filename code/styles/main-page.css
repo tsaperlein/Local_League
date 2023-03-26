@@ -1,0 +1,43 @@
+.background {
+    position: relative;
+    height: 300vh;
+    overflow: hidden;
+}
+
+.background img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.information-container {
+    height: calc(100% - 100px);
+    width: calc(100% - 100px);
+    position: relative;
+    margin: 50px;
+    padding: 10px 30px;
+    border-radius: 1vw;
+    z-index: 1;
+}
+
+.standings,
+.schedule-container,
+.last-week-results {
+    height: 500px;
+    background-color: rgba(240, 248, 255, 0.819);
+    width: 100%;
+    margin-bottom: 50px;
+    padding: 10px 30px;
+    border-radius: 1vw;
+    z-index: 1;
+}
+
+@media (max-width: 768px) {
+    .information-container {
+        margin-top: 70px;
+    }
+}

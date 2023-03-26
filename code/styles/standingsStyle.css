@@ -1,7 +1,10 @@
 .wallpaper {
-    position: relative; /* Make sure the child element is positioned relative to this */
-    height: 150vh; /* Set the height of the container to 100vh */
-    overflow-x: hidden; /* Allow overflow content */
+    position: relative;
+    /* Make sure the child element is positioned relative to this */
+    height: 150vh;
+    /* Set the height of the container to 100vh */
+    overflow-x: hidden;
+    /* Allow overflow content */
 }
 
 .wallpaper img {
@@ -18,11 +21,12 @@
     background-color: rgba(255, 255, 255, 0.6);
     height: calc(100% - 650px);
     position: relative;
-    margin-top: 200px;
+    margin-top: 50px;
     margin-left: 50px;
     margin-right: 50px;
     z-index: 1;
-    overflow-y: scroll; /* Allow overflow content */
+    overflow-y: scroll;
+    /* Allow overflow content */
 }
 
 .standings-table {
@@ -44,29 +48,29 @@
     border-bottom: 3px solid black;
 }
 
-.standings-table table td:nth-child(n){
+.standings-table table td:nth-child(n) {
     width: 150px;
 }
 
-.rank1{
+.rank1 {
     width: 50px;
     text-align: center;
     background-color: rgb(58, 162, 3);
 }
 
-.rank2{
+.rank2 {
     width: 50px;
     text-align: center;
     background-color: rgb(162, 154, 3);
 }
 
-.rank3{
+.rank3 {
     width: 50px;
     text-align: center;
     background-color: rgb(162, 3, 3);
 }
 
-.rank{
+.rank {
     width: 50px;
     text-align: center;
     background-color: rgb(143, 143, 143);
@@ -78,17 +82,17 @@
     width: 180px;
 }
 
-.team img{
+.team img {
     width: 24px;
     height: 27px;
     left: 0;
 }
 
-.team-name{
+.team-name {
     margin-left: 15px;
 }
 
-.matches{
+.matches {
     width: 50px;
     text-align: right;
 }

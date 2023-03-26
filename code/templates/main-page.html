@@ -5,33 +5,41 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Local League</title>
+    <link rel="icon" type="image/x-icon" href="/images/icon-local-league.png">
+    <link rel="stylesheet" href="../styles/main-page.css">
+    <script src="../javascript/main-page.js" async></script>
+
+    <link rel="stylesheet" href="../styles/main.css">
     <link rel="stylesheet" href="../styles/header.css">
-    <link rel="icon" type="image/x-icon" href="/images/icon-local-league.png"> <!-- Favicon-->
+    <link rel="stylesheet" href="../styles/schedule.css">
+    <link rel="stylesheet" href="../styles/footer.css">
+    <link rel="stylesheet" type="text/css" href="../../tools/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+
+    <script src="../javascript/header-footer.js" defer></script>
+    <script src="../javascript/matches.js" defer></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 </head>
 
 <body>
-    <div class="header">
-        <div class="header-logo">
-            <div class="header-image">
-                <img src="../../images/header.png" alt="">
+    <header id="header"></header>
+
+    <main>
+        <div class="background">
+            <img src="../../background-images/4.jpg" alt="Background Image: Soccer field with a ball on the grass">
+            <div class="information-container d-flex flex-column">
+                <div class="standings">
+
+                </div>
+                <div class="schedule-container d-flex flex-column" id="matches-container"></div>
+                <div class="last-week-results">
+
+                </div>
             </div>
         </div>
-        <nav class="header-options">
-            <ul>
-                <li>
-                    <a href="../main-page/main-page.html">Main Page</a>
-                </li>
-                <li>
-                    <a href="schedule.html">Schedule</a>
-                </li>
-                <li>
-                    <a href="standings.html">Standings</a>
-                </li>
-                <li>
-                    <a href="../account/account.html">Account</a>
-                </li>
-            </ul>
-        </nav>
-    </div>
+    </main>
+
+    <footer id="footer"></footer>
 </body>
 </html>
