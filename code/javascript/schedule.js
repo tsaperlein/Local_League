@@ -4,6 +4,8 @@ const matchesData = [{ date: 'Wednesday March 22', state: 'Final', homeTeam: 'AE
     { date: 'Wednesday March 22', state: 'Final', homeTeam: 'PAO', homeTeamLogo: '../../images/pao.png', homeScore: 5, awayScore: 1, awayTeam: 'AEK', awayTeamLogo: '../../images/aek.png', field: 'Γήπεδο Αγιά Σοφιά', referees: ['Thanasis Athanasiou (main)', 'Panos Panopoulos (assistant)'] },
     { date: 'Friday March 24', state: 'Final', homeTeam: 'PAO', homeTeamLogo: '../../images/pao.png', homeScore: 3, awayScore: 4, awayTeam: 'AEK', awayTeamLogo: '../../images/aek.png', field: 'Γήπεδο Αγιά Σοφιά', referees: ['Thanasis Athanasiou (main)', 'Panos Panopoulos (assistant)'] },
     { date: 'Saturday March 25', state: 'Final', homeTeam: 'PAO', homeTeamLogo: '../../images/pao.png', homeScore: 3, awayScore: 4, awayTeam: 'AEK', awayTeamLogo: '../../images/aek.png', field: 'Γήπεδο Αγιά Σοφιά', referees: ['Thanasis Athanasiou (main)', 'Panos Panopoulos (assistant)'] },
+    { date: 'Sunday March 26', state: 'Upcoming', homeTeam: 'AEK', homeTeamLogo: '../../images/aek.png', awayTeam: 'OLY', awayTeamLogo: '../../images/osfp.png', startTime: '16:00', field: 'Γήπεδο Λεωφόρου', referees: ['John Smith (main)', 'George Brown (assistant)'] },
+    { date: 'Sunday March 26', state: 'Upcoming', homeTeam: 'PAO', homeTeamLogo: '../../images/pao.png', awayTeam: 'AEK', awayTeamLogo: '../../images/aek.png', startTime: '18:00', field: 'Γήπεδο Αγιά Σοφιά', referees: ['John Smith (main)', 'George Brown (assistant)'] },
 ];
 
 const matchesContainer = document.querySelector('.matches-container');
@@ -28,7 +30,9 @@ Object.entries(matchesByDate).forEach(([date, matches]) => {
     const matchElement = document.createElement('div');
     matchElement.classList.add('match');
     if (index < matches.length - 1) {
-        matchElement.classList.add('bordered-bottom');
+        matchElement.classList.add('bordered-bottom'); // Add border-bottom to all match elements except the last one
+    } else {
+        matchElement.classList.add('margin-bottom'); // Add margin-bottom to the last match element
     }
     matchElement.innerHTML = `
         <div class="match-information d-flex flex-row justify-content-between align-items-center">
@@ -40,11 +44,16 @@ Object.entries(matchesByDate).forEach(([date, matches]) => {
                 <div class="team d-flex flex-row">
                     <img class="home-team" src="${match.homeTeamLogo}" alt="Home Team">
                 </div>
+                ${match.state === "Upcoming" ? `
+                <div class="match-time d-flex flex-row justify-content-center align-self-center align-items-center list-unstyled">
+                    <li>${match.startTime}</li>
+                </div>` : `
                 <div class="score d-flex flex-row justify-content-center align-self-center align-items-center list-unstyled">
                     <li>${match.homeScore}</li>
                     <div class="line"></div>
                     <li>${match.awayScore}</li>
                 </div>
+                `}
                 <div class="team d-flex flex-row">
                     <img class="away-team" src="${match.awayTeamLogo}" alt="Away Team">
                 </div>
@@ -57,7 +66,7 @@ Object.entries(matchesByDate).forEach(([date, matches]) => {
                 </ul>
             </div>
         </div>
-    `;
+    `; 
       matchesWrapper.appendChild(matchElement);
   });
 
