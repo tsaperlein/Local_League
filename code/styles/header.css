@@ -149,7 +149,7 @@ button.login-register-button:hover {
 }
 
 /* Mobile Devices */
-@media (max-width: 420px) {
+@media (max-width: 450px) {
   .header-image img {
     max-width: 100px;
   }

@@ -109,7 +109,7 @@ li.field-name {
     color: gray
 }
 
-@media (max-width: 420px) {
+@media (max-width: 450px) {
     /* Date */
     .match-date {
         margin: 1vw 0;

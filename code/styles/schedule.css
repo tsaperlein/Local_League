@@ -70,7 +70,7 @@ div.schedule-options {
     border: 1px solid rgba(129, 129, 129, 0.2);
 }
 
-@media (max-width: 420px) {
+@media (max-width: 450px) {
     /* Fix the margin of the schedule container */
     .schedule-container {
         width: calc(100% - 4vw);
