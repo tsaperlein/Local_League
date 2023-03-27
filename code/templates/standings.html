@@ -16,6 +16,7 @@
     <script src="../javascript/header-footer.js" defer></script>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <script src="/javascript/standings.js"></script>
 </head>
 <body>
     <header id="header"></header>
@@ -24,10 +25,19 @@
         <div class="wallpaper">
             <img src="../../background-images/6.jpg" alt="">
             <div class="standings">
+                <div class="standings-choice-buttons-group">
+                    <p class="standings-choice-buttons-group-button"><span>Overall</span></p>
+                    <p class="standings-choice-buttons-group-button"><span>Home</span></p>
+                    <p href="#" class="standings-choice-buttons-group-button"><span>Guest</span></p>
+                </div>
                 <div class="standings-table">
                     <table>
                         <tr>
-                            <th>RANK #</th>
+                            <th>
+                                <p class="rank-btn">
+                                    <span>Rank #</span>
+                                </p>
+                            </th>
                             <th>Team</th>
                             <th>Matches</th>
                             <th>W</th>
