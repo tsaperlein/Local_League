@@ -1,4 +1,5 @@
-const matchesData = [{ date: 'Wednesday March 22', state: 'Final', homeTeam: 'AEK', homeTeamLogo: '../../images/aek.png', homeScore: 4, awayScore: 2, awayTeam: 'PAO', awayTeamLogo: '../../images/pao.png', field: 'Γήπεδο Αγιά Σοφιά', referees: ['Thanasis Athanasiou (main)', 'Panos Panopoulos (assistant)'] },
+const matchesData = [
+    { date: 'Wednesday March 22', state: 'Final', homeTeam: 'AEK', homeTeamLogo: '../../images/aek.png', homeScore: 4, awayScore: 2, awayTeam: 'PAO', awayTeamLogo: '../../images/pao.png', field: 'Γήπεδο Αγιά Σοφιά', referees: ['Thanasis Athanasiou (main)', 'Panos Panopoulos (assistant)'] },
     { date: 'Wednesday March 22', state: 'Final', homeTeam: 'OLY', homeTeamLogo: '../../images/osfp.png', homeScore: 2, awayScore: 1, awayTeam: 'PAO', awayTeamLogo: '../../images/pao.png', field: 'Γήπεδο Αγιά Σοφιά', referees: ['Thanasis Athanasiou (main)', 'Panos Panopoulos (assistant)'] },
     { date: 'Wednesday March 22', state: 'Final', homeTeam: 'OLY', homeTeamLogo: '../../images/osfp.png', homeScore: 2, awayScore: 3, awayTeam: 'PAO', awayTeamLogo: '../../images/pao.png', field: 'Γήπεδο Αγιά Σοφιά', referees: ['Thanasis Athanasiou (main)', 'Panos Panopoulos (assistant)'] },
     { date: 'Wednesday March 22', state: 'Final', homeTeam: 'PAO', homeTeamLogo: '../../images/pao.png', homeScore: 5, awayScore: 1, awayTeam: 'AEK', awayTeamLogo: '../../images/aek.png', field: 'Γήπεδο Αγιά Σοφιά', referees: ['Thanasis Athanasiou (main)', 'Panos Panopoulos (assistant)'] },
@@ -8,45 +9,24 @@ const matchesData = [{ date: 'Wednesday March 22', state: 'Final', homeTeam: 'AE
     { date: 'Sunday March 26', state: 'Upcoming', homeTeam: 'PAO', homeTeamLogo: '../../images/pao.png', awayTeam: 'AEK', awayTeamLogo: '../../images/aek.png', startTime: '18:00', field: 'Γήπεδο Αγιά Σοφιά', referees: ['John Smith (main)', 'George Brown (assistant)'] },
 ];
 
+const finalMatchesContainer = document.getElementById('final-matches-container');
 const upcomingMatchesContainer = document.getElementById('upcoming-matches-container');
-const matchesContainer = document.getElementById('matches-container');
 
 // Group matches by date and state
-const matchesByState = matchesData.reduce((groups, match) => {
+const matchesByStateAndDate = matchesData.reduce((groups, match) => {
   const state = match.state;
-  groups[state] = groups[state] || [];
-  groups[state].push(match);
-  return groups;
-}, {});
-
-// Group matches by date
-const matchesByDate = matchesData.reduce((groups, match) => {
   const date = match.date;
-  groups[date] = groups[date] || [];
-  groups[date].push(match);
+  groups[state] = groups[state] || {};
+  groups[state][date] = groups[state][date] || [];
+  groups[state][date].push(match);
   return groups;
 }, {});
 
-// Loop through each date group and generate HTML code for each match
-Object.entries(matchesByDate).forEach(([date, matches]) => {
-    const dateElement = document.createElement('div');
-    dateElement.classList.add('match-date');
-    dateElement.innerHTML = `<li>${date}</li>`;
+function matchHtml(match) {
+    const homeScoreClass = match.homeScore > match.awayScore ? 'winning-score' : 'losing-score';
+    const awayScoreClass = match.awayScore > match.homeScore ? 'winning-score' : 'losing-score';
 
-    const matchesWrapper = document.createElement('div');
-    matchesWrapper.classList.add('matches-wrapper');
-    matches.forEach((match, index) => {
-        const matchElement = document.createElement('div');
-        matchElement.classList.add('match');
-        if (index < matches.length - 1) {
-            matchElement.classList.add('bordered-bottom'); // Add border-bottom to all match elements except the last one
-        } else {
-            matchElement.classList.add('margin-bottom'); // Add margin-bottom to the last match element
-        }
-        // Check which team won the game and set the color of the score accordingly
-        const homeScoreClass = match.homeScore > match.awayScore ? 'winning-score' : 'losing-score';
-        const awayScoreClass = match.awayScore > match.homeScore ? 'winning-score' : 'losing-score';
-        matchElement.innerHTML = `
+    const matchHtml = `
             <div class="match-information d-flex flex-row justify-content-between align-items-center">
                 <div class="current-state align-content-center">
                     <li class="d-flex align-items-center">${match.state}</li>
@@ -78,18 +58,58 @@ Object.entries(matchesByDate).forEach(([date, matches]) => {
                     </ul>
                 </div>
             </div>
-        `; 
-        matchesWrapper.appendChild(matchElement);
-    });
-  
-    // Generate HTML code for both upcoming and final matches
-    const groupElement = document.createElement('div');
-    groupElement.classList.add('match-group');
-    groupElement.appendChild(dateElement);
-    groupElement.appendChild(matchesWrapper);
-    if (matchesByState.hasOwnProperty('Upcoming') && matchesByState['Upcoming'].includes(matches[0])) {
-        upcomingMatchesContainer.appendChild(groupElement);
-    } else {
-        matchesContainer.appendChild(groupElement);
+    `;
+
+    return matchHtml;
+}
+
+// Generate HTML code for final matches
+if (matchesByStateAndDate['Final']) {
+    for (const date in matchesByStateAndDate['Final']) {
+        const dateElement = document.createElement('div');
+        dateElement.classList.add('match-date');
+        dateElement.innerHTML = `<li>${date}</li>`;
+
+        const finalMatches = matchesByStateAndDate['Final'][date];
+        const finalMatchesWrapper = document.createElement('div');
+        finalMatchesWrapper.classList.add('matches-wrapper');
+        finalMatches.forEach((match, index) => {
+            const matchElement = document.createElement('div');
+            matchElement.classList.add('match');
+            if (index < finalMatches.length - 1) {
+                matchElement.classList.add('bordered-bottom');
+            } else {
+                matchElement.classList.add('margin-bottom-none');
+            }
+            matchElement.innerHTML = matchHtml(match);
+            finalMatchesContainer.appendChild(dateElement);
+            finalMatchesWrapper.appendChild(matchElement);
+        });
+        finalMatchesContainer.appendChild(finalMatchesWrapper);
     }
-});
+}
+// Generate HTML code for upcoming matches
+if (matchesByStateAndDate['Upcoming']) {
+    for (const date in matchesByStateAndDate['Upcoming']) {
+        const dateElement = document.createElement('div');
+        dateElement.classList.add('match-date');
+        dateElement.innerHTML = `<li>${date}</li>`;
+
+        const upcomingMatches = matchesByStateAndDate['Upcoming'][date];
+        const upcomingMatchesWrapper = document.createElement('div');
+        upcomingMatchesWrapper.classList.add('matches-wrapper');
+        upcomingMatches.forEach((match, index) => {
+            const matchElement = document.createElement('div');
+            matchElement.classList.add('match');
+            if (index < upcomingMatches.length - 1) {
+                matchElement.classList.add('bordered-bottom');
+            } else {
+                matchElement.classList.add('margin-bottom-none');
+            }
+            matchElement.innerHTML = matchHtml(match);
+            upcomingMatchesContainer.appendChild(dateElement);
+            upcomingMatchesWrapper.appendChild(matchElement);
+        });
+        upcomingMatchesContainer.appendChild(upcomingMatchesWrapper);
+    }
+}
