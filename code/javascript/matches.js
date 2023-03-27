@@ -27,37 +27,37 @@ function matchHtml(match) {
     const awayScoreClass = match.awayScore > match.homeScore ? 'winning-score' : 'losing-score';
 
     const matchHtml = `
-            <div class="match-information d-flex flex-row justify-content-between align-items-center">
-                <div class="current-state align-content-center">
-                    <li class="d-flex align-items-center">${match.state}</li>
-                </div>
-                <div class="teams-score d-flex flex-row justify-content-center">
-                    <label class="d-flex align-self-center" for="home-team">${match.homeTeam}</label>
-                    <div class="team d-flex flex-row">
-                        <img class="home-team" src="${match.homeTeamLogo}" alt="Home Team">
-                    </div>
-                    ${match.state === "Upcoming" ? `
-                    <div class="match-time d-flex flex-row justify-content-center align-self-center align-items-center list-unstyled">
-                        <li>${match.startTime}</li>
-                    </div>` : `
-                    <div class="score">
-                        <li class="score ${homeScoreClass}">${match.homeScore}</li>
-                        <div class="line"></div>
-                        <li class="score ${awayScoreClass}">${match.awayScore}</li>
-                    </div>
-                    `}
-                    <div class="team d-flex flex-row">
-                        <img class="away-team" src="${match.awayTeamLogo}" alt="Away Team">
-                    </div>
-                    <label class="d-flex align-self-center" for="away-team">${match.awayTeam}</label>
-                </div>
-                <div class="extra-information">
-                    <ul class="list-unstyled d-flex flex-column justify-content-center">
-                        <li class="field-name">${match.field}</li>
-                        ${match.referees.map(referee => `<li class="referee">${referee}</li>`).join('')}
-                    </ul>
-                </div>
+        <div class="match-information row align-items-center">
+            <div class="current-state">
+                <li class="d-flex align-items-center">${match.state}</li>
             </div>
+            <div class="teams-score d-flex flex-row justify-content-center justify-items-center">
+                <label class="team-name d-flex align-items-center" for="home-team">${match.homeTeam}</label>
+                <div class="team d-flex flex-row">
+                    <img class="home-team" src="${match.homeTeamLogo}" alt="Home Team">
+                </div>
+                ${match.state === "Upcoming" ? `
+                <div class="match-time d-flex flex-row justify-content-center align-items-center list-unstyled">
+                    <li>${match.startTime}</li>
+                </div>` : `
+                <div class="score d-flex justif-content-center align-items-center">
+                    <li class="score ${homeScoreClass}">${match.homeScore}</li>
+                    <div class="line"></div>
+                    <li class="score ${awayScoreClass}">${match.awayScore}</li>
+                </div>
+                `}
+                <div class="team d-flex flex-row">
+                    <img class="away-team" src="${match.awayTeamLogo}" alt="Away Team">
+                </div>
+                <label class="team-name d-flex align-items-center" for="away-team">${match.awayTeam}</label>
+            </div>
+            <div class="extra-information">
+                <ul class="list-unstyled d-flex flex-column justify-content-center">
+                    <li class="field-name">${match.field}</li>
+                    ${match.referees.map(referee => `<li class="referee">${referee}</li>`).join('')}
+                </ul>
+            </div>
+        </div>
     `;
 
     return matchHtml;

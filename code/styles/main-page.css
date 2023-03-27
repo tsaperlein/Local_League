@@ -42,3 +42,29 @@
         margin-top: 70px;
     }
 }
+
+@media (max-width: 400px) {
+    body {
+        margin: 0;
+        padding: 0;
+    }
+
+    .background {
+        height: 120vh;
+    }
+
+    .information-container {
+        width: calc(100% + 1vw);
+        margin-top: 20px;
+        left: -0.5vw;
+        height: 1200px;
+    }
+    
+    .standings,
+    .last-week-results,
+    .schedule-box {
+        padding: 2vw 2vw;
+        border-radius: 2vw;
+        z-index: 1;
+    }
+}

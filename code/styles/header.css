@@ -147,3 +147,26 @@ button.login-register-button:hover {
     font-size: 25px;
   }
 }
+
+/* Mobile Devices */
+@media (max-width: 400px) {
+  .header-image img {
+    max-width: 100px;
+  }
+
+  nav.header-options {
+    height: 20px;
+  }
+
+  nav.header-options ul {
+    max-width: 85vw;
+  }
+
+  nav.header-options ul li {
+    padding: 0 10px;
+  }
+
+  nav.header-options ul li:hover {
+    padding: 0 10px;
+  }
+}

@@ -33,19 +33,20 @@ body ul {
     left: 8vw;
 }
 
+/* Buttons */
 div.schedule-options {
-    height: 40px;
-    width: 100%;
-    margin: 20px 0 30px 0;
+    height: 30px;
+    width: 50%;
+    margin: 20px 0 20px 0;
 }
 
 .dropdown-item {
     font-size: 16px;
 }
 
-/* Buttons */
 .team-selection,
 .week-picker {
+    width: 100%;
     height: 100%;
 }
 
@@ -53,14 +54,99 @@ div.schedule-options {
     margin-right: 10px;
 }
 
+.btn-group,
+.team-selection button {
+    box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.2);
+}
+
 .team-selection button,
-.btn-group {
+.btn-group button {
     width: 100%;
     height: 100%;
     border-radius: 5px;
-    box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.2);
 }
 
 .btn-group button {
     border: 1px solid rgba(129, 129, 129, 0.2);
 }
+
+@media (max-width: 400px) {
+    /* Fix the margin of the schedule container */
+    .schedule-container {
+        width: calc(100% - 4vw);
+        margin-top: 6vw;
+        left: 2vw;
+        border-radius: 2vw;
+    }
+
+    .background {
+        position: relative;
+        height: 70vh;
+        overflow-x: hidden;
+    }
+
+    .team-selection button,
+    .btn-group {
+        border-radius: 5px;
+    }
+
+    .team-selection button {
+        border-radius: 3px;
+    }
+
+    div.schedule-options {
+        height: 20px;
+        width: 150px;
+        margin: 0;
+        margin-bottom: 10px;
+        padding: 0;
+    }
+
+    div.schedule-options * {
+        margin: 0;
+        padding: 0;
+    }
+
+
+    .btn-group {
+        background-color: none;
+    }
+
+    .btn-group button#current-week {
+        width: 50px;
+    }
+
+    .btn-group button#previous-week,
+    .btn-group button#next-week {
+        width: 10px;
+    }
+    
+    .dropdown-item {
+        font-size: 6px;
+    }
+
+    .week-picker {
+        width: 70px;
+        margin-right: 20px;
+    }
+
+    .team-selection {
+        width: 50px;
+    }
+    
+    .team-selection button,
+    .btn-group {
+        border: 1px solid rgba(129, 129, 129, 0.2);
+        border-radius: 5px;
+        height: 100%;
+    }
+
+    .btn-group button,
+    .team-selection button {
+        font-size: 6px;
+    }
+
+    .team-selection button {
+        margin-left: 5px;
+    }
+  }

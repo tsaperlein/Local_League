@@ -112,3 +112,49 @@ footer {
         height: 170px;
     }
 }
+
+@media (max-width: 400px) {
+    footer label {
+        font-weight: 600;
+        font-size: 2.5vw;
+    }
+    
+    footer a {
+        font-size: 2vw;
+    }
+    
+    footer {
+        height: 130px;
+    }
+    
+    .footer-page-icon {
+        width: auto;
+        height: 70px;
+    }
+    
+    .footer-page-icon img {
+        width: auto;
+        height: 100%;
+    }
+    
+    .footer-links,
+    .footer-contact-info,
+    .footer-connect-with-us {
+        height: 70%;
+    }
+    
+    .footer-contact-info {
+        width: 30%;
+    }
+    
+    .connection-icons {
+        width: 100px;
+        height: 70%;
+    }
+    
+    .info-box a img {
+        max-width: 25px;
+        max-height: 25px;
+        object-fit: cover;
+    }
+}
