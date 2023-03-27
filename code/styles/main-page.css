@@ -43,14 +43,14 @@
     }
 }
 
-@media (max-width: 400px) {
+@media (max-width: 420px) {
     body {
         margin: 0;
         padding: 0;
     }
 
     .background {
-        height: 120vh;
+        height: 150vh;
     }
 
     .information-container {

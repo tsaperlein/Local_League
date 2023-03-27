@@ -70,7 +70,7 @@ div.schedule-options {
     border: 1px solid rgba(129, 129, 129, 0.2);
 }
 
-@media (max-width: 400px) {
+@media (max-width: 420px) {
     /* Fix the margin of the schedule container */
     .schedule-container {
         width: calc(100% - 4vw);
@@ -81,8 +81,7 @@ div.schedule-options {
 
     .background {
         position: relative;
-        height: 70vh;
-        overflow-x: hidden;
+        height: 80vh;
     }
 
     .team-selection button,
