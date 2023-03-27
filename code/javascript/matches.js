@@ -40,7 +40,7 @@ function matchHtml(match) {
                     <div class="match-time d-flex flex-row justify-content-center align-self-center align-items-center list-unstyled">
                         <li>${match.startTime}</li>
                     </div>` : `
-                    <div class="score d-flex flex-row justify-content-center align-self-center align-items-center list-unstyled">
+                    <div class="score">
                         <li class="score ${homeScoreClass}">${match.homeScore}</li>
                         <div class="line"></div>
                         <li class="score ${awayScoreClass}">${match.awayScore}</li>

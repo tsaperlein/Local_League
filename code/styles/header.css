@@ -57,7 +57,6 @@ nav.header-options {
   height: 4vw;
   transition: all 0.3s ease-in-out;
   background-color: rgba(33, 104, 120, 1);
-  opacity: 1;
 }
 
 nav.header-options ul {
@@ -91,7 +90,7 @@ nav.header-options ul li:hover {
 }
 
 nav.header-options:hover {
-  opacity: 0.95;
+  background-color: rgba(60, 104, 120, 1);
   transition: opacity 0.3s ease-in-out;
 }
 
