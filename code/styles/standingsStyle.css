@@ -26,13 +26,14 @@
     margin-right: 50px;
     z-index: 1;
     overflow-y: scroll;
-    /* Allow overflow content */
 }
 
 .standings-table {
     display: flex;
     flex-direction: column;
     padding: 10px;
+    transform: translate(0, 10px);
+    transition: ease-in-out 0.5s;
 }
 
 .standings-table table {
@@ -88,10 +89,6 @@
     left: 0;
 }
 
-.team a:hover{
-    
-}
-
 .team-name {
     margin-left: 15px;
 }
@@ -99,4 +96,63 @@
 .matches {
     width: 50px;
     text-align: right;
+}
+
+.standings-choice-buttons-group {
+    margin: 0;
+    display: flex;
+    justify-content: space-around;
+    height: 10vh;
+    align-items: center;
+    background: rgba(157, 163, 168, 0.598);
+    font-family: sans-serif;
+}
+
+.standings-choice-buttons-group-button {
+    background-color: rgb(255, 255, 255);
+    padding: 10px 40px;
+    border-radius: 5px; 
+    box-shadow: 0 4px 8px rgba(0,0,0,0.7);
+    text-decoration: none;
+    color: black;
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;   /* In order to "hide" the extra hovering */
+}
+
+.standings-choice-buttons-group-button span{
+    position: relative;
+    z-index: 1;
+}
+
+.standings-choice-buttons-group-button::before{   /* The ::before pseudo-element is used to create a circular shape */
+    content: "";
+    position: absolute;
+    background-color: rgb(145, 136, 133);
+    width: 0;
+    height: 0;
+    left: var(--xPos);  /* The var() function is used to reference a CSS variable. */
+    top: var(--yPos);   /* I can change the variables inside the js script */
+    transform: translate(-50%, -50%);   /* The translate() method moves an element from its current position. */
+    border-radius: 50%;
+    transition: 0.5s;   /* The transition property specifies the speed curve of the transition effect. */
+}
+
+.standings-choice-buttons-group-button:hover::before{
+    width: 300px;
+    height: 300px;
+}
+
+.rank-btn{
+    background-color: rgba(255, 255, 255, 0.4);
+    padding: 10px 10px;
+    min-width: 90px;
+    min-height: 45px;
+    border-radius: 5px; 
+    box-shadow: 0 4px 8px rgba(0,0,0,0.7);
+    text-decoration: none;
+    color: black;
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;   /* In order to "hide" the extra hovering */
 }
