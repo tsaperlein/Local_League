@@ -12,7 +12,7 @@
 
 /* Match Information */
 .match-information {
-    height: 6vw;
+    height: 100%;
     padding: 5px 20px;
     border-radius: 7px;
     transition: all 0.1s ease-in-out;
@@ -48,7 +48,7 @@
 }
 
 .teams-score {
-    width: 50%;
+    width: 70%;
     justify-content: center;
 }
 
@@ -98,7 +98,7 @@
 
 /* Referee */
 .extra-information {
-    width: 14vw;
+    height: 100%;
 }
 
 .extra-information li {
@@ -110,6 +110,7 @@ li.field-name {
 }
 
 @media (max-width: 450px) {
+
     /* Date */
     .match-date {
         margin: 1vw 0;
@@ -124,7 +125,6 @@ li.field-name {
 
     /* Match Information */
     .match-information {
-        height: 10vw;
         padding: 5px 20px;
         border-radius: 7px;
     }
@@ -140,50 +140,45 @@ li.field-name {
         font-size: 2vw;
         font-weight: 600;
     }
-    
+
     .team {
         margin: 0 0.8vw;
     }
-    
+
     .team img {
         width: auto;
         height: 5vw;
     }
-    
-    .teams-score {
-        width: 75%;
-        height: 20px;
-    }
-    
+
     .teams-score label {
         position: relative;
         font-size: 3.2vw;
     }
-    
+
     .match-time {
         width: 5vw;
     }
-    
+
     .score {
         border-radius: 0.5vw;
         width: 9vw;
         height: 5vw;
     }
-    
+
     .score li {
         font-size: 3vw;
         font-weight: 500;
     }
-    
+
     .line {
         height: 2.5vw;
     }
-    
+
     /* Referee */
-    .extra-information {
+    /* .extra-information {
         width: 12vw;
-    }
-    
+    } */
+
     .extra-information li {
         font-size: 1.1vw;
     }

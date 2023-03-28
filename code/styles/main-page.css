@@ -1,6 +1,6 @@
 .background {
     position: relative;
-    height: 150vh;
+    max-height: 100%;
     overflow: hidden;
 }
 
@@ -15,14 +15,12 @@
 }
 
 .information-container {
-    height: calc(100% - 100px);
-    width: calc(100% - 12vw);
+    max-height: 100%;
     position: relative;
-    margin-top: 4vw;
+    margin-top: 3vw;
     padding: 10px 30px;
     border-radius: 1vw;
     z-index: 1;
-    left: 6vw;
 }
 
 .standings,
@@ -49,17 +47,10 @@
         padding: 0;
     }
 
-    .background {
-        height: 150vh;
+    .information-container {
+        margin-top: 5vw;
     }
 
-    .information-container {
-        width: calc(100% + 1vw);
-        margin-top: 20px;
-        left: -0.5vw;
-        height: 1200px;
-    }
-    
     .standings,
     .last-week-results,
     .schedule-box {

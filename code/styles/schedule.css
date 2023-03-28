@@ -5,7 +5,7 @@ body ul {
 
 .background {
     position: relative;
-    height: 200vh;
+    max-height: 100%;
     overflow-x: hidden;
 }
 
@@ -23,14 +23,13 @@ body ul {
 /* Fix the margin of the schedule container */
 .schedule-container {
     background-color: rgba(240, 248, 255, 0.819);
-    height: calc(100% - 100px);
-    width: calc(100% - 16vw);
     position: relative;
-    margin-top: 4vw;
-    padding: 10px 30px;
+    padding: 10px 0;
+    max-height: 100%;
+    max-width: 95%;
+    margin: 4vw 0;
     border-radius: 1vw;
     z-index: 1;
-    left: 8vw;
 }
 
 .btn-group {
@@ -125,17 +124,11 @@ div.schedule-options {
 }
 
 @media (max-width: 450px) {
+
     /* Fix the margin of the schedule container */
     .schedule-container {
-        width: calc(100% - 4vw);
-        margin-top: 6vw;
-        left: 2vw;
+        margin: 6vw 0;
         border-radius: 2vw;
-    }
-
-    .background {
-        position: relative;
-        height: 80vh;
     }
 
     .btn-group {
@@ -172,7 +165,7 @@ div.schedule-options {
     .btn-group button#next-week {
         width: 10px;
     }
-    
+
     .dropdown-item {
         font-size: 6px;
     }
@@ -185,7 +178,7 @@ div.schedule-options {
     .team-selection {
         width: 50px;
     }
-    
+
     .team-selection button,
     .btn-group {
         border: 1px solid rgba(129, 129, 129, 0.2);
@@ -201,4 +194,4 @@ div.schedule-options {
     .team-selection button {
         margin-left: 5px;
     }
-  }
+}
