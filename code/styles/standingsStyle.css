@@ -116,35 +116,10 @@
     position: relative;
     cursor: pointer;
     overflow: hidden;
-    /* In order to "hide" the extra hovering */
 }
 
-.standings-choice-buttons-group-button span {
-    position: relative;
-    z-index: 1;
-}
-
-.standings-choice-buttons-group-button::before {
-    /* The ::before pseudo-element is used to create a circular shape */
-    content: "";
-    position: absolute;
-    background-color: rgb(145, 136, 133);
-    width: 0;
-    height: 0;
-    left: var(--xPos);
-    /* The var() function is used to reference a CSS variable. */
-    top: var(--yPos);
-    /* I can change the variables inside the js script */
-    transform: translate(-50%, -50%);
-    /* The translate() method moves an element from its current position. */
-    border-radius: 50%;
-    transition: 0.5s;
-    /* The transition property specifies the speed curve of the transition effect. */
-}
-
-.standings-choice-buttons-group-button:hover::before {
-    width: 300px;
-    height: 300px;
+.standings-choice-buttons-group-button:hover{
+    padding: 11px 45px;
 }
 
 .rank-btn {
@@ -158,11 +133,10 @@
     color: black;
     position: relative;
     cursor: pointer;
-    overflow: hidden;
-    /* In order to "hide" the extra hovering */
 }
 
-.standings-choice-buttons-group a {
+body a:hover {
     text-decoration: none;
     color: black;
+
 }
