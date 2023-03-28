@@ -26,7 +26,7 @@ body ul {
     position: relative;
     padding: 10px 0;
     max-height: 100%;
-    max-width: 95%;
+    max-width: 100%;
     margin: 4vw 0;
     border-radius: 1vw;
     z-index: 1;
@@ -41,9 +41,9 @@ body ul {
 }
 
 div.schedule-options {
-    width: 100%;
     margin: 0;
     padding: 0;
+    max-width: 30vw;
 }
 
 div.schedule-options * {
@@ -52,21 +52,21 @@ div.schedule-options * {
 }
 
 .btn-group button#current-week {
-    width: 15vw;
+    width: 12vw;
 }
 
 .btn-group button#previous-week,
 .btn-group button#next-week {
-    width: 3vw;
+    width: 2.5vw;
 }
 
 .team-selection button {
-    width: 13vw;
+    width: 12vw;
 }
 
 .btn-group,
 .team-selection {
-    height: 100%;
+    height: 4vw;
 }
 
 .team-selection button,
@@ -74,30 +74,18 @@ div.schedule-options * {
     border: 1px solid rgba(129, 129, 129, 0.2);
     border-radius: 5px;
     height: 100%;
+    font-size: 1vw;
 }
 
-.btn-group button,
-.team-selection button {
-    font-size: 6px;
-}
-
-.team-selection button {
-    margin-left: 10px;
+.week-picker {
+    margin-right: 1vw;
 }
 
 /* Buttons */
 div.schedule-options {
     height: 5vw;
     width: 100%;
-    margin: 20px 0;
-}
-
-.dropdown-item {
-    font-size: 1.5vw;
-}
-
-.week-picker {
-    margin-right: 20px;
+    margin: 1vw 0;
 }
 
 .btn-group,
@@ -113,14 +101,24 @@ div.schedule-options {
     border-radius: 8px;
 }
 
-
-.btn-group button,
-.team-selection button {
-    font-size: 2vw;
-}
-
 .btn-group button {
     border: 1px solid rgba(129, 129, 129, 0.2);
+}
+
+.team-selection .dropdown-menu {
+    width: 100%;
+    min-width: unset;
+}
+
+/* Font Size */
+.week-picker button,
+.team-selection button {
+    font-size: 1.5vw;
+}
+
+.dropdown-item {
+    max-width: 10%;
+    font-size: 1.5vw;
 }
 
 @media (max-width: 450px) {
@@ -180,10 +178,10 @@ div.schedule-options {
     }
 
     .team-selection button,
-    .btn-group {
+    .btn-group button {
         border: 1px solid rgba(129, 129, 129, 0.2);
         border-radius: 5px;
-        height: 100%;
+        height: 5vw;
     }
 
     .btn-group button,
