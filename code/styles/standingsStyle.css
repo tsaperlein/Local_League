@@ -19,7 +19,7 @@
 
 .standings {
     background-color: rgba(255, 255, 255, 0.6);
-    height: calc(100% - 650px);
+    height: calc(100% - 20vh);
     position: relative;
     margin-top: 50px;
     margin-left: 50px;
@@ -155,4 +155,9 @@
     position: relative;
     cursor: pointer;
     overflow: hidden;   /* In order to "hide" the extra hovering */
+}
+
+.standings-choice-buttons-group a{
+    text-decoration: none;
+    color: black;
 }
