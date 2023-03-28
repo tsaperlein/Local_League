@@ -130,26 +130,43 @@ button.login-register-button:hover {
   }
 }
 
-@media (min-width: 1750px) {
-  .header-image img {
-    max-width: 1150px;
+@media (max-width: 1200px) {
+  .header-logo {
+    height: 7vw;
   }
 }
 
 @media (min-width: 1750px) {
   nav.header-options {
-    height: 70px;
+    height: 20px;
   }
 }
 
-@media (min-width: 1650px) {
+@media (min-width: 1500px) {
+  .header-logo {
+    height: 5vw;
+  }
+
   nav.header-options ul li a {
-    font-size: 25px;
+    font-size: 18px;
+  }
+  nav.header-options {
+    height: 2.5vw;
+  }
+
+  .header-image img {
+    max-width: 50vw;
+    width: 100%;
+    height: auto;
   }
 }
 
 /* Mobile Devices */
 @media (max-width: 450px) {
+  .header-logo {
+    height: 12vw;
+  }
+
   .header-image img {
     max-width: 100px;
   }
