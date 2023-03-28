@@ -28,7 +28,7 @@ function matchHtml(match) {
     const awayScoreClass = match.awayScore > match.homeScore ? 'winning-score' : 'losing-score';
 
     const matchHtml = `
-        <div class="match-information row align-items-center">
+        <div class="match-information d-flex flex-row align-items-center">
             <div class="current-state">
                 <li class="d-flex align-items-center">${match.state}</li>
             </div>

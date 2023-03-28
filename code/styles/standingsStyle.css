@@ -162,7 +162,7 @@
     /* In order to "hide" the extra hovering */
 }
 
-.standings-choice-buttons-group a {
+.standings-choice-buttons-group a:hover {
     text-decoration: none;
     color: black;
 }
