@@ -19,10 +19,12 @@
 
 .standings {
     background-color: rgba(255, 255, 255, 0.6);
-    max-height: 100%;
-    max-width: 95%;
     position: relative;
-    margin: 6vw 0;
+    padding: 10px 0;
+    max-height: 100%;
+    max-width: 60%;
+    margin: 4vw 0;
+    border-radius: 1vw;
     z-index: 1;
 }
 
@@ -30,7 +32,6 @@
     display: flex;
     flex-direction: column;
     padding: 10px;
-    transform: translate(0, 10px);
     transition: ease-in-out 0.5s;
 }
 
@@ -51,27 +52,27 @@
     width: 150px;
 }
 
-.rank1 {
+.rank1,
+.rank2,
+.rank3,
+.rank {
     width: 50px;
     text-align: center;
+}
+
+.rank1 {
     background-color: rgb(58, 162, 3);
 }
 
 .rank2 {
-    width: 50px;
-    text-align: center;
     background-color: rgb(162, 154, 3);
 }
 
 .rank3 {
-    width: 50px;
-    text-align: center;
     background-color: rgb(162, 3, 3);
 }
 
 .rank {
-    width: 50px;
-    text-align: center;
     background-color: rgb(143, 143, 143);
 }
 
@@ -82,8 +83,8 @@
 }
 
 .team img {
-    width: 24px;
-    height: 27px;
+    width: 3vw;
+    height: auto;
     left: 0;
 }
 
@@ -118,15 +119,41 @@
     overflow: hidden;
 }
 
+<<<<<<< HEAD
 .standings-choice-buttons-group-button:hover{
     padding: 11px 45px;
+=======
+.standings-choice-buttons-group-button span {
+    position: relative;
+    z-index: 1;
+}
+
+.standings-choice-buttons-group-button::before {
+    /* The ::before pseudo-element is used to create a circular shape */
+    content: "";
+    position: absolute;
+    background-color: rgb(145, 136, 133);
+    width: 0;
+    height: 0;
+    left: var(--xPos);
+    /* The var() function is used to reference a CSS variable. */
+    top: var(--yPos);
+    /* I can change the variables inside the js script */
+    transform: translate(-50%, -50%);
+    /* The translate() method moves an element from its current position. */
+    border-radius: 50%;
+    transition: all 0.5s ease-out;
+    /* The transition property specifies the speed curve of the transition effect. */
+}
+
+.standings-choice-buttons-group-button:hover::before {
+    width: 300px;
+    height: 300px;
+>>>>>>> 934ab4598607ed8a6e2eff512c3ccffbbaa2094b
 }
 
 .rank-btn {
     background-color: rgba(255, 255, 255, 0.4);
-    padding: 10px 10px;
-    min-width: 90px;
-    min-height: 45px;
     border-radius: 5px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.7);
     text-decoration: none;
