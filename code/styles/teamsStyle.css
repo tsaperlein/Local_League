@@ -13,3 +13,29 @@
     width: 100%;
     object-fit: cover;
 }
+
+
+
+.team-icon img{
+    position: absolute;
+    top: 29%;
+    left: 22%;
+    transform: translate(-50%, -50%);
+    height: 30vh;
+    width: 33vw;
+    object-fit: cover;
+}
+
+.position-field{
+    display: grid;
+}
+
+.position-field img{
+    position: absolute;
+    top: 45%;
+    left: 75%;
+    transform: translate(-50%, -50%);
+    height: 60vh;
+    width: 43vw;
+    object-fit: cover;
+}

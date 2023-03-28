@@ -1,12 +1,3 @@
-<<<<<<< HEAD
-const btnEl = document.querySelectorAll('.standings-choice-buttons-group-button'); // get the button element
-
-btnEl.forEach((btn) => {
-    btn.addEventListener('mouseover', (event) => { // when the mouse is over the button
-        const x = (event.pageX - btnEl.offsetLeft); // get the x position
-        const y = (event.pageY - btnEl.offsetTop);  // get the y position
-
-=======
 let teamsData = [
     { name: "AEK", image: "aek.png", matches: 27, wins: 19, draws: 3, losses: 5, points: 60 },
     { name: "Panathinaikos", image: "pao.png", matches: 26, wins: 16, draws: 8, losses: 2, points: 59 },
@@ -179,7 +170,6 @@ btnEls.forEach(btnEl => {
         const x = (event.pageX - btnEl.offsetLeft); // get the x position
         const y = (event.pageY - btnEl.offsetTop);  // get the y position
 
->>>>>>> 934ab4598607ed8a6e2eff512c3ccffbbaa2094b
         btnEl.style.setProperty('--xPos', x + 'px'); // set the x position
         btnEl.style.setProperty('--yPos', y + 'px'); // set the y position
     });
