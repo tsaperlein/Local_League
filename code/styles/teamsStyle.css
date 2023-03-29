@@ -14,28 +14,47 @@
     object-fit: cover;
 }
 
-
+.team-icon{
+    background-color: rgba(255, 255, 255, 0.6);
+    position: absolute;
+    top: calc(50% - 22vh);
+    left: calc(50% - 40vw);
+    height: 35vw;
+    width: 30vw;
+    transition: ease-in-out 0.5s;
+    border-radius: 2vw;
+}
 
 .team-icon img{
-    position: absolute;
-    top: 29%;
-    left: 22%;
-    transform: translate(-50%, -50%);
-    height: 30vh;
-    width: 33vw;
-    object-fit: cover;
+    position: relative;
+    height: 25vw;
+    width: 25vw;
+    transition: ease-in-out 0.5s;
+    top: calc(50% - 12.5vw);
+    left: calc(50% - 12.5vw);
 }
 
-.position-field{
-    display: grid;
+.team-lineup img{
+    position: absolute;
+    top: calc(50% - 30vh);
+    left: 50%;
+    height: 50vw;
+    width: 40vw;
+    transition: all ease-in-out 0.5s;
 }
 
-.position-field img{
+.field{
+    background-color: rgba(255, 255, 255, 0.6);
     position: absolute;
-    top: 45%;
-    left: 75%;
-    transform: translate(-50%, -50%);
-    height: 60vh;
-    width: 43vw;
-    object-fit: cover;
+    top: calc(50% + 50vh);
+    left: calc(50% - 15vw);
+    width: 60vw;
+    height: 40vw;
+    transition: all ease-in-out 0.5s;
+}
+
+.field img{
+    position: relative;
+    height: 100%;
+    width: 100%;
 }
