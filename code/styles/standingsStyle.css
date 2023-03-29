@@ -20,44 +20,161 @@
 .standings {
     background-color: rgba(255, 255, 255, 0.6);
     position: relative;
-    padding: 10px 0;
-    max-height: 100%;
-    max-width: 60%;
-    margin: 4vw 0;
-    border-radius: 1vw;
+    padding: 3vw 0;
+    margin: 5vw 0;
+    border-radius: 2vw;
     z-index: 1;
+}
+
+.cont {
+    margin: 0 4vw;
 }
 
 .standings-table {
     display: flex;
     flex-direction: column;
-    padding: 10px;
+    padding: 2vw auto;
     transition: ease-in-out 0.5s;
+    width: 100%;
+    overflow-x: scroll;
+    border-radius: 1vw;
+    flex-wrap: nowrap;
 }
 
 .standings-table table {
-    border-collapse: collapse;
+    width: auto;
+    border-collapse: separate;
+    white-space: nowrap;
+}
+
+.standings-table table th,
+.standings-table table td {
+    white-space: nowrap;
+}
+
+.table-container {
     position: relative;
+    overflow-x: auto;
+    width: 100%;
+}
+
+tbody td {
+    text-align: center;
+    min-width: 10vw; /* set a minimum width for the cells */
+}
+
+thead, tbody {
+    position: sticky;
+}
+
+thead th.sticky-rank,
+thead th.sticky-team,
+thead th.sticky-points,
+tbody td.rank-td,
+tbody td.team-td,
+tbody td.points-td {
+    position: sticky;
+    background-color: rgb(55, 55, 55);
+    z-index: 1;
+}
+
+thead th.sticky-rank {
+    left: 0;
+    z-index: 1;
+}
+
+thead th.sticky-team {
+    left: 0;
+    border-top-right-radius: 1vw;
+}
+
+thead th.sticky-points {
+    right: 0;
+    border-top-left-radius: 1vw;
+    z-index: 1;
+}
+
+tbody td {
+    font-family: monospace;
+    font-weight: bold;
+}
+
+td.rank-td {
+    padding: 0 1vw;
+    z-index: 1;
+}
+
+td.rank-td,
+td.team-td {
+    left: 0;
+}
+
+td.points-td {
+    right: 0;
+}
+
+td.rank-td div,
+td.team-td div,
+td.points-td {
+    color: white;
+    font-weight: 600;
+}
+
+thead th a.header-button {
+    width: 85%;
+    margin: 0 auto;
+    padding: 0.5vw 0;
+    background-color: rgba(255, 255, 255, 0.534);
+    border-radius: 1vw;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
+    text-decoration: none;
+    color: black;
+    position: relative;
+    cursor: pointer;
+}
+
+thead th a.header-button:hover {
+    background-color: rgba(255, 255, 255, 0.7);
+}
+
+.standings-table tbody td .team {
+    width: auto;
+    max-width: 100%;
+    min-width: 100%;
+}
+
+.team-th a.header-button {
+    width: 60%;
+}
+
+.wins-btn,
+.draws-btn,
+.losses-btn,
+.goals-for-btn,
+.goals-against-btn,
+.goal-diff-btn,
+.rank-btn,
+.team-btn,
+.points-btn,
+.matches-btn {
+    display: flex;
+    justify-content: center;
+}
+
+tbody td {
+    text-align: center;
 }
 
 .standings-table table tr {
-    height: 60px;
+    height: 7vw;
 }
 
-.standings-table table tr:first-child {
-    border-bottom: 3px solid black;
+thead tr {
+    border-bottom: 0.3vw solid rgba(125, 125, 125, 0.768);
 }
 
-.standings-table table td:nth-child(n) {
-    width: 150px;
-}
-
-.rank1,
-.rank2,
-.rank3,
-.rank {
-    width: 50px;
-    text-align: center;
+.rank1, .rank2, .rank3, .rank4, .rank5, .rank6, .rank7 {
+    border-radius: 1vw 0 0 1vw;
 }
 
 .rank1 {
@@ -72,70 +189,80 @@
     background-color: rgb(162, 3, 3);
 }
 
-.rank {
-    background-color: rgb(143, 143, 143);
+.rank4, .rank5, .rank6, .rank7 {
+    background-color: rgb(168, 168, 168);
 }
 
-.team {
+.team-td {
     position: relative;
-    text-align: left;
-    width: 180px;
 }
 
-.team img {
-    width: 3vw;
-    height: auto;
+.logo-team a {
+    width: 2vw;
     left: 0;
 }
 
-.team-name {
-    margin-left: 15px;
+.team-td div img {
+    width: 4vw;
+    height: auto;
+    position: relative;
 }
 
-.matches {
-    width: 50px;
-    text-align: right;
+.team-td div {
+    width: 15vw;
+    display: flex;
+    justify-content: start;
+}
+
+.team-td a.name-team{
+    color: white;
+    text-decoration: none;
+    margin-left: 2vw;
+    display: flex;
+    align-self: center;
+}
+
+.cont {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .standings-choice-buttons-group {
-    margin: 0;
     display: flex;
     justify-content: space-around;
-    height: 10vh;
+    width: 90%;
+    height: 10vw;
     align-items: center;
-    background: rgba(157, 163, 168, 0.598);
+    border-radius: 1.5vw;
+    background: rgba(114, 114, 114, 0.453);
     font-family: sans-serif;
+    margin-bottom: 2vw;
 }
 
 .standings-choice-buttons-group-button {
-    background-color: rgb(255, 255, 255);
-    padding: 10px 40px;
-    border-radius: 5px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.7);
+    background-color: white;
+    padding: 1.5vw 4vw;
+    border-radius: 1.5vw;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
     text-decoration: none;
-    color: black;
-    position: relative;
-    cursor: pointer;
-    overflow: hidden;
-}
-
-.standings-choice-buttons-group-button span {
-    position: relative;
-    z-index: 1;
-}
-
-.rank-btn {
-    background-color: rgba(255, 255, 255, 0.4);
-    border-radius: 5px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.7);
-    text-decoration: none;
-    color: black;
+    color: rgb(0, 0, 0);
+    font-weight: 600;
+    font-family: Arial, Helvetica, sans-serif;
     position: relative;
     cursor: pointer;
 }
 
-body a:hover {
-    text-decoration: none;
+.standings-choice-buttons-group:hover a{
+    background-color: rgb(174, 174, 174);
+    color: rgb(92, 92, 92);
+}
+
+.standings-choice-buttons-group a:hover {
+    background-color: white;
     color: black;
-    padding: 11px 45px;
+    padding: 2vw 4.5vw;
+    margin: 0 -0.5vw;
+    border-radius: 2vw;
+    text-decoration: none;
 }

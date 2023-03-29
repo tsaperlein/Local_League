@@ -5,6 +5,12 @@ main {
     padding-top: 12vw;
 }
 
+.custom-container {
+    margin-left: 5vw;
+    margin-right: 5vw;
+    padding: 2vw;
+}
+
 @media (max-width: 800px) {
 
     /* Mobile */

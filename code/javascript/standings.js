@@ -1,13 +1,16 @@
+// -------------------------- Standings container -------------------------- //
+// Data for the teams
 let teamsData = [
-    { name: "AEK", image: "aek.png", matches: 27, wins: 19, draws: 3, losses: 5, points: 60 },
-    { name: "Panathinaikos", image: "pao.png", matches: 26, wins: 16, draws: 8, losses: 2, points: 59 },
-    { name: "Olympiakos", image: "osfp.png", matches: 25, wins: 14, draws: 9, losses: 2, points: 57 },
-    { name: "PAOK", image: "paok.png", matches: 24, wins: 14, draws: 8, losses: 2, points: 59 },
-    { name: "Team5", image: "home-team.png", matches: 23, wins: 11, draws: 9, losses: 3, points: 57 },
-    { name: "Team6", image: "away-team.png", matches: 22, wins: 10, draws: 4, losses: 8, points: 59 },
-    { name: "Team7", image: "team7.png", matches: 21, wins: 1, draws: 10, losses: 10, points: 57 },
+    { name: "AEK", logo: "aek.png", matches: 27, wins: 19, draws: 3, losses: 5, points: 60 },
+    { name: "Panathinaikos", logo: "pao.png", matches: 26, wins: 16, draws: 8, losses: 2, points: 59 },
+    { name: "Olympiakos", logo: "osfp.png", matches: 25, wins: 14, draws: 9, losses: 2, points: 57 },
+    { name: "PAOK", logo: "paok.png", matches: 24, wins: 14, draws: 8, losses: 2, points: 59 },
+    { name: "Team5", logo: "home-team.png", matches: 23, wins: 11, draws: 9, losses: 3, points: 57 },
+    { name: "Team6", logo: "away-team.png", matches: 22, wins: 10, draws: 4, losses: 8, points: 59 },
+    { name: "Team7", logo: "team7.png", matches: 21, wins: 1, draws: 10, losses: 10, points: 57 },
 ];
 
+// Function that calculates the points for each team
 function calculatePoints(teams) {
   for (let i = 0; i < teams.length; i++) {
     const team = teams[i];
@@ -16,12 +19,12 @@ function calculatePoints(teams) {
   }
 }
 
-// Define a function to generate random integers within a range
+// Functon that returns a random integer between min and max (both included)
 function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-// Loop through the teamsData array and add random goal data
+// Function that generates random goal data for each team
 for (let i = 0; i < teamsData.length; i++) {
   const team = teamsData[i];
 
@@ -36,8 +39,7 @@ for (let i = 0; i < teamsData.length; i++) {
   team.goalDifference = goalDifference;
 }
 
-calculatePoints(teamsData);
-
+// Function that calculates the rank of each team and sorts them by it
 function calculateAndSortRanking(teams) {
   // calculate the rank of each team
   for (let i = 0; i < teams.length; i++) {
@@ -56,9 +58,11 @@ function calculateAndSortRanking(teams) {
   return teams;
 }
 
-// calculate the rank of each team and sort them by it
+// Calculate the points and sort the teams by their rank
+calculatePoints(teamsData);
 teamsData = calculateAndSortRanking(teamsData);
 
+// Function that creates the table header row
 function createHeaderRow() {
   const headerRow = document.createElement("tr");
   const rankHeader = document.createElement("th");
@@ -72,16 +76,16 @@ function createHeaderRow() {
   const gdHeader = document.createElement("th");
   const ptsHeader = document.createElement("th");
 
-  rankHeader.innerHTML = "<a class='rank-btn'><span>Rank #</span></a>";
-  teamHeader.innerHTML = "Team";
-  matchesHeader.innerHTML = "Matches";
-  wHeader.innerHTML = "W";
-  dHeader.innerHTML = "D";
-  lHeader.innerHTML = "L";
-  gfHeader.innerHTML = "GF";
-  gaHeader.innerHTML = "GA";
-  gdHeader.innerHTML = "GD";
-  ptsHeader.innerHTML = "PTS";
+  rankHeader.innerHTML = "<a class='header-button rank-btn'>Rank</a>";
+  teamHeader.innerHTML = "<a class='header-button team-btn'>Team</a>";
+  matchesHeader.innerHTML = "<a class='header-button matches-btn'>Matches</a>";
+  wHeader.innerHTML = "<a class='header-button wins-btn'>W</a>";
+  dHeader.innerHTML = "<a class='header-button draws-btn'>D</a>";
+  lHeader.innerHTML = "<a class='header-button losses-btn'>L</a>";
+  gfHeader.innerHTML = "<a class='header-button goals-for-btn'>GF</a>";
+  gaHeader.innerHTML = "<a class='header-button goals-against-btn'>GA</a>";
+  gdHeader.innerHTML = "<a class='header-button goal-diff-btn'>GD</a>";
+  ptsHeader.innerHTML = "<a class='header-button points-btn'>PTS</a>";
 
   headerRow.appendChild(rankHeader);
   headerRow.appendChild(teamHeader);
@@ -94,50 +98,74 @@ function createHeaderRow() {
   headerRow.appendChild(gdHeader);
   headerRow.appendChild(ptsHeader);
 
+  rankHeader.classList.add('sticky-rank');
+  teamHeader.classList.add('team-th', 'sticky-team');
+  ptsHeader.classList.add('sticky-points');
+
   return headerRow;
 }
 
+// Function that creates the table rows for each team
 function createTableRows(teamsData) {
     let tableRows = [];
 
-    // Loop through each team data object and create a table row for it
     teamsData.forEach((teamData, index) => {
-        tableRows.push(`
-            <tr>
-                <td>
-                    <div class="rank${index + 1}">
-                        ${index + 1}.
-                    </div>
-                </td>
-                <td>
-                    <div class="team">
-                        <a href="teams.html">
-                            <img src="../../images/${teamData.image}" alt="">
-                        </a>
-                        <div class="team-name">
-                            ${teamData.name}
-                        </div>
-                    </div>
-                </td>
-                <td>
-                    <div class="matches">
-                        ${teamData.matches}
-                    </div>
-                </td>
-                <td>${teamData.wins}</td>
-                <td>${teamData.draws}</td>
-                <td>${teamData.losses}</td>
-                <td>${teamData.goalsFor}</td>
-                <td>${teamData.goalsAgainst}</td>
-                <td>${teamData.goalDifference}</td>
-                <td>${teamData.points}</td>
-            </tr>
-        `);
+        const teamRow = document.createElement("tr");
+        const rankCell = document.createElement("td");
+        const teamCell = document.createElement("td");
+        const matchesCell = document.createElement("td");
+        const winsCell = document.createElement("td");
+        const drawsCell = document.createElement("td");
+        const losesCell = document.createElement("td");
+        const gfCell = document.createElement("td");
+        const gaCell = document.createElement("td");
+        const gdCell = document.createElement("td");
+        const ptsCell = document.createElement("td");
+
+        const rank = index + 1;
+        const teamLogoSrc = teamData.logo;
+        const teamName = teamData.name;
+        const matches = teamData.matches;
+        const wins = teamData.wins;
+        const draws = teamData.draws;
+        const loses = teamData.losses;
+        const goalsFor = teamData.goalsFor;
+        const goalsAgainst = teamData.goalsAgainst;
+        const goalDiff = teamData.goalDifference;
+        const points = teamData.points;
+      
+        rankCell.innerHTML = `<div class="rank${rank}">${rank}</div>`;
+        teamCell.innerHTML = `<div class="team container"><a class="logo-team" href="teams.html"><img src="../../images/${teamLogoSrc}" alt="${teamName} logo"></a><a class="name-team" href="teams.html">${teamName}</a></div>`;
+        matchesCell.textContent = matches;
+        winsCell.textContent = wins;
+        drawsCell.textContent = draws;
+        losesCell.textContent = loses;
+        gfCell.textContent = goalsFor;
+        gaCell.textContent = goalsAgainst;
+        gdCell.textContent = goalDiff;
+        ptsCell.textContent = points;
+
+        rankCell.classList.add('rank-td');
+        teamCell.classList.add('team-td');
+        ptsCell.classList.add('points-td');
+      
+        teamRow.appendChild(rankCell);
+        teamRow.appendChild(teamCell);
+        teamRow.appendChild(matchesCell);
+        teamRow.appendChild(winsCell);
+        teamRow.appendChild(drawsCell);
+        teamRow.appendChild(losesCell);
+        teamRow.appendChild(gfCell);
+        teamRow.appendChild(gaCell);
+        teamRow.appendChild(gdCell);
+        teamRow.appendChild(ptsCell);
+      
+        tableRows.push(teamRow.innerHTML);
     });
     return tableRows;
 }
 
-// get the table and its head and body elements
+// Get the table element and its head and body
 const table = document.getElementById("teams-table");
 const tableHead = table.querySelector("thead");
 const tableBody = table.querySelector("tbody");
@@ -152,17 +180,10 @@ rows.forEach((rowHTML) => {
     const row = document.createElement('tr');
     row.innerHTML = rowHTML;
     tableBody.appendChild(row);
-    console.log(row);
 });
+// -----------------------------------------------------------------------------------------------
 
-console.log(table);
-
-
-
-
-
-
-
+// Get the options buttons
 const btnEls = document.querySelectorAll('.standings-choice-buttons-group-button');   // get the button element
 
 btnEls.forEach(btnEl => {
