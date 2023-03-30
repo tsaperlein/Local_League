@@ -2,12 +2,12 @@
 // Data for the teams
 let teamsData = [
     { name: "AEK", logo: "aek.png", matches: 27, wins: 19, draws: 3, losses: 5, points: 60 },
-    { name: "Panathinaikos", logo: "pao.png", matches: 26, wins: 16, draws: 8, losses: 2, points: 59 },
-    { name: "Olympiakos", logo: "osfp.png", matches: 25, wins: 14, draws: 9, losses: 2, points: 57 },
-    { name: "PAOK", logo: "paok.png", matches: 24, wins: 14, draws: 8, losses: 2, points: 59 },
-    { name: "Team5", logo: "home-team.png", matches: 23, wins: 11, draws: 9, losses: 3, points: 57 },
-    { name: "Team6", logo: "away-team.png", matches: 22, wins: 10, draws: 4, losses: 8, points: 59 },
-    { name: "Team7", logo: "team7.png", matches: 21, wins: 1, draws: 10, losses: 10, points: 57 },
+    { name: "Panathinaikos", logo: "pao.png", matches: 27, wins: 16, draws: 8, losses: 2, points: 59 },
+    { name: "Olympiakos", logo: "osfp.png", matches: 27, wins: 14, draws: 9, losses: 2, points: 57 },
+    { name: "PAOK", logo: "paok.png", matches: 27, wins: 14, draws: 8, losses: 2, points: 59 },
+    { name: "Team5", logo: "home-team.png", matches: 27, wins: 11, draws: 9, losses: 3, points: 57 },
+    { name: "Team6", logo: "away-team.png", matches: 27, wins: 10, draws: 4, losses: 8, points: 59 },
+    { name: "Team7", logo: "team7.png", matches: 27, wins: 1, draws: 10, losses: 10, points: 57 },
 ];
 
 // Function that calculates the points for each team

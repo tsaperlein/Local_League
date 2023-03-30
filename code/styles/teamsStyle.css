@@ -27,7 +27,7 @@
 
 .team-icon img{
     position: relative;
-    height: 25vw;
+    height: auto;
     width: 25vw;
     transition: ease-in-out 0.5s;
     top: calc(50% - 12.5vw);
@@ -38,7 +38,7 @@
     position: absolute;
     top: calc(50% - 30vh);
     left: 50%;
-    height: 50vw;
+    height: auto;
     width: 40vw;
     transition: all ease-in-out 0.5s;
 }
@@ -49,12 +49,17 @@
     top: calc(50% + 50vh);
     left: calc(50% - 15vw);
     width: 60vw;
-    height: 40vw;
+    height: auto;
     transition: all ease-in-out 0.5s;
+    border-radius: 2vw;
 }
 
 .field img{
     position: relative;
-    height: 100%;
+    height: auto;
     width: 100%;
+}
+
+h3{
+    font-weight: bold;
 }
