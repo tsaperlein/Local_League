@@ -1,6 +1,6 @@
 .wallpaper {
     position: relative; /* Make sure the child element is positioned relative to this */
-    height: 150vh; /* Set the height of the container to 100vh */
+    height: 300vh; /* Set the height of the container to 100vh */
     overflow-x: hidden; /* Allow overflow content */
 }
 
@@ -60,6 +60,8 @@
     width: 100%;
 }
 
-h3{
-    font-weight: bold;
+.field h2{
+    display: flex;
+    justify-content: space-evenly;
+    font-size: 3rem;
 }
