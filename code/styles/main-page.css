@@ -1,9 +1,10 @@
 .background {
     position: relative;
-    max-height: 100%;
+    max-height: fit-content;
     overflow: hidden;
 }
 
+/* Always shows the center of the image */
 .background img {
     position: absolute;
     top: 50%;

@@ -5,7 +5,7 @@ body ul {
 
 .background {
     position: relative;
-    max-height: 100%;
+    max-height: fit-content;
     overflow-x: hidden;
 }
 
@@ -28,7 +28,7 @@ body ul {
     max-height: 100%;
     max-width: 100%;
     margin: 4vw 0;
-    border-radius: 1vw;
+    border-radius: 2vw;
     z-index: 1;
 }
 

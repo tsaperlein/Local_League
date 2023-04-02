@@ -1,13 +1,21 @@
 // -------------------------- Standings container -------------------------- //
 // Data for the teams
 let teamsData = [
-    { name: "AEK", logo: "aek.png", matches: 27, wins: 19, draws: 3, losses: 5, points: 60 },
-    { name: "Panathinaikos", logo: "pao.png", matches: 27, wins: 16, draws: 8, losses: 2, points: 59 },
-    { name: "Olympiakos", logo: "osfp.png", matches: 27, wins: 14, draws: 9, losses: 2, points: 57 },
-    { name: "PAOK", logo: "paok.png", matches: 27, wins: 14, draws: 8, losses: 2, points: 59 },
-    { name: "Team5", logo: "home-team.png", matches: 27, wins: 11, draws: 9, losses: 3, points: 57 },
-    { name: "Team6", logo: "away-team.png", matches: 27, wins: 10, draws: 4, losses: 8, points: 59 },
-    { name: "Team7", logo: "team7.png", matches: 27, wins: 1, draws: 10, losses: 10, points: 57 },
+  { name: "AEK", logo: "aek.png", matches: 27, wins: 19, draws: 3, losses: 5, points: 60 },
+  { name: "Panathinaikos", logo: "pao.png", matches: 27, wins: 16, draws: 8, losses: 2, points: 59 },
+  { name: "Olympiakos", logo: "osfp.png", matches: 27, wins: 14, draws: 9, losses: 2, points: 57 },
+  { name: "PAOK", logo: "paok.png", matches: 27, wins: 14, draws: 8, losses: 2, points: 59 },
+  { name: "Team5", logo: "home-team.png", matches: 27, wins: 11, draws: 9, losses: 3, points: 57 },
+  { name: "Team6", logo: "away-team.png", matches: 27, wins: 10, draws: 4, losses: 8, points: 59 },
+  { name: "Team7", logo: "team7.png", matches: 27, wins: 1, draws: 10, losses: 10, points: 57 },
+  { name: "Napoli", logo: "napoli.png", matches: 27, wins: 1, draws: 10, losses: 10, points: 59 },
+  { name: "Barcelona", logo: "barc.png", matches: 27, wins: 1, draws: 10, losses: 10, points: 57 },
+  { name: "Juventus", logo: "juve.png", matches: 27, wins: 1, draws: 10, losses: 10, points: 59 },
+  { name: "PSG", logo: "psg.png", matches: 27, wins: 1, draws: 10, losses: 10, points: 57 },
+  { name: "Arsenal", logo: "arsenal.png", matches: 27, wins: 1, draws: 10, losses: 10, points: 59 },
+  { name: "Fenerbache", logo: "fener.png", matches: 27, wins: 1, draws: 10, losses: 10, points: 57 },
+  { name: "Liverpool", logo: "live.png", matches: 27, wins: 1, draws: 10, losses: 10, points: 59 },
+  { name: "Porto", logo: "porto.png", matches: 27, wins: 1, draws: 10, losses: 10, points: 57 },
 ];
 
 // Function that calculates the points for each team
@@ -76,16 +84,16 @@ function createHeaderRow() {
   const gdHeader = document.createElement("th");
   const ptsHeader = document.createElement("th");
 
-  rankHeader.innerHTML = "<a class='header-button rank-btn'>Rank</a>";
-  teamHeader.innerHTML = "<a class='header-button team-btn'>Team</a>";
-  matchesHeader.innerHTML = "<a class='header-button matches-btn'>Matches</a>";
-  wHeader.innerHTML = "<a class='header-button wins-btn'>W</a>";
-  dHeader.innerHTML = "<a class='header-button draws-btn'>D</a>";
-  lHeader.innerHTML = "<a class='header-button losses-btn'>L</a>";
-  gfHeader.innerHTML = "<a class='header-button goals-for-btn'>GF</a>";
-  gaHeader.innerHTML = "<a class='header-button goals-against-btn'>GA</a>";
-  gdHeader.innerHTML = "<a class='header-button goal-diff-btn'>GD</a>";
-  ptsHeader.innerHTML = "<a class='header-button points-btn'>PTS</a>";
+  rankHeader.innerHTML = "<a class='header-button rank-btn'>Rank &nbsp;<i class='fa fa-sort'></i></a>";
+  teamHeader.innerHTML = "<a class='header-button team-btn'>Team &nbsp;<i class='fa fa-sort'></i></a>";
+  matchesHeader.innerHTML = "<a class='header-button matches-btn'>Matches &nbsp;<i class='fa fa-sort'></i></a>";
+  wHeader.innerHTML = "<a class='header-button wins-btn'>W &nbsp;<i class='fa fa-sort'></i></a>";
+  dHeader.innerHTML = "<a class='header-button draws-btn'>D &nbsp;<i class='fa fa-sort'></i></a>";
+  lHeader.innerHTML = "<a class='header-button losses-btn'>L &nbsp;<i class='fa fa-sort'></i></a>";
+  gfHeader.innerHTML = "<a class='header-button goals-for-btn'>GF &nbsp;<i class='fa fa-sort'></i></a>";
+  gaHeader.innerHTML = "<a class='header-button goals-against-btn'>GA &nbsp;<i class='fa fa-sort'></i></a>";
+  gdHeader.innerHTML = "<a class='header-button goal-diff-btn'>GD &nbsp;<i class='fa fa-sort'></i></a>";
+  ptsHeader.innerHTML = "<a class='header-button points-btn'>PTS &nbsp;<i class='fa fa-sort'></i></a>";
 
   headerRow.appendChild(rankHeader);
   headerRow.appendChild(teamHeader);
@@ -134,8 +142,8 @@ function createTableRows(teamsData) {
         const goalDiff = teamData.goalDifference;
         const points = teamData.points;
       
-        rankCell.innerHTML = `<div class="rank${rank}">${rank}</div>`;
-        teamCell.innerHTML = `<div class="team container"><a class="logo-team" href="teams.html"><img src="../../images/${teamLogoSrc}" alt="${teamName} logo"></a><a class="name-team" href="teams.html">${teamName}</a></div>`;
+        rankCell.innerHTML = `<div class="ranking${rank}">${rank}</div>`;
+        teamCell.innerHTML = `<div class="team container"><a class="logo-team" href="teams.html"><img src="../../team-icons/${teamLogoSrc}" alt="${teamName} logo"></a><a class="name-team" href="teams.html">${teamName}</a></div>`;
         matchesCell.textContent = matches;
         winsCell.textContent = wins;
         drawsCell.textContent = draws;
