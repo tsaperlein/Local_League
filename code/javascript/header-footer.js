@@ -26,6 +26,11 @@ function createHeader() {
             <li>
                 <a href="account.html">Account</a>
             </li>
+            <li>
+                <button type="button" class="login-register-button btn" data-toggle="modal" data-target="#login-modal">
+                    LogIn/Register
+                </button>
+            </li>
         </ul>
     `;
 
