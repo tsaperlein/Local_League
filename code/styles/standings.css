@@ -60,6 +60,7 @@ thead th.sticky-points {
 .header-button i {
     display: flex;
     align-items: center;
+    flex-wrap: nowrap;
 }
 
 tbody td {
