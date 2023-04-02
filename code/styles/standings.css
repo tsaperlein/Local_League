@@ -1,0 +1,194 @@
+.standings-table {
+    display: flex;
+    flex-direction: column;
+    padding: 2vw auto;
+    transition: ease-in-out 0.5s;
+    width: 100%;
+    overflow-x: scroll;
+    border-radius: 1vw;
+    flex-wrap: nowrap;
+    border-radius: 2vw;
+}
+
+.standings-table table {
+    border-collapse: separate;
+}
+
+.standings-table table th,
+.standings-table table td {
+    white-space: nowrap;
+}
+
+tbody td {
+    text-align: center;
+    min-width: 10vw;
+    /* set a minimum width for the cells */
+}
+
+thead,
+tbody {
+    position: sticky;
+}
+
+thead th.sticky-rank,
+thead th.sticky-team,
+thead th.sticky-points,
+tbody td.rank-td,
+tbody td.team-td,
+tbody td.points-td {
+    position: sticky;
+    background-color: rgb(70, 70, 70);
+    z-index: 1;
+}
+
+thead th.sticky-rank {
+    left: 0;
+    z-index: 1;
+}
+
+thead th.sticky-team {
+    left: 0;
+    border-top-right-radius: 1vw;
+}
+
+thead th.sticky-points {
+    right: 0;
+    border-top-left-radius: 1vw;
+    z-index: 1;
+}
+
+.header-button i {
+    display: flex;
+    align-items: center;
+}
+
+tbody td {
+    font-family: monospace;
+    font-weight: bold;
+    font-size: 2.3vw;
+}
+
+td.rank-td {
+    padding: 0 1vw;
+    z-index: 1;
+}
+
+td.rank-td,
+td.team-td {
+    left: 0;
+}
+
+td.points-td {
+    right: 0;
+}
+
+td.rank-td div,
+td.team-td div,
+td.points-td {
+    color: white;
+    font-weight: 600;
+}
+
+a.header-button {
+    width: fit-content;
+    margin: 0 auto;
+    padding: 0.5vw;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 1vw;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
+    text-decoration: none;
+    color: black;
+    position: relative;
+    cursor: pointer;
+}
+
+thead th a.header-button:hover {
+    background-color: rgba(255, 255, 255, 0.7);
+}
+
+.standings-table tbody td .team {
+    width: auto;
+}
+
+.team-th a.header-button {
+    width: 60%;
+}
+
+thead .matches-btn {
+    margin-left: 1vw;
+}
+
+.wins-btn,
+.draws-btn,
+.losses-btn,
+.goals-for-btn,
+.goals-against-btn,
+.goal-diff-btn,
+.rank-btn,
+.team-btn,
+.points-btn,
+.matches-btn {
+    display: flex;
+    justify-content: center;
+}
+
+tbody td {
+    text-align: center;
+}
+
+.standings-table table tr {
+    height: 7vw;
+}
+
+thead tr {
+    border-bottom: 0.3vw solid rgba(125, 125, 125, 0.768);
+}
+
+[class^="ranking"] {
+    border-radius: 1vw 0 0 1vw;
+}
+
+.ranking1 {
+    background-color: rgb(58, 162, 3);
+}
+
+.ranking2 {
+    background-color: rgb(162, 154, 3);
+}
+
+.ranking3 {
+    background-color: rgb(162, 3, 3);
+}
+
+[class^="ranking"]:not(.ranking1):not(.ranking2):not(.ranking3) {
+    background-color: rgb(168, 168, 168);
+}
+
+.team-td {
+    position: relative;
+}
+
+.logo-team a {
+    width: 2vw;
+    left: 0;
+}
+
+.team-td div img {
+    width: 4vw;
+    height: auto;
+    position: relative;
+}
+
+.team-td div {
+    width: 15vw;
+    display: flex;
+    justify-content: start;
+}
+
+.team-td a.name-team {
+    color: white;
+    text-decoration: none;
+    margin-left: 0.8vw;
+    display: flex;
+    align-self: center;
+}

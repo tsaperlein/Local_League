@@ -52,8 +52,8 @@ function matchHtml(match) {
                 </div>
                 <label class="team-name d-flex align-items-center" for="away-team">${match.awayTeam}</label>
             </div>
-            <div class="extra-information">
-                <ul class="list-unstyled d-flex flex-column justify-content-center">
+            <div class="extra-information d-flex align-items-center">
+                <ul class="list-unstyled d-flex flex-column justify-content-cente">
                     <li class="field-name">${match.field}</li>
                     ${match.referees.map(referee => `<li class="referee">${referee}</li>`).join('')}
                 </ul>

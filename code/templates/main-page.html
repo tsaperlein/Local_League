@@ -7,6 +7,7 @@
     <title>Local League</title>
     <link rel="icon" type="image/x-icon" href="/images/icon-local-league.png">
     <link rel="stylesheet" href="../styles/main-page.css">
+    <link rel="stylesheet" href="../styles/standings.css">
 
     <link rel="stylesheet" href="../styles/main.css">
     <link rel="stylesheet" href="../styles/header.css">
@@ -20,6 +21,8 @@
     <script src="../javascript/standings.js" defer></script>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body>
@@ -30,12 +33,14 @@
             <img src="../../background-images/4.jpg" alt="Background Image: Soccer field with a ball on the grass">
             <div class="information-container custom-container">
                 <div class="column">
-                    <!-- <div class="standings standings-table">
-                        <table id="teams-table">
-                            <thead id="thead"></thead>
-                            <tbody id="tbody"></tbody>
-                        </table>
-                    </div> -->
+                    <div class="standings">
+                        <div class="standings-table">
+                            <table id="teams-table">
+                                <thead id="thead"></thead>
+                                <tbody id="tbody"></tbody>
+                            </table>
+                        </div>
+                    </div>
                     <div class="schedule-box d-flex flex-column" id="upcoming-matches-container"></div>
                     <div class="last-week-results  d-flex flex-column" id="final-matches-container"></div>
                 </div>

@@ -32,7 +32,7 @@ const playerData = [
     { name: "Γιώργος Παπαδόπουλος", number: "12", age: 23, position: "FW", nationality: "Greek", team: "aek" },
     { name: "Γιώργος Παπαδόπουλος", number: "13", age: 23, position: "FW", nationality: "Greek", team: "aek" },
     { name: "Γιώργος Παπαδόπουλος", number: "14", age: 23, position: "FW", nationality: "Greek", team: "aek" },
-    { name: "Γιώργος Παπαδόπουλος", number: "15", age: 23, position: "FW", nationality: "Greek", team: "aek" }
+    { name: "Γιώργος Κωνσταντίνου Παπαδόπουλος", number: "15", age: 23, position: "FW", nationality: "Portoguese", team: "aek" }
 ];
 
 // Function that creates the table header row
@@ -55,6 +55,8 @@ function createHeaderRow() {
     headerRow.appendChild(ageHeader);
     headerRow.appendChild(positionHeader);
     headerRow.appendChild(nationalityHeader);
+
+    nameHeader.classList.add("name-btn");
 
     return headerRow;
 }
@@ -88,6 +90,8 @@ function createTableRows(playerData) {
         playerRow.appendChild(ageCell);
         playerRow.appendChild(positionCell);
         playerRow.appendChild(nationalityCell);
+
+        nameCell.classList.add("name-sticky");
 
         tableRows.push(playerRow.innerHTML);
     });

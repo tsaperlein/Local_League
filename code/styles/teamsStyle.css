@@ -2,6 +2,7 @@ main * {
     margin: 0;
     padding: 0;
     z-index: 1;
+    font-size: 2vw;
 }
 
 .background {
@@ -26,7 +27,7 @@ img#background-img {
 }
 
 .team-container {
-    background-color: rgba(240, 248, 255, 0.819);
+    background-color: rgba(255, 255, 255, 0.7);
     position: relative;
     padding: 10px 0;
     max-height: 100%;
@@ -36,66 +37,82 @@ img#background-img {
     z-index: 1;
 }
 
-.team-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-}
-
 .lineup-field-container {
-    width: 100%;
-    max-width: 50%;
-}
-
-.team-lineup,
-.field-info {
-    width: 100%;
+    max-width: 100%;
+    margin: 0;
 }
 
 .team-lineup,
 .field-info {
     max-width: 50%;
-    margin: 1vw 3vw 4vw;
-    border-radius: 1vw;
+    width: 100%;
+    margin: 2vw;
 }
 
-.lineup-field-container .field-info .field-img {
-    border-radius: 1vw;
-    height: auto;
+@media (min-width: 1400px) {
+    .team-lineup,
+    .field-info {
+        max-width: 40%;
+    }
+}
+
+.team-lineup img,
+.field-info img {
+    height: 100%;
     width: 100%;
+    border-radius: 1vw;
     object-fit: cover;
 }
 
 .field-info {
     display: flex;
     flex-direction: column;
+    background-color: black;
+    align-items: center;
+    border-radius: 1vw;
 }
 
+.field-info a {
+    font-style: italic;
+    color: lightgray;
+    width: fit-content;
+}
+
+.field-info a:hover {
+    color: rgb(229, 229, 229);
+    text-decoration: none;
+}
+
+/* ------------- Players Table ----------- */
 .player-info {
     padding: 2vw auto;
-    transition: ease-in-out 0.5s;
-    width: 100%;
+    margin: 2vw;
+    max-width: 95%;
+    position: relative;
+    border-radius: 1.5vw;
+    background-color: rgba(255, 255, 255, 0.6);
     overflow-x: scroll;
-    border-radius: 1vw;
-    flex-wrap: nowrap;
 }
 
-.player-info table {
-    width: auto;
-    border-collapse: separate;
+#players-table th,
+#players-table td {
     white-space: nowrap;
 }
 
-.player-info table th,
 .player-info table td {
+    white-space: nowrap;
+    padding: 0.5vw 1.5vw;
+    text-align: center;
+}
+
+table#players-table thead tr th {
+    padding: 1.5vw 1vw;
+    text-align: center;
     white-space: nowrap;
 }
 
 tbody td {
-    text-align: center;
     min-width: 10vw;
-    /* set a minimum width for the cells */
 }
 
 thead,
@@ -103,11 +120,25 @@ tbody {
     position: sticky;
 }
 
+th.name-btn,
+td.name-sticky {
+    position: sticky;
+    left: 0;
+    background-color: rgb(70, 70, 70);
+    z-index: 2;
+}
+
+td.name-sticky {
+    padding: 0 1vw;
+    color: white;
+}
+
+
 a.header-button {
     width: fit-content;
     margin: 0 auto;
     padding: 0.5vw;
-    background-color: rgba(255, 255, 255, 0.534);
+    background-color: rgba(255, 255, 255, 0.6);
     border-radius: 1vw;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
     text-decoration: none;
@@ -117,5 +148,5 @@ a.header-button {
 }
 
 thead th a.header-button:hover {
-    background-color: rgba(255, 255, 255, 0.7);
+    background-color: rgba(231, 231, 231, 0.7);
 }

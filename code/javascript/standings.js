@@ -189,17 +189,3 @@ rows.forEach((rowHTML) => {
     row.innerHTML = rowHTML;
     tableBody.appendChild(row);
 });
-// -----------------------------------------------------------------------------------------------
-
-// Get the options buttons
-const btnEls = document.querySelectorAll('.standings-choice-buttons-group-button');   // get the button element
-
-btnEls.forEach(btnEl => {
-    btnEl.addEventListener('mouseover', (event) => { // when the mouse is over the button
-        const x = (event.pageX - btnEl.offsetLeft); // get the x position
-        const y = (event.pageY - btnEl.offsetTop);  // get the y position
-
-        btnEl.style.setProperty('--xPos', x + 'px'); // set the x position
-        btnEl.style.setProperty('--yPos', y + 'px'); // set the y position
-    });
-});
