@@ -32,6 +32,16 @@ html {
   margin: 0 auto;
 }
 
+li button.login-register-button {
+  color: white;
+  font-size: 1.5vw;
+  font-weight: 600;
+}
+
+li button.login-register-button:hover {
+  color: gray;
+}
+
 @media (max-width: 800px) {
 
   /* Mobile */
@@ -150,6 +160,7 @@ button.login-register-button:hover {
   nav.header-options ul li a {
     font-size: 18px;
   }
+
   nav.header-options {
     height: 2.5vw;
   }

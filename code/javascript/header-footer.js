@@ -24,11 +24,11 @@ function createHeader() {
                 <a href="standings.html">Standings</a>
             </li>
             <li>
-                <a href="account.html">Account</a>
+                <a href="#">Account</a>
             </li>
             <li>
                 <button type="button" class="login-register-button btn" data-toggle="modal" data-target="#login-modal">
-                    LogIn/Register
+                    Sign In/Sign Up
                 </button>
             </li>
         </ul>
