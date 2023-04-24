@@ -143,7 +143,7 @@ function createTableRows(teamsData) {
         const points = teamData.points;
       
         rankCell.innerHTML = `<div class="ranking${rank}">${rank}</div>`;
-        teamCell.innerHTML = `<div class="team container"><a class="logo-team" href="teams.html"><img src="../../team-icons/${teamLogoSrc}" alt="${teamName} logo"></a><a class="name-team" href="teams.html">${teamName}</a></div>`;
+        teamCell.innerHTML = `<div class="team container"><a class="logo-team" href="teams.html"><img src="../../team-icons/${teamLogoSrc}" alt="${teamName}"></a><a class="name-team" href="teams.html">${teamName}</a></div>`;
         matchesCell.textContent = matches;
         winsCell.textContent = wins;
         drawsCell.textContent = draws;
