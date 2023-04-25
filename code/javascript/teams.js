@@ -1,5 +1,5 @@
 const lineupFieldData = [
-    {name: "AEK", icon: "aek.png", lineup: "aek-lineup.png", fieldName: "Arena Αγιά Σοφιά", fieldLink: "aek-opap-arena.jpg"},
+    {name: "AEK", icon: "aek.png", lineup: "aek-lineup.png", fieldName: "OPAP Arena Αγιά Σοφιά", fieldLink: "aek-opap-arena.jpg"},
     {name: "Olympiakos", icon: "osfp.png", lineup: "osfp-lineup.png", fieldName: "Arena Αγιά Σοφιά", fieldLink: "osfp-arena.jpg" },
     {name: "Panathinaikos", icon: "pao.png", lineup: "pao-lineup.png", fieldName: "Γήπεδο Λεοφώρου Αλεξάνδρας", fieldLink: "paoLeof.jpg" },
     {name: "PAOK", icon: "paok.png", lineup: "paok-lineup.png", fieldName: "Arena Αγιά Σοφιά", fieldLink: "paok-arena.jpg" },
@@ -36,26 +36,27 @@ const playerData = [
 ];
 
 // Function that creates the lineup
-function createLineup() {
+function createLineup(teamIndexLineup) {
     const lineup = document.querySelector(".team-lineup");
     let lineupImg = document.createElement("img");
-    lineupImg.src = "../../lineups/" + lineupFieldData[0].lineup;
+    lineupImg.src = "../../lineups/" + teamIndexLineup;
     lineupImg.alt = "Lineup of the players";
     lineupImg.classList.add("team-lineup-img");
     lineup.appendChild(lineupImg);
 }
 
 // Function that creates the team field
-function createField() {
+function createField(teamIndexFieldLink, teamIndexField) {
     const field = document.querySelector(".field-info");
     let fieldImg = document.createElement("img");
-    fieldImg.src = "../../fields/" + lineupFieldData[0].fieldLink;
-    fieldImg.alt = "Field of AEK";
+    fieldImg.src = "../../fields/" + teamIndexFieldLink;
+    fieldImg.alt = teamIndexField;
     fieldImg.classList.add("field-img");
     field.appendChild(fieldImg);
     let fieldA = document.createElement("a");
+    // We need to find the locations of the other fields
     fieldA.href = "https://www.google.com/maps/place/%CE%93%CE%AE%CF%80%CE%B5%CE%B4%CE%BF+%CE%91%CE%95%CE%9A+%CE%9F%CE%A0%CE%91%CE%A0+%CE%91%CF%81%CE%AD%CE%BD%CE%B1/@38.0371755,23.7247421,15z/data=!3m1!4b1!4m6!3m5!1s0x14a1a3c320ca2e4f:0x74149d3e47aa9534!8m2!3d38.0371598!4d23.7416294!16s%2Fm%2F0zdkkpv";
-    fieldA.innerText = lineupFieldData[0].fieldName;
+    fieldA.innerText = teamIndexField;
     field.appendChild(fieldA);
 }
 
@@ -139,5 +140,16 @@ rows.forEach((rowHTML) => {
     tableBody.appendChild(row);
 });
 
-createLineup();
-createField();
+const urlParams = new URLSearchParams(window.location.search);
+let team = urlParams.get('team');
+
+function initialize() {
+    for (let i = 0; i < lineupFieldData.length; i++) {
+        if (team === lineupFieldData[i].name) {
+            createLineup(lineupFieldData[i].lineup);
+            createField(lineupFieldData[i].fieldLink, lineupFieldData[i].fieldName);
+        }
+    }
+}
+
+initialize();
