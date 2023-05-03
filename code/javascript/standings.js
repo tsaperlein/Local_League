@@ -189,3 +189,13 @@ rows.forEach((rowHTML) => {
     row.innerHTML = rowHTML;
     tableBody.appendChild(row);
 });
+
+// For the main-page.html select only the first 5 teams in the standings
+if (window.location.pathname.includes('main-page.html')) {
+    const tableRows = document.querySelectorAll('tbody tr');
+    tableRows.forEach((row, index) => {
+        if (index > 4) {
+            row.style.display = 'none';
+        }
+    });
+}

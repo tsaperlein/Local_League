@@ -81,8 +81,6 @@ function createHeaderRow() {
     headerRow.appendChild(positionHeader);
     headerRow.appendChild(nationalityHeader);
 
-    nameHeader.classList.add("name-btn");
-
     return headerRow;
 }
 

@@ -1,7 +1,23 @@
-function createHeader() {
-    const header = document.createElement('header');
-    header.classList.add('header');
+const teamsIconsData = [
+    {name: "AEK", icon: "aek.png", lineup: "aek-lineup.png"},
+    {name: "Olympiakos", icon: "osfp.png", lineup: "osfp-lineup.png"},
+    {name: "Panathinaikos", icon: "pao.png", lineup: "pao-lineup.png"},
+    {name: "PAOK", icon: "paok.png", lineup: "paok-lineup.png"},
+    {name: "Team5", icon: "home-team.png", lineup: "home-team-lineup.png"},
+    {name: "Team6", icon: "away-team.png", lineup: "away-team-lineup.png"},
+    {name: "Team7", icon: "team7.png", lineup: "team7-lineup.png"},
+    {name: "Napoli", icon: "napoli.png", lineup: "napoli-lineup.png"},
+    {name: "Barcelona", icon: "barc.png", lineup: "barc-lineup.png"},
+    {name: "Juventus", icon: "juve.png", lineup: "juve-lineup.png"},
+    {name: "PSG", icon: "psg.png", lineup: "psg-lineup.png"},
+    {name: "Arsenal", icon: "arsenal.png", lineup: "arsenal-lineup.png"},
+    {name: "Fenerbache", icon: "fener.png", lineup: "fener-lineup.png"},
+    {name: "Liverpool", icon: "live.png", lineup: "live-lineup.png"},
+    {name: "Porto", icon: "porto.png", lineup: "porto-lineup.png"},
+];
 
+// Function that creates the header
+function createHeader() {
     const logo = document.createElement('div');
     logo.classList.add('header-logo', 'd-flex', 'justify-content-center', 'align-items-center');
     logo.innerHTML = `
@@ -24,25 +40,126 @@ function createHeader() {
                 <a href="standings.html">Standings</a>
             </li>
             <li>
-                <a href="#">Account</a>
-            </li>
-            <li>
-                <button type="button" class="login-register-button btn" data-toggle="modal" data-target="#login-modal">
-                    Sign In/Sign Up
-                </button>
+                <a href="#">Sign In/Register</a>
             </li>
         </ul>
     `;
 
+    // When the user clicks the Sign In/Register button, create a modal
+    nav.querySelector('ul').lastElementChild.addEventListener('click', () => {
+        // Create a modal
+        const modal = document.createElement('div');
+        modal.classList.add('modal', 'd-flex', 'justify-content-center', 'align-items-center');
+        modal.innerHTML = `
+            <div class="modal-content d-flex flex-row">
+                <div class="modal-side sign-in d-flex flex-column">
+                    <h2>Sign In</h2>
+                    <form>
+                        <div class="form-element">
+                            <label for="username">Username</label>
+                            <input type="text" name="username" class="username" required>
+                        </div>
+                        <div class="form-element">
+                            <label for="password">Password</label>
+                            <input type="password" name="password" class="password" required>
+                        </div>
+                        <div class="submit">
+                            <input type="submit" id="submitButton" value="Sign In">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-side register d-flex flex-column">
+                    <h2>Register</h2>
+                    <form>
+                        <div class="form-element">
+                            <label for="email">Email</label>
+                            <input type="text" name="email" id="email" placeholder = "yourname@gmail.com" required>
+                        </div>
+                        <div class="form-element">
+                            <label for="username">Username</label>
+                            <input type="text" name="username" id="username" required>
+                        </div>
+                        <div class="form-element">
+                            <label for="password">Password</label>
+                            <input type="password" name="password" id="password" required>
+                        </div>
+                        <div class="form-element">
+                            <label for="passwordConfirm">Confirm Password</label>
+                            <input type="password" name="passwordConfirm" id="passwordConfirm" required>
+                        </div>
+                        <div class="submit">
+                            <input type="submit" id="submitButton" class="register-btn" value="Register">
+                        </div>
+                    </form>
+                </div>
+                <span class="close-btn">x</span>
+            </div>
+        `;
+
+        // If the modal is open, don't allow the user to scroll
+        document.body.style.overflow = 'hidden';
+
+        document.body.appendChild(modal);
+        // When the user clicks the X button, close the modal
+        modal.querySelector('.close-btn').addEventListener('click', () => {
+            modal.remove();
+            document.body.style.overflow = 'visible';
+        });
+        // When the user clicks outside the modal, close the modal
+        window.addEventListener('click', (event) => {
+            if (event.target == modal) {
+                modal.remove();
+                document.body.style.overflow = 'visible';
+            }
+        });
+
+        // Regular expressions for email, phone and password
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;    // πχ. yourname@gmail.com
+        const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,15}/;
+
+        // Check all the time if the user has filled the form correctly
+        const submitButton = modal.getElementsByClassName('register-btn')[0];
+        submitButton.disabled = true;
+        modalSideRegister.querySelectorAll('input').forEach(input => {
+            input.addEventListener('keyup', () => {
+                if (emailRegex.test(emailField.value) && passwordRegex.test(passwordField.value) && passwordField.value === passwordConfirmField.value) {
+                    submitButton.disabled = false;
+                } else {
+                    submitButton.disabled = true;
+                    alert('Please fill the form correctly');
+                }
+            });
+        });
+    });
+
+    // Create a scrollable div for the team selector
+    const teamSelector = document.createElement('div');
+    teamSelector.classList.add('header-team-selector', 'd-flex', 'justify-content-center', 'align-items-center');
+    // Create a div element for each team in the league
+    for (let i = 0; i < teamsIconsData.length; i++) {
+        const team = document.createElement('div');
+        team.classList.add('header-team', 'd-flex', 'justify-content-center', 'align-items-center');
+        team.innerHTML = `
+            <img src="../../team-icons/${teamsIconsData[i].icon}" alt="${teamsIconsData[i].name}">
+        `;
+        teamSelector.appendChild(team);
+        // Add an event listener to each team div
+        team.addEventListener('click', () => {
+            // Go to the team's page of the team that was clicked
+            window.location.href = `teams.html?team=${teamsIconsData[i].name}`;
+        });
+    }
+
     header.appendChild(logo);
     header.appendChild(nav);
+    header.appendChild(teamSelector);
 
     return header;
 }
 
+// Function that creates the footer
 function createFooter() {
-    const footer = document.createElement('footer');
-    footer.classList.add('footer', 'd-flex', 'flex-row', 'justify-content-around', 'align-items-center');
+    footer.classList.add('d-flex', 'flex-row', 'justify-content-around', 'align-items-center');
 
     const pageIcon = document.createElement('div');
     pageIcon.classList.add('footer-page-icon', 'd-flex', 'justify-content-start', 'align-items-center');
@@ -127,7 +244,35 @@ function createFooter() {
     return footer;
 }
 
-const header = createHeader();
-const footer = createFooter();
-document.getElementById('header').appendChild(header);
-document.getElementById('footer').appendChild(footer);
+function fixMainContentHeight() {
+    main = document.querySelector('main');
+    header = document.querySelector('header');
+    headerHeight = header.offsetHeight;
+
+    main.style.paddingTop = `${headerHeight}px`;
+    main.style.transition = 'padding-top 0.5s ease-in-out';
+    // Check always if the header height has changed
+    setInterval(() => {
+        if (headerHeight != header.offsetHeight) {
+            headerHeight = header.offsetHeight;
+            main.style.paddingTop = `${headerHeight}px`;
+        }
+    }
+    , 200);
+}
+
+
+let header = document.querySelector('header');
+let footer = document.querySelector('footer');
+
+const emailField = document.getElementById("email");
+const usernameField = document.getElementById("username");
+const passwordField = document.getElementById("password");
+const passwordConfirmField = document.getElementById("passwordConfirm");
+const modalSideRegister = document.querySelector(".register");
+
+document.addEventListener('DOMContentLoaded', () => {
+    header = createHeader();
+    footer = createFooter();
+    fixMainContentHeight();
+});

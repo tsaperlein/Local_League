@@ -18,10 +18,9 @@
 .information-container {
     max-height: 100%;
     position: relative;
-    margin-top: 3vw;
+    margin-top: 2rem;
     padding: 10px 30px;
     border-radius: 1vw;
-    z-index: 1;
 }
 
 .standings,
@@ -33,30 +32,15 @@
     padding: 2vw 2vw;
     background-color: rgba(240, 248, 255, 0.7);
     border-radius: 1vw;
-    z-index: 1;
 }
 
-@media (max-width: 768px) {
-    .information-container {
-        margin-top: 70px;
-    }
-}
-
+/* Fix corners for mobile */
 @media (max-width: 450px) {
-    body {
-        margin: 0;
-        padding: 0;
-    }
-
-    .information-container {
-        margin-top: 5vw;
-    }
 
     .standings,
     .last-week-results,
     .schedule-box {
         padding: 2vw 2vw;
         border-radius: 2vw;
-        z-index: 1;
     }
 }

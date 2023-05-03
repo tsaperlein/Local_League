@@ -1,40 +1,9 @@
 main {
     background-color: black;
-    margin: 0;
-    padding: 0;
-    padding-top: 12vw;
 }
 
 .custom-container {
     margin-left: 5vw;
     margin-right: 5vw;
     padding: 2vw;
-}
-
-@media (max-width: 800px) {
-
-    /* Mobile */
-    main {
-        padding-top: 15vw;
-    }
-}
-
-@media (min-width: 1100px) {
-
-    /* Desktop */
-    main {
-        padding-top: 12vw;
-    }
-}
-
-@media (min-width: 1750px) {
-    main {
-        padding-top: 195px;
-    }
-}
-
-@media (min-width: 1500px) {
-    main {
-        padding-top: 150px;
-    }
 }
