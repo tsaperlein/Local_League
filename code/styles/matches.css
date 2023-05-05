@@ -110,6 +110,121 @@ li.field-name {
     color: gray
 }
 
+#match-details-modal {
+    display: none;
+    overflow: hidden;
+    z-index: 1;
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+#match-details-modal .modal-content {
+    background-color: rgba(240, 240, 240, 0.95);
+    width: 40%;
+    height: 40%;
+    margin: 10% auto;
+    border-radius: 0.5vw;
+    padding: 1vw;
+    overflow: auto;
+}
+
+#match-details-modal .modal-content .close-btn {
+    font-size: 2vw;
+    cursor: pointer;
+    margin: 1rem 2rem;
+}
+
+#match-details-modal .modal-content .modal-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 3rem;
+    margin-top: 5rem;
+    border: none;
+    color: black;
+}
+
+#match-details-modal .modal-content .modal-header h2 {
+    font-size: 2vw;
+    color: black;
+    font-weight: 600;
+}
+
+#match-details-modal .modal-content .modal-header .team-logo {
+    width: 7rem;
+    height: auto;
+}
+
+div.logo-name {
+    gap: 1rem;
+    margin: 0;
+    padding: 0;
+}
+
+#match-details-modal .modal-content .modal-body {
+    padding: 0 3rem;
+    margin-top: 1rem;
+}
+
+#match-details-modal .modal-content .modal-body .match-details * {
+    font-size: 2rem;
+}
+
+#match-details-modal .modal-content .modal-body .match-details .row {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 0;
+    margin: 1.5rem 0;
+}
+
+#match-details-modal .modal-content .modal-body .match-details .row div {
+    margin: 0;
+    padding: 0;
+}
+
+.ht-player {
+    display: flex;
+    justify-content: start;
+}
+
+.stat-time {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.at-player {
+    display: flex;
+    justify-content: end;
+}
+
+.stat-and-time {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.home-stat {
+    display: flex;
+    justify-content: start;
+}
+
+.away-stat {
+    display: flex;
+    justify-content: end;
+}
+
+.stat-and-time div {
+    margin: 0;
+    padding: 0;
+}
+
+.time {
+    text-align: center;
+}
+
 @media (max-width: 450px) {
 
     /* Date */

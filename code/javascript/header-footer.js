@@ -50,45 +50,79 @@ function createHeader() {
         // Create a modal
         const modal = document.createElement('div');
         modal.classList.add('modal', 'd-flex', 'justify-content-center', 'align-items-center');
+        modal.setAttribute('id', 'signin-signup-modal');
         modal.innerHTML = `
-            <div class="modal-content d-flex flex-row">
+            <div class="modal-content">
                 <div class="modal-side sign-in d-flex flex-column">
-                    <h2>Sign In</h2>
-                    <form>
-                        <div class="form-element">
-                            <label for="username">Username</label>
-                            <input type="text" name="username" class="username" required>
+                    <div class="form-group">
+                        <div class="col-xs-8 col-xs-offset-4">
+                            <h2>Sign In</h2>
                         </div>
-                        <div class="form-element">
-                            <label for="password">Password</label>
-                            <input type="password" name="password" class="password" required>
+                    </div>
+                    <form id="signinForm" method="post" class="form-horizontal">
+                        <div class="form-group">
+                            <label class="col-xs-4 control-label">Username</label>
+                            <div class="col-xs-8">
+                                <input type="text" class="form-control" name="username">
+                            </div>
                         </div>
-                        <div class="submit">
-                            <input type="submit" id="submitButton" value="Sign In">
+                        <div class="form-group">
+                            <label class="col-xs-4 control-label">Password</label>
+                            <div class="col-xs-8">
+                                <input type="password" class="form-control" name="password">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-xs-8 col-xs-offset-4">
+                                <button type="submit" class="btn btn-primary signin-btn" name="signin" value="Sign in">Sign in</button>
+                            </div>
                         </div>
                     </form>
                 </div>
                 <div class="modal-side register d-flex flex-column">
-                    <h2>Register</h2>
-                    <form>
-                        <div class="form-element">
-                            <label for="email">Email</label>
-                            <input type="text" name="email" id="email" placeholder = "yourname@gmail.com" required>
+                    <div class="form-group">
+                        <div class="col-xs-8 col-xs-offset-4">
+                            <h2>Register</h2>
                         </div>
-                        <div class="form-element">
-                            <label for="username">Username</label>
-                            <input type="text" name="username" id="username" required>
+                    </div>
+                    <form id="signupForm" method="post" class="form-horizontal">
+                        <div class="form-group">
+                            <label class="col-xs-4 control-label">Full name</label>
+                            <div class="col-xs-4">
+                                <input type="text" class="form-control" name="firstName" placeholder="First name">
+                            </div>
+                            <div class="col-xs-4">
+                                <input type="text" class="form-control" name="lastName" placeholder="Last name">
+                            </div>
                         </div>
-                        <div class="form-element">
-                            <label for="password">Password</label>
-                            <input type="password" name="password" id="password" required>
+                        <div class="form-group">
+                            <label class="col-xs-4 control-label">Username</label>
+                            <div class="col-xs-8">
+                                <input type="text" class="form-control" id="username" name="username">
+                            </div>
                         </div>
-                        <div class="form-element">
-                            <label for="passwordConfirm">Confirm Password</label>
-                            <input type="password" name="passwordConfirm" id="passwordConfirm" required>
+                        <div class="form-group">
+                            <label class="col-xs-4 control-label">Email address</label>
+                            <div class="col-xs-8">
+                                <input type="text" class="form-control" id="email" name="email" placeholder="example@gmail.com">
+                            </div>
                         </div>
-                        <div class="submit">
-                            <input type="submit" id="submitButton" class="register-btn" value="Register">
+                        <div class="form-group">
+                            <label class="col-xs-4 control-label">Password</label>
+                            <div class="col-xs-8">
+                                <input type="password" class="form-control" id="password" name="password">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-xs-4 control-label">Confirm password</label>
+                            <div class="col-xs-8 confirm-password">
+                                <input type="password" class="form-control" id="confirm-password" name="confirmPassword">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div id="signup-btn" class="col-xs-8 col-xs-offset-4">
+                                <button type="submit" class="btn btn-primary" name="signup">Sign Up</button>
+                            </div>
                         </div>
                     </form>
                 </div>
@@ -100,6 +134,9 @@ function createHeader() {
         document.body.style.overflow = 'hidden';
 
         document.body.appendChild(modal);
+        if (modal) {
+            checkInputs();
+        }
         // When the user clicks the X button, close the modal
         modal.querySelector('.close-btn').addEventListener('click', () => {
             modal.remove();
@@ -111,24 +148,6 @@ function createHeader() {
                 modal.remove();
                 document.body.style.overflow = 'visible';
             }
-        });
-
-        // Regular expressions for email, phone and password
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;    // πχ. yourname@gmail.com
-        const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,15}/;
-
-        // Check all the time if the user has filled the form correctly
-        const submitButton = modal.getElementsByClassName('register-btn')[0];
-        submitButton.disabled = true;
-        modalSideRegister.querySelectorAll('input').forEach(input => {
-            input.addEventListener('keyup', () => {
-                if (emailRegex.test(emailField.value) && passwordRegex.test(passwordField.value) && passwordField.value === passwordConfirmField.value) {
-                    submitButton.disabled = false;
-                } else {
-                    submitButton.disabled = true;
-                    alert('Please fill the form correctly');
-                }
-            });
         });
     });
 
@@ -156,7 +175,7 @@ function createHeader() {
 
     return header;
 }
-
+    
 // Function that creates the footer
 function createFooter() {
     footer.classList.add('d-flex', 'flex-row', 'justify-content-around', 'align-items-center');
@@ -261,18 +280,116 @@ function fixMainContentHeight() {
     , 200);
 }
 
-
+// Header and Footer
 let header = document.querySelector('header');
 let footer = document.querySelector('footer');
 
-const emailField = document.getElementById("email");
-const usernameField = document.getElementById("username");
-const passwordField = document.getElementById("password");
-const passwordConfirmField = document.getElementById("passwordConfirm");
-const modalSideRegister = document.querySelector(".register");
+header = createHeader();
+footer = createFooter();
+fixMainContentHeight();
 
-document.addEventListener('DOMContentLoaded', () => {
-    header = createHeader();
-    footer = createFooter();
-    fixMainContentHeight();
-});
+// Validate input fields
+function checkInputs() {
+    // Input fields
+    const emailField = document.getElementById("email");
+    const usernameField = document.getElementById("username");
+    const passwordField = document.getElementById("password");
+    const passwordConfirmField = document.getElementById("confirm-password");
+
+    // Regular expressions for email, username and password
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;                                                    // πχ. yourname@gmail.com
+    const usernameRegex = /^[a-zA-Z0-9]/;                                                               // only letters and numbers
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,15}/;    // at least one lowercase, one uppercase, one number, one special character and 8-15 characters long
+
+    const inputNameFieldRegex = [
+        { name: "email", field: emailField, regex: emailRegex },
+        { name: "username", field: usernameField, regex: usernameRegex },
+        { name: "password", field: passwordField, regex: passwordRegex },
+        { name: "password-confirm", field: passwordConfirmField, regex: passwordRegex }
+    ];
+
+    // Function that adds event listeners to the input fields (keyup and blur)
+    function keyUpAndBlurEventListener(name, field, regex) {
+        field.addEventListener("keyup", function () {
+            if (field === passwordConfirmField) {
+                if (passwordField.value !== passwordConfirmField.value) {
+                    field.style.color = "red";
+                } else {
+                    if (regex.test(field.value)) {
+                        field.style.color = "green";
+                    }
+                }
+            } else isValid(field, regex);
+        });
+        blurEventListener(name, field, regex);
+    }
+
+    // Function that sets the font color to black when the user clicks outside the input field, and only if the input is valid
+    function blurEventListener(name, field, regex) {
+        field.addEventListener("blur", function() {
+            if (regex.test(field.value)) {
+                field.style.color = "black";
+                removeErrorMessage(field);
+            } else {
+                // For the specific field, if an error message is already displayed, don't create another one
+                if (!field.nextElementSibling) {
+                    createErrorMessage(field, name);
+                }
+                field.style.color = "red";
+            }
+        });
+    }
+
+    // Call in a for loop the function keyUpAndBlurEventListener for every input field
+    for (item of inputNameFieldRegex) {
+        keyUpAndBlurEventListener(item.name, item.field, item.regex);
+    }
+
+    function isValid(field, regex) {
+        if (field.value.trim() === '') {
+            field.style.color = "red";
+            return false;
+        }
+        else if (!regex.test(field.value.trim())) {
+            field.style.color = "red";
+            return false;
+        }
+        else {
+            removeErrorMessage(field);
+            field.style.color = "green";
+            return true;
+        }
+    }
+
+    // Function that creates a div element for the error message below the given input field
+    function createErrorMessage(field, name) {
+        let errorMessage = document.createElement('div');
+        errorMessage.classList.add('error-message');
+        if (name === "password-confirm") {
+            errorMessage.textContent = `Passwords do not match`;
+        }
+        else if (name === "password"){
+            errorMessage.textContent = '8-15 characters (at least one lowercase, one uppercase, one number and one special character)'
+        }
+        else {
+            errorMessage.textContent = `Invalid ${name}`;
+        }
+        field.insertAdjacentElement('afterend', errorMessage);
+    }
+    // Function that removes the error message below the given input field
+    function removeErrorMessage(field) {
+        let errorMessage = field.nextElementSibling;
+        // Remove the error message from the given input field, only if it exists
+        if (errorMessage && errorMessage.classList.contains('error-message')) {
+            errorMessage.remove();
+        }
+    }
+    const signupBtn = document.getElementById("signup-btn");
+    for (item of inputNameFieldRegex) {
+        if (isValid(item.field, item.regex)) {
+            signupBtn.disabled = false;
+            break;
+        }
+        signupBtn.disabled = true;
+    }
+}

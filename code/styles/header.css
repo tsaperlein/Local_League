@@ -209,35 +209,44 @@ nav.header-options li:hover a {
   }
 }
 
-.modal {
+#signin-signup-modal {
   display: none;
   overflow: hidden;
   z-index: 1;
   background-color: rgba(0, 0, 0, 0.4);
 }
 
-div.modal-content {
+#signin-signup-modal .modal-content {
   width: fit-content;
-  padding: 2rem;
+  padding: 4rem;
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3)), url("https://www.montgomerycountymd.gov/rec/Resources/Images/soccer1.png");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
   gap: 2rem;
+  display: flex;
+  flex-direction: row;
+}
+
+@media (max-width: 800px) {
+  div.modal-content {
+    flex-direction: column;
+    padding: 2rem;
+  }
+}
+
+
+.form-group * {
+  width: 100%;
+  height: fit-content;
+}
+
+div.form-group {
+  gap: 1rem;
 }
 
 .modal-side {
-  display: grid;
   gap: 1rem;
-  width: 50%;
-  height: 100%;
-}
-
-.form-element {
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-  gap: 1rem;
-  margin: 1rem;
 }
 
 .modal h2 {
@@ -263,16 +272,6 @@ div.modal-content {
   opacity: 1;
 }
 
-#submitButton {
-  width: fit-content;
-  padding: 0.8rem 2rem;
-}
-
-#submitButton:hover {
-  opacity: 0.8;
-  transition: all 0.3s ease-in-out;
-}
-
 span.close-btn {
   font-family: Comfortaa, Helvetica, sans-serif;
   font-size: 3rem;
@@ -284,10 +283,25 @@ span.close-btn {
   height: fit-content;
   margin-top: 1rem;
   margin-right: 2rem;
+  cursor: pointer;
 }
 
 span.close-btn:hover {
   cursor: pointer;
   opacity: 0.6;
   transition: all 0.3s ease-in-out;
+}
+
+.form-group label {
+  display: flex;
+  justify-content: end;
+}
+
+.error-message {
+  margin-top: 0.5rem;
+  padding: 0.1rem 0.5rem;
+  background-color: rgba(255, 255, 255, 0.8);
+  color: rgb(255, 0, 0);
+  font-size: 1.5rem;
+  border-radius: 0.5rem;
 }
