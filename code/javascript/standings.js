@@ -49,44 +49,28 @@ for (let i = 0; i < teamsData.length; i++) {
 
 // Function that calculates the rank of each team and sorts them by it
 function calculateAndSortRanking(teams) {
-  // calculate the rank of each team
-  for (let i = 0; i < teams.length; i++) {
-    let rank = 1;
-    for (let j = 0; j < teams.length; j++) {
-      if (teams[j].points > teams[i].points) {
-        rank++;
-      }
-    }
-    teams[i].rank = rank;
-  }
-
   // sort the teams by their rank (in descending order)
   teams.sort((a, b) => b.points - a.points);
+  teams.forEach((team, index) => {
+    team.rank = index + 1;
+  });
   
   return teams;
 }
 
 function reverseRanking(teams) {
-  // calculate the rank of each team
-  for (let i = teams.length-1; i >=0 ; i--) {
-    let rank = teams.length;
-    for (let j = teams.length-1; j >= 0; j--) {
-      if (teams[j].points > teams[i].points) {
-        rank--;
-      }
-    }
-    teams[i].rank = rank;
-  }
-
   // sort the teams by their rank (in descending order)
   teams.sort((a, b) => a.points - b.points);
+  teams.forEach((team, index) => {
+    team.rank = teams.length - index;
+  });
   
   return teams;
 }
 
 // Calculate the points and sort the teams by their rank
 calculatePoints(teamsData);
-teamsData = reverseRanking(teamsData);
+teamsData = calculateAndSortRanking(teamsData);
 
 // Function that creates the table header row
 function createHeaderRow() {
@@ -148,7 +132,7 @@ function createTableRows(teamsData) {
         const gdCell = document.createElement("td");
         const ptsCell = document.createElement("td");
 
-        const rank = index + 1;
+        const rank = teamData.rank;
         const teamLogoSrc = teamData.logo;
         const teamName = teamData.name;
         const matches = teamData.matches;
@@ -230,6 +214,39 @@ rankBtn.addEventListener('click', () => {
   } else {
     tableBody.innerHTML = '';
     teamsData = calculateAndSortRanking(teamsData);
+  }
+  rows = createTableRows(teamsData);
+  rows.forEach((rowHTML) => {
+    const row = document.createElement('tr');
+    row.innerHTML = rowHTML;
+    tableBody.appendChild(row);
+  });
+});
+
+// Function that sorts the teams by their name
+let teamBtnClickedCounter = 0;
+const teamBtn = document.querySelector('.team-btn');
+teamBtn.addEventListener('click', () => {
+  teamBtnClickedCounter++;
+  // sort the teams by their name (in ascending order)
+  if(teamBtnClickedCounter % 2 === 1) {
+    tableBody.innerHTML = '';
+    teamsData = teamsData.sort(function(a, b) {
+      if(a.name < b.name) { 
+        return -1; 
+      } else {
+        return 1;
+      }
+    });
+  } else {
+    tableBody.innerHTML = '';
+    teamsData = teamsData.sort(function(a, b) {
+      if(a.name < b.name) { 
+        return -1; 
+      } else {
+        return 1;
+      }
+    }).reverse();
   }
   rows = createTableRows(teamsData);
   rows.forEach((rowHTML) => {
