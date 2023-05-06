@@ -39,13 +39,14 @@
 }
 
 .team {
+    height: 100%;
     margin: 0 0.8vw;
 }
 
-.team img {
-    position: relative;
+.home-team,
+.away-team {
     width: auto;
-    height: 3.5vw;
+    height: 4vw;
 }
 
 .teams-score {

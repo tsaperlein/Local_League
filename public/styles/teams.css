@@ -5,25 +5,8 @@ main * {
     font-size: 2vw;
 }
 
-.background {
-    position: relative;
-    max-height: fit-content;
-    overflow-x: hidden;
-}
-
-img#background-img {
+#teams-background-img {
     z-index: 0;
-}
-
-/* Always shows the center of the image */
-#background-img {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    height: 100%;
-    width: 100%;
-    object-fit: cover;
 }
 
 .team-container {

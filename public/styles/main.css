@@ -1,0 +1,25 @@
+main {
+    background-color: black;
+}
+
+.custom-container {
+    margin-left: 5vw;
+    margin-right: 5vw;
+    padding: 2vw;
+}
+
+.background {
+    position: relative;
+    max-height: fit-content;
+    overflow: hidden;
+}
+
+.background-img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}

@@ -1,0 +1,29 @@
+<div class="background">
+    <img class="background-img" src="/background-images/5.jpg" alt="Background Image: Soccer field with a ball on the grass">
+    <div class="schedule-container container d-flex flex-column">
+        <div class="schedule-options d-flex flex-row justify-content-between align-items-center">
+            <div class="week-picker btn-group d-flex flex-row align-items-center" role="group">
+                <button id="previous-week" type="button" class="btn btn-light">&lt;</button>
+                <button id="current-week" type="button" class="btn btn-light">Mar 3-Mar 10</button>
+                <button id="next-week" type="button" class="btn btn-light">&gt;</button>
+            </div>
+            <div id="calendar-container" style="display:none;">
+                <div id="calendar"></div>
+            </div>
+            <div class="team-selection dropdown d-flex align-items-center">
+                <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton"
+                    data-toggle="dropdown" aria-haspopup="true" aria-placeholder="All teams">
+                    All Teams
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="#" data-team="all-teams">All Teams</a>
+                    <a class="dropdown-item" href="#" data-team="team1">Team 1</a>
+                    <a class="dropdown-item" href="#" data-team="team2">Team 2</a>
+                    <a class="dropdown-item" href="#" data-team="team3">Team 3</a>
+                </div>
+            </div>
+        </div>
+        <div class="matches-container d-flex flex-column" id="final-matches-container"></div>
+        <div class="matches-container d-flex flex-column" id="upcoming-matches-container"></div>
+    </div>
+</div>

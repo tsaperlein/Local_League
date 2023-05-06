@@ -3,23 +3,6 @@ body ul {
     padding: 0;
 }
 
-.background {
-    position: relative;
-    max-height: fit-content;
-    overflow-x: hidden;
-}
-
-/* Always shows the center of the image */
-.background img {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    height: 100%;
-    width: 100%;
-    object-fit: cover;
-}
-
 /* Fix the margin of the schedule container */
 .schedule-container {
     background-color: rgba(240, 248, 255, 0.819);

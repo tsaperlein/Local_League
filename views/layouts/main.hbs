@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Local League</title>
+    <link rel="icon" type="image/x-icon" href="/images/icon-local-league.png">
+    <link rel="stylesheet" href="/styles/main-page.css">
+    <link rel="stylesheet" href="/styles/matches.css">
+    <link rel="stylesheet" href="/styles/schedule.css">
+    <link rel="stylesheet" href="/styles/standings.css">
+    <link rel="stylesheet" href="/styles/standings-page.css">
+    <link rel="stylesheet" href="/styles/teams.css">
+    
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="stylesheet" href="/styles/header.css">
+    <link rel="stylesheet" href="/styles/footer.css">
+
+    <link rel="stylesheet" type="text/css" href="/tools/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    
+    <script src="/javascript/header-footer.js" defer></script>
+    <script src="/javascript/matches.js" defer></script>
+    <script src="/javascript/standings.js" defer></script>
+    <script src="/javascript/teams.js" defer></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+    <header id="header" class="header">
+        {{>header}}
+    </header>
+    <main class="main-content">
+        {{{body}}}
+    </main>
+    <footer id="footer" class="footer d-flex flex-row justify-content-around align-items-center">
+        {{>footer}}
+    </footer>
+</body>
+
+</html>

@@ -39,7 +39,7 @@ const playerData = [
 function createLineup(teamIndexLineup) {
     const lineup = document.querySelector(".team-lineup");
     let lineupImg = document.createElement("img");
-    lineupImg.src = "../../lineups/" + teamIndexLineup;
+    lineupImg.src = "/lineups/" + teamIndexLineup;
     lineupImg.alt = "Lineup of the players";
     lineupImg.classList.add("team-lineup-img");
     lineup.appendChild(lineupImg);
@@ -49,7 +49,7 @@ function createLineup(teamIndexLineup) {
 function createField(teamIndexFieldLink, teamIndexField) {
     const field = document.querySelector(".field-info");
     let fieldImg = document.createElement("img");
-    fieldImg.src = "../../fields/" + teamIndexFieldLink;
+    fieldImg.src = "/fields/" + teamIndexFieldLink;
     fieldImg.alt = teamIndexField;
     fieldImg.classList.add("field-img");
     field.appendChild(fieldImg);

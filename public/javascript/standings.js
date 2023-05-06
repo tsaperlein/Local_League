@@ -190,12 +190,10 @@ rows.forEach((rowHTML) => {
     tableBody.appendChild(row);
 });
 
-// For the main-page.html select only the first 5 teams in the standings
-if (window.location.pathname.includes('main-page.html')) {
-    const tableRows = document.querySelectorAll('tbody tr');
-    tableRows.forEach((row, index) => {
-        if (index > 4) {
-            row.style.display = 'none';
-        }
-    });
+// For the /main-page select only the first 5 teams in the standings
+if (window.location.pathname === "/Local-League/main-page") {
+  const tableRows = document.querySelectorAll("tbody tr");
+  for (let i = 5; i < tableRows.length; i++) {
+    tableRows[i].classList.add("hide");
+  }
 }

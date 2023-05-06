@@ -1,20 +1,3 @@
-.background {
-    position: relative;
-    max-height: fit-content;
-    overflow: hidden;
-}
-
-/* Always shows the center of the image */
-.background img {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    height: 100%;
-    width: 100%;
-    object-fit: cover;
-}
-
 .information-container {
     max-height: 100%;
     position: relative;
