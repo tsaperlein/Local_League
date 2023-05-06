@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Standings</title>
+    <link rel="stylesheet" href="../styles/standings-page.css">
+    <link rel="stylesheet" href="../styles/standings.css">
+
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="../styles/header.css">
+    <link rel="stylesheet" href="../styles/footer.css">
+    <link rel="stylesheet" type="text/css" href="../../tools/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+
+    <script src="../javascript/header-footer.js" defer></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <script src="../javascript/standings.js" defer></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+    <header id="header" class="header"></header>
+
+    <main class="main-content">
+        <div class="wallpaper">
+            <img src="../../background-images/6.jpg" alt="">
+            <div class="standings custom-container">
+                <div class="cont column">
+                    <div class="standings-choice-buttons-group">
+                        <a class="standings-choice-buttons-group-button overall"><span>Overall</span></a>
+                        <a class="standings-choice-buttons-group-button home"><span>Home</span></a>
+                        <a class="standings-choice-buttons-group-button guest"><span>Guest</span></a>
+                    </div>
+                    <div class="standings-table">
+                        <table id="teams-table">
+                            <thead id="thead"></thead>
+                            <tbody id="tbody"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer id="footer" class="footer"></footer>
+</body>
+</html>
