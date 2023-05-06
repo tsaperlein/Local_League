@@ -68,9 +68,125 @@ function reverseRanking(teams) {
   return teams;
 }
 
+function rankByGoalsFor(teams){
+  teams = teams.sort(function(a, b) {
+    if(a.goalsFor < b.goalsFor) {
+      return 1;
+    } else if(a.goalsFor == b.goalsFor) {
+        if(a.points < b.points) {
+          return 1;
+        } else {
+          return -1;
+        }
+    } else {
+      return -1;
+    }
+  });
+  teams.forEach((team, index) => {
+    team.rank = index + 1;
+  });
+  return teams;
+}
+
+function reverseRankByGoalsFor(teams){
+  teams = teams.sort(function(a, b) {
+    if(b.goalsFor < a.goalsFor) {
+      return 1;
+    } else if(a.goalsFor == b.goalsFor) {
+        if(b.points < a.points) {
+          return 1;
+        } else {
+          return -1;
+        }
+    } else {
+      return -1;
+    }
+  });
+  teams.forEach((team, index) => {
+    team.rank = teams.length - index;
+  });
+  return teams;
+}
+
+function handleHomeWins(teams){
+  for (let i = 0; i < teams.length; i++) {
+    teams[i].homeWins = getRandomInt(1, teams[i].wins - 1);
+  }
+  return teams;
+}
+
+function handleGuestWins(teams){
+  for (let i = 0; i < teams.length; i++) {
+    teams[i].guestWins = teams[i].wins - teams[i].homeWins;
+  }
+  return teams;
+}
+
+function rankByHomeWins(teams){
+  teams = teams.sort(function(a, b) {
+    if(a.homeWins < b.homeWins) { 
+      return 1;
+    } else if(a.homeWins == b.homeWins) {
+        if(a.points < b.points) {
+          return 1;
+        } else {
+          return -1;
+        }
+    } else {
+      return -1;
+    }
+  });
+  teams.forEach((team, index) => {
+    team.rank = index + 1;
+  });
+  return teams;
+}
+
+function rankByGuestWins(teams){
+  teams = teams.sort(function(a, b) {
+    if(a.guestWins < b.guestWins) {
+      return 1;
+    } else if(a.guestWins == b.guestWins) {
+        if(a.points < b.points) {
+          return 1;
+        } else {
+          return -1;
+        }
+    } else {
+      return -1;
+    }
+  });
+  teams.forEach((team, index) => {
+    team.rank = index + 1;
+  });
+  return teams;
+}
+
+function rankByOverallWins(teams){
+  teams = teams.sort(function(a, b) {
+    if(a.wins < b.wins) {
+      return 1;
+    } else if(a.wins == b.wins) {
+        if(a.points < b.points) {
+          return 1;
+        } else {
+          return -1;
+        }
+    } else {
+      return -1;
+    }
+  });
+  teams.forEach((team, index) => {
+    team.rank = index + 1;
+  });
+  return teams;
+}
+
 // Calculate the points and sort the teams by their rank
 calculatePoints(teamsData);
 teamsData = calculateAndSortRanking(teamsData);
+teamsData = handleHomeWins(teamsData);
+teamsData = handleGuestWins(teamsData);
 
 // Function that creates the table header row
 function createHeaderRow() {
@@ -88,7 +204,7 @@ function createHeaderRow() {
 
   rankHeader.innerHTML = "<a class='header-button rank-btn'>Rank &nbsp;<i class='fa fa-sort'></i></a>";
   teamHeader.innerHTML = "<a class='header-button team-btn'>Team &nbsp;<i class='fa fa-sort'></i></a>";
-  matchesHeader.innerHTML = "<a class='header-button matches-btn'>Matches &nbsp;<i class='fa fa-sort'></i></a>";
+  matchesHeader.innerHTML = "<a class='header-button matches-btn'>Matches &nbsp;</a>";
   wHeader.innerHTML = "<a class='header-button wins-btn'>W &nbsp;<i class='fa fa-sort'></i></a>";
   dHeader.innerHTML = "<a class='header-button draws-btn'>D &nbsp;<i class='fa fa-sort'></i></a>";
   lHeader.innerHTML = "<a class='header-button losses-btn'>L &nbsp;<i class='fa fa-sort'></i></a>";
@@ -223,6 +339,27 @@ rankBtn.addEventListener('click', () => {
   });
 });
 
+// Function that sorts the teams by their goals for
+let gfBtnClickedCounter = 0;
+const gfBtn = document.querySelector('.goals-for-btn');
+gfBtn.addEventListener('click', () => {
+  gfBtnClickedCounter++;
+  // sort the teams by their rank (in descending order)
+  if(gfBtnClickedCounter % 2 === 1) {
+    tableBody.innerHTML = '';
+    teamsData = reverseRankByGoalsFor(teamsData);
+  } else {
+    tableBody.innerHTML = '';
+    teamsData = rankByGoalsFor(teamsData);
+  }
+  rows = createTableRows(teamsData);
+  rows.forEach((rowHTML) => {
+    const row = document.createElement('tr');
+    row.innerHTML = rowHTML;
+    tableBody.appendChild(row);
+  });
+});
+
 // Function that sorts the teams by their name
 let teamBtnClickedCounter = 0;
 const teamBtn = document.querySelector('.team-btn');
@@ -248,6 +385,45 @@ teamBtn.addEventListener('click', () => {
       }
     }).reverse();
   }
+  rows = createTableRows(teamsData);
+  rows.forEach((rowHTML) => {
+    const row = document.createElement('tr');
+    row.innerHTML = rowHTML;
+    tableBody.appendChild(row);
+  });
+});
+
+// Function that sorts the teams by their overall wins
+const overallBtn = document.querySelector('.overall');
+overallBtn.addEventListener('click', () => {
+  tableBody.innerHTML = '';
+  teamsData = rankByOverallWins(teamsData);
+  rows = createTableRows(teamsData);
+  rows.forEach((rowHTML) => {
+    const row = document.createElement('tr');
+    row.innerHTML = rowHTML;
+    tableBody.appendChild(row);
+  });
+});
+
+// Function that sorts the teams by their home wins
+const homeBtn = document.querySelector('.home');
+homeBtn.addEventListener('click', () => {
+  tableBody.innerHTML = '';
+  teamsData = rankByHomeWins(teamsData);
+  rows = createTableRows(teamsData);
+  rows.forEach((rowHTML) => {
+    const row = document.createElement('tr');
+    row.innerHTML = rowHTML;
+    tableBody.appendChild(row);
+  });
+});
+
+// Function that sorts the teams by their away wins
+const guestBtn = document.querySelector('.guest');
+guestBtn.addEventListener('click', () => {
+  tableBody.innerHTML = '';
+  teamsData = rankByGuestWins(teamsData);
   rows = createTableRows(teamsData);
   rows.forEach((rowHTML) => {
     const row = document.createElement('tr');
