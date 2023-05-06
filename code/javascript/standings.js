@@ -62,13 +62,31 @@ function calculateAndSortRanking(teams) {
 
   // sort the teams by their rank (in descending order)
   teams.sort((a, b) => b.points - a.points);
+  
+  return teams;
+}
 
+function reverseRanking(teams) {
+  // calculate the rank of each team
+  for (let i = teams.length-1; i >=0 ; i--) {
+    let rank = teams.length;
+    for (let j = teams.length-1; j >= 0; j--) {
+      if (teams[j].points > teams[i].points) {
+        rank--;
+      }
+    }
+    teams[i].rank = rank;
+  }
+
+  // sort the teams by their rank (in descending order)
+  teams.sort((a, b) => a.points - b.points);
+  
   return teams;
 }
 
 // Calculate the points and sort the teams by their rank
 calculatePoints(teamsData);
-teamsData = calculateAndSortRanking(teamsData);
+teamsData = reverseRanking(teamsData);
 
 // Function that creates the table header row
 function createHeaderRow() {
@@ -183,7 +201,7 @@ const headerRow = createHeaderRow();
 tableHead.appendChild(headerRow);
 
 // create table rows and append them to the table body
-const rows = createTableRows(teamsData);
+let rows = createTableRows(teamsData);
 rows.forEach((rowHTML) => {
     const row = document.createElement('tr');
     row.innerHTML = rowHTML;
@@ -199,3 +217,24 @@ if (window.location.pathname.includes('main-page.html')) {
         }
     });
 }
+
+// Function that sorts the teams by their rank
+let rankBtnClickedCounter = 0;
+const rankBtn = document.querySelector('.rank-btn');
+rankBtn.addEventListener('click', () => {
+  rankBtnClickedCounter++;
+  // sort the teams by their rank (in descending order)
+  if(rankBtnClickedCounter % 2 === 1) {
+    tableBody.innerHTML = '';
+    teamsData = reverseRanking(teamsData);
+  } else {
+    tableBody.innerHTML = '';
+    teamsData = calculateAndSortRanking(teamsData);
+  }
+  rows = createTableRows(teamsData);
+  rows.forEach((rowHTML) => {
+    const row = document.createElement('tr');
+    row.innerHTML = rowHTML;
+    tableBody.appendChild(row);
+  });
+});
