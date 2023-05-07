@@ -22,9 +22,10 @@
     <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
     
     <script src="/javascript/header-footer.js" defer></script>
-    <script src="/javascript/matches.js" defer></script>
+    {{!-- <script src="/javascript/matches.js" defer></script>
     <script src="/javascript/standings.js" defer></script>
-    <script src="/javascript/teams.js" defer></script>
+    <script src="/javascript/teams.js" defer></script> --}}
+
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
     
@@ -41,6 +42,25 @@
     <footer id="footer" class="footer d-flex flex-row justify-content-around align-items-center">
         {{>footer}}
     </footer>
+
+  <script>
+    const headElement = document.head;
+    const scriptElement = document.createElement('script');
+    if (window.location.pathname === "/Local-League/schedule"){
+        scriptElement.src = '/javascript/matches.js';
+    } else if(window.location.pathname === "/Local-League/standings"){
+        scriptElement.src = '/javascript/standings.js';
+    } else if(window.location.pathname === "/Local-League/teams"){
+        scriptElement.src = '/javascript/teams.js';
+    } else {
+        scriptElement.src = '/javascript/standings.js';
+        const secondScriptElement = document.createElement('script');
+        secondScriptElement.src = '/javascript/matches.js';
+        headElement.appendChild(secondScriptElement);
+    }
+    headElement.appendChild(scriptElement);
+  </script>
+
 </body>
 
 </html>

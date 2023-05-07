@@ -151,3 +151,5 @@ function initialize() {
 }
 
 initialize();
+
+module.exports = team;
