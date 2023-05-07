@@ -391,41 +391,43 @@ teamBtn.addEventListener('click', () => {
   });
 });
 
-// Function that sorts the teams by their overall wins
-const overallBtn = document.querySelector('.overall');
-overallBtn.addEventListener('click', () => {
-  tableBody.innerHTML = '';
-  teamsData = rankByOverallWins(teamsData);
-  rows = createTableRows(teamsData);
-  rows.forEach((rowHTML) => {
-    const row = document.createElement('tr');
-    row.innerHTML = rowHTML;
-    tableBody.appendChild(row);
+if (window.location.pathname === "/Local-League/standings"){
+  // Function that sorts the teams by their overall wins
+  const overallBtn = document.querySelector('.overall');
+  overallBtn.addEventListener('click', () => {
+    tableBody.innerHTML = '';
+    teamsData = rankByOverallWins(teamsData);
+    rows = createTableRows(teamsData);
+    rows.forEach((rowHTML) => {
+      const row = document.createElement('tr');
+      row.innerHTML = rowHTML;
+      tableBody.appendChild(row);
+    });
   });
-});
 
-// Function that sorts the teams by their home wins
-const homeBtn = document.querySelector('.home');
-homeBtn.addEventListener('click', () => {
-  tableBody.innerHTML = '';
-  teamsData = rankByHomeWins(teamsData);
-  rows = createTableRows(teamsData);
-  rows.forEach((rowHTML) => {
-    const row = document.createElement('tr');
-    row.innerHTML = rowHTML;
-    tableBody.appendChild(row);
+  // Function that sorts the teams by their home wins
+  const homeBtn = document.querySelector('.home');
+  homeBtn.addEventListener('click', () => {
+    tableBody.innerHTML = '';
+    teamsData = rankByHomeWins(teamsData);
+    rows = createTableRows(teamsData);
+    rows.forEach((rowHTML) => {
+      const row = document.createElement('tr');
+      row.innerHTML = rowHTML;
+      tableBody.appendChild(row);
+    });
   });
-});
 
-// Function that sorts the teams by their away wins
-const guestBtn = document.querySelector('.guest');
-guestBtn.addEventListener('click', () => {
-  tableBody.innerHTML = '';
-  teamsData = rankByGuestWins(teamsData);
-  rows = createTableRows(teamsData);
-  rows.forEach((rowHTML) => {
-    const row = document.createElement('tr');
-    row.innerHTML = rowHTML;
-    tableBody.appendChild(row);
+  // Function that sorts the teams by their away wins
+  const guestBtn = document.querySelector('.guest');
+  guestBtn.addEventListener('click', () => {
+    tableBody.innerHTML = '';
+    teamsData = rankByGuestWins(teamsData);
+    rows = createTableRows(teamsData);
+    rows.forEach((rowHTML) => {
+      const row = document.createElement('tr');
+      row.innerHTML = rowHTML;
+      tableBody.appendChild(row);
+    });
   });
-});
+}

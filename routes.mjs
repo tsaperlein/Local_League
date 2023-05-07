@@ -1,6 +1,4 @@
 import express from 'express'
-// import team from '/javascript/teams.js'
-// console.log(team);
 
 const router = express.Router()
 
