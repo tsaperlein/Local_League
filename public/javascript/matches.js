@@ -135,6 +135,26 @@ const matchStats = {
     }
 };
 
+// let matchStats = {};
+// for(let i = 0; i < matchesData.length; i++) {
+//     if(matchesData[i].state === 'Final') {
+//         for(match in matchStats) {
+//             match['homeTeam'] = matchesData[i].homeTeam;
+//             match['awayTeam'] = matchesData[i].awayTeam;
+//             match['stats'] = [
+//                         { team: 'home', player: 'Mpelmpas', time: '45', type: 'goal' },
+//                         { team: 'home', player: 'Mpelmpas', time: '60', type: 'goal' },
+//                         { team: 'away', player: 'Efthymiou', time: '70', type: 'goal' },
+//                         { team: 'away', player: 'Nikolaou', time: '80', type: 'goal' },
+//                         { team: 'home', player: 'Mpelmpas', time: '30', type: 'yellow-card' },
+//                         { team: 'away', player: 'Efthymiou', time: '40', type: 'yellow-card' },
+//                         { team: 'away', player: 'Nikolaou', time: '70', type: 'red-card' },
+//                         ];
+//         }
+//     }
+// }
+
+
 // Add all the stats to an array, but sorted by time
 const allStats = [];
 for (const match in matchStats) {
@@ -145,37 +165,39 @@ for (const match in matchStats) {
 allStats.sort((a, b) => a.time - b.time);
 
 // When the user clicks on a match that is final show the match details in a modal
-const finalMatch = document.querySelector('.final-match');
-finalMatch.addEventListener('click', () => {
-    // Create a modal for the match details
-    const modal = document.createElement('div');
-    modal.classList.add('modal', 'd-flex', 'justify-content-center', 'align-items-center');
-    modal.setAttribute('id', 'match-details-modal');
-    modal.innerHTML = `
-        <div class="modal-content">
-            <span class="close-btn">x</span>
-            <div class="modal-header"></div>
-            <div class="modal-body"></div>
-        </div>
-    `;
-    document.body.appendChild(modal);
+const finalMatch = document.querySelectorAll('.final-match');
+finalMatch.forEach(match => {
+    match.addEventListener('click', () => {
+        // Create a modal for the match details
+        const modal = document.createElement('div');
+        modal.classList.add('modal', 'd-flex', 'justify-content-center', 'align-items-center');
+        modal.setAttribute('id', 'match-details-modal');
+        modal.innerHTML = `
+            <div class="modal-content">
+                <span class="close-btn">x</span>
+                <div class="modal-header"></div>
+                <div class="modal-body"></div>
+            </div>
+        `;
+        document.body.appendChild(modal);
 
-    const closeBtn = modal.querySelector('.close-btn');
-    closeBtn.addEventListener('click', () => {
-        modal.remove();
-        document.body.style.overflow = 'visible';
-    });
-    window.addEventListener('click', (event) => {
-        if (event.target == modal) {
+        const closeBtn = modal.querySelector('.close-btn');
+        closeBtn.addEventListener('click', () => {
             modal.remove();
             document.body.style.overflow = 'visible';
+        });
+        window.addEventListener('click', (event) => {
+            if (event.target == modal) {
+                modal.remove();
+                document.body.style.overflow = 'visible';
+            }
+        });
+        
+        if (modal) {
+            document.body.style.overflow = 'hidden';
+            addStatistics();
         }
     });
-    
-    if (modal) {
-        document.body.style.overflow = 'hidden';
-        addStatistics();
-    }
 });
 
 function addStatistics() {

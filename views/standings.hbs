@@ -10,7 +10,22 @@
             <div class="standings-table">
                 <table id="teams-table">
                     <thead id="thead"></thead>
-                    <tbody id="tbody"></tbody>
+                    <tbody id="tbody">
+                        {{#each team}}
+                        <tr>
+                            <td class="rank-td"><div class="ranking{{team.rank}}">{{team.rank}}</div></td>
+                            <td class="team-td"><div class="team container"><a class="logo-team" href="/team/{{team.name}}"><img src="../public/team-icons/{{team.logo}}" alt="{{team.name}}"></a><a class="name-team" href="/team/{{team.name}}">{{team.name}}</a></div></td>
+                            <td>{{team.matches}}</td>
+                            <td>{{team.wins}}</td>
+                            <td>{{team.draws}}</td>
+                            <td>{{team.losses}}</td>
+                            <td>{{team.goalsFor}}</td>
+                            <td>{{team.goalsAgainst}}</td>
+                            <td>{{team.goalDifference}}</td>
+                            <td class="points-td">{{team.points}}</td>
+                        </tr>
+                        {{/each}}
+                    </tbody>
                 </table>
             </div>
         </div>
