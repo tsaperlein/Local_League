@@ -50,13 +50,13 @@
         scriptElement.src = '/javascript/matches.js';
     } else if(window.location.pathname === "/Local-League/standings"){
         scriptElement.src = '/javascript/standings.js';
-    } else if(window.location.pathname === "/Local-League/teams"){
-        scriptElement.src = '/javascript/teams.js';
-    } else {
+    } else if(window.location.pathname === "/Local-League/main-page"){
         scriptElement.src = '/javascript/standings.js';
         const secondScriptElement = document.createElement('script');
         secondScriptElement.src = '/javascript/matches.js';
         headElement.appendChild(secondScriptElement);
+    } else {
+        scriptElement.src = '/javascript/teams.js';
     }
     headElement.appendChild(scriptElement);
   </script>

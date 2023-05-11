@@ -1,4 +1,5 @@
 import express from 'express'
+<<<<<<< Updated upstream
 import team_obj from './models/teamData.mjs'
 import match_obj from './models/matchData.mjs'
 
@@ -9,11 +10,19 @@ let teamsData = {}
 //     teamsData = {teams: result};
 // })
 // .catch(err => console.log(err))
+=======
+import standingsFunc from './controllers/standingsCon.mjs'
+import mainPageFunc from './controllers/mainPageCon.mjs'
+import obj from './modules/singleTeamData.mjs'
+
+const { singleTeam } = obj;
+>>>>>>> Stashed changes
 
 const router = express.Router()
 
-router.get('/main-page', (req, res) => res.render('main-page'))
+router.get('/main-page', mainPageFunc.mainPageStandings);
 
+<<<<<<< Updated upstream
 router.get('/schedule', (req, res) => {
     Match.find().lean().then(result =>{
         console.log(result)
@@ -21,26 +30,19 @@ router.get('/schedule', (req, res) => {
     })
     .catch(err => console.log(err))
 })
+=======
+router.get('/schedule', (req, res) => res.render('schedule'));
+>>>>>>> Stashed changes
 
-router.get('/standings', (req, res) => {
-    Team.find().sort({ rank: 1 }).lean().then(result =>{
-        res.render('standings', { team: result })
+router.get('/standings', standingsFunc.teamRanking);
+
+router.get('/teams/:name', (req, res) => {
+    const teamName = req.params.name;
+    singleTeam.find({ name: teamName }).lean().then(result => {
+        console.log(result['players'])
+        res.render('teams', { team: result })
     })
     .catch(err => console.log(err))
 });
-
-// const teamsData = {
-//     teams: [
-//     {name: 'AEK', rank: 1},
-//     {name: 'Aris', rank: 2},
-// ]}
-
-// router.get('/standings', (req, res) => {
-//     res.render('standings', { team: teamsData.teams })
-// })
-
-// router.get('/teams/team/:team', (req, res) => res.render('teams', { team: req.params.team }))
-
-
 
 export { router }
