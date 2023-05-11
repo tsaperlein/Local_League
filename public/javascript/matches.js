@@ -135,25 +135,6 @@ const matchStats = {
     }
 };
 
-// let matchStats = {};
-// for(let i = 0; i < matchesData.length; i++) {
-//     if(matchesData[i].state === 'Final') {
-//         for(match in matchStats) {
-//             match['homeTeam'] = matchesData[i].homeTeam;
-//             match['awayTeam'] = matchesData[i].awayTeam;
-//             match['stats'] = [
-//                         { team: 'home', player: 'Mpelmpas', time: '45', type: 'goal' },
-//                         { team: 'home', player: 'Mpelmpas', time: '60', type: 'goal' },
-//                         { team: 'away', player: 'Efthymiou', time: '70', type: 'goal' },
-//                         { team: 'away', player: 'Nikolaou', time: '80', type: 'goal' },
-//                         { team: 'home', player: 'Mpelmpas', time: '30', type: 'yellow-card' },
-//                         { team: 'away', player: 'Efthymiou', time: '40', type: 'yellow-card' },
-//                         { team: 'away', player: 'Nikolaou', time: '70', type: 'red-card' },
-//                         ];
-//         }
-//     }
-// }
-
 
 // Add all the stats to an array, but sorted by time
 const allStats = [];

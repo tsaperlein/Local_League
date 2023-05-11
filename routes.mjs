@@ -1,7 +1,7 @@
 import express from 'express'
-import obj from './models/teamData.mjs'
+import team_obj from './models/teamData.mjs'
 
-const { Team } = obj;
+const { Team } = team_obj;
 let teamsData = {}
 // Team.find().sort({ rank: 1 }).lean().then(result =>{
 //     teamsData = {teams: result};
