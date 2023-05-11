@@ -1,5 +1,5 @@
 import express from 'express'
-import { engine } from 'express-handlebars'
+import { ExpressHandlebars, engine } from 'express-handlebars'
 import { router } from './routes.mjs'
 import mongoose from 'mongoose'
 

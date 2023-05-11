@@ -1,6 +1,6 @@
 <div class="background">
     <img class="background-img" src="/background-images/5.jpg" alt="Background Image: Soccer field with a ball on the grass">
-    <div class="schedule-container container d-flex flex-column">
+    <div class="schedule-container custom-container d-flex flex-column">
         <div class="schedule-options d-flex flex-row justify-content-between align-items-center">
             <div class="week-picker btn-group d-flex flex-row align-items-center" role="group">
                 <button id="previous-week" type="button" class="btn btn-light">&lt;</button>
@@ -23,7 +23,77 @@
                 </div>
             </div>
         </div>
-        <div class="matches-container d-flex flex-column" id="final-matches-container"></div>
-        <div class="matches-container d-flex flex-column" id="upcoming-matches-container"></div>
+        <div class="matches-container d-flex flex-column" id="final-matches-container">
+            {{#each match}}
+            {{#ifeq state 'Final'}}
+            <li class="match-date">{{formatDate date}}</li>
+            <div class="match final-match">
+                <div class="match-information d-flex flex-row align-items-center">
+                    <div class="current-state">
+                        <li class="d-flex align-items-center">{{state}}</li>
+                    </div>
+                    <div class="teams-score d-flex flex-row justify-content-center justify-items-center">
+                        <label class="team-name d-flex align-items-center" for="home-team">{{homeTeam.name}}</label>
+                        <div class="team d-flex flex-row">
+                            <img class="home-team" src="{{homeTeam.logo}}" alt="Home Team ({{homeTeam.name}})">
+                        </div>
+                        <div class="score d-flex justif-content-center align-items-center">
+                            <li class="score ${homeScoreClass}">{{homeTeam.score}}</li>
+                            <div class="line"></div>
+                            <li class="score ${awayScoreClass}">{{awayTeam.score}}</li>
+                        </div>
+                        <div class="team d-flex flex-row">
+                            <img class="away-team" src="{{awayTeam.logo}}" alt="Away Team {{awayTeam.name}}">
+                        </div>
+                        <label class="team-name d-flex align-items-center" for="away-team">{{awayTeam.name}}</label>
+                    </div>
+                    <div class="extra-information d-flex align-items-center">
+                        <ul class="list-unstyled d-flex flex-column justify-content-cente">
+                            <li class="field-name">{{field}}</li>
+                            <li class="referee main-referee">Main: {{referees.main}}</li>
+                            <li class="referee assistant-referee">Assistant: {{referees.assistant}}</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            {{/ifeq}}
+            {{/each}}
+        </div>
+        <div class="matches-container d-flex flex-column" id="upcoming-matches-container">
+            {{#each match}}
+            {{#ifeq state 'Upcoming'}}
+            <li class="match-date">{{formatDate date}}</li>
+            <div class="match final-match">
+                <div class="match-information d-flex flex-row align-items-center">
+                    <div class="current-state">
+                        <li class="d-flex align-items-center">{{state}}</li>
+                    </div>
+                    <div class="teams-score d-flex flex-row justify-content-center justify-items-center">
+                        <label class="team-name d-flex align-items-center" for="home-team">{{homeTeam.name}}</label>
+                        <div class="team d-flex flex-row">
+                            <img class="home-team" src="{{homeTeam.logo}}" alt="Home Team ({{homeTeam.name}})">
+                        </div>
+                        <div class="score d-flex justif-content-center align-items-center">
+                            <li class="score ${homeScoreClass}">{{homeTeam.score}}</li>
+                            <div class="line"></div>
+                            <li class="score ${awayScoreClass}">{{awayTeam.score}}</li>
+                        </div>
+                        <div class="team d-flex flex-row">
+                            <img class="away-team" src="{{awayTeam.logo}}" alt="Away Team {{awayTeam.name}}">
+                        </div>
+                        <label class="team-name d-flex align-items-center" for="away-team">{{awayTeam.name}}</label>
+                    </div>
+                    <div class="extra-information d-flex align-items-center">
+                        <ul class="list-unstyled d-flex flex-column justify-content-cente">
+                            <li class="field-name">{{field}}</li>
+                            <li class="referee main-referee">Main: {{referees.main}}</li>
+                            <li class="referee assistant-referee">Assistant: {{referees.assistant}}</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            {{/ifeq}}
+            {{/each}}
+        </div>
     </div>
 </div>
