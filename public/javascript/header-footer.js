@@ -141,7 +141,7 @@ function teamsForHeader() {
         // Add an event listener to each team div
         team.addEventListener('click', () => {
             // Go to the team's page of the team that was clicked
-            window.location.href = `teams.html?team=${teamsIconsData[i].name}`;
+            window.location.href = `/Local-League/teams/${teamsIconsData[i].name}`;
         });
     }
 }
