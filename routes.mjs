@@ -3,10 +3,10 @@ import obj from './models/teamData.mjs'
 
 const { Team } = obj;
 let teamsData = {}
-Team.find().sort({ rank: 1 }).then(result =>{
-    teamsData = {teams: result};
-})
-.catch(err => console.log(err))
+// Team.find().sort({ rank: 1 }).lean().then(result =>{
+//     teamsData = {teams: result};
+// })
+// .catch(err => console.log(err))
 
 const router = express.Router()
 
@@ -15,8 +15,10 @@ router.get('/main-page', (req, res) => res.render('main-page'))
 router.get('/schedule', (req, res) => res.render('schedule'))
 
 router.get('/standings', (req, res) => {
-    console.log(teamsData.teams);
-    res.render('standings', { team: teamsData.teams });
+    Team.find().sort({ rank: 1 }).lean().then(result =>{
+        res.render('standings', { team: result })
+    })
+    .catch(err => console.log(err))
 });
 
 // const teamsData = {
