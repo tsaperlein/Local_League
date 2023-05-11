@@ -1,7 +1,8 @@
 import express from 'express'
-import match_obj from './modules/matchData.mjs'
 import standingsFunc from './controllers/standingsCon.mjs'
 import mainPageFunc from './controllers/mainPageCon.mjs'
+import teamFunc from './controllers/teamsCon.mjs'
+import match_obj from './modules/matchData.mjs'
 import obj from './modules/singleTeamData.mjs'
 import { Handlebars } from './controllers/handlebarsHelpers.mjs'
 
@@ -26,13 +27,6 @@ router.get('/schedule', (req, res) => {
 
 router.get('/standings', standingsFunc.teamRanking);
 
-router.get('/teams/:name', (req, res) => {
-    const teamName = req.params.name;
-    singleTeam.find({ name: teamName }).lean().then(result => {
-        console.log(result['players'])
-        res.render('teams', { team: result })
-    })
-    .catch(err => console.log(err))
-});
+router.get('/teams/:name', teamFunc.teamDisplay);
 
 export { router }

@@ -50,3 +50,69 @@ const tableHead = table.querySelector("thead");
 // create table header and append it to the table head
 const headerRow = createHeaderRow();
 tableHead.appendChild(headerRow);
+
+function reverseRank(){
+  const parent = document.getElementById('tbody');
+  const children = Array.from(parent.children);
+  children.reverse();
+  parent.innerHTML = ""; // clear the parent element
+  children.forEach(child => parent.appendChild(child));
+}
+
+function alphabeticalOrder(){
+  const parent = document.getElementById('tbody');
+  const children = Array.from(parent.children);
+
+  // sort the child elements
+  children.sort(function(a, b) {
+    let nameA = a.querySelector('.name-team').innerText.toUpperCase();
+    let nameB = b.querySelector('.name-team').innerText.toUpperCase();
+    if (nameA < nameB) {
+      return -1;
+    }
+    if (nameA > nameB) {
+      return 1;
+    }
+    return 0;
+  });
+
+  parent.innerHTML = ""; // clear the parent element
+  children.forEach(child => parent.appendChild(child));
+}
+
+function reverseAlphabeticalOrder(){
+  const parent = document.getElementById('tbody');
+  const children = Array.from(parent.children);
+
+  // sort the child elements
+  children.sort(function(a, b) {
+    let nameA = a.querySelector('.name-team').innerText.toUpperCase();
+    let nameB = b.querySelector('.name-team').innerText.toUpperCase();
+    if (nameA < nameB) {
+      return 1;
+    }
+    if (nameA > nameB) {
+      return -1;
+    }
+    return 0;
+  });
+
+  parent.innerHTML = ""; // clear the parent element
+  children.forEach(child => parent.appendChild(child));
+}
+
+const rankBtn = document.querySelector('.rank-btn');
+const pointsBtn = document.querySelector('.points-btn');
+const teamBtn = document.querySelector('.team-btn');
+rankBtn.addEventListener('click', reverseRank);
+pointsBtn.addEventListener('click', reverseRank);
+
+let teamBtnClicked = 0;
+teamBtn.addEventListener('click', () => {
+  teamBtnClicked++;
+  if (teamBtnClicked % 2 == 0) {
+    alphabeticalOrder();
+  } else {
+    reverseAlphabeticalOrder();
+  }
+});
