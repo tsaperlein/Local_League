@@ -50,7 +50,7 @@ for (let i = 0; i < 24; i++) {
     const randomHomeTeam = teams[Math.floor(Math.random() * teams.length)];
     const randomHomeTeamLogo = icons[teams.indexOf(randomHomeTeam)];
     const randomHomeTeamScore = Math.floor(Math.random() * 5);
-    const randomAwayTeam = teams[Math.floor(Math.random() * teams.length)];
+    let randomAwayTeam = teams[Math.floor(Math.random() * teams.length)];
     while (randomHomeTeam === randomAwayTeam) {
         randomAwayTeam = teams[Math.floor(Math.random() * teams.length)];
     }
