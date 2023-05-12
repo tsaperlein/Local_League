@@ -16,7 +16,7 @@ function createModal() {
                             <h2>Sign In</h2>
                         </div>
                     </div>
-                    <form id="signinForm" method="post" class="form-horizontal">
+                    <form id="signinForm" action="/main-page" method="POST" class="form-horizontal">
                         <div class="form-group">
                             <label class="col-xs-4 control-label">Username</label>
                             <div class="col-xs-8">
@@ -42,7 +42,7 @@ function createModal() {
                             <h2>Register</h2>
                         </div>
                     </div>
-                    <form id="signupForm" method="post" class="form-horizontal">
+                    <form id="signupForm" action="/Local-League/main-page" method="POST" class="form-horizontal">
                         <div class="form-group">
                             <label class="col-xs-4 control-label">Full name</label>
                             <div class="col-xs-4">
@@ -73,12 +73,12 @@ function createModal() {
                         <div class="form-group">
                             <label class="col-xs-4 control-label">Confirm password</label>
                             <div class="col-xs-8 confirm-password">
-                                <input type="password" class="form-control" id="confirm-password" name="confirmPassword">
+                                <input type="password" class="form-control" id="confirm-password">
                             </div>
                         </div>
                         <div class="form-group">
                             <div id="signup-btn" class="col-xs-8 col-xs-offset-4">
-                                <button type="submit" class="btn btn-primary" name="signup">Sign Up</button>
+                                <button type="submit" class="btn btn-primary">Sign Up</button>
                             </div>
                         </div>
                     </form>

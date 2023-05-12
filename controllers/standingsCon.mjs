@@ -9,14 +9,6 @@ const teamRanking = (req, res) => {
   .catch(err => console.log(err))
 }
 
-const reverseTeamRanking = (req, res) => {
-    Team.find().sort({ rank: -1 }).lean().then(result =>{
-        res.render('standings', { team: result })
-    })
-    .catch(err => console.log(err))
-}
-
 export default {
-    teamRanking,
-    reverseTeamRanking
+    teamRanking
   }
