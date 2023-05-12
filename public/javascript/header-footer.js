@@ -1,21 +1,3 @@
-const teamsIconsData = [
-    {name: "AEK", icon: "aek.png", lineup: "aek-lineup.png"},
-    {name: "Olympiakos", icon: "osfp.png", lineup: "osfp-lineup.png"},
-    {name: "Panathinaikos", icon: "pao.png", lineup: "pao-lineup.png"},
-    {name: "PAOK", icon: "paok.png", lineup: "paok-lineup.png"},
-    {name: "Team5", icon: "home-team.png", lineup: "home-team-lineup.png"},
-    {name: "Team6", icon: "away-team.png", lineup: "away-team-lineup.png"},
-    {name: "Team7", icon: "team7.png", lineup: "team7-lineup.png"},
-    {name: "Napoli", icon: "napoli.png", lineup: "napoli-lineup.png"},
-    {name: "Barcelona", icon: "barc.png", lineup: "barc-lineup.png"},
-    {name: "Juventus", icon: "juve.png", lineup: "juve-lineup.png"},
-    {name: "PSG", icon: "psg.png", lineup: "psg-lineup.png"},
-    {name: "Arsenal", icon: "arsenal.png", lineup: "arsenal-lineup.png"},
-    {name: "Fenerbache", icon: "fener.png", lineup: "fener-lineup.png"},
-    {name: "Liverpool", icon: "live.png", lineup: "live-lineup.png"},
-    {name: "Porto", icon: "porto.png", lineup: "porto-lineup.png"},
-];
-
 const nav = document.querySelector('.header-options');
 
 // Function that creates the header
@@ -165,7 +147,6 @@ function fixMainContentHeight() {
 
 // Modal
 createModal();
-teamsForHeader();
 fixMainContentHeight();
 
 // Validate input fields

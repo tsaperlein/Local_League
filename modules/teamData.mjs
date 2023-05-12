@@ -63,17 +63,16 @@ let teamsData = [
     { name: "Panathinaikos", logo: "pao.png", matches: 27, wins: 16, draws: 8, losses: 2, points: 59 },
     { name: "Olympiakos", logo: "osfp.png", matches: 27, wins: 14, draws: 9, losses: 2, points: 57 },
     { name: "PAOK", logo: "paok.png", matches: 27, wins: 14, draws: 8, losses: 2, points: 59 },
-    { name: "Team5", logo: "home-team.png", matches: 27, wins: 11, draws: 9, losses: 3, points: 57 },
-    { name: "Team6", logo: "away-team.png", matches: 27, wins: 10, draws: 4, losses: 8, points: 59 },
-    { name: "Team7", logo: "team7.png", matches: 27, wins: 1, draws: 10, losses: 10, points: 57 },
-    { name: "Napoli", logo: "napoli.png", matches: 27, wins: 1, draws: 10, losses: 10, points: 59 },
-    { name: "Barcelona", logo: "barc.png", matches: 27, wins: 1, draws: 10, losses: 10, points: 57 },
-    { name: "Juventus", logo: "juve.png", matches: 27, wins: 1, draws: 10, losses: 10, points: 59 },
-    { name: "PSG", logo: "psg.png", matches: 27, wins: 1, draws: 10, losses: 10, points: 57 },
-    { name: "Arsenal", logo: "arsenal.png", matches: 27, wins: 1, draws: 10, losses: 10, points: 59 },
-    { name: "Fenerbache", logo: "fener.png", matches: 27, wins: 1, draws: 10, losses: 10, points: 57 },
-    { name: "Liverpool", logo: "live.png", matches: 27, wins: 1, draws: 10, losses: 10, points: 59 },
-    { name: "Porto", logo: "porto.png", matches: 27, wins: 1, draws: 10, losses: 10, points: 57 },
+    { name: "Arsenal", logo: "arsenal.png", matches: 27, wins: 14, draws: 8, losses: 2, points: 59 },
+    { name: "Barcelona", logo: "barcelona.png", matches: 27, wins: 14, draws: 8, losses: 2, points: 59 },
+    { name: "Fenerbahçe", logo: "fenerbahce.png", matches: 27, wins: 14, draws: 8, losses: 2, points: 59 },
+    { name: "Juventus", logo: "juventus.png", matches: 27, wins: 14, draws: 8, losses: 2, points: 59 },
+    { name: "Liverpool", logo: "liverpool.png", matches: 27, wins: 14, draws: 8, losses: 2, points: 59 },
+    { name: "Manchester United", logo: "manchester-united.png", matches: 27, wins: 14, draws: 8, losses: 2, points: 59 },
+    { name: "Manchester City", logo: "manchester-city.png", matches: 27, wins: 14, draws: 8, losses: 2, points: 59 },
+    { name: "Milan", logo: "milan.png", matches: 27, wins: 14, draws: 8, losses: 2, points: 59 },
+    { name: "Real Madrid", logo: "real-madrid.png", matches: 27, wins: 14, draws: 8, losses: 2, points: 59 },
+    { name: "Paris Saint Germain", logo: "paris-saint-germain.png", matches: 27, wins: 14, draws: 8, losses: 2, points: 59 }
 ];
 
 // Functon that returns a random integer between min and max (both included)

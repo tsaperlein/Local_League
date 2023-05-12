@@ -19,4 +19,12 @@
         </li>
     </ul>
 </nav>
-<div class="header-team-selector d-flex justify-content-center align-items-center"></div>
+<div class="header-team-selector d-flex justify-content-center align-items-center">
+    {{#each team}}
+    <div class="header-team d-flex justify-content-center align-items-center">
+        <a class="logo-team" href="/Local-League/teams/{{name}}">
+            <img src="/team-icons/{{logo}}" alt="{{name}}">
+        </a>
+    </div>
+    {{/each}}
+</div>

@@ -71,7 +71,7 @@ const startTimes = ['16:00', '16:30', '17:00', '17:30', '18:00', '18:30', '19:00
 
 // Create some final matches and some upcoming matches
 for (let i = 0; i < 24; i++) {
-    const randomDate = new Date(2021, 2, 22 + i);
+    const randomDate = new Date(2021, 2, 22 + i + Math.floor(Math.random() * 1));
     const randomState = i < 12 ? 'Final' : 'Upcoming';
     const randomHomeTeam = teams[Math.floor(Math.random() * teams.length)];
     const randomHomeTeamLogo = icons[teams.indexOf(randomHomeTeam)];

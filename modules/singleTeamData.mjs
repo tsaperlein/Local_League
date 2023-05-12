@@ -27,8 +27,20 @@ const teamInfoSchema = new Schema({
 const singleTeam = mongoose.model('singleTeam', teamInfoSchema);
 
 const lineupFieldData = [
-    {name: "AEK", lineup: "aek-lineup.png", fieldName: "OPAP Arena Αγιά Σοφιά", fieldLink: "aek-opap-arena.jpg"},
-    {name: "Panathinaikos", lineup: "pao-lineup.png", fieldName: "Γήπεδο Λεοφώρου Αλεξάνδρας", fieldLink: "paoLeof.jpg" }
+    { name: "AEK", lineup: "aek-lineup.png", fieldName: "OPAP Arena Αγιά Σοφιά", fieldLink: "/fields/aek.png" },
+    { name: "Panathinaikos", lineup: "pao-lineup.png", fieldName: "Γήπεδο Λεοφώρου Αλεξάνδρας", fieldLink: "/fields/pao.png" },
+    { name: "Olympiakos", lineup: "pao-lineup.png", fieldName: "Στάδιο Γεώργιος Καραϊσκάκης", fieldLink: "/fields/osfp.png" },
+    { name: "PAOK", lineup: "pao-lineup.png", fieldName: "Γήπεδο Τούμπας", fieldLink: "/fields/paok.png" },
+    { name: "Arsenal", lineup: "pao-lineup.png", fieldName: "Emirates Stadium", fieldLink: "/fields/arsenal.png" },
+    { name: "Barcelona", lineup: "pao-lineup.png", fieldName: "Spotify Camp Nou", fieldLink: "/fields/barcelona.png" },
+    { name: "Fenerbahçe", lineup: "pao-lineup.png", fieldName: "Şükrü Saracoğlu Stadium", fieldLink: "/fields/fenerbahce.png" },
+    { name: "Juventus", lineup: "pao-lineup.png", fieldName: "Allianz Stadium", fieldLink: "/fields/juventus.png" },
+    { name: "Liverpool", lineup: "pao-lineup.png", fieldName: "Anfield", fieldLink: "/fields/liverpool.png" },
+    { name: "Manchester City", lineup: "pao-lineup.png", fieldName: "Etihad Stadium", fieldLink: "/fields/manchester-city.png" },
+    { name: "Manchester United", lineup: "pao-lineup.png", fieldName: "Old Trafford", fieldLink: "/fields/manchester-united.png" },
+    { name: "Milan", lineup: "pao-lineup.png", fieldName: "San Siro", fieldLink: "/fields/milan.png" },
+    { name: "Real Madrid", lineup: "pao-lineup.png", fieldName: "Santiago Bernabéu  Stadium", fieldLink: "/fields/real-madrid.png" },
+    { name: "Paris Saint-Germain", lineup: "pao-lineup.png", fieldName: "Parc des Princes", fieldLink: "/fields/psg.png" },
 ];
 
 const playerData = [

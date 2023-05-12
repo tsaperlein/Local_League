@@ -133,6 +133,10 @@ nav.header-options li:hover a {
   transition: all 0.3s ease-in-out;
 }
 
+.header-team a {
+  height: 100%;
+}
+
 .header-team img {
   height: 100%;
   width: auto;

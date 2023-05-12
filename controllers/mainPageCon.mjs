@@ -1,10 +1,14 @@
-import obj from '../modules/teamData.mjs'
+import team_obj from '../modules/teamData.mjs'
+import match_obj from '../modules/matchData.mjs'
 
-const { Team } = obj;
+const { Match } = match_obj;
+const { Team } = team_obj;
 
 const mainPageStandings = (req, res) => {
-    Team.find().sort({ rank: 1 }).limit(5).lean().then(result =>{
-        res.render('main-page', { team: result })
+    Match.find().lean().then(result => {
+        Team.find().sort({ rank: 1 }).limit(5).lean().then(result2 =>{
+            res.render('main-page', { match: result, team: result2 })
+        })
     })
     .catch(err => console.log(err))
 }
