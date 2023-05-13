@@ -1,11 +1,12 @@
 const nav = document.querySelector('.header-options');
+let modal;
 
 // Function that creates the header
 function createModal() {
     // When the user clicks the Sign In/Register button, create a modal
     nav.querySelector('ul').lastElementChild.addEventListener('click', () => {
         // Create a modal
-        let modal = document.createElement('div');
+        modal = document.createElement('div');
         modal.classList.add('modal', 'd-flex', 'justify-content-center', 'align-items-center');
         modal.setAttribute('id', 'signin-signup-modal');
         modal.innerHTML = `
@@ -148,6 +149,9 @@ function fixMainContentHeight() {
 // Modal
 createModal();
 fixMainContentHeight();
+// while (modal) {
+//     checkInputs();
+// }
 
 // Validate input fields
 function checkInputs() {
@@ -172,15 +176,16 @@ function checkInputs() {
     // Function that adds event listeners to the input fields (keyup and blur)
     function keyUpAndBlurEventListener(name, field, regex) {
         field.addEventListener("keyup", function () {
-            if (field === passwordConfirmField) {
-                if (passwordField.value !== passwordConfirmField.value) {
-                    field.style.color = "red";
-                } else {
-                    if (regex.test(field.value)) {
-                        field.style.color = "green";
-                    }
-                }
-            } else isValid(field, regex);
+            // if (field === passwordConfirmField) {
+            //     if (passwordField.value !== passwordConfirmField.value) {
+            //         field.style.color = "red";
+            //     } else {
+            //         if (regex.test(field.value)) {
+            //             field.style.color = "green";
+            //         }
+            //     }
+            // } else isValid(field, regex);
+            isValid(field, regex);
         });
         blurEventListener(name, field, regex);
     }
@@ -209,13 +214,26 @@ function checkInputs() {
     function isValid(field, regex) {
         if (field.value.trim() === '') {
             field.style.color = "red";
+            //console.log('red');
             return false;
         }
         else if (!regex.test(field.value.trim())) {
+            //console.log('red');
             field.style.color = "red";
             return false;
         }
+        else if (field === passwordConfirmField) {
+            if (passwordField.value !== passwordConfirmField.value) {
+                field.style.color = "red";
+                return false;
+            }
+            else {
+                field.style.color = "green";
+                return true;
+            }
+        }
         else {
+            //console.log('green');
             removeErrorMessage(field);
             field.style.color = "green";
             return true;
@@ -245,12 +263,17 @@ function checkInputs() {
             errorMessage.remove();
         }
     }
-    const signupBtn = document.getElementById("signup-btn");
-    for (item of inputNameFieldRegex) {
-        if (isValid(item.field, item.regex)) {
-            signupBtn.disabled = false;
-            break;
+    const signupBtn = document.querySelector('div#signup-btn .btn-primary');
+    setInterval(() => {
+        for(item of inputNameFieldRegex) {
+            if (isValid(item.field, item.regex)) {
+                //console.log(isValid(item.field, item.regex));
+                signupBtn.disabled = false;
+            } else{
+                //console.log('invalid');
+                signupBtn.disabled = true;
+                break;
+            }
         }
-        signupBtn.disabled = true;
-    }
+    }, 200);
 }
