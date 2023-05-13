@@ -190,10 +190,10 @@ function addStatistics() {
     awayTeam.classList.add('logo-name', 'd-flex', 'flex-row', 'justify-content-end', 'align-items-center', 'col-5');
 
     homeTeamName.innerHTML = matchStats.match1.homeTeam;
-    homeTeamLogo.setAttribute('src', '../../team-icons/aek.png');
+    homeTeamLogo.setAttribute('src', '/team-icons/aek.png');
     time.innerHTML = 'Time';
     awayTeamName.innerHTML = matchStats.match1.awayTeam;
-    awayTeamLogo.setAttribute('src', '../../team-icons/pao.png');
+    awayTeamLogo.setAttribute('src', '/team-icons/pao.png');
 
     homeTeam.appendChild(homeTeamName);
     homeTeam.appendChild(homeTeamLogo);
@@ -269,3 +269,14 @@ function addStatistics() {
         modalBody.appendChild(matchDetails);
     }
 }
+
+const matchDates = {};
+
+document.querySelectorAll('.match-date').forEach(matchDate => {
+  const date = matchDate.textContent;
+  if (matchDates[date]) {
+    matchDate.remove();
+  } else {
+    matchDates[date] = true;
+  }
+});

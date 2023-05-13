@@ -40,7 +40,7 @@ const lineupFieldData = [
     { name: "Manchester United", lineup: "pao-lineup.png", fieldName: "Old Trafford", fieldLink: "manchester-united.png" },
     { name: "Milan", lineup: "pao-lineup.png", fieldName: "San Siro", fieldLink: "milan.png" },
     { name: "Real Madrid", lineup: "pao-lineup.png", fieldName: "Santiago Bernabéu  Stadium", fieldLink: "real-madrid.png" },
-    { name: "Paris Saint-Germain", lineup: "pao-lineup.png", fieldName: "Parc des Princes", fieldLink: "psg.png" },
+    { name: "Paris Saint Germain", lineup: "pao-lineup.png", fieldName: "Parc des Princes", fieldLink: "paris-saint-germain.png" },
 ];
 
 const playerData = [
@@ -85,7 +85,7 @@ singleTeam.deleteMany({})
         lineup: data.lineup,
         fieldName: data.fieldName,
         fieldLink: data.fieldLink,
-        players: playerData.filter(player => player.team === data.name)
+        players: playerData.filter(player => player.team === "AEK")
     }));
 
     // save the new teams to the database

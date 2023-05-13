@@ -49,13 +49,13 @@ li.match-date {
 
 .team {
     height: 4vw;
-    width: 3.5vw;
+    width: 4vw;
     margin: 0 0.8vw;
 }
 
 .home-team,
 .away-team {
-    width: 3.5vw;
+    width: auto;
     height: 100%;
 }
 
@@ -147,10 +147,8 @@ li.field-name {
 
 #match-details-modal .modal-content {
     background-color: rgba(240, 240, 240, 0.95);
-    width: 40%;
-    height: 40%;
-    margin: 10% auto;
-    border-radius: 0.5vw;
+    margin: 10% 15%;
+    border-radius: 1vw;
     padding: 1vw;
     overflow: auto;
 }
@@ -158,6 +156,7 @@ li.field-name {
 #match-details-modal .modal-content .close-btn {
     font-size: 2vw;
     cursor: pointer;
+    color: black;
     margin: 1rem 2rem;
 }
 
@@ -173,14 +172,17 @@ li.field-name {
 }
 
 #match-details-modal .modal-content .modal-header h2 {
-    font-size: 2vw;
+    font-size: 3vw;
     color: black;
     font-weight: 600;
+    margin: 0;
+    display: flex;
+    align-items: center;
 }
 
 #match-details-modal .modal-content .modal-header .team-logo {
-    width: 7rem;
-    height: auto;
+    width: auto;
+    height: 5vw;
 }
 
 div.logo-name {
@@ -195,7 +197,7 @@ div.logo-name {
 }
 
 #match-details-modal .modal-content .modal-body .match-details * {
-    font-size: 2rem;
+    font-size: 2vw;
 }
 
 #match-details-modal .modal-content .modal-body .match-details .row {
@@ -212,14 +214,22 @@ div.logo-name {
     padding: 0;
 }
 
-.ht-player {
+.ht-player,
+.at-player {
     display: flex;
     justify-content: start;
+    align-items: center;
+}
+
+.home-team-player,
+.away-team-player {
+    height: fit-content
 }
 
 .stat-time {
     display: flex;
     justify-content: center;
+    align-items: center;
     width: 100%;
 }
 
@@ -231,17 +241,29 @@ div.logo-name {
 .stat-and-time {
     display: flex;
     flex-direction: row;
-    width: 100%;
+    width: 50%;
+    height: 100%;
+    gap: 1rem;
+    height: fit-content;
+    align-items: center;
+}
+
+.stat-and-time img {
+    height: 3vw;
+    width: auto;
+    display: flex;
 }
 
 .home-stat {
     display: flex;
     justify-content: start;
+    align-items: center;
 }
 
 .away-stat {
     display: flex;
     justify-content: end;
+    align-items: center;
 }
 
 .stat-and-time div {
@@ -249,8 +271,10 @@ div.logo-name {
     padding: 0;
 }
 
-.time {
+div.time {
     text-align: center;
+    width: fit-content;
+    height: fit-content;
 }
 
 @media (max-width: 450px) {
@@ -326,4 +350,59 @@ div.logo-name {
     .extra-information li {
         font-size: 1.1vw;
     }
+
+    /* Modal */
+    #match-details-modal .modal-content .modal-header {
+        margin: 0;
+        padding: 0 1rem;
+        margin-top: 2.5rem;
+        height: 7vw;
+    }
+
+    #match-details-modal .modal-content .modal-header h3,
+    #match-details-modal .modal-content .modal-header h2 {
+        font-size: 4vw;
+        margin: 0;
+    }
+
+    #match-details-modal .modal-content .logo-name {
+        height: 100%;
+    }
+
+    #match-details-modal .modal-content .logo-name .team-logo {
+        width: auto;
+        height: 100%;
+    }
+
+    #match-details-modal .modal-content .logo-name .team-logo img {
+        width: auto;
+        height: 100%;
+    }
+
+    #match-details-modal .modal-content .team-logo {
+        width: auto;
+        height: 7vw;
+    }
+
+
+    #match-details-modal .modal-content .modal-body {
+        padding: 0 1rem;
+        margin-top: 1rem;
+    }
+
+    #match-details-modal .modal-content .modal-body .match-details * {
+        font-size: 2.5vw;
+    }
+
+    #match-details-modal .modal-content .modal-body .match-details .row {
+        margin: 0;
+        margin: 1rem 0;
+    }
+
+    #match-details-modal .modal-content .row {
+        margin: 0;
+        padding: 0;
+    }
+
+
 }

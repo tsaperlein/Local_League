@@ -8,7 +8,9 @@ const { Team } = team_obj;
 const matchFilling = (req, res) => {
     Match.find().lean().then(result => {
         Team.find().lean().then(result2 => {
-            res.render('schedule', { match: result, team: result2 })
+            Team.find().lean().then(result3 => {
+                res.render('schedule', { match: result, team: result2, teams: result3 })
+            })
         })
     })
     .catch(err => console.log(err))

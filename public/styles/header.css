@@ -135,6 +135,8 @@ nav.header-options li:hover a {
 
 .header-team a {
   height: 100%;
+  display: flex;
+  align-items: center;
 }
 
 .header-team img {
