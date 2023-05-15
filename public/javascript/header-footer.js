@@ -17,17 +17,17 @@ function createModal() {
                             <h2>Sign In</h2>
                         </div>
                     </div>
-                    <form id="signinForm" action="/main-page" method="POST" class="form-horizontal">
+                    <form id="signinForm" action="/Local-League/main-page" method="POST" class="form-horizontal">
                         <div class="form-group">
                             <label class="col-xs-4 control-label">Username</label>
                             <div class="col-xs-8">
-                                <input type="text" class="form-control" name="username">
+                                <input type="text" class="form-control" name="usernameSignIn">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-xs-4 control-label">Password</label>
                             <div class="col-xs-8">
-                                <input type="password" class="form-control" name="password">
+                                <input type="password" class="form-control" name="passwordSignIn">
                             </div>
                         </div>
                         <div class="form-group">

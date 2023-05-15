@@ -16,6 +16,6 @@ router.get('/standings', standingsFunc.teamRanking);
 
 router.get('/teams/:name', teamFunc.teamDisplay);
 
-router.post('/main-page', authFunc.createUser);
+router.post('/main-page', authFunc.authenticateUser);
 
 export { router }

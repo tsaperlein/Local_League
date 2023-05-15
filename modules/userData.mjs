@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import bcrypt from 'bcrypt';
+//import bcrypt from 'bcrypt';
 
 const Schema = mongoose.Schema;
 
@@ -38,6 +38,10 @@ const User = mongoose.model('User', userSchema);
 //     {firstName: "Michael", lastName: "Stefanioros", username: "MugiwaraStef", email: "mstephanioros@gmail.com", password: "1234", role: "admin"},
 //     {firstName: "Alexandros", lastName: "Tsaparas", username: "Tsaperlein", email: "up1072824@upnet.gr", password: "5678", role: "admin"}
 // ];
+
+// for(let i = 0; i < users.length; i++) {
+//     users[i].password = bcrypt.hashSync(users[i].password, 10);
+// }
 
 // User.insertMany(users)
 //     .then((result) => console.log(result))

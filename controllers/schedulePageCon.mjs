@@ -6,14 +6,17 @@ const { Team } = team_obj;
 
 // Take data from both collections and fill the schedule page
 const matchFilling = (req, res) => {
-    Match.find().lean().then(result => {
-        Team.find().lean().then(result2 => {
-            Team.find().lean().then(result3 => {
-                res.render('schedule', { match: result, team: result2, teams: result3 })
+    if(req.session.username == undefined) res.redirect('/Local-League/main-page');
+    else{
+        Match.find().lean().then(result => {
+            Team.find().lean().then(result2 => {
+                Team.find().lean().then(result3 => {
+                    res.render('schedule', { match: result, team: result2, teams: result3, username: req.session.username })
+                })
             })
         })
-    })
-    .catch(err => console.log(err))
+        .catch(err => console.log(err))
+    }
 }
 
 export default {

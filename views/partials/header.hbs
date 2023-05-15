@@ -14,9 +14,15 @@
         <li>
             <a href="/Local-League/standings">Standings</a>
         </li>
+        {{#unless username}}
         <li>
             <a href="#">Sign In/Register</a>
         </li>
+        {{else}}
+        <li>
+            <a href="#">{{username}}</a>
+        </li>
+        {{/unless}}
     </ul>
 </nav>
 <div class="header-team-selector d-flex justify-content-center align-items-center">
