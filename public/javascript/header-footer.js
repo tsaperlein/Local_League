@@ -1,112 +1,113 @@
 const nav = document.querySelector('.header-options');
 let modal;
+let modalOn = false;
 
-// Function that creates the header
 function createModal() {
-    // When the user clicks the Sign In/Register button, create a modal
-    nav.querySelector('ul').lastElementChild.addEventListener('click', () => {
-        // Create a modal
-        modal = document.createElement('div');
-        modal.classList.add('modal', 'd-flex', 'justify-content-center', 'align-items-center');
-        modal.setAttribute('id', 'signin-signup-modal');
-        modal.innerHTML = `
-            <div class="modal-content">
-                <div class="modal-side sign-in d-flex flex-column">
+// When the user clicks the Sign In/Register button, create a modal
+    // Create a modal
+    modal = document.createElement('div');
+    modal.classList.add('modal', 'd-flex', 'justify-content-center', 'align-items-center');
+    modal.setAttribute('id', 'signin-signup-modal');
+    modal.innerHTML = `
+        <div class="modal-content">
+            <div class="modal-side sign-in d-flex flex-column">
+                <div class="form-group">
+                    <div class="col-xs-8 col-xs-offset-4">
+                        <h2>Sign In</h2>
+                    </div>
+                </div>
+                <form id="signinForm" action="/Local-League/main-page" method="POST" class="form-horizontal">
                     <div class="form-group">
-                        <div class="col-xs-8 col-xs-offset-4">
-                            <h2>Sign In</h2>
+                        <label class="col-xs-4 control-label">Username</label>
+                        <div class="col-xs-8">
+                            <input type="text" class="form-control" name="usernameSignIn">
                         </div>
                     </div>
-                    <form id="signinForm" action="/Local-League/main-page" method="POST" class="form-horizontal">
-                        <div class="form-group">
-                            <label class="col-xs-4 control-label">Username</label>
-                            <div class="col-xs-8">
-                                <input type="text" class="form-control" name="usernameSignIn">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-xs-4 control-label">Password</label>
-                            <div class="col-xs-8">
-                                <input type="password" class="form-control" name="passwordSignIn">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-xs-8 col-xs-offset-4">
-                                <button type="submit" class="btn btn-primary signin-btn" name="signin" value="Sign in">Sign in</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-side register d-flex flex-column">
                     <div class="form-group">
-                        <div class="col-xs-8 col-xs-offset-4">
-                            <h2>Register</h2>
+                        <label class="col-xs-4 control-label">Password</label>
+                        <div class="col-xs-8">
+                            <input type="password" class="form-control" name="passwordSignIn">
                         </div>
                     </div>
-                    <form id="signupForm" action="/Local-League/main-page" method="POST" class="form-horizontal">
-                        <div class="form-group">
-                            <label class="col-xs-4 control-label">Full name</label>
-                            <div class="col-xs-4">
-                                <input type="text" class="form-control" name="firstName" placeholder="First name">
-                            </div>
-                            <div class="col-xs-4">
-                                <input type="text" class="form-control" name="lastName" placeholder="Last name">
-                            </div>
+                    <div class="form-group">
+                        <div class="col-xs-8 col-xs-offset-4">
+                            <button type="submit" class="btn btn-primary signin-btn" name="signin" value="Sign in">Sign in</button>
                         </div>
-                        <div class="form-group">
-                            <label class="col-xs-4 control-label">Username</label>
-                            <div class="col-xs-8">
-                                <input type="text" class="form-control" id="username" name="username">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-xs-4 control-label">Email address</label>
-                            <div class="col-xs-8">
-                                <input type="text" class="form-control" id="email" name="email" placeholder="example@gmail.com">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-xs-4 control-label">Password</label>
-                            <div class="col-xs-8">
-                                <input type="password" class="form-control" id="password" name="password">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-xs-4 control-label">Confirm password</label>
-                            <div class="col-xs-8 confirm-password">
-                                <input type="password" class="form-control" id="confirm-password">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div id="signup-btn" class="col-xs-8 col-xs-offset-4">
-                                <button type="submit" class="btn btn-primary">Sign Up</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-                <span class="close-btn">x</span>
+                    </div>
+                </form>
             </div>
-        `;
+            <div class="modal-side register d-flex flex-column">
+                <div class="form-group">
+                    <div class="col-xs-8 col-xs-offset-4">
+                        <h2>Register</h2>
+                    </div>
+                </div>
+                <form id="signupForm" action="/Local-League/main-page" method="POST" class="form-horizontal">
+                    <div class="form-group">
+                        <label class="col-xs-4 control-label">Full name</label>
+                        <div class="col-xs-4">
+                            <input type="text" class="form-control" name="firstName" placeholder="First name">
+                        </div>
+                        <div class="col-xs-4">
+                            <input type="text" class="form-control" name="lastName" placeholder="Last name">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-xs-4 control-label">Username</label>
+                        <div class="col-xs-8">
+                            <input type="text" class="form-control" id="username" name="username">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-xs-4 control-label">Email address</label>
+                        <div class="col-xs-8">
+                            <input type="text" class="form-control" id="email" name="email" placeholder="example@gmail.com">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-xs-4 control-label">Password</label>
+                        <div class="col-xs-8">
+                            <input type="password" class="form-control" id="password" name="password">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-xs-4 control-label">Confirm password</label>
+                        <div class="col-xs-8 confirm-password">
+                            <input type="password" class="form-control" id="confirm-password">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div id="signup-btn" class="col-xs-8 col-xs-offset-4">
+                            <button type="submit" class="btn btn-primary">Sign Up</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <span class="close-btn">x</span>
+        </div>
+    `;
 
-        // If the modal is open, don't allow the user to scroll
-        document.body.style.overflow = 'hidden';
+    // If the modal is open, don't allow the user to scroll
+    document.body.style.overflow = 'hidden';
+    modalOn = true;
 
-        document.body.appendChild(modal);
-        if (modal) {
-            checkInputs();
-        }
-        // When the user clicks the X button, close the modal
-        modal.querySelector('.close-btn').addEventListener('click', () => {
+    document.body.appendChild(modal);
+    if (modal) {
+        checkInputs();
+    }
+    // When the user clicks the X button, close the modal
+    modal.querySelector('.close-btn').addEventListener('click', () => {
+        modal.remove();
+        document.body.style.overflow = 'visible';
+        modalOn = false;
+    });
+    // When the user clicks outside the modal, close the modal
+    window.addEventListener('click', (event) => {
+        if (event.target == modal) {
             modal.remove();
             document.body.style.overflow = 'visible';
-        });
-        // When the user clicks outside the modal, close the modal
-        window.addEventListener('click', (event) => {
-            if (event.target == modal) {
-                modal.remove();
-                document.body.style.overflow = 'visible';
-            }
-        });
+            modalOn = false;
+        }
     });
 }
 
@@ -147,11 +148,22 @@ function fixMainContentHeight() {
 }
 
 // Modal
-createModal();
+if(window.location.pathname === "/Local-League/main-page" && !modalOn){
+    createModal();
+}
+
 fixMainContentHeight();
-// while (modal) {
-//     checkInputs();
-// }
+
+nav.querySelector('ul').lastElementChild.addEventListener('click', () => {
+    if(modalOn) {
+        modalOn = false;
+        modal.remove();
+        document.body.style.overflow = 'visible';
+    }
+    else {
+        createModal();
+    }
+});
 
 // Validate input fields
 function checkInputs() {
@@ -275,5 +287,5 @@ function checkInputs() {
                 break;
             }
         }
-    }, 200);
+    }, 100);
 }
