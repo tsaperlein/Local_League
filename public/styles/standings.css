@@ -43,7 +43,6 @@ tbody td.points-td {
 
 thead th.sticky-rank {
     left: 0;
-    z-index: 1;
 }
 
 thead th.sticky-team {
@@ -54,7 +53,6 @@ thead th.sticky-team {
 thead th.sticky-points {
     right: 0;
     border-top-left-radius: 1vw;
-    z-index: 1;
 }
 
 .header-button i {
@@ -94,29 +92,22 @@ a.header-button {
     width: fit-content;
     margin: 0 auto;
     padding: 0.5vw;
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(255, 255, 255, 0.8);
     border-radius: 1vw;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
     text-decoration: none;
     color: black;
     position: relative;
     cursor: pointer;
+    opacity: ease-in-out 0.5s;
 }
 
 thead th a.header-button:hover {
-    background-color: rgba(255, 255, 255, 0.7);
-}
-
-.standings-table tbody td .team {
-    width: auto;
+    opacity: 0.9;
 }
 
 .team-th a.header-button {
     width: 60%;
-}
-
-thead .matches-btn {
-    margin-left: 1vw;
 }
 
 .wins-btn,
@@ -139,10 +130,6 @@ tbody td {
 
 .standings-table table tr {
     height: 7vw;
-}
-
-thead tr {
-    border-bottom: 0.3vw solid rgba(125, 125, 125, 0.768);
 }
 
 [class^="ranking"] {
@@ -181,9 +168,9 @@ thead tr {
 }
 
 .team-td div {
-    width: 15vw;
     display: flex;
     justify-content: start;
+    width: fit-content;
 }
 
 .team-td a.name-team {
@@ -192,4 +179,5 @@ thead tr {
     margin-left: 0.8vw;
     display: flex;
     align-self: center;
+    width: fit-content;
 }

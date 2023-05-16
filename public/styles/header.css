@@ -113,7 +113,7 @@ nav.header-options li:hover a {
 
 .header-team-selector {
   position: relative;
-  height: 4vw;
+  height: 5vw;
   background-color: rgb(160, 160, 160);
   transition: all 0.3s ease-in-out;
 }
@@ -166,6 +166,10 @@ nav.header-options li:hover a {
   nav.header-options {
     height: 20px;
   }
+
+  .header-team-selector {
+    height: 3vw;
+  }
 }
 
 @media (min-width: 1500px) {
@@ -174,11 +178,11 @@ nav.header-options li:hover a {
   }
 
   nav.header-options ul li a {
-    font-size: 3rem;
+    font-size: 2.5rem;
   }
 
   nav.header-options {
-    height: 2.5vw;
+    height: 3vw;
   }
 
   .header-image img {

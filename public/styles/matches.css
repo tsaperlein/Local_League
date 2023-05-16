@@ -5,7 +5,7 @@
 
 li.match-date {
     list-style: none;
-    font-size: 1.8vw;
+    font-size: clamp(1.2vw, 1.8vw, 3.5rem);
     padding-left: 5px;
     font-weight: 700;
 }
@@ -43,7 +43,7 @@ li.match-date {
 .current-state li {
     width: fit-content;
     height: 100%;
-    font-size: 1.2vw;
+    font-size: clamp(1vw, 1.2vw, 1rem);
     font-weight: 600;
 }
 
@@ -51,6 +51,7 @@ li.match-date {
     height: 4vw;
     width: 4vw;
     margin: 0 0.8vw;
+    justify-content: center;
 }
 
 .home-team,
@@ -60,7 +61,7 @@ li.match-date {
 }
 
 .teams-score {
-    width: 27vw;
+    width: 30vw;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -69,22 +70,23 @@ li.match-date {
 
 .teams-score label {
     position: relative;
-    font-size: 2vw;
+    font-size: clamp(1.2vw, 1.5vw, 4rem);
     font-weight: 500;
 }
 
 .home-team-name {
     display: flex;
-    justify-content: start;
+    justify-content: end;
+    margin-right: 1rem;
 }
 
 .away-team-name {
     display: flex;
-    justify-content: end;
+    justify-content: start;
+    margin-left: 1rem;
 }
 
 .team-name {
-    width: 100%;
     margin: 0;
 }
 
@@ -103,9 +105,18 @@ li.match-date {
     justify-content: center;
 }
 
+.home-score {
+    margin-left: 1rem;
+}
+
+.away-score {
+    margin-right: 1rem;
+}
+
 .score li {
-    font-size: 2vw;
+    font-size: clamp(1.5vw, 2vw, 4rem);
     font-weight: 500;
+    margin: 0.3rem;
 }
 
 .score.winning-score {
@@ -131,7 +142,7 @@ li.match-date {
 }
 
 .extra-information li {
-    font-size: 0.9vw;
+    font-size: clamp(0.8vw, 1vw, 1rem);
 }
 
 li.field-name {
@@ -151,6 +162,7 @@ li.field-name {
     border-radius: 1vw;
     padding: 1vw;
     overflow: auto;
+    height: 50%;
 }
 
 #match-details-modal .modal-content .close-btn {
@@ -269,6 +281,10 @@ div.logo-name {
 .stat-and-time div {
     margin: 0;
     padding: 0;
+}
+
+label.team-name {
+    width: 6vw;
 }
 
 div.time {

@@ -107,6 +107,7 @@
 //     }
 // }
 
+// Urls for icons (goal, red card, yellow card)
 const goal_url = 'https://ssl.gstatic.com/onebox/sports/game_feed/goal_icon.svg';
 const red_card_url = 'https://ssl.gstatic.com/onebox/sports/soccer_timeline/red-card-right.svg';
 const yellow_card_url = 'https://ssl.gstatic.com/onebox/sports/soccer_timeline/yellow-card-right.svg';
@@ -173,6 +174,7 @@ finalMatch.forEach(match => {
     });
 });
 
+// Add the statistics to the modal
 function addStatistics() {
     // Add the team names and the h3 element for time in the modal header
     let modalHeader = document.querySelector('.modal-header');
@@ -270,13 +272,38 @@ function addStatistics() {
     }
 }
 
+// Sort matches by date
 const matchDates = {};
 
 document.querySelectorAll('.match-date').forEach(matchDate => {
-  const date = matchDate.textContent;
-  if (matchDates[date]) {
-    matchDate.remove();
-  } else {
-    matchDates[date] = true;
-  }
+    const date = matchDate.textContent;
+    if (matchDates[date]) {
+        matchDate.remove();
+    } else {
+        matchDates[date] = true;
+    }
 });
+
+function verticalAlignOfTheScoreTime() {
+    // get all the div.team elements
+    const teamDivs = document.querySelectorAll('.teams-score div.team');
+
+    // loop through the divs and find the widest img
+    let maxWidth = 0;
+    teamDivs.forEach((teamDiv) => {
+        const imgs = teamDiv.getElementsByTagName('img');
+        if (imgs.length > 0) {
+            const imgWidth = imgs[0].offsetWidth;
+            if (imgWidth > maxWidth) {
+                maxWidth = imgWidth;
+            }
+        }
+    });
+
+    // set the width of all the div.team elements to the widest img width
+    teamDivs.forEach((teamDiv) => {
+        teamDiv.style.width = `${maxWidth}px`;
+    });
+}
+
+verticalAlignOfTheScoreTime();

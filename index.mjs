@@ -9,7 +9,7 @@ import createMemoryStore from 'memorystore'
 const MemoryStore = createMemoryStore(session)
 
 const myAppSession = session({ // session configuration object
-    secret: process.env.SESSION_SECRET, // secret key
+    secret: process.env.SESSION_SECRET || 'mysecretkey', // secret key
     store: new MemoryStore({ checkPeriod: 86400000 }), // session store
     resave: false,
     saveUninitialized: true,

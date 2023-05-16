@@ -6,6 +6,11 @@ function createHeaderRow() {
     const ageHeader = document.createElement("th");
     const positionHeader = document.createElement("th");
     const nationalityHeader = document.createElement("th");
+    nameHeader.classList.add("name-header");
+    jerseyNumberHeader.classList.add("jn-header");
+    ageHeader.classList.add("age-header");
+    positionHeader.classList.add("pos-header");
+    nationalityHeader.classList.add("nation-header");
 
     nameHeader.innerHTML = "<a class='header-button name-btn'>Name &nbsp;<i class='fa fa-sort'></i></a>";
     jerseyNumberHeader.innerHTML = "<a class='header-button jn-btn'>Jersey Number&nbsp;<i class='fa fa-sort'></i></a>";

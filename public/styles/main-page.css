@@ -10,11 +10,12 @@
 .last-week-results,
 .schedule-box {
     margin-bottom: 5vw;
-    height: 100%;
-    width: 100%;
+    max-height: fit-content;
+    max-width: 100%;
     padding: 2vw 2vw;
     background-color: rgba(240, 248, 255, 0.7);
     border-radius: 1vw;
+    z-index: 1;
 }
 
 /* Fix corners for mobile */

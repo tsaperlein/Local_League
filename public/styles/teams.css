@@ -80,7 +80,7 @@ th a {
     max-width: 95%;
     position: relative;
     border-radius: 1.5vw;
-    background-color: rgba(255, 255, 255, 0.6);
+    background-color: rgba(255, 255, 255, 0.7);
     overflow-x: scroll;
 }
 
@@ -101,7 +101,7 @@ table#players-table thead tr th {
     white-space: nowrap;
 }
 
-tbody td {
+table#players-table tbody td {
     min-width: 10vw;
 }
 
@@ -110,7 +110,11 @@ tbody {
     position: sticky;
 }
 
-th.name-btn,
+.players-table thead tr th {
+    border: 0;
+}
+
+th.name-header,
 td.name-sticky {
     position: sticky;
     left: 0;
