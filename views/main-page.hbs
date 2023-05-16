@@ -62,7 +62,7 @@
                 {{/each}}
             </div>
             <div class="last-week-results d-flex flex-column" id="final-matches-container">
-                {{#each match}}
+                {{#each matchUpc}}
                 {{#ifeq state 'Upcoming'}}
                 <li class="match-date">{{formatDate date}}</li>
                 <div class="match final-match">

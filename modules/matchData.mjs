@@ -105,30 +105,22 @@ const Match = mongoose.model('Match', matchSchema);
 // ];
 
 // let today = new Date();
-// let loops = 0;
 // for (let i = 0; i < teamsData.length; i++) {
 //     for(let j = 0; j < teamsData.length; j++) {
 //         if(i==j) continue;
 //         else{
-//             loops++;
-//             let matchDate = new Date('2023-03-26')
-//             matchDate.setDate(matchDate.getDate() + 1*loops); // Increase the date by one day
-//             const matchState = matchDate < today ? 'Final' : 'Upcoming';
-//             const matchHomeScore = matchState == 'Final' ? Math.floor(Math.random() * 5) : null;
-//             const matchGuestScore = matchState == 'Final' ? Math.floor(Math.random() * 5) : null;
-//             matchDate = matchDate.toISOString().slice(0,10);
 //             matchesData.push({
-//                 date: matchDate,
-//                 state: matchState,
+//                 date: '',
+//                 state: '',
 //                 homeTeam: {
 //                     name: teamsData[i].name,
 //                     logo: teamsData[i].logo,
-//                     score: matchHomeScore
+//                     score: ''
 //                 },
 //                 awayTeam: {
 //                     name: teamsData[j].name,
 //                     logo: teamsData[j].logo,
-//                     score: matchGuestScore
+//                     score: ''
 //                 },
 //                 startTime: startTimes[Math.floor(Math.random() * startTimes.length)],
 //                 field: lineupFieldData[i].fieldName,
@@ -145,6 +137,18 @@ const Match = mongoose.model('Match', matchSchema);
 // for (let i = matchesData.length - 1; i > 0; i--) {
 //     const j = Math.floor(Math.random() * (i + 1));
 //     [matchesData[i], matchesData[j]] = [matchesData[j], matchesData[i]];
+// }
+
+// let matchDate = new Date('2023-03-26');
+// for(let i = 0; i < matchesData.length; i++) {
+//     matchDate.setDate(matchDate.getDate() + Math.round(Math.random())*Math.floor(Math.random() * 5));
+//     const matchState = matchDate < today ? 'Final' : 'Upcoming';
+//     const matchHomeScore = matchState == 'Final' ? Math.floor(Math.random() * 5) : null;
+//     const matchGuestScore = matchState == 'Final' ? Math.floor(Math.random() * 5) : null;
+//     matchesData[i].date = matchDate.toISOString().slice(0,10);
+//     matchesData[i].state = matchState;
+//     matchesData[i].homeTeam.score = matchHomeScore;
+//     matchesData[i].awayTeam.score = matchGuestScore;
 // }
 
 // //Delete all matches from the database and add the new ones
