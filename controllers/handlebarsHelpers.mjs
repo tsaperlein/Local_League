@@ -16,7 +16,7 @@ Handlebars.registerHelper('formatDate', function(date) {
 // format too much letters in a string to only 3-4 letters
 Handlebars.registerHelper('formatName', function (string) {
     if (string.length > 4) {
-        // if uppercase letters are morw than 1, then keep the uppercase letters joined by a dot
+        // if uppercase letters are more than 1, then keep the uppercase letters joined by a dot
         if (string.match(/[A-Z]/g).length > 1) {
             return string.match(/[A-Z]/g).join('')
         } else {

@@ -76,26 +76,26 @@ const playerData = [
     { name: "Ντομαγκοϊ Βίντα", number: "21", age: 34, position: "DF", nationality: "Croatian", team: "Panathinaikos" }
 ];
 
-singleTeam.deleteMany({})
-  .then(() => {
-    console.log('All existing items deleted');
+// singleTeam.deleteMany({})
+//   .then(() => {
+//     console.log('All existing items deleted');
 
-    const newItems = lineupFieldData.map(data => new singleTeam({
-        name: data.name,
-        lineup: data.lineup,
-        fieldName: data.fieldName,
-        fieldLink: data.fieldLink,
-        players: playerData.filter(player => player.team === "AEK")
-    }));
+//     const newItems = lineupFieldData.map(data => new singleTeam({
+//         name: data.name,
+//         lineup: data.lineup,
+//         fieldName: data.fieldName,
+//         fieldLink: data.fieldLink,
+//         players: playerData.filter(player => player.team === "AEK")
+//     }));
 
-    // save the new teams to the database
-    return singleTeam.insertMany(newItems);
-  })
-  .then(result => {
-    console.log(`${result.length} new items saved`);
-  })
-  .catch(error => {
-    console.error(error);
-  });
+//     // save the new teams to the database
+//     return singleTeam.insertMany(newItems);
+//   })
+//   .then(result => {
+//     console.log(`${result.length} new items saved`);
+//   })
+//   .catch(error => {
+//     console.error(error);
+//   });
 
   export default { singleTeam }
