@@ -3,8 +3,10 @@ import moment from 'moment'
 
 Handlebars.registerHelper('ifeq', function (a, b, opts) {
     if (a == b) {
+        // Continue with code inside the block
         return opts.fn(this)
     } else {
+        // Continue with code outside the block
         return opts.inverse(this)
     }
 })

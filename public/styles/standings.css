@@ -7,7 +7,7 @@
     overflow-x: scroll;
     border-radius: 1vw;
     flex-wrap: nowrap;
-    border-radius: 2vw;
+    border-radius: clamp(1vw, 2vw, 3rem);
 }
 
 .standings-table table {
@@ -21,7 +21,7 @@
 
 tbody td {
     text-align: center;
-    min-width: 10vw;
+    min-width: clamp(4rem, 9vw, 12rem);
     /* set a minimum width for the cells */
 }
 
@@ -64,7 +64,13 @@ thead th.sticky-points {
 tbody td {
     font-family: monospace;
     font-weight: bold;
-    font-size: 2.3vw;
+    font-size: clamp(1rem, 2vw, 3.2rem);
+}
+
+tbody td div,
+tbody td a.name-team,
+thead a.header-button {
+    font-size: clamp(1rem, 2vw, 3.2rem);
 }
 
 td.rank-td {
@@ -85,10 +91,14 @@ td.rank-td div,
 td.team-td div,
 td.points-td {
     color: white;
-    font-weight: 600;
+    font-weight: bold;
 }
 
-a.header-button {
+.standings-container th {
+    padding: 0 clamp(0.5rem, 1vw, 1rem);
+}
+
+.standings-container a.header-button {
     width: fit-content;
     margin: 0 auto;
     padding: 0.5vw;
@@ -129,7 +139,7 @@ tbody td {
 }
 
 .standings-table table tr {
-    height: 7vw;
+    height: clamp(2rem, 6vw, 12rem);
 }
 
 [class^="ranking"] {

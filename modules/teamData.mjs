@@ -136,35 +136,35 @@ calculateAndSortRanking(teamsData);
 handleHomeWins(teamsData);
 handleGuestWins(teamsData);
 
-Team.deleteMany({})
-  .then(() => {
-    console.log('All existing teams deleted');
+// Team.deleteMany({})
+//   .then(() => {
+//     console.log('All existing teams deleted');
     
-    // create new teams from the `teamsData` array
-    const newTeams = teamsData.map(teamData => new Team({
-      name: teamData.name,
-      logo: teamData.logo,
-      matches: teamData.matches,
-      wins: teamData.wins,
-      draws: teamData.draws,
-      losses: teamData.losses,
-      homeWins: teamData.homeWins,
-      awayWins: teamData.guestWins,
-      points: teamData.points,
-      goalsFor: teamData.goalsFor,
-      goalsAgainst: teamData.goalsAgainst,
-      goalDifference: teamData.goalDifference,
-      rank: teamData.rank,
-    }));
+//     // create new teams from the `teamsData` array
+//     const newTeams = teamsData.map(teamData => new Team({
+//       name: teamData.name,
+//       logo: teamData.logo,
+//       matches: teamData.matches,
+//       wins: teamData.wins,
+//       draws: teamData.draws,
+//       losses: teamData.losses,
+//       homeWins: teamData.homeWins,
+//       awayWins: teamData.guestWins,
+//       points: teamData.points,
+//       goalsFor: teamData.goalsFor,
+//       goalsAgainst: teamData.goalsAgainst,
+//       goalDifference: teamData.goalDifference,
+//       rank: teamData.rank,
+//     }));
 
-    // save the new teams to the database
-    return Team.insertMany(newTeams);
-  })
-  .then(result => {
-    console.log(`${result.length} new teams saved`);
-  })
-  .catch(error => {
-    console.error(error);
-  });
+//     // save the new teams to the database
+//     return Team.insertMany(newTeams);
+//   })
+//   .then(result => {
+//     console.log(`${result.length} new teams saved`);
+//   })
+//   .catch(error => {
+//     console.error(error);
+//   });
 
 export default { Team }

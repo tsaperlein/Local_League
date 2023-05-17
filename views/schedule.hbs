@@ -57,6 +57,13 @@
                         </ul>
                     </div>
                 </div>
+                {{!-- ADMIN --}}
+                {{#ifeq ../role 'admin'}}
+                <div class="admin-schedule-options">
+                    <button class="btn admin edit-btn" type="button">Edit</button>
+                    <button class="btn admin delete-btn" type="button">Delete</button>
+                </div>
+                {{/ifeq}}
             </div>
             {{/ifeq}}
             {{/each}}
@@ -93,6 +100,13 @@
                         </ul>
                     </div>
                 </div>
+                {{!-- ADMIN --}}
+                {{#ifeq ../role 'admin'}}
+                <div class="admin-schedule-options">
+                    <button class="btn admin edit-btn" type="button">Edit</button>
+                    <button class="btn admin delete-btn" type="button">Delete</button>
+                </div>
+                {{/ifeq}}
             </div>
             {{/ifeq}}
             {{/each}}

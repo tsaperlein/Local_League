@@ -1,14 +1,31 @@
 <div class="background">
     <img id="teams-background-img" class="background-img" src="/background-images/6.jpg" alt="Background Image of a soccer field">
+    <div class="team-options custom-container d-flex flex-row justify-content-center align-items-center">
+        <div class="add-delete-team d-flex flex-row justify-content-center align-items-center">
+            <button type="button" class="btn btn-success admin add-team">Add Team</button>
+            <button type="button" class="btn btn-danger admin delete-team">Delete Team</button>
+        </div>
+    </div>
     <div class="team-container custom-container d-flex flex-column flex-wrap justify-content-center align-items-center">
         <div class="lineup-field-container d-flex flex-row justify-content-around">
             {{#each team}}
             <div class="team-lineup">
                 <img class="team-lineup-img" src="/lineups/{{lineup}}" alt="Lineup of the players">
+                {{#ifeq ../role 'admin'}}
+                <button type="button" class="btn btn-primary admin change-lineup-img">Change Lineup</button>
+                {{/ifeq}}
             </div>
             <div class="field-info">
                 <img class="field-img" src="/fields/{{fieldLink}}" alt="{{fieldName}}">
-                <p>{{fieldName}}</p>
+                <div class="field-name d-flex flex-row">
+                    <p>{{fieldName}}</p>
+                    {{#ifeq ../role 'admin'}}
+                    <button class="btn admin edit-btn edit-field-name">Edit</button>
+                    {{/ifeq}}
+                </div>
+                {{#ifeq ../role 'admin'}}
+                <button type="button" class="btn btn-primary admin change-field-img">Change Field</button>
+                {{/ifeq}}
             </div>
             {{/each}}
         </div>
@@ -23,6 +40,17 @@
                         <td>{{age}}</td>
                         <td>{{position}}</td>
                         <td>{{nationality}}</td>
+                        <td class="player-info-td" style="visibility: collapse">
+                            <p style="visibility: collapse" class="goals">{{stats.goals}}</p>
+                            <p style="visibility: collapse" class="yellow-cards">{{stats.yellowCards}}</p>
+                            <p style="visibility: collapse" class="red-cards">{{stats.redCards}}</p>
+                        </td>
+                        {{#ifeq ../role 'admin'}}
+                        <td class="edit-delete-player">
+                            <button class="btn admin edit-btn edit-player">Edit</button>
+                            <button class="btn admin delete-btn delete-player">Delete</button>
+                        </td>
+                        {{/ifeq}}
                     </tr>
                     {{/each}}
                 </tbody>

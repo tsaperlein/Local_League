@@ -12,7 +12,7 @@ li.match-date {
 
 /* Match Information */
 .match-information {
-    height: 8vw;
+    height: clamp(4rem, 7vw, 12rem);
     padding: 1.5vw 2vw;
     border-radius: 0.8vw;
     transition: all 0.1s ease-in-out;
@@ -149,6 +149,10 @@ li.field-name {
     color: gray
 }
 
+#match-details-modal .modal-content .modal-body .match-details * {
+    font-size: clamp(1vw, 2vw, 3rem);
+}
+
 #match-details-modal {
     display: none;
     overflow: hidden;
@@ -162,7 +166,7 @@ li.field-name {
     border-radius: 1vw;
     padding: 1vw;
     overflow: auto;
-    height: 50%;
+    height: clamp(40rem, 30vw, 60rem);
 }
 
 #match-details-modal .modal-content .close-btn {
@@ -192,6 +196,11 @@ li.field-name {
     align-items: center;
 }
 
+#match-details-modal .modal-content .modal-header h3 {
+    padding-left: clamp(1.7rem, 1.1vw, 1vw);
+    font-size: clamp(1.5vw, 2vw, 3rem);
+}
+
 #match-details-modal .modal-content .modal-header .team-logo {
     width: auto;
     height: 5vw;
@@ -201,15 +210,12 @@ div.logo-name {
     gap: 1rem;
     margin: 0;
     padding: 0;
+    width: 5vw;
 }
 
 #match-details-modal .modal-content .modal-body {
     padding: 0 3rem;
     margin-top: 1rem;
-}
-
-#match-details-modal .modal-content .modal-body .match-details * {
-    font-size: 2vw;
 }
 
 #match-details-modal .modal-content .modal-body .match-details .row {

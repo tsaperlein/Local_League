@@ -185,11 +185,11 @@ function addStatistics() {
     let awayTeam = document.createElement('div');
     let awayTeamLogo = document.createElement('img');
     let awayTeamName = document.createElement('h2');
-    modalHeader.classList.add('d-flex', 'justify-content-between', 'align-items-center');
+    modalHeader.classList.add('d-flex', 'align-items-center');
     homeTeamLogo.classList.add('team-logo');
     awayTeamLogo.classList.add('team-logo');
-    homeTeam.classList.add('logo-name', 'd-flex', 'flex-row', 'justify-content-start', 'align-items-center', 'col-5');
-    awayTeam.classList.add('logo-name', 'd-flex', 'flex-row', 'justify-content-end', 'align-items-center', 'col-5');
+    homeTeam.classList.add('logo-name', 'd-flex', 'flex-row', 'justify-content-start', 'align-items-center', 'col-4');
+    awayTeam.classList.add('logo-name', 'd-flex', 'flex-row', 'justify-content-end', 'align-items-center', 'col-4');
 
     homeTeamName.innerHTML = matchStats.match1.homeTeam;
     homeTeamLogo.setAttribute('src', '/team-icons/aek.png');
@@ -274,7 +274,6 @@ function addStatistics() {
 
 // Sort matches by date
 const matchDates = {};
-
 document.querySelectorAll('.match-date').forEach(matchDate => {
     const date = matchDate.textContent;
     if (matchDates[date]) {
@@ -284,6 +283,7 @@ document.querySelectorAll('.match-date').forEach(matchDate => {
     }
 });
 
+// Function to align the score and time vertically
 function verticalAlignOfTheScoreTime() {
     // get all the div.team elements
     const teamDivs = document.querySelectorAll('.teams-score div.team');
@@ -307,3 +307,9 @@ function verticalAlignOfTheScoreTime() {
 }
 
 verticalAlignOfTheScoreTime();
+
+// Remove the margin-bottom and the border-bottom from the last match shown in schedule
+const matches = document.querySelectorAll('.schedule-container .matches-container .match');
+const adminScheduleOptions = matches[matches.length - 1].querySelector('.admin-schedule-options');
+adminScheduleOptions.style.marginBottom = '0';
+adminScheduleOptions.style.borderBottom = 'none';
