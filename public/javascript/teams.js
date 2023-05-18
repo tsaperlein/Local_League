@@ -36,53 +36,24 @@ const headerRow = createHeaderRow();
 tableHead.appendChild(headerRow);
 
 // Add event listener to .name-sticky
-const player = document.querySelectorAll('.name-sticky');
+const player = document.querySelectorAll('.name-sticky')
 player.forEach((player) => {
     player.addEventListener('click', () => {
-        const modal = document.createElement('div');
-        modal.classList.add('modal', 'd-flex', 'justify-content-center', 'align-items-center');
-        modal.setAttribute('id', 'player-info-modal');
-        modal.innerHTML = `
-            <div class="modal-content custom-container">
-                <div class="modal-header d-flex flex-row">
-                    <div class="player-name"></div>
-                    <div class="close-btn">x</div>
-                </div>
-                <div class="modal-body">
-                    <p class="player-goals"></p>
-                    <p class="player-yellow-cards"></p>
-                    <p class="player-red-cards"></p>
-                </div>
-            </div>
-        `;
-        document.body.appendChild(modal);
+        const playerJNumber = player.parentElement.querySelector('.player-number').innerHTML;
+        // Search for the modal depending on the player's jersey number
+        const modal = document.getElementById(`${playerJNumber}-info-modal`);
 
-        const playerName = player.textContent;
-        const playerGoals = player.parentElement.querySelector('.goals');
-        const playerYellowCards = player.parentElement.querySelector('.yellow-cards');
-        const playerRedCards = player.parentElement.querySelector('.red-cards');
-
-        const modalName = modal.querySelector('.player-name');
-        const modalGoals = modal.querySelector('.player-goals');
-        const modalYellowCards = modal.querySelector('.player-yellow-cards');
-        const modalRedCards = modal.querySelector('.player-red-cards');
-
-        modalName.textContent = playerName;
-        modalGoals.textContent = `Goals: ${playerGoals.textContent}`;
-        modalYellowCards.textContent = `Yellow Cards: ${playerYellowCards.textContent}`;
-        modalRedCards.textContent = `Red Cards: ${playerRedCards.textContent}`;
-
-        modal.style.display = 'block';
+        modal.style.visibility = 'visible';
         document.body.style.overflow = 'hidden';
 
-        const closeBtn = modal.querySelector('#player-info-modal .close-btn');
+        const closeBtn = modal.querySelector('.close-btn');
         closeBtn.addEventListener('click', () => {
-            modal.remove();
+            modal.style.visibility = 'hidden';
             document.body.style.overflow = 'visible';
         });
         window.addEventListener('click', (event) => {
             if (event.target == modal) {
-                modal.remove();
+                modal.style.visibility = 'hidden';
                 document.body.style.overflow = 'visible';
             }
         });

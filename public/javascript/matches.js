@@ -313,3 +313,9 @@ const matches = document.querySelectorAll('.schedule-container .matches-containe
 const adminScheduleOptions = matches[matches.length - 1].querySelector('.admin-schedule-options');
 adminScheduleOptions.style.marginBottom = '0';
 adminScheduleOptions.style.borderBottom = 'none';
+
+// Remove the margin-bottom and the border-bottom from the last stat shown in stats
+const stats = document.querySelectorAll('.match-details .stat-row');
+const adminStatsOptions = stats[stats.length - 1].querySelector('.admin-stats-options');
+adminStatsOptions.style.marginBottom = '0';
+adminStatsOptions.style.borderBottom = 'none';

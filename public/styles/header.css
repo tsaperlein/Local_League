@@ -148,52 +148,61 @@ nav.header-options li:hover a {
 #signin-signup-modal {
   display: none;
   overflow: hidden;
-  z-index: 1;
+  z-index: 999;
   background-color: rgba(0, 0, 0, 0.4);
 }
 
 #signin-signup-modal .modal-content {
   width: fit-content;
-  padding: 4rem;
+  height: max-content;
+  padding: clamp(1.5rem, 2vw, 3rem);
+  padding-left: clamp(1.5rem, -2vw, 0);
+  padding-right: clamp(1.5rem, 3vw, 6rem);
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3)), url("https://www.montgomerycountymd.gov/rec/Resources/Images/soccer1.png");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  gap: 2rem;
   display: flex;
   flex-direction: row;
 }
 
-@media (max-width: 800px) {
-  div.modal-content {
-    flex-direction: column;
-    padding: 2rem;
+@media (min-width: 1000px) {
+
+  #signin-signup-modal .modal-content {
+    padding-left: 0;
   }
 }
 
+@media (max-width: 576px) {
+
+  #signin-signup-modal .modal-content {
+    margin: 8vw;
+  }
+}
 
 .form-group * {
-  width: 100%;
+  width: fit-content;
   height: fit-content;
 }
 
 div.form-group {
-  gap: 1rem;
+  gap: clamp(0.2rem, 1vw, 1rem);
 }
 
 .modal-side {
-  gap: 1rem;
+  gap: clamp(0.5rem, 1vw, 1rem);
 }
 
 .modal h2 {
-  font-size: 3rem;
+  font-size: clamp(1.5rem, 3vw, 4rem);
   color: white;
 }
 
 .modal label {
-  font-size: 1.7rem;
+  font-size: clamp(0.8rem, 1.5vw, 1.6rem);
   font-family: Comfortaa, Helvetica, sans-serif;
   color: white;
+  white-space: nowrap;
 }
 
 .modal input {
@@ -203,14 +212,14 @@ div.form-group {
   border: none;
   border-radius: 5px;
   border: 2px solid rgb(177, 177, 177, 0.5);
-  font-size: 1.5rem;
+  font-size: clamp(0.8rem, 1.5vw, 2rem);
   font-family: Comfortaa, Helvetica, sans-serif;
   opacity: 1;
 }
 
 span.close-btn {
   font-family: Comfortaa, Helvetica, sans-serif;
-  font-size: 3rem;
+  font-size: clamp(1.5rem, 2vw, 3rem);
   color: white;
   position: absolute;
   top: 0;
@@ -231,6 +240,7 @@ span.close-btn:hover {
 .form-group label {
   display: flex;
   justify-content: end;
+  align-self: center;
 }
 
 .error-message {
@@ -238,6 +248,15 @@ span.close-btn:hover {
   padding: 0.1rem 0.5rem;
   background-color: rgba(255, 255, 255, 0.8);
   color: rgb(255, 0, 0);
-  font-size: 1.5rem;
+  font-size: clamp(0.8rem, 1.5vw, 1.6rem);
   border-radius: 0.5rem;
+}
+
+#signin-signup-modal button {
+  font-size: clamp(1rem, 1.5vw, 2rem);
+}
+
+#signin-signup-modal button:hover {
+  transform: scale(1.1);
+  transition: all 0.3s ease-in-out;
 }

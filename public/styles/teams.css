@@ -201,44 +201,38 @@ thead th a.header-button:hover {
 }
 
 /* MODAL */
-td.player-info-td {
-    display: flex;
-    flex-direction: row;
-    margin: 0;
-    padding: 0;
-    width: 0;
-    height: 0;
-    min-width: none;
-}
-
 #player-info-modal .modal-content .modal-body .match-details * {
     font-size: clamp(1vw, 2vw, 3rem);
 }
 
-#player-info-modal {
-    display: none;
+.player-info-modal {
+    visibility: hidden;
     overflow: hidden;
-    z-index: 1;
+    z-index: 999;
     background-color: rgba(0, 0, 0, 0.2);
 }
 
-#player-info-modal .modal-content {
+.player-info-modal .modal-content {
     background-color: rgba(240, 240, 240, 0.95);
     margin: 10% 15%;
     border-radius: 1vw;
     padding: 0;
     overflow: auto;
-    width: 40%;
+    width: fit-content;
     height: fit-content;
 }
 
-#player-info-modal .modal-content div.close-btn {
-    font-size: 2vw;
+.player-info-modal .modal-content div.close-btn {
+    font-size: clamp(1rem, 1.5vw, 3rem);
     cursor: pointer;
     color: black;
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: clamp(0.5rem, 1vw, 1rem) clamp(0.5rem, 1.5vw, 3rem);
 }
 
-#player-info-modal .modal-content .modal-header {
+.player-info-modal .modal-content .modal-header {
     justify-content: space-between;
     border: none;
     color: black;
@@ -246,17 +240,17 @@ td.player-info-td {
     padding: clamp(2rem, 2vw, 5rem);
 }
 
-#player-info-modal .modal-content .modal-header div.player-name {
+.player-info-modal .modal-content .modal-header div.player-name {
     font-size: clamp(1.5rem, 2.5vw, 5rem);
     font-weight: 600;
 }
 
-#player-info-modal .modal-content div.modal-body {
+.player-info-modal .modal-content div.modal-body {
     padding: 0 clamp(2rem, 2vw, 5rem);
     padding-bottom: clamp(2rem, 2vw, 5rem);
     margin-top: clamp(1rem, 2vw, 2rem);
 }
 
-#player-info-modal .modal-content .modal-body p {
+.player-info-modal .modal-content .modal-body p {
     font-size: clamp(1rem, 2vw, 3rem);
 }

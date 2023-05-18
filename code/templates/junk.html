@@ -1,0 +1,60 @@
+{{!-- <div id="{{homeTeam.name}}-{{awayTeam.name}}-{{formatDate2 date}}-match-details-modal" class="modal d-flex justify-content-center align-items-center">
+                <div class="modal-content">
+                    <span class="close-btn">x</span>
+                    <div class="modal-header">
+                        <div class="logo-name d-flex justify-content-center align-items-center">
+                            <h2>{{homeTeam.name}}</h2>
+                            <img class="team-logo" src="{{homeTeam.logo}}" alt="{{homeTeam.name}} icon">
+                        </div>
+                        <h3>Time</h3>
+                        <div class="logo-name d-flex justify-content-center align-items-center">
+                            <img class="team-logo" src="{{awayTeam.logo}}" alt="{{awayTeam.name}} icon">
+                            <h2>{{awayTeam.name}}</h2>
+                        </div>
+                    </div>
+                    <div class="modal-body">
+                        <div class="match-details">
+                            {{#each player}}
+                            <div class="stat-row row">
+                                <div class="ht-player col-4">
+                                    <div class="home-team-player">
+                                        {{#ifeq team homeTeam.name}}
+                                        <div>{{name}}</div>
+                                        {{/ifeq}}
+                                    </div>
+                                </div>
+                                <div class="stat-time col-4">
+                                    <div class="stat-and-time">
+                                        <div class="home-stat col-4">
+                                            {{#ifeq team homeTeam.name}}
+                                            <img src="{{formatStat stat.type}}" alt="{{stat.type}}">
+                                            {{/ifeq}}
+                                        </div>
+                                        <div class="time col-4">{{stat.time}}</div>
+                                        <div class="away-stat col-4">
+                                            {{#ifeq team awayTeam.name}}
+                                            <img src="{{formatStat stat.type}}" alt="{{stat.type}}">
+                                            {{/ifeq}}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="at-player col-4">
+                                    <div class="away-team-player">
+                                        {{#ifeq team awayTeam.name}}
+                                        <div>{{name}}</div>
+                                        {{/ifeq}}
+                                    </div>
+                                </div>
+                            </div>
+                            {{!-- ADMIN --}}
+                            {{#ifeq ../role 'admin'}}
+                            <div class="admin-stats-options">
+                                <button class="btn admin edit-btn" type="button">Edit</button>
+                                <button class="btn admin delete-btn" type="button">Delete</button>
+                            </div>
+                            {{/ifeq}}
+                            {{/each}}
+                        </div>
+                    </div>
+                </div>
+            </div> --}}
