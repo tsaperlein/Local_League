@@ -12,22 +12,8 @@ const matchSchema = new Schema({
         required: true
     },
     stats: {
-        team: {
-            type: String,
-            required: true
-        },
-        name: {
-            type: String,
-            required: true
-        },
-        type: {
-            type: String,
-            required: true
-        },
-        moment: {
-            type: Number,
-            required: true
-        }
+        type: Array,
+        required: false
     },
     homeTeam: {
         name: {
@@ -90,7 +76,7 @@ const Match = mongoose.model('Match', matchSchema);
 let playersData = [
     {team: "AEK", players: ["Stankovic", "Sidibe", "Mitoglou", "Moukoudi", "Hajisafi", "Szymanski", "Pineda", "Gacinovic", "Elliason", "Araoujo", "Garcia"]},
     {team: "Panathinaikos", players: ["Brignoli", "Johansson", "Villafanez", "Santos", "Insua", "Kourbelis", "Mavrias", "Kolovetsios", "Chatzigiovannis", "Kampetsis", "Kolovos"]},
-    {team: "Olympiacos", players: ["Paschalakis", "Sokratis", "Ba", "Cisse", "Reabciuk", "M'Vila", "Camara", "Masouras", "Fortounis", "Bruma", "El Arabi"]},
+    {team: "Olympiakos", players: ["Paschalakis", "Sokratis", "Ba", "Cisse", "Reabciuk", "M'Vila", "Camara", "Masouras", "Fortounis", "Bruma", "El Arabi"]},
     {team: "PAOK", players: ["Zivkovic", "Varela", "Ingason", "Crespo", "Giannoulis", "Esiti", "El Kaddouri", "Tzolis", "Pelkas", "Zivkovic", "Swiderski"]},
     {team: "Arsenal", players: ["Leno", "Bellerin", "Gabriel", "Mari", "Tierney", "Partey", "Xhaka", "Saka", "Odegaard", "Smith Rowe", "Aubameyang"]},
     {team: "Barcelona", players: ["Ter Stegen", "Dest", "Pique", "Lenglet", "Alba", "Busquets", "De Jong", "Pedri", "Messi", "Griezmann", "Dembele"]},
@@ -151,6 +137,14 @@ function getRandomInt(max) {
     return Math.floor(Math.random() * (max - 1)) + 1;
 }
 
+function getRandomInt2(max) {
+    return Math.floor(Math.random() * (max - 20)) + 20;
+}
+
+function getRandomInt3(max) {
+    return Math.floor(Math.random() * max);
+}
+
 for (let i = 0; i < teamsData.length; i++) {
     for(let j = 0; j < teamsData.length; j++) {
         if(i==j) continue;
@@ -194,7 +188,7 @@ for(let i = 0; i < matchesData.length; i++) {
     const matchState = matchDate < today ? 'Final' : 'Upcoming';
     const matchHomeScore = matchState == 'Final' ? Math.floor(Math.random() * 5) : null;
     const matchGuestScore = matchState == 'Final' ? Math.floor(Math.random() * 5) : null;
-    const matchPossecion = matchState == 'Final' ? Math.floor(Math.random() * 100) : null;
+    const matchPossecion = matchState == 'Final' ? getRandomInt2(100) : null;
     matchesData[i].date = matchDate.toISOString().slice(0,10);
     matchesData[i].state = matchState;
     matchesData[i].homeTeam.score = matchHomeScore;
@@ -207,56 +201,253 @@ for(let i = 0; i < matchesData.length; i++) {
     matchesData[i].stats = [];
 }
 
+let minutes = [];
+let minute1;
+let minute2;
 function generatePlayerGoals(){
     for(let i = 0; i < matchesData.length; i++){
-        for(let j = 0; j < playersData.length; j++){
-            if(matchesData[i].homeTeam.name == playersData[j].team){
-                for( let k = 0; k < matchesData[i].homeTeam.score; k++){
-                    matchesData[i].stats.push({
-                        team: playersData[j].team,
-                        name: playersData[j].players[getRandomInt(playersData[j].players.length)],
-                        type: 'goal',
-                        minute: getRandomInt(90)
-                    })
+        if(matchesData[i].state == 'Upcoming'){
+            continue;
+        }
+        else{
+            minutes = [];
+            for(let j = 0; j < playersData.length; j++){
+                if(matchesData[i].homeTeam.name == playersData[j].team){
+                    for( let k = 0; k < matchesData[i].homeTeam.score; k++){
+                        minute1 = getRandomInt(90);
+                        while(minutes.includes(minute1)){
+                            minute1 = getRandomInt(90);
+                        }
+                        minutes.push(minute1);
+                        matchesData[i].stats.push({
+                            team: playersData[j].team,
+                            name: playersData[j].players[getRandomInt(playersData[j].players.length)],
+                            type: 'goal',
+                            minute: minute1
+                        })
+                    }
                 }
-            }
-            else if(matchesData[i].awayTeam.name == playersData[j].team){
-                for( let k = 0; k < matchesData[i].awayTeam.score; k++){
-                    matchesData[i].stats.push({
-                        team: playersData[j].team,
-                        name: playersData[j].players[getRandomInt(playersData[j].players.length)],
-                        type: 'goal',
-                        minute: getRandomInt(90)
-                    })
+                else if(matchesData[i].awayTeam.name == playersData[j].team){
+                    for( let k = 0; k < matchesData[i].awayTeam.score; k++){
+                        minute2 = getRandomInt(90);
+                        while(minutes.includes(minute2)){
+                            minute2 = getRandomInt(90);
+                        }
+                        minutes.push(minute2);
+                        matchesData[i].stats.push({
+                            team: playersData[j].team,
+                            name: playersData[j].players[getRandomInt(playersData[j].players.length)],
+                            type: 'goal',
+                            minute: minute2
+                        })
+                    }
                 }
             }
         }
     }
 }
+
+function generateCards(){
+    for(let i = 0; i < matchesData.length; i++){
+        if(matchesData[i].state == 'Upcoming'){
+            continue;
+        }
+        else{
+            for(let j = 0; j < playersData.length; j++){
+                if(matchesData[i].homeTeam.name == playersData[j].team){
+                    for( let k = 0; k < getRandomInt(5); k++){
+                        matchesData[i].stats.push({
+                            team: playersData[j].team,
+                            name: playersData[j].players[getRandomInt(playersData[j].players.length)],
+                            type: 'yellow card',
+                            minute: getRandomInt(90)
+                        })
+                    }
+                    for(let z=0; z<getRandomInt3(2); z++){
+                        let playerName = playersData[j].players[getRandomInt(playersData[j].players.length)];
+                        if(matchesData[i].stats[matchesData[i].stats.length -1].type == "yellow card" && matchesData[i].stats[matchesData[i].stats.length -1].name == playerName){
+                            let rMinute = matchesData[i].stats[matchesData[i].stats.length -1].minute + getRandomInt3(90 - matchesData[i].stats[matchesData[i].stats.length -1].minute);
+                            matchesData[i].stats.push({
+                                team: playersData[j].team,
+                                name: playerName,
+                                type: 'red card',
+                                minute: rMinute
+                            },
+                            {
+                                team: playersData[j].team,
+                                name: playerName,
+                                type: 'yellow card',
+                                minute: rMinute
+                            })
+                        }
+                    }
+                }
+                else if(matchesData[i].awayTeam.name == playersData[j].team){
+                    for( let k = 0; k < getRandomInt(5); k++){
+                        matchesData[i].stats.push({
+                            team: playersData[j].team,
+                            name: playersData[j].players[getRandomInt(playersData[j].players.length)],
+                            type: 'yellow card',
+                            minute: getRandomInt(90)
+                        })
+                    }
+                    for(let z=0; z<getRandomInt3(2); z++){
+                        let playerName = playersData[j].players[getRandomInt(playersData[j].players.length)];
+                        if(matchesData[i].stats[matchesData[i].stats.length -1].type == "yellow card" && matchesData[i].stats[matchesData[i].stats.length -1].name == playerName){
+                            let rMinute = matchesData[i].stats[matchesData[i].stats.length -1].minute + getRandomInt3(90 - matchesData[i].stats[matchesData[i].stats.length -1].minute);
+                            matchesData[i].stats.push({
+                                team: playersData[j].team,
+                                name: playerName,
+                                type: 'red card',
+                                minute: rMinute
+                            },
+                            {
+                                team: playersData[j].team,
+                                name: playerName,
+                                type: 'yellow card',
+                                minute: rMinute
+                            })
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+function generateRedCards(){
+    for(let i = 0; i < matchesData.length; i++){
+        if(matchesData[i].state == 'Upcoming'){
+            continue;
+        }
+        else{
+            for(let j = 0; j < playersData.length; j++){
+                if(matchesData[i].homeTeam.name == playersData[j].team){
+                    for( let k = 0; k < getRandomInt3(2); k++){
+                        let playerName = playersData[j].players[getRandomInt(playersData[j].players.length)];
+                        // if this player has already a red card, skip
+                        // find all stats of this player
+                        let playerStats = matchesData[i].stats.filter(stat => stat.name == playerName);
+                        // if there is a red card, skip
+                        if(playerStats.some(stat => stat.type == 'red card')){
+                            continue;
+                        }
+                        else{
+                            let rMinute = getRandomInt(90);
+                            matchesData[i].stats.push({
+                                team: playersData[j].team,
+                                name: playerName,
+                                type: 'red card',
+                                minute: rMinute
+                            })
+                        }
+                    }
+                }
+                else if(matchesData[i].awayTeam.name == playersData[j].team){
+                    for( let k = 0; k < getRandomInt3(2); k++){
+                        let playerName = playersData[j].players[getRandomInt(playersData[j].players.length)];
+                        // if this player has already a red card, skip
+                        // find all stats of this player
+                        let playerStats = matchesData[i].stats.filter(stat => stat.name == playerName);
+                        // if there is a red card, skip
+                        if(playerStats.some(stat => stat.type == 'red card')){
+                            continue;
+                        }
+                        else{
+                            let rMinute = getRandomInt(90);
+                            matchesData[i].stats.push({
+                                team: playersData[j].team,
+                                name: playerName,
+                                type: 'red card',
+                                minute: rMinute
+                            })
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
 generatePlayerGoals();
-console.log(matchesData);
+generateCards();
+generateRedCards();
 
-// //Delete all matches from the database and add the new ones
-// Match.deleteMany({})
-//     .then(() => {
-//         console.log('Deleted all matches');
+// Function to check if a player with red card scores after he got the red card, if so erase the goal
+function checkRedCard(){
+    for(let i = 0; i < matchesData.length; i++){
+        if(matchesData[i].state == 'Upcoming'){
+            continue;
+        }
+        else{
+            for(let j = 0; j < matchesData[i].stats.length; j++){
+                if(matchesData[i].stats[j].type == 'red card'){
+                    for(let k = 0; k < matchesData[i].stats.length; k++){
+                        if(matchesData[i].stats[k].type == 'goal' && matchesData[i].stats[k].name == matchesData[i].stats[j].name && matchesData[i].stats[k].minute > matchesData[i].stats[j].minute){
+                            console.log("Found");
+                            console.log("Match: ", matchesData[i]);
+                            console.log("Player: ", matchesData[i].stats[j].name);
+                            //matchesData[i].stats.splice(k, 1);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
 
-//         const newMatches = matchesData.map((match) => new Match({
-//             date: match.date,
-//             state: match.state,
-//             homeTeam: match.homeTeam,
-//             awayTeam: match.awayTeam,
-//             startTime: match.startTime,
-//             field: match.field,
-//             referees: match.referees
-//         }));
-//         return Match.insertMany(newMatches);
-//     })
-//     .then((result) => {
-//         console.log('Added all matches');
-//     })
-//     .catch((err) => {
-//         console.log(err);
-//     });
+// Function to check if a player with red card gets a yellow card after he got the red card, if so erase the yellow card
+function checkYellowCard(){
+    for(let i = 0; i < matchesData.length; i++){
+        if(matchesData[i].state == 'Upcoming'){
+            continue;
+        }
+        else{
+            for(let j = 0; j < matchesData[i].stats.length; j++){
+                if(matchesData[i].stats[j].type == 'red card'){
+                    for(let k = 0; k < matchesData[i].stats.length; k++){
+                        if(matchesData[i].stats[k].type == 'yellow card' && matchesData[i].stats[k].name == matchesData[i].stats[j].name && matchesData[i].stats[k].minute > matchesData[i].stats[j].minute){
+                            console.log("Found");
+                            console.log("Match: ", matchesData[i]);
+                            console.log("Player: ", matchesData[i].stats[j].name);
+                            //matchesData[i].stats.splice(k, 1);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+checkRedCard();
+checkYellowCard();
+
+
+//console.log(matchesData);
+
+//Delete all matches from the database and add the new ones
+Match.deleteMany({})
+    .then(() => {
+        console.log('Deleted all matches');
+
+        const newMatches = matchesData.map((match) => new Match({
+            date: match.date,
+            state: match.state,
+            stats: match.stats,
+            homeTeam: match.homeTeam,
+            awayTeam: match.awayTeam,
+            startTime: match.startTime,
+            field: match.field,
+            referees: match.referees
+        }));
+        return Match.insertMany(newMatches);
+    })
+    .then((result) => {
+        console.log('Added all matches');
+    })
+    .catch((err) => {
+        console.log(err);
+    });
 
 export default { Match }
