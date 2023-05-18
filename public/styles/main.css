@@ -23,3 +23,50 @@ main {
     width: 100%;
     object-fit: cover;
 }
+
+.admin-schedule-options {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 1vw;
+    margin-bottom: 1vw;
+    padding: 1vw 0;
+    border-bottom: 0.2rem solid rgba(128, 128, 128, 0.4);
+}
+
+button.admin {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: clamp(1rem, 1.5vw, 2.5rem);
+    transition: all 0.2s ease-in-out;
+    margin: 0;
+}
+
+button.admin:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+button.edit-btn {
+    background-color: lightgreen;
+}
+
+button.edit-btn:hover {
+    background-color: rgb(110, 190, 110);
+}
+
+button.delete-btn {
+    background-color: lightcoral;
+}
+
+button.delete-btn:hover {
+    background-color: rgb(200, 110, 110);
+}
+
+button.edit-field-name {
+    margin: clamp(0.5rem, 1vw, 1rem);
+}
+
+button.change-lineup-img,
+button.change-field-img {
+    margin-top: 2vw;
+}

@@ -16,11 +16,11 @@
         </li>
         {{#unless username}}
         <li>
-            <a href="#">Sign In/Register</a>
+            <a href="#">Sign In / Register</a>
         </li>
         {{else}}
         <li>
-            <a href="#">{{username}}</a>
+            <a href="#">{{username}}{{#ifeq role 'admin'}}&nbsp;({{role}}){{/ifeq}}</a>
         </li>
         {{/unless}}
     </ul>

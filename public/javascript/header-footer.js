@@ -9,8 +9,8 @@ function createModal() {
     modal.classList.add('modal', 'd-flex', 'justify-content-center', 'align-items-center');
     modal.setAttribute('id', 'signin-signup-modal');
     modal.innerHTML = `
-        <div class="modal-content">
-            <div class="modal-side sign-in d-flex flex-column">
+        <div class="modal-content container row">
+            <div class="modal-side col-lg-6 col-sm-6 col-12 sign-in d-flex flex-column">
                 <div class="form-group">
                     <div class="col-xs-8 col-xs-offset-4">
                         <h2>Sign In</h2>
@@ -36,7 +36,7 @@ function createModal() {
                     </div>
                 </form>
             </div>
-            <div class="modal-side register d-flex flex-column">
+            <div class="modal-side col-lg-6 col-sm-6 col-12 register d-flex flex-column">
                 <div class="form-group">
                     <div class="col-xs-8 col-xs-offset-4">
                         <h2>Register</h2>

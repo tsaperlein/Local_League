@@ -11,7 +11,7 @@ endDate.setDate(startDate.getDate() + 7);
 const thisWeek = startDate.toLocaleString('en-US', { month: 'short', day: 'numeric' }) + " - " + endDate.toLocaleString('en-US', { month: 'short', day: 'numeric' });
 
 const mainPageStandings = (req, res) => {
-    Match.find({ state: 'Final' }).limit(3).lean().then(result => {
+     Match.find({ state: 'Final' }).limit(3).lean().then(result => {
         Match.find({ state: 'Upcoming' }).limit(3).lean().then(result1 => {
             Team.find().sort({ rank: 1 }).limit(5).lean().then(result2 => {
                 Team.find().lean().then(result3 => {

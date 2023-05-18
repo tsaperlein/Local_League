@@ -2,11 +2,25 @@ main * {
     margin: 0;
     padding: 0;
     z-index: 1;
-    font-size: 2vw;
 }
 
 #teams-background-img {
     z-index: 0;
+}
+
+.team-options {
+    position: relative;
+    max-width: 100%;
+    margin: 2vw 0;
+    z-index: 1;
+}
+
+div.add-delete-team {
+    background-color: rgba(255, 255, 255, 0.7);
+    padding: clamp(1rem, 2vw, 2rem);
+    margin: -1vw 0 -4vw 0;
+    border-radius: clamp(1rem, 2vw, 2rem);
+    gap: 2vw;
 }
 
 .team-container {
@@ -31,6 +45,21 @@ main * {
     max-width: 50%;
     width: 100%;
     margin: 2vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.field-info p {
+    color: white;
+    font-size: clamp(1rem, 2vw, 2.2rem);
+    margin: clamp(0.5rem, 1vw, 1rem);
+}
+
+.field-info p:hover {
+    color: rgb(220, 220, 220);
+    cursor: pointer;
 }
 
 th a {
@@ -54,10 +83,13 @@ th a {
     object-fit: cover;
 }
 
+.field-info img {
+    border-radius: 1vw 1vw 0 0;
+}
+
 .field-info {
     display: flex;
     flex-direction: column;
-    background-color: black;
     align-items: center;
     border-radius: 1vw;
 }
@@ -71,6 +103,15 @@ th a {
 .field-info a:hover {
     color: rgb(229, 229, 229);
     text-decoration: none;
+}
+
+.team-container .field-name {
+    background-color: black;
+    width: 100%;
+    border-radius: 0 0 1vw 1vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 /* ------------- Players Table ----------- */
@@ -105,6 +146,14 @@ table#players-table tbody td {
     min-width: 10vw;
 }
 
+table.players-table table td.edit-delete-player {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 40vw;
+}
+
 thead,
 tbody {
     position: sticky;
@@ -125,6 +174,12 @@ td.name-sticky {
 td.name-sticky {
     padding: 0 1vw;
     color: white;
+    cursor: pointer;
+}
+
+td.name-sticky:hover {
+    color: rgb(220, 220, 220);
+    background-color: gray;
 }
 
 
@@ -143,4 +198,59 @@ a.header-button {
 
 thead th a.header-button:hover {
     background-color: rgba(231, 231, 231, 0.7);
+}
+
+/* MODAL */
+#player-info-modal .modal-content .modal-body .match-details * {
+    font-size: clamp(1vw, 2vw, 3rem);
+}
+
+.player-info-modal {
+    visibility: hidden;
+    overflow: hidden;
+    z-index: 999;
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.player-info-modal .modal-content {
+    background-color: rgba(240, 240, 240, 0.95);
+    margin: 10% 15%;
+    border-radius: 1vw;
+    padding: 0;
+    overflow: auto;
+    width: fit-content;
+    height: fit-content;
+}
+
+.player-info-modal .modal-content div.close-btn {
+    font-size: clamp(1rem, 1.5vw, 3rem);
+    cursor: pointer;
+    color: black;
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: clamp(0.5rem, 1vw, 1rem) clamp(0.5rem, 1.5vw, 3rem);
+}
+
+.player-info-modal .modal-content .modal-header {
+    justify-content: space-between;
+    border: none;
+    color: black;
+    gap: clamp(1rem, 2vw, 2rem);
+    padding: clamp(2rem, 2vw, 5rem);
+}
+
+.player-info-modal .modal-content .modal-header div.player-name {
+    font-size: clamp(1.5rem, 2.5vw, 5rem);
+    font-weight: 600;
+}
+
+.player-info-modal .modal-content div.modal-body {
+    padding: 0 clamp(2rem, 2vw, 5rem);
+    padding-bottom: clamp(2rem, 2vw, 5rem);
+    margin-top: clamp(1rem, 2vw, 2rem);
+}
+
+.player-info-modal .modal-content .modal-body p {
+    font-size: clamp(1rem, 2vw, 3rem);
 }

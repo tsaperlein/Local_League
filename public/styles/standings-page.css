@@ -20,7 +20,8 @@
     display: flex;
     justify-content: space-around;
     width: 90%;
-    height: 10vw;
+    padding: 0 clamp(0.5rem, 5vw, 3rem);
+    height: clamp(3rem, 7vw, 12rem);
     align-items: center;
     border-radius: 1.5vw;
     background: rgba(114, 114, 114, 0.5);
@@ -30,13 +31,14 @@
 
 .standings-choice-buttons-group-button {
     background-color: white;
-    padding: 1.5vw 4vw;
-    border-radius: 1.5vw;
+    padding: clamp(0.3rem, 0.8vw, 1rem) clamp(1rem, 5vw, 10rem);
+    border-radius: clamp(0.5rem, 1vw, 2rem);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
     text-decoration: none;
     color: rgb(0, 0, 0);
     font-weight: 600;
     font-family: Arial, Helvetica, sans-serif;
+    font-size: clamp(1rem, 2vw, 3.2rem);
     position: relative;
     cursor: pointer;
 }
@@ -49,8 +51,7 @@
 .standings-choice-buttons-group a:hover {
     background-color: white;
     color: black;
-    padding: 2vw 4.5vw;
-    margin: 0 -0.5vw;
     border-radius: 2vw;
     text-decoration: none;
+    transform: scale(1.1);
 }

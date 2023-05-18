@@ -28,9 +28,34 @@ function createHeaderRow() {
 }
 
 // Get the table element and its head and body
-const table = document.getElementById("players-table");
+const table = document.querySelector("#players-table");
 const tableHead = table.querySelector("thead");
 
 // create table header and append it to the table head
 const headerRow = createHeaderRow();
 tableHead.appendChild(headerRow);
+
+// Add event listener to .name-sticky
+const player = document.querySelectorAll('.name-sticky')
+player.forEach((player) => {
+    player.addEventListener('click', () => {
+        const playerJNumber = player.parentElement.querySelector('.player-number').innerHTML;
+        // Search for the modal depending on the player's jersey number
+        const modal = document.getElementById(`${playerJNumber}-info-modal`);
+
+        modal.style.visibility = 'visible';
+        document.body.style.overflow = 'hidden';
+
+        const closeBtn = modal.querySelector('.close-btn');
+        closeBtn.addEventListener('click', () => {
+            modal.style.visibility = 'hidden';
+            document.body.style.overflow = 'visible';
+        });
+        window.addEventListener('click', (event) => {
+            if (event.target == modal) {
+                modal.style.visibility = 'hidden';
+                document.body.style.overflow = 'visible';
+            }
+        });
+    });
+});

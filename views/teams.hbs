@@ -1,14 +1,31 @@
 <div class="background">
     <img id="teams-background-img" class="background-img" src="/background-images/6.jpg" alt="Background Image of a soccer field">
+    <div class="team-options custom-container d-flex flex-row justify-content-center align-items-center">
+        <div class="add-delete-team d-flex flex-row justify-content-center align-items-center">
+            <button type="button" class="btn btn-success admin add-team">Add Team</button>
+            <button type="button" class="btn btn-danger admin delete-team">Delete Team</button>
+        </div>
+    </div>
     <div class="team-container custom-container d-flex flex-column flex-wrap justify-content-center align-items-center">
         <div class="lineup-field-container d-flex flex-row justify-content-around">
             {{#each team}}
             <div class="team-lineup">
                 <img class="team-lineup-img" src="/lineups/{{lineup}}" alt="Lineup of the players">
+                {{#ifeq ../role 'admin'}}
+                <button type="button" class="btn btn-primary admin change-lineup-img">Change Lineup</button>
+                {{/ifeq}}
             </div>
             <div class="field-info">
                 <img class="field-img" src="/fields/{{fieldLink}}" alt="{{fieldName}}">
-                <p>{{fieldName}}</p>
+                <div class="field-name d-flex flex-row">
+                    <p>{{fieldName}}</p>
+                    {{#ifeq ../role 'admin'}}
+                    <button class="btn admin edit-btn edit-field-name">Edit</button>
+                    {{/ifeq}}
+                </div>
+                {{#ifeq ../role 'admin'}}
+                <button type="button" class="btn btn-primary admin change-field-img">Change Field</button>
+                {{/ifeq}}
             </div>
             {{/each}}
         </div>
@@ -19,11 +36,36 @@
                     {{#each players}}
                     <tr>
                         <td class="name-sticky">{{name}}</td>
-                        <td>{{number}}</td>
+                        <td class="player-number">{{number}}</td>
                         <td>{{age}}</td>
                         <td>{{position}}</td>
                         <td>{{nationality}}</td>
+                        {{#ifeq ../role 'admin'}}
+                        <td class="edit-delete-player">
+                            <button class="btn admin edit-btn edit-player">Edit</button>
+                            <button class="btn admin delete-btn delete-player">Delete</button>
+                        </td>
+                        {{/ifeq}}
                     </tr>
+                    <div id="{{number}}-info-modal" class="modal player-info-modal d-flex justify-content-center align-items-center">
+                        <div class="modal-content custom-container">
+                            <div class="modal-header d-flex flex-row">
+                                <div class="player-name">{{name}}</div>
+                                <div class="close-btn">x</div>
+                            </div>
+                            <div class="modal-body">
+                                <p class="player-goals">
+                                    Goals: {{stats.goals}}
+                                </p>
+                                <p class="player-yellow-cards">
+                                    Yellow Cards: {{stats.yellowCards}}
+                                </p>
+                                <p class="player-red-cards">
+                                    Red Cards: {{stats.redCards}}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
                     {{/each}}
                 </tbody>
             </table>
