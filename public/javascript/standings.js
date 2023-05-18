@@ -51,10 +51,40 @@ const tableHead = table.querySelector("thead");
 const headerRow = createHeaderRow();
 tableHead.appendChild(headerRow);
 
+function straightRank(){
+  const parent = document.getElementById('tbody');
+  const children = Array.from(parent.children);
+  children.sort(function(a, b) {
+    let rankA = parseInt(a.querySelector('.rank-td div').innerText);
+    let rankB = parseInt(b.querySelector('.rank-td div').innerText);
+    if (rankA < rankB) {
+      return -1;
+    }
+    if (rankA > rankB) {
+      return 1;
+    }
+    return 0;
+  });
+
+  parent.innerHTML = ""; // clear the parent element
+  children.forEach(child => parent.appendChild(child));
+}
+
 function reverseRank(){
   const parent = document.getElementById('tbody');
   const children = Array.from(parent.children);
-  children.reverse();
+  children.sort(function(a, b) {
+    let rankA = parseInt(a.querySelector('.rank-td div').innerText);
+    let rankB = parseInt(b.querySelector('.rank-td div').innerText);
+    if (rankA < rankB) {
+      return 1;
+    }
+    if (rankA > rankB) {
+      return -1;
+    }
+    return 0;
+  });
+
   parent.innerHTML = ""; // clear the parent element
   children.forEach(child => parent.appendChild(child));
 }
@@ -104,8 +134,25 @@ function reverseAlphabeticalOrder(){
 const rankBtn = document.querySelector('.rank-btn');
 const pointsBtn = document.querySelector('.points-btn');
 const teamBtn = document.querySelector('.team-btn');
-rankBtn.addEventListener('click', reverseRank);
-pointsBtn.addEventListener('click', reverseRank);
+let ranked = 0;
+rankBtn.addEventListener('click', () => {
+  ranked++;
+  if (ranked % 2 == 0) {
+    straightRank();
+  } else {
+    reverseRank();
+  }
+});
+
+pointsBtn.addEventListener('click', () => {
+  ranked++;
+  if (ranked % 2 == 0) {
+    straightRank();
+  }
+  else {
+    reverseRank();
+  }
+});
 
 let teamBtnClicked = 0;
 teamBtn.addEventListener('click', () => {

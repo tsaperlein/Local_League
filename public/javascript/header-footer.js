@@ -148,7 +148,8 @@ function fixMainContentHeight() {
 }
 
 // Modal
-if(window.location.pathname === "/Local-League/main-page" && !modalOn){
+headerEl = document.querySelector('.header-options ul').lastElementChild.querySelector('a').textContent;
+if(window.location.pathname === "/Local-League/main-page" && headerEl === "Sign In/Register"){
     createModal();
 }
 
