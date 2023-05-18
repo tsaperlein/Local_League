@@ -385,9 +385,9 @@ function checkRedCard(){
                 if(matchesData[i].stats[j].type == 'red card'){
                     for(let k = 0; k < matchesData[i].stats.length; k++){
                         if(matchesData[i].stats[k].type == 'goal' && matchesData[i].stats[k].name == matchesData[i].stats[j].name && matchesData[i].stats[k].minute > matchesData[i].stats[j].minute){
-                            console.log("Found");
-                            console.log("Match: ", matchesData[i]);
-                            console.log("Player: ", matchesData[i].stats[j].name);
+                            // console.log("Found");
+                            // console.log("Match: ", matchesData[i]);
+                            // console.log("Player: ", matchesData[i].stats[j].name);
                             //matchesData[i].stats.splice(k, 1);
                         }
                     }
@@ -408,9 +408,9 @@ function checkYellowCard(){
                 if(matchesData[i].stats[j].type == 'red card'){
                     for(let k = 0; k < matchesData[i].stats.length; k++){
                         if(matchesData[i].stats[k].type == 'yellow card' && matchesData[i].stats[k].name == matchesData[i].stats[j].name && matchesData[i].stats[k].minute > matchesData[i].stats[j].minute){
-                            console.log("Found");
-                            console.log("Match: ", matchesData[i]);
-                            console.log("Player: ", matchesData[i].stats[j].name);
+                            // console.log("Found");
+                            // console.log("Match: ", matchesData[i]);
+                            // console.log("Player: ", matchesData[i].stats[j].name);
                             //matchesData[i].stats.splice(k, 1);
                         }
                     }
@@ -427,27 +427,27 @@ checkYellowCard();
 //console.log(matchesData);
 
 //Delete all matches from the database and add the new ones
-Match.deleteMany({})
-    .then(() => {
-        console.log('Deleted all matches');
+// Match.deleteMany({})
+//     .then(() => {
+//         console.log('Deleted all matches');
 
-        const newMatches = matchesData.map((match) => new Match({
-            date: match.date,
-            state: match.state,
-            stats: match.stats,
-            homeTeam: match.homeTeam,
-            awayTeam: match.awayTeam,
-            startTime: match.startTime,
-            field: match.field,
-            referees: match.referees
-        }));
-        return Match.insertMany(newMatches);
-    })
-    .then((result) => {
-        console.log('Added all matches');
-    })
-    .catch((err) => {
-        console.log(err);
-    });
+//         const newMatches = matchesData.map((match) => new Match({
+//             date: match.date,
+//             state: match.state,
+//             stats: match.stats,
+//             homeTeam: match.homeTeam,
+//             awayTeam: match.awayTeam,
+//             startTime: match.startTime,
+//             field: match.field,
+//             referees: match.referees
+//         }));
+//         return Match.insertMany(newMatches);
+//     })
+//     .then((result) => {
+//         console.log('Added all matches');
+//     })
+//     .catch((err) => {
+//         console.log(err);
+//     });
 
 export default { Match }

@@ -40,9 +40,7 @@ const matchFilling = (req, res) => {
         const week = req.params.week;
         Match.find({ date: { $gte: getWeekRange(week).startDate, $lt: getWeekRange(week).endDate }}).lean().then(result => {
             Team.find().lean().then(result2 => {
-                Team.find().lean().then(result3 => {
-                    res.render('schedule', { match: result, team: result2, teams: result3, username: req.session.username, displayDate: week, thisWeek: week, displayNextWeek: getNextWeek(week), displayPreviousWeek: getPreviousWeek(week) })
-                })
+                res.render('schedule', { match: result, team: result2, teams: result2, username: req.session.username, displayDate: week, thisWeek: week, displayNextWeek: getNextWeek(week), displayPreviousWeek: getPreviousWeek(week) })
             })
         })
         .catch(err => console.log(err))

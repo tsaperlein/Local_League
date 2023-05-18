@@ -18,6 +18,42 @@
     z-index: 1;
 }
 
+div.error-message {
+    position: fixed;
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /* Decrease the opacity of the message after 5 seconds */
+    animation: fadeOut 3s ease-in-out forwards;
+    z-index: 999;
+    width: fit-content;
+    height: fit-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    padding: 0 5rem;
+}
+
+.error-message p {
+    font-size: clamp(3rem, 4vw, 5rem);
+    color: red;
+    font-weight: bold;
+    margin: 0;
+    padding: 0;
+    white-space: nowrap;
+}
+
+@keyframes fadeOut {
+    80% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
 /* Fix corners for mobile */
 @media (max-width: 450px) {
 

@@ -9,7 +9,8 @@
     "handlebars": "^4.7.7",
     "memorystore": "^1.6.7",
     "moment": "^2.29.4",
-    "mongoose": "^7.1.0"
+    "mongoose": "^7.1.0",
+    "req-flash": "^0.0.3"
   },
   "main": "index.js",
   "scripts": {
