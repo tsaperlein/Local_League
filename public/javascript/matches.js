@@ -237,10 +237,12 @@ function verticalAlignOfTheScoreTime() {
 verticalAlignOfTheScoreTime();
 
 // Remove the margin-bottom and the border-bottom from the last match shown in schedule
-const matches = document.querySelectorAll('.schedule-container .matches-container .match');
-const adminScheduleOptions = matches[matches.length - 1].querySelector('.admin-schedule-options');
-adminScheduleOptions.style.marginBottom = '0';
-adminScheduleOptions.style.borderBottom = 'none';
+if(window.location.pathname != '/Local-League/main-page') {
+    const matches = document.querySelectorAll('.schedule-container .matches-container .match');
+    const adminScheduleOptions = matches[matches.length - 1].querySelector('.admin-schedule-options');
+    adminScheduleOptions.style.marginBottom = '0';
+    adminScheduleOptions.style.borderBottom = 'none';
+}
 
 if (window.location.pathname === '/Local-League/schedule') {
     // Remove the margin-bottom and the border-bottom from the last stat shown in stats

@@ -148,7 +148,7 @@ nav.header-options li:hover a {
 #signin-signup-modal {
   display: none;
   overflow: hidden;
-  z-index: 900;
+  z-index: 990;
   background-color: rgba(0, 0, 0, 0.4);
 }
 
