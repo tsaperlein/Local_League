@@ -8,7 +8,7 @@
 .header {
   position: fixed;
   width: 100%;
-  z-index: 999;
+  z-index: 980;
   font-family: Comfortaa, Helvetica, sans-serif;
 }
 
@@ -148,7 +148,7 @@ nav.header-options li:hover a {
 #signin-signup-modal {
   display: none;
   overflow: hidden;
-  z-index: 999;
+  z-index: 900;
   background-color: rgba(0, 0, 0, 0.4);
 }
 

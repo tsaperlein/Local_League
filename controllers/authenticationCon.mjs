@@ -1,25 +1,21 @@
-import { error } from 'console';
 import userObj from '../modules/userData.mjs'
 import bcrypt from 'bcrypt'
-import mainPageCon from './mainPageCon.mjs'
+import session from 'express-session';
 
 const { User } = userObj;
 
 const createUser = (req, res) => {
-    const errorCallback = (errorMessage) => {
-        mainPageCon.mainPageStandings(req, res, errorMessage);
-    }
     req.body.password = bcrypt.hashSync(req.body.password, 10);
     User.findOne({ username: req.body.username }).lean().then((user) => {
         if (user != null) {
-            //res.status(500).send("Username already exists");
-            errorCallback("Username already exists");
-        } else {
+            res.render('main-page', { errorMessage: "An account with this username already exists", ...req.session.previousRender })
+        }
+        else if(user == null) {
             User.findOne({ email: req.body.email }).lean().then((result) => {
                 if(result != null) {
-                    //res.status(500).send("An account with this email already exists");
-                    errorCallback("An account with this email already exists");
-                } else{
+                    res.render('main-page', { errorMessage: "An account with this email already exists", ...req.session.previousRender })
+                }
+                else{
                     const newUser = new User(req.body);
                     newUser.save()
                         .then((result) => {
@@ -42,22 +38,19 @@ const createUser = (req, res) => {
 }
 
 const authenticateUser = (req, res) => {
-    const errorCallback = (errorMessage) => {
-        mainPageCon.mainPageStandings(req, res, errorMessage);
-    }
     if (req.body.usernameSignIn != undefined) {
         User.findOne({ username: req.body.usernameSignIn }, { username: 1, password:1 }).lean().then((user) => {
             if(user != null) {
                 if(user.username == req.body.usernameSignIn && bcrypt.compareSync(req.body.passwordSignIn, user.password)) {
                     req.session.username = req.body.usernameSignIn;
                     res.redirect('/Local-League/main-page');
-                } else {
-                    //res.status(500).send("Wrong username or password");
-                    errorCallback("Wrong username or password");
                 }
-            } else {
-                //res.status(500).send("User not found");
-                errorCallback("User not found");
+                else {
+                    res.render('main-page', { errorMessage: "Wrong username or password", ...req.session.previousRender })
+                }
+            }
+            else {
+                res.render('main-page', { errorMessage: "User not found", ...req.session.previousRender })
             }
         })
         .catch((err) => {
@@ -71,4 +64,6 @@ const authenticateUser = (req, res) => {
     }
 }
 
-export default { authenticateUser }
+export default {
+    authenticateUser
+}
