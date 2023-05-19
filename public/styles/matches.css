@@ -153,45 +153,46 @@ li.field-name {
     color: gray
 }
 
-#match-details-modal .modal-content .modal-body .match-details * {
+.match-details-modal .modal-content .modal-body .match-details * {
     font-size: clamp(1vw, 2vw, 3rem);
 }
 
-#match-details-modal {
-    display: none;
+.match-details-modal {
+    visibility: hidden;
     overflow: hidden;
-    z-index: 1;
+    z-index: 999;
     background-color: rgba(0, 0, 0, 0.2);
 }
 
-#match-details-modal .modal-content {
+.match-details-modal .modal-content {
     background-color: rgba(240, 240, 240, 0.95);
     margin: 10% 15%;
     border-radius: 1vw;
-    padding: 1vw;
+    padding: clamp(1rem, 3vw, 5rem);
     overflow: auto;
     height: clamp(40rem, 30vw, 60rem);
 }
 
-#match-details-modal .modal-content .close-btn {
+.match-details-modal .modal-content .close-btn {
     font-size: 2vw;
     cursor: pointer;
     color: black;
     margin: 1rem 2rem;
 }
 
-#match-details-modal .modal-content .modal-header {
+.match-details-modal .modal-content .modal-header {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
     padding: 0 3rem;
+    padding-bottom: clamp(1rem, 2vw, 3rem);
     margin-top: 5rem;
     border: none;
     color: black;
 }
 
-#match-details-modal .modal-content .modal-header h2 {
+.match-details-modal .modal-content .modal-header h2 {
     font-size: 3vw;
     color: black;
     font-weight: 600;
@@ -200,12 +201,12 @@ li.field-name {
     align-items: center;
 }
 
-#match-details-modal .modal-content .modal-header h3 {
+.match-details-modal .modal-content .modal-header h3 {
     padding-left: clamp(1.7rem, 1.1vw, 1vw);
     font-size: clamp(1.5vw, 2vw, 3rem);
 }
 
-#match-details-modal .modal-content .modal-header .team-logo {
+.match-details-modal .modal-content .modal-header .team-logo {
     width: auto;
     height: 5vw;
 }
@@ -217,22 +218,21 @@ div.logo-name {
     width: 5vw;
 }
 
-#match-details-modal .modal-content .modal-body {
-    padding: 0 3rem;
+.match-details-modal .modal-content div.modal-body {
+    padding: clamp(1rem, 2vw, 3rem);
     margin-top: 1rem;
 }
 
-#match-details-modal .modal-content .modal-body .match-details .row {
+.match-details-modal .modal-content .modal-body .match-details .row {
     width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     margin: 0;
-    margin: 1.5rem 0;
-    border-bottom: 1px solid rgba(128, 128, 128, 0.4);
+    margin: 0.5rem 0;
 }
 
-#match-details-modal .modal-content .modal-body .match-details .row div {
+.match-details-modal .modal-content .modal-body .match-details .row div {
     margin: 0;
     padding: 0;
 }
@@ -302,10 +302,6 @@ div.time {
     text-align: center;
     width: fit-content;
     height: fit-content;
-}
-
-.admin-stats-options {
-    border-bottom: 1px solid rgba(128, 128, 128, 0.4);
 }
 
 @media (max-width: 450px) {
@@ -383,57 +379,55 @@ div.time {
     }
 
     /* Modal */
-    #match-details-modal .modal-content .modal-header {
+    .match-details-modal .modal-content .modal-header {
         margin: 0;
         padding: 0 1rem;
         margin-top: 2.5rem;
         height: 7vw;
     }
 
-    #match-details-modal .modal-content .modal-header h3,
-    #match-details-modal .modal-content .modal-header h2 {
+    .match-details-modal .modal-content .modal-header h3,
+    .match-details-modal .modal-content .modal-header h2 {
         font-size: 4vw;
         margin: 0;
     }
 
-    #match-details-modal .modal-content .logo-name {
+    .match-details-modal .modal-content .logo-name {
         height: 100%;
     }
 
-    #match-details-modal .modal-content .logo-name .team-logo {
+    .match-details-modal .modal-content .logo-name .team-logo {
         width: auto;
         height: 100%;
     }
 
-    #match-details-modal .modal-content .logo-name .team-logo img {
+    .match-details-modal .modal-content .logo-name .team-logo img {
         width: auto;
         height: 100%;
     }
 
-    #match-details-modal .modal-content .team-logo {
+    .match-details-modal .modal-content .team-logo {
         width: auto;
         height: 7vw;
     }
 
 
-    #match-details-modal .modal-content .modal-body {
+    .match-details-modal .modal-content .modal-body {
         padding: 0 1rem;
         margin-top: 1rem;
     }
 
-    #match-details-modal .modal-content .modal-body .match-details * {
+    .match-details-modal .modal-content .modal-body .match-details * {
         font-size: 2.5vw;
     }
 
-    #match-details-modal .modal-content .modal-body .match-details .row {
+    .match-details-modal .modal-content .modal-body .match-details .row {
         margin: 0;
         margin: 1rem 0;
     }
 
-    #match-details-modal .modal-content .row {
+    .match-details-modal .modal-content .row {
         margin: 0;
         padding: 0;
     }
-
-
 }

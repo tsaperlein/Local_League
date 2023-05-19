@@ -16,9 +16,14 @@ Handlebars.registerHelper('formatDate', function(date) {
   return moment(date).format('dddd MMM D')
 })
 
-// Gets only the day,month,year and writes it in the format: dd-mm-yyyy
-Handlebars.registerHelper('formatDate2', function (date) {
-    return moment(date).format('DD-MM-YYYY')
+Handlebars.registerHelper('formatId', function (homeTeam, awayTeam, date) {
+    // Use the formatName helper to format the team names
+    homeTeam = Handlebars.helpers.formatName(homeTeam).toLowerCase()
+    awayTeam = Handlebars.helpers.formatName(awayTeam).toLowerCase()
+
+    date = moment(date).format('DD-MM')
+    console.log(`${homeTeam}-${awayTeam}-${date}`)
+    return `${homeTeam}-${awayTeam}-${date}`
 })
 
 // Get the type of the stat and return the src of the image
@@ -26,8 +31,8 @@ Handlebars.registerHelper('formatStat', function (stat) {
     // join the words with '-'
     stat = stat.split(' ').join('-')
     if (stat === 'goal') return 'https://ssl.gstatic.com/onebox/sports/game_feed/goal_icon.svg'
-    else if (stat === 'yellowCards') return 'https://ssl.gstatic.com/onebox/sports/game_feed/yellow_card_right.svg'
-    else if (stat === 'redCards') return 'https://ssl.gstatic.com/onebox/sports/game_feed/red_card_right.svg'
+    else if (stat === 'yellow-card') return 'https://ssl.gstatic.com/onebox/sports/soccer_timeline/yellow-card.svg'
+    else if (stat === 'red-card') return 'https://ssl.gstatic.com/onebox/sports/soccer_timeline/yellow-card.svg'
 })
 
 // format too much letters in a string to only 3-4 letters

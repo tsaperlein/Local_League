@@ -41,26 +41,6 @@
     <footer id="footer" class="footer d-flex flex-row justify-content-around align-items-center">
         {{>footer}}
     </footer>
-
-  <script>
-    const headElement = document.head;
-    const scriptElement = document.createElement('script');
-    if (window.location.pathname === "/Local-League/schedule"){
-        scriptElement.src = '/javascript/matches.js';
-    } else if(window.location.pathname === "/Local-League/standings"){
-        scriptElement.src = '/javascript/standings.js';
-    } else if(window.location.pathname === "/Local-League/main-page"){
-        scriptElement.src = '/javascript/standings.js';
-        const secondScriptElement = document.createElement('script');
-        secondScriptElement.src = '/javascript/matches.js';
-        headElement.appendChild(secondScriptElement);
-    } else {
-        console.log('ok');
-        scriptElement.src = '/javascript/teams.js';
-    }
-    headElement.appendChild(scriptElement);
-  </script>
-
 </body>
 
 </html>

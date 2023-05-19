@@ -1,11 +1,13 @@
 <div class="background">
     <img id="teams-background-img" class="background-img" src="/background-images/6.jpg" alt="Background Image of a soccer field">
+    {{#ifeq role 'admin'}}
     <div class="team-options custom-container d-flex flex-row justify-content-center align-items-center">
         <div class="add-delete-team d-flex flex-row justify-content-center align-items-center">
             <button type="button" class="btn btn-success admin add-team">Add Team</button>
             <button type="button" class="btn btn-danger admin delete-team">Delete Team</button>
         </div>
     </div>
+    {{/ifeq}}
     <div class="team-container custom-container d-flex flex-column flex-wrap justify-content-center align-items-center">
         <div class="lineup-field-container d-flex flex-row justify-content-around">
             {{#each team}}
@@ -72,3 +74,5 @@
         </div>
     </div>
 </div>
+
+<script src="/javascript/teams.js" defer></script>

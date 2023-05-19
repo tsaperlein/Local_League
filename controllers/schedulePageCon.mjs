@@ -1,9 +1,11 @@
 import team_obj from '../modules/teamData.mjs'
 import match_obj from '../modules/matchData.mjs'
+import user_obj from '../modules/userData.mjs'
 import { get } from 'mongoose';
 
 const { Match } = match_obj;
 const { Team } = team_obj;
+const { User } = user_obj;
 
 function getWeekRange(week){
     const dateComponents = week.split(" - ");
@@ -40,7 +42,15 @@ const matchFilling = (req, res) => {
         const week = req.params.week;
         Match.find({ date: { $gte: getWeekRange(week).startDate, $lt: getWeekRange(week).endDate }}).lean().then(result => {
             Team.find().lean().then(result2 => {
-                res.render('schedule', { match: result, team: result2, teams: result2, username: req.session.username, displayDate: week, thisWeek: week, displayNextWeek: getNextWeek(week), displayPreviousWeek: getPreviousWeek(week) })
+                User.find().lean().then(result3 => {
+                    let role = "user";
+                    for (let i = 0; i < result3.length; i++) {
+                        if (result3[i].username == req.session.username) {
+                            if (result3[i].role == "admin") role = "admin";
+                        }
+                    }
+                    res.render('schedule', { match: result, team: result2, teams: result2, username: req.session.username, displayDate: week, thisWeek: week, displayNextWeek: getNextWeek(week), displayPreviousWeek: getPreviousWeek(week), role: role })
+                })
             })
         })
         .catch(err => console.log(err))

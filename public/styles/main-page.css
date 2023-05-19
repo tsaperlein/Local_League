@@ -18,7 +18,7 @@
     z-index: 1;
 }
 
-div.error-message {
+div.auth-error-message {
     position: fixed;
     top: 10%;
     left: 50%;

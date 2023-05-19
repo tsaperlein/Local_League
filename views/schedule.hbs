@@ -65,28 +65,31 @@
                 </div>
                 {{/ifeq}}
             </div>
-            <div id="{{homeTeam.name}}-{{awayTeam.name}}-{{formatDate2 date}}-match-details-modal"
-                class="modal d-flex justify-content-center align-items-center">
+            <div id="{{formatId homeTeam.name awayTeam.name date}}-match-details-modal"
+                class="modal match-details-modal d-flex justify-content-center align-items-center">
                 <div class="modal-content">
                     <span class="close-btn">x</span>
                     <div class="modal-header">
                         <div class="logo-name d-flex justify-content-center align-items-center">
-                            <h2>{{homeTeam.name}}</h2>
+                            <h2>{{formatName homeTeam.name}}</h2>
                             <img class="team-logo" src="{{homeTeam.logo}}" alt="{{homeTeam.name}} icon">
                         </div>
                         <h3>Time</h3>
                         <div class="logo-name d-flex justify-content-center align-items-center">
                             <img class="team-logo" src="{{awayTeam.logo}}" alt="{{awayTeam.name}} icon">
-                            <h2>{{awayTeam.name}}</h2>
+                            <h2>{{formatName awayTeam.name}}</h2>
                         </div>
                     </div>
                     <div class="modal-body">
                         <div class="match-details">
+                            {{#ifeq ../role 'admin'}}
+                            <button class="btn btn-primary admin add-stat-btn" type="button">Add Statistic</button>
+                            {{/ifeq}}
                             {{#each stats}}
                             <div class="row">
                                 <div class="ht-player col-4">
                                     <div class="home-team-player">
-                                        {{#ifeq team homeTeam.name}}
+                                        {{#ifeq team ../homeTeam.name}}
                                         <div>{{name}}</div>
                                         {{/ifeq}}
                                     </div>
@@ -94,13 +97,13 @@
                                 <div class="stat-time col-4">
                                     <div class="stat-and-time">
                                         <div class="home-stat col-4">
-                                            {{#ifeq team homeTeam.name}}
+                                            {{#ifeq team ../homeTeam.name}}
                                             <img src="{{formatStat type}}" alt="{{type}}">
                                             {{/ifeq}}
                                         </div>
                                         <div class="time col-4">{{minute}}</div>
                                         <div class="away-stat col-4">
-                                            {{#ifeq team awayTeam.name}}
+                                            {{#ifeq team ../awayTeam.name}}
                                             <img src="{{formatStat type}}" alt="{{type}}">
                                             {{/ifeq}}
                                         </div>
@@ -108,15 +111,15 @@
                                 </div>
                                 <div class="at-player col-4">
                                     <div class="away-team-player">
-                                        {{#ifeq team awayTeam.name}}
+                                        {{#ifeq team ../awayTeam.name}}
                                         <div>{{name}}</div>
                                         {{/ifeq}}
                                     </div>
                                 </div>
                             </div>
                             {{!-- ADMIN --}}
-                            {{#ifeq ../role 'admin'}}
-                            <div class="admin-match-options">
+                            {{#ifeq ../../role 'admin'}}
+                            <div class="admin-stats-options">
                                 <button class="btn admin edit-btn" type="button">Edit</button>
                                 <button class="btn admin delete-btn" type="button">Delete</button>
                             </div>
@@ -133,7 +136,7 @@
             {{#each match}}
             {{#ifeq state 'Upcoming'}}
             <li class="match-date">{{formatDate date}}</li>
-            <div class="match final-match">
+            <div class="match upcoming-match">
                 <div class="match-information d-flex flex-row align-items-center">
                     <div class="current-state">
                         <li class="d-flex align-items-center">{{state}}</li>
@@ -169,27 +172,31 @@
                 </div>
                 {{/ifeq}}
             </div>
-            <div id="{{homeTeam.name}}-{{awayTeam.name}}-{{formatDate2 date}}-match-details-modal" class="modal d-flex justify-content-center align-items-center">
+            <div id="{{formatId homeTeam.name awayTeam.name date}}-match-details-modal"
+                class="modal match-details-modal d-flex justify-content-center align-items-center">
                 <div class="modal-content">
                     <span class="close-btn">x</span>
                     <div class="modal-header">
                         <div class="logo-name d-flex justify-content-center align-items-center">
-                            <h2>{{homeTeam.name}}</h2>
+                            <h2>{{formatName homeTeam.name}}</h2>
                             <img class="team-logo" src="{{homeTeam.logo}}" alt="{{homeTeam.name}} icon">
                         </div>
                         <h3>Time</h3>
                         <div class="logo-name d-flex justify-content-center align-items-center">
                             <img class="team-logo" src="{{awayTeam.logo}}" alt="{{awayTeam.name}} icon">
-                            <h2>{{awayTeam.name}}</h2>
+                            <h2>{{formatName awayTeam.name}}</h2>
                         </div>
                     </div>
                     <div class="modal-body">
                         <div class="match-details">
-                            {{#each player}}
+                            {{#ifeq ../role 'admin'}}
+                            <button class="btn btn-primary admin add-stat-btn" type="button">Add Statistic</button>
+                            {{/ifeq}}
+                            {{#each stats}}
                             <div class="row">
                                 <div class="ht-player col-4">
                                     <div class="home-team-player">
-                                        {{#ifeq team homeTeam.name}}
+                                        {{#ifeq team ../homeTeam.name}}
                                         <div>{{name}}</div>
                                         {{/ifeq}}
                                     </div>
@@ -197,13 +204,13 @@
                                 <div class="stat-time col-4">
                                     <div class="stat-and-time">
                                         <div class="home-stat col-4">
-                                            {{#ifeq team homeTeam.name}}
+                                            {{#ifeq team ../homeTeam.name}}
                                             <img src="{{formatStat type}}" alt="{{type}}">
                                             {{/ifeq}}
                                         </div>
                                         <div class="time col-4">{{minute}}</div>
                                         <div class="away-stat col-4">
-                                            {{#ifeq team awayTeam.name}}
+                                            {{#ifeq team ../awayTeam.name}}
                                             <img src="{{formatStat type}}" alt="{{type}}">
                                             {{/ifeq}}
                                         </div>
@@ -211,15 +218,15 @@
                                 </div>
                                 <div class="at-player col-4">
                                     <div class="away-team-player">
-                                        {{#ifeq team awayTeam.name}}
+                                        {{#ifeq team ../awayTeam.name}}
                                         <div>{{name}}</div>
                                         {{/ifeq}}
                                     </div>
                                 </div>
                             </div>
                             {{!-- ADMIN --}}
-                            {{#ifeq ../role 'admin'}}
-                            <div class="admin-match-options">
+                            {{#ifeq ../../role 'admin'}}
+                            <div class="admin-stats-options">
                                 <button class="btn admin edit-btn" type="button">Edit</button>
                                 <button class="btn admin delete-btn" type="button">Delete</button>
                             </div>
@@ -234,3 +241,5 @@
         </div>
     </div>
 </div>
+
+<script src="/javascript/matches.js" defer></script>
