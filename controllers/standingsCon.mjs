@@ -28,6 +28,44 @@ const teamRanking = (req, res) => {
   }
 }
 
+const rankByHomeWins = (req, res) => {
+  if(req.session.username == undefined) res.redirect('/Local-League/main-page');
+  else{
+    Team.find().sort({ homeWins: -1 }).select({ wins: 0 }).lean().then(result => {
+      User.find().lean().then(result2 => {
+        let role = "user";
+        for (let i = 0; i < result2.length; i++) {
+          if (result2[i].username == req.session.username) {
+            if (result2[i].role == "admin") role = "admin";
+          }
+        }
+        res.render('standings', { team: result, teams: result, username: req.session.username, thisWeek: thisWeek, role: role })
+      })
+    })
+    .catch(err => console.log(err))
+  }
+}
+
+const rankByAwayWins = (req, res) => {
+  if(req.session.username == undefined) res.redirect('/Local-League/main-page');
+  else{
+    Team.find().sort({ awayWins: -1 }).select({ wins: 0, homeWins: 0 }).lean().then(result => {
+      User.find().lean().then(result2 => {
+        let role = "user";
+        for (let i = 0; i < result2.length; i++) {
+          if (result2[i].username == req.session.username) {
+            if (result2[i].role == "admin") role = "admin";
+          }
+        }
+        res.render('standings', { team: result, teams: result, username: req.session.username, thisWeek: thisWeek, role: role })
+      })
+    })
+    .catch(err => console.log(err))
+  }
+}
+
 export default {
-    teamRanking
+    teamRanking,
+    rankByHomeWins,
+    rankByAwayWins
   }

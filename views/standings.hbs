@@ -3,9 +3,9 @@
     <div class="standings-container custom-container">
         <div class="cont column">
             <div class="standings-choice-buttons-group">
-                <a class="standings-choice-buttons-group-button overall"><span>Overall</span></a>
-                <a class="standings-choice-buttons-group-button home"><span>Home</span></a>
-                <a class="standings-choice-buttons-group-button guest"><span>Guest</span></a>
+                <a href="/Local-League/standings" class="standings-choice-buttons-group-button overall"><span>Overall</span></a>
+                <a href="/Local-League/standings/homewins" class="standings-choice-buttons-group-button home"><span>Home</span></a>
+                <a href="/Local-League/standings/guestwins" class="standings-choice-buttons-group-button guest"><span>Guest</span></a>
             </div>
             <div class="standings-table">
                 <table id="teams-table">
@@ -16,7 +16,13 @@
                             <td class="rank-td"><div class="ranking{{rank}}">{{rank}}</div></td>
                             <td class="team-td"><div class="team"><a class="logo-team" href="/Local-League/teams/{{name}}"><img src="/team-icons/{{logo}}" alt="{{name}}"></a><a class="name-team" href="/Local-League/teams/{{name}}">{{name}}</a></div></td>
                             <td>{{matches}}</td>
+                            {{#if wins}}
                             <td>{{wins}}</td>
+                            {{else if homeWins}}
+                            <td>{{homeWins}}</td>
+                            {{else}}
+                            <td>{{awayWins}}</td>
+                            {{/if}}
                             <td>{{draws}}</td>
                             <td>{{losses}}</td>
                             <td>{{goalsFor}}</td>
