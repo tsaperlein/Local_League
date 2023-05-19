@@ -3,9 +3,9 @@
     <div class="schedule-container custom-container d-flex flex-column">
         <div class="schedule-options d-flex flex-row justify-content-between align-items-center">
             <div class="week-picker btn-group d-flex flex-row align-items-center" role="group">
-                <button id="previous-week" type="button" class="btn btn-light">&lt;</button>
-                <button id="current-week" type="button" class="btn btn-light">Mar 3-Mar 10</button>
-                <button id="next-week" type="button" class="btn btn-light">&gt;</button>
+                <a href="/Local-League/schedule/{{displayPreviousWeek}}"><button id="previous-week" type="button" class="btn btn-light">&lt;</button></a>
+                <a href="/Local-League/schedule/{{displayDate}}"><button id="current-week" type="button" class="btn btn-light">{{displayDate}}</button></a>
+                <a href="/Local-League/schedule/{{displayNextWeek}}"><button id="next-week" type="button" class="btn btn-light">&gt;</button></a>
             </div>
             <div id="calendar-container" style="display:none;">
                 <div id="calendar"></div>
