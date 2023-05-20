@@ -44,12 +44,14 @@ function createHeaderRow() {
 }
 
 // Get the table element and its head and body
-const table = document.getElementById("teams-table");
-const tableHead = table.querySelector("thead");
+if(window.location.pathname == '/Local-League/main-page'){
+  const table = document.getElementById("teams-table");
+  const tableHead = table.querySelector("thead");
 
-// create table header and append it to the table head
-const headerRow = createHeaderRow();
-tableHead.appendChild(headerRow);
+  // create table header and append it to the table head
+  const headerRow = createHeaderRow();
+  tableHead.appendChild(headerRow);
+}
 
 function straightRank(){
   const parent = document.getElementById('tbody');

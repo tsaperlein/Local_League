@@ -9,7 +9,40 @@
             </div>
             <div class="standings-table">
                 <table id="teams-table">
-                    <thead id="thead"></thead>
+                    <thead id="thead">
+                        <tr>
+                            <th class="sticky-rank">
+                                <a class='header-button rank-btn'>Rank &nbsp;<i class='fa fa-sort'></i></a>
+                            </th>
+                            <th class="team-th sticky-team">
+                                <a class='header-button team-btn'>Team &nbsp;<i class='fa fa-sort'></i></a>
+                            </th>
+                            <th>
+                                <a class='header-button matches-btn'>Matches &nbsp;</a>
+                            </th>
+                            <th>
+                                <a class='header-button wins-btn'>W &nbsp;<i class='fa fa-sort'></i></a>
+                            </th>
+                            <th>
+                                <a class='header-button draws-btn'>D &nbsp;<i class='fa fa-sort'></i></a>
+                            </th>
+                            <th>
+                                <a class='header-button losses-btn'>L &nbsp;<i class='fa fa-sort'></i></a>
+                            </th>
+                            <th>
+                                <a class='header-button goals-for-btn'>GF &nbsp;<i class='fa fa-sort'></i></a>
+                            </th>
+                            <th>
+                                <a class='header-button goals-against-btn'>GA &nbsp;<i class='fa fa-sort'></i></a>
+                            </th>
+                            <th>
+                                <a class='header-button goal-diff-btn'>GD &nbsp;<i class='fa fa-sort'></i></a>
+                            </th>
+                            <th class="sticky-points">
+                                <a class='header-button points-btn'>PTS &nbsp;<i class='fa fa-sort'></i></a>
+                            </th>
+                        </tr>
+                    </thead>
                     <tbody id="tbody">
                         {{#each team}}
                         <tr>
