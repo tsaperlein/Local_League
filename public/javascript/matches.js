@@ -28,6 +28,8 @@
 // }
 // allStats.sort((a, b) => a.time - b.time);
 
+const upcomingMatches = document.getElementById('upcoming-matches-container');
+const finalMatches = document.getElementById('final-matches-container');
 const match = document.querySelectorAll('div.matches-container div.match')
 match.forEach((match) => {
     match.addEventListener('click', () => {
@@ -36,30 +38,38 @@ match.forEach((match) => {
         let awayTeam = match.querySelector('label.away-team-name').innerHTML;
         homeTeam = homeTeam.toLowerCase();
         awayTeam = awayTeam.toLowerCase();
-        
+
         // Get the date from his sibling without moving back to the parent
         let date = match.previousElementSibling;
         date = date.innerHTML;
-        
-        // Format the date from dddd MMM D to dd-mm
-        let formattedDate = moment(date).format('DD-MM');
 
-        console.log(`${homeTeam}-${awayTeam}-${formattedDate}-match-details-modal`);
+        // Format the date from dddd MMM D to D-M
+        const formattedDate = moment(date).format('DD-MM')
 
         // Find the modal with id {{homeTeam.name}}-{{awayTeam.name}}-{{formatDate2 date}}-match-details-modal
         const modal = document.getElementById(`${homeTeam}-${awayTeam}-${formattedDate}-match-details-modal`);
 
         modal.style.visibility = 'visible';
+        // If the match is final, then show the modal on top of the upcoming matches
+        if (match.classList.contains('final-match')) {
+            upcomingMatches.style.zIndex = '0';
+        } else finalMatches.style.zIndex = '0';
         document.body.style.overflow = 'hidden';
 
         const closeBtn = modal.querySelector('.close-btn');
         closeBtn.addEventListener('click', () => {
             modal.style.visibility = 'hidden';
+            if (match.classList.contains('final-match')) {
+                upcomingMatches.style.zIndex = '1';
+            } else finalMatches.style.zIndex = '1';
             document.body.style.overflow = 'visible';
         });
         window.addEventListener('click', (event) => {
             if (event.target == modal) {
                 modal.style.visibility = 'hidden';
+                if (match.classList.contains('final-match')) {
+                    upcomingMatches.style.zIndex = '1';
+                } else finalMatches.style.zIndex = '1';
                 document.body.style.overflow = 'visible';
             }
         });
@@ -94,7 +104,7 @@ match.forEach((match) => {
 //                 document.body.style.overflow = 'visible';
 //             }
 //         });
-        
+
 //         if (modal) {
 //             document.body.style.overflow = 'hidden';
 //             addStatistics();
@@ -237,7 +247,7 @@ function verticalAlignOfTheScoreTime() {
 verticalAlignOfTheScoreTime();
 
 // Remove the margin-bottom and the border-bottom from the last match shown in schedule
-if(window.location.pathname != '/Local-League/main-page') {
+if (window.location.pathname != '/Local-League/main-page') {
     const matches = document.querySelectorAll('.schedule-container .matches-container .match');
     const adminScheduleOptions = matches[matches.length - 1].querySelector('.admin-schedule-options');
     adminScheduleOptions.style.marginBottom = '0';

@@ -58,6 +58,7 @@ button.admin:hover {
 
 button.edit-btn {
     background-color: lightgreen;
+    z-index: 999;
 }
 
 button.edit-btn:hover {

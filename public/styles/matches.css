@@ -33,6 +33,10 @@ li.match-date {
     cursor: pointer;
 }
 
+#upcoming-matches-container {
+    z-index: 0;
+}
+
 /* MATCH */
 .matches-wrapper .match.bordered-bottom {
     border-bottom: 1px solid rgba(128, 128, 128, 0.4);
@@ -96,6 +100,12 @@ label.team-name {
 
 .match-time {
     width: 5vw;
+    height: fit-content;
+}
+
+.match-time li {
+    font-size: clamp(0.9rem, 1.5vw, 4rem);
+    font-weight: 500;
 }
 
 .score {
@@ -158,9 +168,10 @@ li.field-name {
 }
 
 .match-details-modal {
+    position: fixed;
     visibility: hidden;
     overflow: hidden;
-    z-index: 999;
+    z-index: 9999;
     background-color: rgba(0, 0, 0, 0.2);
 }
 
@@ -168,7 +179,7 @@ li.field-name {
     background-color: rgba(240, 240, 240, 0.95);
     margin: 10% 15%;
     border-radius: 1vw;
-    padding: clamp(1rem, 3vw, 5rem);
+    padding: clamp(0.5rem, 2.5vw, 5rem);
     overflow: auto;
     height: clamp(40rem, 30vw, 60rem);
 }
@@ -211,16 +222,16 @@ li.field-name {
     height: 5vw;
 }
 
-div.logo-name {
+.match-details-modal .modal-content .modal-header div.logo-name {
     gap: 1rem;
     margin: 0;
     padding: 0;
-    width: 5vw;
+    width: fit-content;
 }
 
 .match-details-modal .modal-content div.modal-body {
     padding: clamp(1rem, 2vw, 3rem);
-    margin-top: 1rem;
+    margin-top: clamp(1rem, 2vw, 3rem);
 }
 
 .match-details-modal .modal-content .modal-body .match-details .row {
@@ -419,11 +430,6 @@ div.time {
 
     .match-details-modal .modal-content .modal-body .match-details * {
         font-size: 2.5vw;
-    }
-
-    .match-details-modal .modal-content .modal-body .match-details .row {
-        margin: 0;
-        margin: 1rem 0;
     }
 
     .match-details-modal .modal-content .row {

@@ -4,6 +4,7 @@ import { ExpressHandlebars, engine } from 'express-handlebars'
 import { router } from './routes.mjs'
 import mongoose from 'mongoose'
 import session from 'express-session'
+import moment from 'moment'
 import createMemoryStore from 'memorystore'
 
 const MemoryStore = createMemoryStore(session)
@@ -15,7 +16,7 @@ const myAppSession = session({ // session configuration object
     saveUninitialized: true,
     name: "myApp-sid", // if not set, the default name is connect.sid
     cookie: {
-        maxAge: 1000*60*20, // 20 minutes
+        maxAge: 1000 * 60 * 20, // 20 minutes
     }
 })
 

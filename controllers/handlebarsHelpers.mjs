@@ -12,8 +12,8 @@ Handlebars.registerHelper('ifeq', function (a, b, opts) {
 })
 
 // Gets the date and writes it in the format: dddd MMM D
-Handlebars.registerHelper('formatDate', function(date) {
-  return moment(date).format('dddd MMM D')
+Handlebars.registerHelper('formatDate', function (date) {
+    return moment(date).format('dddd MMM D')
 })
 
 Handlebars.registerHelper('formatId', function (homeTeam, awayTeam, date) {
@@ -22,7 +22,8 @@ Handlebars.registerHelper('formatId', function (homeTeam, awayTeam, date) {
     awayTeam = Handlebars.helpers.formatName(awayTeam).toLowerCase()
 
     date = moment(date).format('DD-MM')
-    console.log(`${homeTeam}-${awayTeam}-${date}`)
+    if (date[1] === '-') date = '0' + date
+
     return `${homeTeam}-${awayTeam}-${date}`
 })
 

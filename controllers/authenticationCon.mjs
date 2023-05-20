@@ -10,12 +10,12 @@ const createUser = (req, res) => {
         if (user != null) {
             res.render('main-page', { errorMessage: "An account with this username already exists", ...req.session.previousRender })
         }
-        else if(user == null) {
+        else if (user == null) {
             User.findOne({ email: req.body.email }).lean().then((result) => {
-                if(result != null) {
+                if (result != null) {
                     res.render('main-page', { errorMessage: "An account with this email already exists", ...req.session.previousRender })
                 }
-                else{
+                else {
                     const newUser = new User(req.body);
                     newUser.save()
                         .then((result) => {
@@ -27,35 +27,35 @@ const createUser = (req, res) => {
                         })
                 }
             })
-            .catch((err) => {
-                console.log(err);
-            })
+                .catch((err) => {
+                    console.log(err);
+                })
         }
     })
-    .catch((err) => {
-        console.log(err);
-    })
+        .catch((err) => {
+            console.log(err);
+        })
 }
 
 const authenticateUser = (req, res) => {
     if (req.body.usernameSignIn != undefined) {
-        User.findOne({ username: req.body.usernameSignIn }, { username: 1, password:1 }).lean().then((user) => {
-            if(user != null) {
-                if(user.username == req.body.usernameSignIn && bcrypt.compareSync(req.body.passwordSignIn, user.password)) {
+        User.findOne({ username: req.body.usernameSignIn }, { username: 1, password: 1 }).lean().then((user) => {
+            if (user != null) {
+                if (user.username == req.body.usernameSignIn && bcrypt.compareSync(req.body.passwordSignIn, user.password)) {
                     req.session.username = req.body.usernameSignIn;
                     res.redirect('/Local-League/main-page');
                 }
-                else {
-                    res.render('main-page', { errorMessage: "Wrong username or password", ...req.session.previousRender })
+                else if (user.username == req.body.usernameSignIn && !bcrypt.compareSync(req.body.passwordSignIn, user.password)) {
+                    res.render('main-page', { errorMessage: "Wrong password", ...req.session.previousRender })
                 }
             }
             else {
                 res.render('main-page', { errorMessage: "User not found", ...req.session.previousRender })
             }
         })
-        .catch((err) => {
-            console.log(err);
-        })
+            .catch((err) => {
+                console.log(err);
+            })
     } else if (req.body.username != undefined) {
         createUser(req, res);
     }

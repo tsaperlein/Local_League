@@ -27,6 +27,7 @@
     background: rgba(114, 114, 114, 0.5);
     font-family: sans-serif;
     margin-bottom: 2vw;
+    text-decoration: none;
 }
 
 .standings-choice-buttons-group-button {
@@ -43,12 +44,28 @@
     cursor: pointer;
 }
 
-.standings-choice-buttons-group:hover a {
-    background-color: rgb(174, 174, 174);
-    color: rgb(92, 92, 92);
+.standings-choice-buttons-group a.picked {
+    background-color: white;
+    color: black;
+    border-radius: 2vw;
+    transform: scale(1.1);
+    text-decoration: none;
 }
 
-.standings-choice-buttons-group a:hover {
+.standings-choice-buttons-group a.non-picked {
+    background-color: rgb(174, 174, 174);
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+}
+
+.standings-choice-buttons-group:hover a.non-picked {
+    background-color: rgb(174, 174, 174);
+    color: rgb(92, 92, 92);
+    text-decoration: none;
+}
+
+.standings-choice-buttons-group a.picked:hover,
+.standings-choice-buttons-group a.non-picked:hover {
     background-color: white;
     color: black;
     border-radius: 2vw;

@@ -15,12 +15,20 @@ body ul {
     z-index: 1;
 }
 
-.week-picker,
 .team-selection {
     border-radius: 1vw;
 }
 
-.week-picker button,
+.week-picker {
+    border-radius: 1vw;
+    background-color: transparent;
+}
+
+.week-picker a {
+    height: 100%;
+    border-radius: inherit;
+}
+
 .team-selection button {
     border-radius: 1vw;
 }
@@ -36,13 +44,21 @@ div.schedule-options * {
     padding: 0;
 }
 
-.btn-group button#current-week {
+.week-picker a #current-week {
     width: 12vw;
 }
 
 .btn-group button#previous-week,
 .btn-group button#next-week {
     width: 2.5vw;
+}
+
+.btn-group button#previous-week {
+    border-radius: inherit;
+}
+
+.btn-group button#next-week {
+    border-radius: inherit;
 }
 
 .team-selection button {
@@ -91,6 +107,10 @@ div.schedule-options {
     font-size: clamp(1rem, 1.5vw, 3.5rem);
 }
 
+.add-match-option {
+    width: 100%;
+}
+
 @media (max-width: 450px) {
 
     /* Fix the margin of the schedule container */
@@ -119,11 +139,6 @@ div.schedule-options {
 
     .btn-group button#current-week {
         width: 50px;
-    }
-
-    .btn-group button#previous-week,
-    .btn-group button#next-week {
-        width: 10px;
     }
 
     .dropdown-item {
