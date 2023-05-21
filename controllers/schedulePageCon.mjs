@@ -40,7 +40,7 @@ const matchFilling = (req, res) => {
     if (req.session.username == undefined) res.redirect('/Local-League/main-page');
     else {
         const week = req.params.week;
-        Match.find({ date: { $gte: getWeekRange(week).startDate, $lt: getWeekRange(week).endDate } }).lean().then(result => {
+        Match.find({ date: { $gte: getWeekRange(week).startDate, $lt: getWeekRange(week).endDate } }).sort({ date: 1 }).lean().then(result => {
             Team.find().lean().then(result2 => {
                 User.find().lean().then(result3 => {
                     let role = "user";

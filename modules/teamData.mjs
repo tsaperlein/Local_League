@@ -78,75 +78,88 @@ let teamsData = [
     { name: "Paris Saint Germain", logo: "paris-saint-germain.png", matches: 0, wins: 0, draws: 0, losses: 0, homeWins: 0, awayWins: 0, goalsFor: 0, goalsAgainst: 0, goalDifference: 0, points: 0 }
 ];
 
-function generateData(teams){
-    for(let i = 0; i < teams.length; i++){
-        Match.find( {$or: [
-            { "homeTeam.name": teams[i].name },
-            { "awayTeam.name": teams[i].name }
-          ], "state": "Final" }).lean().then((result) => {
-            teams[i].matches = result.length;
-            for(let j = 0; j < result.length; j++){
-                if(result[j].homeTeam.name === teams[i].name){
-                    if(result[j].homeTeam.score > result[j].awayTeam.score){
-                        teams[i].wins++;
-                        teams[i].homeWins++;
+async function updateData(){
+    Team.find().lean().then((teams) => {
+        for(let i = 0; i < teams.length; i++){
+            // reset all teams
+            teams[i].matches = 0;
+            teams[i].wins = 0;
+            teams[i].draws = 0;
+            teams[i].losses = 0;
+            teams[i].homeWins = 0;
+            teams[i].awayWins = 0;
+            teams[i].goalsFor = 0;
+            teams[i].goalsAgainst = 0;
+            teams[i].goalDifference = 0;
+            teams[i].points = 0;
+            Match.find( {$or: [
+                { "homeTeam.name": teams[i].name },
+                { "awayTeam.name": teams[i].name }
+                ], "state": "Final" }).lean().then((result) => {
+                teams[i].matches = result.length;
+                for(let j = 0; j < result.length; j++){
+                    if(result[j].homeTeam.name === teams[i].name){
+                        if(result[j].homeTeam.score > result[j].awayTeam.score){
+                            teams[i].wins++;
+                            teams[i].homeWins++;
+                        }
+                        else if(result[j].homeTeam.score < result[j].awayTeam.score){
+                            teams[i].losses++;
+                        }
+                        else{
+                            teams[i].draws++;
+                        }
+                        teams[i].goalsFor += result[j].homeTeam.score;
+                        teams[i].goalsAgainst += result[j].awayTeam.score;
                     }
-                    else if(result[j].homeTeam.score < result[j].awayTeam.score){
-                        teams[i].losses++;
+                    else if(result[j].awayTeam.name === teams[i].name){
+                        if(result[j].awayTeam.score > result[j].homeTeam.score){
+                            teams[i].wins++;
+                            teams[i].awayWins++;
+                        }
+                        else if(result[j].awayTeam.score < result[j].homeTeam.score){
+                            teams[i].losses++;
+                        }
+                        else{
+                            teams[i].draws++;
+                        }
+                        teams[i].goalsFor += result[j].awayTeam.score;
+                        teams[i].goalsAgainst += result[j].homeTeam.score;
                     }
-                    else{
-                        teams[i].draws++;
-                    }
-                    teams[i].goalsFor += result[j].homeTeam.score;
-                    teams[i].goalsAgainst += result[j].awayTeam.score;
                 }
-                else if(result[j].awayTeam.name === teams[i].name){
-                    if(result[j].awayTeam.score > result[j].homeTeam.score){
-                        teams[i].wins++;
-                        teams[i].awayWins++;
-                    }
-                    else if(result[j].awayTeam.score < result[j].homeTeam.score){
-                        teams[i].losses++;
-                    }
-                    else{
-                        teams[i].draws++;
-                    }
-                    teams[i].goalsFor += result[j].awayTeam.score;
-                    teams[i].goalsAgainst += result[j].homeTeam.score;
-                }
-            }
-            teams[i].points = teams[i].wins * 3 + teams[i].draws;
-            teams[i].goalDifference = teams[i].goalsFor - teams[i].goalsAgainst;
-            let team = new Team(teams[i]);
-            Team.insertMany(team)
-            .then(() => {
-                console.log('Team ' + i + ' inserted');
+                teams[i].points = teams[i].wins * 3 + teams[i].draws;
+                teams[i].goalDifference = teams[i].goalsFor - teams[i].goalsAgainst;
+                Team.updateOne({ name: teams[i].name }, { $set: teams[i] }).then((result1) => {
+                    // console.log(result1);
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
             })
-            .catch(error => {
-                console.log(error);
-            });
-          })
-          .catch((err) => {
+            .catch((err) => {
             console.log(err);
-          });
-    }
+            });
+        }
+    })
+    .catch((err) => {
+        console.log(err);
+    });
+
+    await Team.find().sort({ points: -1 }).lean().then((result) => {
+        console.log(result);
+        result.forEach((team, index) => {
+            Team.updateOne({ _id: team._id }, { $set: { rank: index + 1 } }).then((result1) => {
+                console.log(result1);
+            })
+            .catch((err) => {
+                console.log(err);
+            })
+        })
+    })
+    .catch((err) => {
+        console.log(err);
+    });
 }
-
-// generateData(teamsData);
-
-// Team.find().sort({ points: -1 }).lean().then((result) => {
-//     result.forEach((team, index) => {
-//         Team.updateOne({ _id: team._id }, { $set: { rank: index + 1 } }).then((result1) => {
-//             console.log(result1);
-//         })
-//         .catch((err) => {
-//             console.log(err);
-//         })
-//     })
-// })
-// .catch((err) => {
-//     console.log(err);
-// });
 
 // Team.deleteMany()
 //   .then(() => {
@@ -156,4 +169,7 @@ function generateData(teams){
 //     console.error(error);
 //   });
 
-export default { Team }
+export default {
+    Team,
+    updateData
+}
