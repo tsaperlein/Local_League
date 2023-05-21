@@ -1,8 +1,8 @@
 import mongoose from 'mongoose';
-// import natchObj from './matchData.mjs';
+import natchObj from './matchData.mjs';
 
 const Schema = mongoose.Schema;
-// const { Match } = natchObj;
+const { Match } = natchObj;
 
 const teamSchema = new Schema({
     name: {
@@ -55,157 +55,102 @@ const teamSchema = new Schema({
     },
     rank: {
         type: Number,
-        required: true
+        required: false
     }
 }, {timestamps: true});
 
 const Team = mongoose.model('Team', teamSchema);
 
-// let teamsData = [
-//     { name: "AEK", logo: "aek.png", matches: 27, wins: 19, draws: 3, losses: 5, points: 60 },
-//     { name: "Panathinaikos", logo: "pao.png", matches: 27, wins: 16, draws: 8, losses: 2, points: 59 },
-//     { name: "Olympiakos", logo: "osfp.png", matches: 27, wins: 14, draws: 9, losses: 2, points: 57 },
-//     { name: "PAOK", logo: "paok.png", matches: 27, wins: 14, draws: 8, losses: 2, points: 59 },
-//     { name: "Arsenal", logo: "arsenal.png", matches: 27, wins: 14, draws: 8, losses: 2, points: 59 },
-//     { name: "Barcelona", logo: "barcelona.png", matches: 27, wins: 14, draws: 8, losses: 2, points: 59 },
-//     { name: "Fenerbahçe", logo: "fenerbahce.png", matches: 27, wins: 14, draws: 8, losses: 2, points: 59 },
-//     { name: "Juventus", logo: "juventus.png", matches: 27, wins: 14, draws: 8, losses: 2, points: 59 },
-//     { name: "Liverpool", logo: "liverpool.png", matches: 27, wins: 14, draws: 8, losses: 2, points: 59 },
-//     { name: "Manchester United", logo: "manchester-united.png", matches: 27, wins: 14, draws: 8, losses: 2, points: 59 },
-//     { name: "Manchester City", logo: "manchester-city.png", matches: 27, wins: 14, draws: 8, losses: 2, points: 59 },
-//     { name: "Milan", logo: "milan.png", matches: 27, wins: 14, draws: 8, losses: 2, points: 59 },
-//     { name: "Real Madrid", logo: "real-madrid.png", matches: 27, wins: 14, draws: 8, losses: 2, points: 59 },
-//     { name: "Paris Saint Germain", logo: "paris-saint-germain.png", matches: 27, wins: 14, draws: 8, losses: 2, points: 59 }
-// ];
+let teamsData = [
+    { name: "AEK", logo: "aek.png", matches: 0, wins: 0, draws: 0, losses: 0, homeWins: 0, awayWins: 0, goalsFor: 0, goalsAgainst: 0, goalDifference: 0, points: 0 },
+    { name: "Panathinaikos", logo: "pao.png", matches: 0, wins: 0, draws: 0, losses: 0, homeWins: 0, awayWins: 0, goalsFor: 0, goalsAgainst: 0, goalDifference: 0, points: 0 },
+    { name: "Olympiakos", logo: "osfp.png", matches: 0, wins: 0, draws: 0, losses: 0, homeWins: 0, awayWins: 0, goalsFor: 0, goalsAgainst: 0, goalDifference: 0, points: 0 },
+    { name: "PAOK", logo: "paok.png", matches: 0, wins: 0, draws: 0, losses: 0, homeWins: 0, awayWins: 0, goalsFor: 0, goalsAgainst: 0, goalDifference: 0, points: 0 },
+    { name: "Arsenal", logo: "arsenal.png", matches: 0, wins: 0, draws: 0, losses: 0, homeWins: 0, awayWins: 0, goalsFor: 0, goalsAgainst: 0, goalDifference: 0, points: 0 },
+    { name: "Barcelona", logo: "barcelona.png", matches: 0, wins: 0, draws: 0, losses: 0, homeWins: 0, awayWins: 0, goalsFor: 0, goalsAgainst: 0, goalDifference: 0, points: 0 },
+    { name: "Fenerbahçe", logo: "fenerbahce.png", matches: 0, wins: 0, draws: 0, losses: 0, homeWins: 0, awayWins: 0, goalsFor: 0, goalsAgainst: 0, goalDifference: 0, points: 0 },
+    { name: "Juventus", logo: "juventus.png", matches: 0, wins: 0, draws: 0, losses: 0, homeWins: 0, awayWins: 0, goalsFor: 0, goalsAgainst: 0, goalDifference: 0, points: 0 },
+    { name: "Liverpool", logo: "liverpool.png", matches: 0, wins: 0, draws: 0, losses: 0, homeWins: 0, awayWins: 0, goalsFor: 0, goalsAgainst: 0, goalDifference: 0, points: 0},
+    { name: "Manchester United", logo: "manchester-united.png", matches: 0, wins: 0, draws: 0, losses: 0, homeWins: 0, awayWins: 0, goalsFor: 0, goalsAgainst: 0, goalDifference: 0, points: 0 },
+    { name: "Manchester City", logo: "manchester-city.png", matches: 0, wins: 0, draws: 0, losses: 0, homeWins: 0, awayWins: 0, goalsFor: 0, goalsAgainst: 0, goalDifference: 0, points: 0 },
+    { name: "Milan", logo: "milan.png", matches: 0, wins: 0, draws: 0, losses: 0, homeWins: 0, awayWins: 0, goalsFor: 0, goalsAgainst: 0, goalDifference: 0, points: 0 },
+    { name: "Real Madrid", logo: "real-madrid.png", matches: 0, wins: 0, draws: 0, losses: 0, homeWins: 0, awayWins: 0, goalsFor: 0, goalsAgainst: 0, goalDifference: 0, points: 0 },
+    { name: "Paris Saint Germain", logo: "paris-saint-germain.png", matches: 0, wins: 0, draws: 0, losses: 0, homeWins: 0, awayWins: 0, goalsFor: 0, goalsAgainst: 0, goalDifference: 0, points: 0 }
+];
 
-// // Functon that returns a random integer between min and max (both included)
-// function getRandomInt(min, max) {
-//     return Math.floor(Math.random() * (max - min + 1)) + min;
-// }
+function generateData(teams){
+    for(let i = 0; i < teams.length; i++){
+        Match.find( {$or: [
+            { "homeTeam.name": teams[i].name },
+            { "awayTeam.name": teams[i].name }
+          ], "state": "Final" }).lean().then((result) => {
+            teams[i].matches = result.length;
+            for(let j = 0; j < result.length; j++){
+                if(result[j].homeTeam.name === teams[i].name){
+                    if(result[j].homeTeam.score > result[j].awayTeam.score){
+                        teams[i].wins++;
+                        teams[i].homeWins++;
+                    }
+                    else if(result[j].homeTeam.score < result[j].awayTeam.score){
+                        teams[i].losses++;
+                    }
+                    else{
+                        teams[i].draws++;
+                    }
+                    teams[i].goalsFor += result[j].homeTeam.score;
+                    teams[i].goalsAgainst += result[j].awayTeam.score;
+                }
+                else if(result[j].awayTeam.name === teams[i].name){
+                    if(result[j].awayTeam.score > result[j].homeTeam.score){
+                        teams[i].wins++;
+                        teams[i].awayWins++;
+                    }
+                    else if(result[j].awayTeam.score < result[j].homeTeam.score){
+                        teams[i].losses++;
+                    }
+                    else{
+                        teams[i].draws++;
+                    }
+                    teams[i].goalsFor += result[j].awayTeam.score;
+                    teams[i].goalsAgainst += result[j].homeTeam.score;
+                }
+            }
+            teams[i].points = teams[i].wins * 3 + teams[i].draws;
+            teams[i].goalDifference = teams[i].goalsFor - teams[i].goalsAgainst;
+            let team = new Team(teams[i]);
+            Team.insertMany(team)
+            .then(() => {
+                console.log('Team ' + i + ' inserted');
+            })
+            .catch(error => {
+                console.log(error);
+            });
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+    }
+}
 
-// function generateMatches(teams){
-//     for(let i = 0; i < teams.length; i++){
-//         Match.find( {$or: [
-//             { "homeTeam.name": teams[i].name },
-//             { "awayTeam.name": teams[i].name }
-//           ], "state": "Final" }).lean().then((result) => {
-//             teams[i].matches = result.length;
-//           })
-//           .catch((err) => {
+// generateData(teamsData);
+
+// Team.find().sort({ points: -1 }).lean().then((result) => {
+//     result.forEach((team, index) => {
+//         Team.updateOne({ _id: team._id }, { $set: { rank: index + 1 } }).then((result1) => {
+//             console.log(result1);
+//         })
+//         .catch((err) => {
 //             console.log(err);
-//           });
-//     }
-//     console.log(teams);
-// }
+//         })
+//     })
+// })
+// .catch((err) => {
+//     console.log(err);
+// });
 
-// function generateResults(teams){
-//     for(let i = 0; i < teams.length; i++){
-//         Match.find( {$or: [
-//             { "homeTeam.name": teams[i].name },
-//             { "awayTeam.name": teams[i].name }
-//           ], "state": "Final" }).lean().then((result) => {
-//             result.forEach((match) => {
-//                 if(match.homeTeam.name === teams[i].name){
-//                     if(match.homeTeam.score > match.awayTeam.score){
-//                         teams[i].wins++;
-//                         teams[i].homeWins++;
-//                     }
-//                     else if(match.homeTeam.score < match.awayTeam.score){
-//                         teams[i].losses++;
-//                     }
-//                     else{
-//                         teams[i].draws++;
-//                     }
-//                 }
-//                 else if(match.awayTeam.name === teams[i].name){
-//                     if(match.awayTeam.score > match.homeTeam.score){
-//                         teams[i].wins++;
-//                         teams[i].awayWins++;
-//                     }
-//                     else if(match.awayTeam.score < match.homeTeam.score){
-//                         teams[i].losses++;
-//                     }
-//                     else{
-//                         teams[i].draws++;
-//                     }
-//                 }
-//             });
-//           })
-//           .catch((err) => {
-//             console.log(err);
-//           });
-//     }
-//     console.log(teams);
-// }
-
-// // Function that calculates the points for each team
-// function calculatePoints(teams) {
-//     for (let i = 0; i < teams.length; i++) {
-//         teams[i].points = teams[i].wins * 3 + teams[i].draws;
-//     }
-// }
-  
-// // Function that generates random goal data for each team
-// for (let i = 0; i < teamsData.length; i++) {
-//     teamsData[i].goalsFor = getRandomInt(30, 80);
-//     teamsData[i].goalsAgainst = getRandomInt(10, 80);
-//     teamsData[i].goalDifference = teamsData[i].goalsFor - teamsData[i].goalsAgainst;
-// }
-  
-// // Function that calculates the rank of each team and sorts them by it
-// function calculateAndSortRanking(teams) {
-//     // sort the teams by their rank (in descending order)
-//     teams.sort((a, b) => b.points - a.points);
-//     teams.forEach((team, index) => {
-//       team.rank = index + 1;
-//     });
-// }
-
-// function handleHomeWins(teams){
-//     for (let i = 0; i < teams.length; i++) {
-//       teams[i].homeWins = getRandomInt(1, teams[i].wins);
-//     }
-// }
-  
-// function handleGuestWins(teams){
-//     for (let i = 0; i < teams.length; i++) {
-//       teams[i].guestWins = teams[i].wins - teams[i].homeWins;
-//     }
-// }
-
-// generateMatches(teamsData);
-// generateResults(teamsData);
-// calculatePoints(teamsData);
-// calculateAndSortRanking(teamsData);
-// handleHomeWins(teamsData);
-// handleGuestWins(teamsData);
-
-// Team.deleteMany({})
+// Team.deleteMany()
 //   .then(() => {
 //     console.log('All existing teams deleted');
-    
-//     // create new teams from the `teamsData` array
-//     const newTeams = teamsData.map(teamData => new Team({
-//       name: teamData.name,
-//       logo: teamData.logo,
-//       matches: teamData.matches,
-//       wins: teamData.wins,
-//       draws: teamData.draws,
-//       losses: teamData.losses,
-//       homeWins: teamData.homeWins,
-//       awayWins: teamData.guestWins,
-//       points: teamData.points,
-//       goalsFor: teamData.goalsFor,
-//       goalsAgainst: teamData.goalsAgainst,
-//       goalDifference: teamData.goalDifference,
-//       rank: teamData.rank,
-//     }));
-
-//     // save the new teams to the database
-//     return Team.insertMany(newTeams);
-//   })
-//   .then(result => {
-//     console.log(`${result.length} new teams saved`);
 //   })
 //   .catch(error => {
 //     console.error(error);
