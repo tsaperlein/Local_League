@@ -4,7 +4,6 @@ import { ExpressHandlebars, engine } from 'express-handlebars'
 import { router } from './routes.mjs'
 import mongoose from 'mongoose'
 import session from 'express-session'
-import moment from 'moment'
 import createMemoryStore from 'memorystore'
 
 const MemoryStore = createMemoryStore(session)

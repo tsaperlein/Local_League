@@ -4,7 +4,8 @@
 </div>
 {{/if}}
 <div class="background">
-    <img class="background-img" src="/background-images/4.jpg" alt="Background Image: Soccer field with a ball on the grass">
+    <img class="background-img" src="/background-images/4.jpg"
+        alt="Background Image: Soccer field with a ball on the grass">
     <div class="information-container custom-container">
         <div class="column">
             <div class="standings">
@@ -14,8 +15,14 @@
                         <tbody id="tbody">
                             {{#each team}}
                             <tr>
-                                <td class="rank-td"><div class="ranking{{rank}}">{{rank}}</div></td>
-                                <td class="team-td"><div class="team"><a class="logo-team" href="/Local-League/teams/{{name}}"><img src="/team-icons/{{logo}}" alt="{{name}}"></a><a class="name-team" href="/Local-League/teams/{{name}}">{{name}}</a></div></td>
+                                <td class="rank-td">
+                                    <div class="ranking{{rank}}">{{rank}}</div>
+                                </td>
+                                <td class="team-td">
+                                    <div class="team"><a class="logo-team" href="/Local-League/teams/{{name}}"><img
+                                                src="/team-icons/{{logo}}" alt="{{name}}"></a><a class="name-team"
+                                            href="/Local-League/teams/{{name}}">{{name}}</a></div>
+                                </td>
                                 <td>{{matches}}</td>
                                 <td>{{wins}}</td>
                                 <td>{{draws}}</td>
@@ -40,10 +47,12 @@
                             <li class="d-flex align-items-center">{{state}}</li>
                         </div>
                         <div class="teams-score d-flex flex-row justify-items-center">
-                            <label class="team-name home-team-name d-flex align-items-center" for="home-team">{{formatName
+                            <label class="team-name home-team-name d-flex align-items-center"
+                                for="home-team">{{formatName
                                 homeTeam.name}}</label>
                             <div class="team d-flex flex-row">
-                                <img class="home-team" src="{{homeTeam.logo}}" alt="Home Team ({{formatName homeTeam.name}})">
+                                <img class="home-team" src="{{homeTeam.logo}}"
+                                    alt="Home Team ({{formatName homeTeam.name}})">
                             </div>
                             <div class="score d-flex justif-content-center align-items-center">
                                 <li class="score home-score">{{homeTeam.score}}</li>
@@ -51,9 +60,11 @@
                                 <li class="score away-score">{{awayTeam.score}}</li>
                             </div>
                             <div class="team d-flex flex-row">
-                                <img class="away-team" src="{{awayTeam.logo}}" alt="Away Team {{formatName awayTeam.name}}">
+                                <img class="away-team" src="{{awayTeam.logo}}"
+                                    alt="Away Team {{formatName awayTeam.name}}">
                             </div>
-                            <label class="team-name away-team-name d-flex align-items-center" for="away-team">{{formatName
+                            <label class="team-name away-team-name d-flex align-items-center"
+                                for="away-team">{{formatName
                                 awayTeam.name}}</label>
                         </div>
                         <div class="extra-information d-flex align-items-center">
@@ -78,18 +89,23 @@
                             <li class="d-flex align-items-center">{{state}}</li>
                         </div>
                         <div class="teams-score d-flex flex-row justify-items-center">
-                            <label class="team-name home-team-name d-flex align-items-center" for="home-team">{{formatName
+                            <label class="team-name home-team-name d-flex align-items-center"
+                                for="home-team">{{formatName
                                 homeTeam.name}}</label>
                             <div class="team d-flex flex-row">
-                                <img class="home-team" src="{{homeTeam.logo}}" alt="Home Team ({{formatName homeTeam.name}})">
+                                <img class="home-team" src="{{homeTeam.logo}}"
+                                    alt="Home Team ({{formatName homeTeam.name}})">
                             </div>
-                            <div class="match-time d-flex flex-row justify-content-center align-items-center list-unstyled">
+                            <div
+                                class="match-time d-flex flex-row justify-content-center align-items-center list-unstyled">
                                 <li>{{startTime}}</li>
                             </div>
                             <div class="team d-flex flex-row">
-                                <img class="away-team" src="{{awayTeam.logo}}" alt="Away Team {{formatName awayTeam.name}}">
+                                <img class="away-team" src="{{awayTeam.logo}}"
+                                    alt="Away Team {{formatName awayTeam.name}}">
                             </div>
-                            <label class="team-name away-team-name d-flex align-items-center" for="away-team">{{formatName
+                            <label class="team-name away-team-name d-flex align-items-center"
+                                for="away-team">{{formatName
                                 awayTeam.name}}</label>
                         </div>
                         <div class="extra-information d-flex align-items-center">

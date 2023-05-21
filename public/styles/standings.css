@@ -10,7 +10,7 @@
     border-radius: clamp(1vw, 2vw, 3rem);
 }
 
-.standings-table table {
+.standings-table table#teams-table {
     border-collapse: separate;
 }
 

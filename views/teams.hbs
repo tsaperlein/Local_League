@@ -1,9 +1,9 @@
 <div class="background">
-    <img id="teams-background-img" class="background-img" src="/background-images/6.jpg" alt="Background Image of a soccer field">
+    <img id="teams-background-img" class="background-img" src="/background-images/6.jpg"
+        alt="Background Image of a soccer field">
     {{#ifeq role 'admin'}}
-    <div class="team-options custom-container d-flex flex-row justify-content-center align-items-center">
-        <div class="add-delete-team d-flex flex-row justify-content-center align-items-center">
-            <button type="button" class="btn btn-success admin add-team">Add Team</button>
+    <div class="admin-team-options custom-container d-flex flex-row justify-content-center align-items-center">
+        <div class="delete-team d-flex flex-row justify-content-center align-items-center">
             <button type="button" class="btn btn-danger admin delete-team">Delete Team</button>
         </div>
     </div>
@@ -49,7 +49,8 @@
                         </td>
                         {{/ifeq}}
                     </tr>
-                    <div id="{{number}}-info-modal" class="modal player-info-modal d-flex justify-content-center align-items-center">
+                    <div id="{{number}}-info-modal"
+                        class="modal player-info-modal d-flex justify-content-center align-items-center">
                         <div class="modal-content custom-container">
                             <div class="modal-header d-flex flex-row">
                                 <div class="player-name">{{name}}</div>

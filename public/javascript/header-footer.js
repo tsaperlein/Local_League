@@ -3,7 +3,7 @@ let modal;
 let modalOn = false;
 
 function createModal() {
-// When the user clicks the Sign In/Register button, create a modal
+    // When the user clicks the Sign In/Register button, create a modal
     // Create a modal
     modal = document.createElement('div');
     modal.classList.add('modal', 'd-flex', 'justify-content-center', 'align-items-center');
@@ -141,22 +141,23 @@ function fixMainContentHeight() {
     setInterval(() => {
         if (headerHeight != header.offsetHeight) {
             headerHeight = header.offsetHeight;
+            headerHeight -= 1;
             main.style.paddingTop = `${headerHeight}px`;
         }
     }
-    , 200);
+        , 400);
 }
 
 // Modal
 headerEl = document.querySelector('.header-options ul').lastElementChild.querySelector('a').textContent;
-if(window.location.pathname === "/Local-League/main-page" && headerEl === "Sign In / Register"){
+if (window.location.pathname === "/Local-League/main-page" && headerEl === "Sign In / Register") {
     createModal();
 }
 
 fixMainContentHeight();
 
 nav.querySelector('ul').lastElementChild.addEventListener('click', () => {
-    if(modalOn) {
+    if (modalOn) {
         modalOn = false;
         modal.remove();
         document.body.style.overflow = 'visible';
@@ -189,15 +190,6 @@ function checkInputs() {
     // Function that adds event listeners to the input fields (keyup and blur)
     function keyUpAndBlurEventListener(name, field, regex) {
         field.addEventListener("keyup", function () {
-            // if (field === passwordConfirmField) {
-            //     if (passwordField.value !== passwordConfirmField.value) {
-            //         field.style.color = "red";
-            //     } else {
-            //         if (regex.test(field.value)) {
-            //             field.style.color = "green";
-            //         }
-            //     }
-            // } else isValid(field, regex);
             isValid(field, regex);
         });
         blurEventListener(name, field, regex);
@@ -205,7 +197,7 @@ function checkInputs() {
 
     // Function that sets the font color to black when the user clicks outside the input field, and only if the input is valid
     function blurEventListener(name, field, regex) {
-        field.addEventListener("blur", function() {
+        field.addEventListener("blur", function () {
             if (regex.test(field.value)) {
                 field.style.color = "black";
                 removeErrorMessage(field);
@@ -260,7 +252,7 @@ function checkInputs() {
         if (name === "password-confirm") {
             errorMessage.textContent = `Passwords do not match`;
         }
-        else if (name === "password"){
+        else if (name === "password") {
             errorMessage.textContent = '8-15 characters (at least one lowercase, one uppercase, one number and one special character)'
         }
         else {
@@ -278,11 +270,11 @@ function checkInputs() {
     }
     const signupBtn = document.querySelector('div#signup-btn .btn-primary');
     setInterval(() => {
-        for(item of inputNameFieldRegex) {
+        for (item of inputNameFieldRegex) {
             if (isValid(item.field, item.regex)) {
                 //console.log(isValid(item.field, item.regex));
                 signupBtn.disabled = false;
-            } else{
+            } else {
                 //console.log('invalid');
                 signupBtn.disabled = true;
                 break;

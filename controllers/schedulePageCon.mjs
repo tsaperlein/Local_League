@@ -7,7 +7,7 @@ const { Match } = match_obj;
 const { Team } = team_obj;
 const { User } = user_obj;
 
-function getWeekRange(week){
+function getWeekRange(week) {
     const dateComponents = week.split(" - ");
     const startDateString = dateComponents[0];
     const endDateString = dateComponents[1];
@@ -17,7 +17,7 @@ function getWeekRange(week){
     return { startDate, endDate };
 }
 
-function getNextWeek(week){
+function getNextWeek(week) {
     const weekObj = getWeekRange(week);
     const startObj = new Date(weekObj.endDate);
     const startDateObj = new Date(startObj.setDate(startObj.getDate() + 1)).toLocaleString('en-US', { month: 'short', day: 'numeric' });
@@ -26,7 +26,7 @@ function getNextWeek(week){
     return nextWeek;
 }
 
-function getPreviousWeek(week){
+function getPreviousWeek(week) {
     const weekObj = getWeekRange(week);
     const endObj = new Date(weekObj.startDate);
     const endDateObj = new Date(endObj.setDate(endObj.getDate() + 1)).toLocaleString('en-US', { month: 'short', day: 'numeric' });
@@ -37,10 +37,10 @@ function getPreviousWeek(week){
 
 // Take data from both collections and fill the schedule page
 const matchFilling = (req, res) => {
-    if(req.session.username == undefined) res.redirect('/Local-League/main-page');
-    else{
+    if (req.session.username == undefined) res.redirect('/Local-League/main-page');
+    else {
         const week = req.params.week;
-        Match.find({ date: { $gte: getWeekRange(week).startDate, $lt: getWeekRange(week).endDate }}).lean().then(result => {
+        Match.find({ date: { $gte: getWeekRange(week).startDate, $lt: getWeekRange(week).endDate } }).lean().then(result => {
             Team.find().lean().then(result2 => {
                 User.find().lean().then(result3 => {
                     let role = "user";
@@ -49,11 +49,11 @@ const matchFilling = (req, res) => {
                             if (result3[i].role == "admin") role = "admin";
                         }
                     }
-                    res.render('schedule', { match: result, team: result2, teams: result2, username: req.session.username, displayDate: week, thisWeek: week, displayNextWeek: getNextWeek(week), displayPreviousWeek: getPreviousWeek(week), role: role })
+                    res.render('schedule', { match: result, team: result2, teams: result2, username: req.session.username, displayDate: week, displayNextWeek: getNextWeek(week), displayPreviousWeek: getPreviousWeek(week), role: role })
                 })
             })
         })
-        .catch(err => console.log(err))
+            .catch(err => console.log(err))
     }
 }
 

@@ -2,10 +2,8 @@ main {
     background-color: black;
 }
 
-.custom-container {
-    margin-left: 5vw;
-    margin-right: 5vw;
-    padding: 2vw;
+main * {
+    z-index: 1;
 }
 
 .background {
@@ -22,6 +20,38 @@ main {
     height: 100%;
     width: 100%;
     object-fit: cover;
+    z-index: 0;
+}
+
+.standings-container,
+.team-container {
+    background-color: rgba(255, 255, 255, 0.7);
+    position: relative;
+    padding: 10px 0;
+    max-height: fit-content;
+    max-width: 100%;
+    margin: 2vw 0;
+    border-radius: 2vw;
+    z-index: 1;
+}
+
+.custom-container {
+    margin-left: 5vw;
+    margin-right: 5vw;
+    padding: 2vw;
+}
+
+main div.admin-team-options {
+    z-index: 1;
+    padding-bottom: 0;
+}
+
+div.add-team,
+div.delete-team {
+    background-color: rgba(255, 255, 255, 0.7);
+    padding: clamp(1rem, 2vw, 2rem);
+    border-radius: clamp(1rem, 2vw, 2rem);
+    gap: 2vw;
 }
 
 .admin-schedule-options {
@@ -58,7 +88,6 @@ button.admin:hover {
 
 button.edit-btn {
     background-color: lightgreen;
-    z-index: 999;
 }
 
 button.edit-btn:hover {
