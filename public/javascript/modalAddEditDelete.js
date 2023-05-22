@@ -22,7 +22,7 @@ const createFormModal = (pageOfReturn, labels, option, modalId) => {
 
         let label = document.createElement("label");
         label.for = labels[i];
-        label.textContent = labels[i];
+        label.textContent = labels[i].replace(/-/g, ' ').replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase());
         label.classList.add("control-label", "col-xs-4");
 
         let inputDiv = document.createElement("div");
@@ -32,24 +32,38 @@ const createFormModal = (pageOfReturn, labels, option, modalId) => {
         input.type = "text";
         input.name = labels[i];
         input.id = labels[i];
+
+        if (option === "edit") input.value = document.getElementById(labels[i]).textContent;
+
         // If the label consists the word 'score' then the input is a number
-        if (labels[i].includes("Score") || labels[i].includes("Number")) {
+        if (labels[i].includes("score") || labels[i].includes("number")) {
             input.type = "number";
+            input.min = 0;
             input.placeholder = "0";
-        } else if (labels[i].includes("Date")) {
+        }
+        else if (labels[i].includes("date")) {
             input.type = "date";
-        } else if (labels[i].includes("Time")) {
+        }
+        else if (labels[i].includes("time")) {
             input.type = "time";
-        } else if (labels[i].includes("Image")) {
+            input.placeholder = "00:00";
+        }
+        else if (labels[i].includes("image")) {
             input.type = "file";
             input.accept = "image/*";
-        } else if (labels[i].includes("Position")) {
+        }
+        else if (labels[i].includes("position")) {
             input.type = "text";
             input.maxLength = 3;
             // turn the letters to uppercase
             input.addEventListener("keyup", () => {
                 input.value = input.value.toUpperCase();
             });
+        }
+        else if (labels[i].includes("minute")) {
+            input.type = "number";
+            input.min = 0;
+            input.max = 120;
         }
         else input.type = "text";
 
@@ -87,17 +101,40 @@ const createFormModal = (pageOfReturn, labels, option, modalId) => {
     return modal;
 }
 
+// Add match, team, player, stats buttons
 const addMatchButton = document.getElementById("add-match");
 const addTeamButton = document.getElementById("add-team");
 const addPlayerButton = document.getElementById("add-player");
+const addStatButton = document.getElementById("add-stat");
 
-// Add match modal
-// if path is /Local-League/schedule run this
+// Edit match, team, player, stats buttons
+const editMatchButton = document.getElementById("edit-match");
+const editTeamButton = document.getElementById("edit-team");
+const editPlayerButton = document.getElementById("edit-player");
+const editStatButton = document.getElementById("edit-stat");
+
+// Delete match, team, player buttons
+
 if (window.location.pathname.includes("schedule")) {
+    // Add buttons
     addMatchButton.addEventListener("click", () => {
         document.body.style.overflow = 'hidden';
         console.log("add match");
-        let formModal = createFormModal("'schedule'", ["Date", "Time", "Home Team", "Away Team", "Main Referee", "Assistant Referee"], "add", "add-match-modal");
+        let formModal = createFormModal("'schedule'", ["date", "time", "home-team", "away-team", "main-referee", "assistant-referee"], "add", "add-match-modal");
+        document.body.appendChild(formModal);
+    });
+    addStatButton.addEventListener("click", () => {
+        document.body.style.overflow = 'hidden';
+        console.log("add stat");
+        let formModal = createFormModal("'stats'", ["team-name", "player-name", "type", "minute"], "add", "add-stat-modal");
+        document.body.appendChild(formModal);
+    });
+
+    // Edit buttons
+    editMatchButton.addEventListener("click", () => {
+        document.body.style.overflow = 'hidden';
+        console.log("edit match");
+        let formModal = createFormModal("'schedule'", ["date", "time", "home-team", "away-team", "main-referee", "assistant-referee"], "edit", "edit-match-modal");
         document.body.appendChild(formModal);
     });
 }
@@ -107,7 +144,7 @@ if (window.location.pathname.includes("standings")) {
     addTeamButton.addEventListener("click", () => {
         document.body.style.overflow = 'hidden';
         console.log("add team");
-        let formModal = createFormModal("'standings'", ["Name", "Team Image", "Lineup Image", "Field Image", "Field Name"], "add", "add-team-modal");
+        let formModal = createFormModal("'standings'", ["name", "team-image", "lineup-image", "field-image", "field-name"], "add", "add-team-modal");
         document.body.appendChild(formModal);
     });
 }
@@ -116,8 +153,8 @@ if (window.location.pathname.includes("standings")) {
 if (window.location.pathname.includes("teams")) {
     addPlayerButton.addEventListener("click", () => {
         document.body.style.overflow = 'hidden';
-        console.log("add player");
-        let formModal = createFormModal("'players'", ["Name", "Team", "Jersey Number", "Position", "Nationality"], "add", "add-player-modal");
+        // console.log("add player");
+        let formModal = createFormModal("'players'", ["name", "team", "jesrey-number", "position", "nationality"], "add", "add-player-modal");
         document.body.appendChild(formModal);
     });
 }

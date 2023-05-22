@@ -1,6 +1,7 @@
 import Handlebars from 'handlebars'
 import moment from 'moment'
 
+// Checks if the value is equal to the other value
 Handlebars.registerHelper('ifeq', function (a, b, opts) {
     if (a == b) {
         // Continue with code inside the block
@@ -16,6 +17,7 @@ Handlebars.registerHelper('formatDate', function (date) {
     return moment(date).format('dddd MMM D')
 })
 
+// Gets the date and writes it in the format: dddd MMM D
 Handlebars.registerHelper('formatId', function (homeTeam, awayTeam, date) {
     // Use the formatName helper to format the team names
     homeTeam = Handlebars.helpers.formatName(homeTeam).toLowerCase()
@@ -36,7 +38,7 @@ Handlebars.registerHelper('formatStat', function (stat) {
     else if (stat === 'red-card') return 'https://ssl.gstatic.com/onebox/sports/soccer_timeline/yellow-card.svg'
 })
 
-// format too much letters in a string to only 3-4 letters
+// Format too much letters in a string to only 3-4 letters
 Handlebars.registerHelper('formatName', function (string) {
     if (string.length > 4) {
         // if uppercase letters are morw than 1, then keep the uppercase letters joined by a dot
@@ -51,6 +53,12 @@ Handlebars.registerHelper('formatName', function (string) {
     }
 })
 
+// Replace the spaces with dashes
+Handlebars.registerHelper('addDash', function (string) {
+    return string.split(' ').join('-')
+})
+
+// Checks if the value is undefined
 Handlebars.registerHelper('ifexists', function (wins, opts) {
     if(wins != undefined){
         return opts.fn(this)

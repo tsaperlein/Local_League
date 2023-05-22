@@ -16,21 +16,11 @@
             </div>
             <div class="team-selection dropdown d-flex align-items-center">
                 <select name="team-selection" id="select-team">
-                    <option value="all-teams">All Teams</option>
+                    <option value="/Local-League/schedule/{{../displayDate}}/All-Teams" selected>All Teams</option>
                     {{#each team}}
-                    <option value="{{name}}">{{name}}</option>
+                    <option value="/Local-League/schedule/{{../displayDate}}/{{addDash name}}">{{name}}</option>
                     {{/each}}
                 </select>
-                {{!-- <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton"
-                    data-toggle="dropdown" aria-haspopup="true" aria-placeholder="All teams">
-                    All Teams
-                </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" href="#" data-team="all-teams">All Teams</a>
-                    {{#each team}}
-                    <a class="dropdown-item" href="#" data-team="{{name}}">{{name}}</a>
-                    {{/each}}
-                </div> --}}
             </div>
         </div>
         {{#ifeq role 'admin'}}
@@ -264,4 +254,4 @@
 </div>
 
 <script src="/javascript/matches.js" defer></script>
-<script src="/javascript/modalAddEdit.js" defer></script>
+<script src="/javascript/modalAddEditDelete.js" defer></script>
