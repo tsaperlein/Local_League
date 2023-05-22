@@ -43,42 +43,7 @@ const lineupFieldData = [
     { name: "Paris Saint Germain", lineup: "pao-lineup.png", fieldName: "Parc des Princes", fieldLink: "paris-saint-germain.png" },
 ];
 
-// const playerData = [
-//     { name: "Γιώργος Αθανασιάδης", number: "30", age: 30, position: "GK", nationality: "Greek", team: "AEK" },
-//     { name: "Άρολντ Μουκουντί", number: "2", age: 26, position: "DF", nationality: "French", team: "AEK" },
-//     { name: "Λάζαρος Ρότα", number: "12", age: 26, position: "DF", nationality: "Greek", team: "AEK" },
-//     { name: "Γεράσιμος Μήτογλου", number: "24", age: 24, position: "DF", nationality: "Greek", team: "AEK" },
-//     { name: "Έχσαν Χατζισαφί", number: "28", age: 33, position: "DF", nationality: "Iranian", team: "AEK" },
-//     { name: "Ντάμιαν Σιμάνσκι", number: "4", age: 28, position: "MF", nationality: "Polish", team: "AEK" },
-//     { name: "Όρμπελιν Πινέδα", number: "13", age: 27, position: "MF", nationality: "Mexican", team: "AEK" },
-//     { name: "Μιγιάτ Γκατσίνοβιτς", number: "8", age: 28, position: "MF", nationality: "Serbian", team: "AEK" },
-//     { name: "Νίκλας Ελίασον", number: "19", age: 28, position: "MF", nationality: "Swedish", team: "AEK" },
-//     { name: "Σέρχιο Αραούχο", number: "11", age: 31, position: "FW", nationality: "Argentinean", team: "AEK" },
-//     { name: "Λιβάι Γκαρσία", number: "7", age: 26, position: "FW", nationality: "Trinidadian", team: "AEK" },
-//     { name: "Πέτρος Μάνταλος", number: "20", age: 32, position: "MF", nationality: "Greek", team: "AEK" },
-//     { name: "Στίβεν Τσούμπερ", number: "10", age: 32, position: "FW", nationality: "Swiss", team: "AEK" },
-//     { name: "Γενς Γιόνσον", number: "6", age: 30, position: "MF", nationality: "Danish", team: "AEK" },
-//     { name: "Ντομαγκοϊ Βίντα", number: "21", age: 34, position: "DF", nationality: "Croatian", team: "AEK" },
-//     { name: "Γιώργος Αθανασιάδης", number: "30", age: 30, position: "GK", nationality: "Greek", team: "Panathinaikos" },
-//     { name: "Άρολντ Μουκουντί", number: "2", age: 26, position: "DF", nationality: "French", team: "Panathinaikos" },
-//     { name: "Λάζαρος Ρότα", number: "12", age: 26, position: "DF", nationality: "Greek", team: "Panathinaikos" },
-//     { name: "Γεράσιμος Μήτογλου", number: "24", age: 24, position: "DF", nationality: "Greek", team: "Panathinaikos" },
-//     { name: "Έχσαν Χατζισαφί", number: "28", age: 33, position: "DF", nationality: "Iranian", team: "Panathinaikos" },
-//     { name: "Ντάμιαν Σιμάνσκι", number: "4", age: 28, position: "MF", nationality: "Polish", team: "Panathinaikos" },
-//     { name: "Όρμπελιν Πινέδα", number: "13", age: 27, position: "MF", nationality: "Mexican", team: "Panathinaikos" },
-//     { name: "Μιγιάτ Γκατσίνοβιτς", number: "8", age: 28, position: "MF", nationality: "Serbian", team: "Panathinaikos" },
-//     { name: "Νίκλας Ελίασον", number: "19", age: 28, position: "MF", nationality: "Swedish", team: "Panathinaikos" },
-//     { name: "Σέρχιο Αραούχο", number: "11", age: 31, position: "FW", nationality: "Argentinean", team: "Panathinaikos" },
-//     { name: "Λιβάι Γκαρσία", number: "7", age: 26, position: "FW", nationality: "Trinidadian", team: "Panathinaikos" },
-//     { name: "Πέτρος Μάνταλος", number: "20", age: 32, position: "MF", nationality: "Greek", team: "Panathinaikos" },
-//     { name: "Στίβεν Τσούμπερ", number: "10", age: 32, position: "FW", nationality: "Swiss", team: "Panathinaikos" },
-//     { name: "Γενς Γιόνσον", number: "6", age: 30, position: "MF", nationality: "Danish", team: "Panathinaikos" },
-//     { name: "Ντομαγκοϊ Βίντα", number: "21", age: 34, position: "DF", nationality: "Croatian", team: "Panathinaikos" }
-// ];
-
-const player = [];
-
-let playersData = [
+let playerData = [
     {team: "AEK", players: ["Stankovic", "Sidibe", "Mitoglou", "Moukoudi", "Hajisafi", "Szymanski", "Pineda", "Gacinovic", "Elliason", "Araoujo", "Garcia"]},
     {team: "Panathinaikos", players: ["Brignoli", "Johansson", "Villafanez", "Santos", "Insua", "Kourbelis", "Mavrias", "Kolovetsios", "Chatzigiovannis", "Kampetsis", "Kolovos"]},
     {team: "Olympiakos", players: ["Paschalakis", "Sokratis", "Ba", "Cisse", "Reabciuk", "M'Vila", "Camara", "Masouras", "Fortounis", "Bruma", "El Arabi"]},
@@ -95,59 +60,49 @@ let playersData = [
     {team: "Paris Saint Germain", players: ["Navas", "Florenzi", "Marquinhos", "Kimpembe", "Kurzawa", "Paredes", "Gueye", "Di Maria", "Neymar", "Mbappe", "Icardi"]}
 ]
 
+let player = [];
 const pos = ["GK", "DF", "MF", "FW"];
+const nationality = [];
 
-for (let i = 0; i < playersData.length; i++) {
-    for (let j = 0; j < playersData[i].players.length; j++) {
+for (let i = 0; i < playerData.length; i++) {
+    for (let j = 0; j < playerData[i].players.length; j++) {
         player.push({
-            name: playersData[i].players[j],
-            team: playersData[i].team,
-            // generate data for each player
+            name: playerData[i].players[j],
+            team: playerData[i].team,
             number: Math.floor(Math.random() * 99) + 1,
             age: Math.floor(Math.random() * 10) + 20,
             position: '',
-            nationality: ["Greek", "Swiss", "Danish", "Croatian", "Albanian", "French", "Spanish", "Italian", "German", "English", "Portuguese", "Brazilian", "Argentinian", "Uruguayan", "Belgian", "Dutch", "Turkish", "Egyptian"][Math.floor(Math.random() * 18)]
+            nationality: 'Greek'
         })
-    }
-}
-
-for (let i = 0; i < player.length; i++) {
-    if(i = 0){
-        player[i].position = "GK";
-    }
-    else if(i > 0 && i < 5){
-        player[i].position = "DF";
-    }
-    else if(i > 4 && i < 9){
-        player[i].position = "MF";
-    }
-    else if(i > 8 && i < 11){
-        player[i].position = "FW";
+        if(j === 0) player[j + (11 * i)].position = pos[0];
+        else if(j > 0 && j < 5) player[j + (11 * i)].position = pos[1];
+        else if(j > 4 && j < 9) player[j + (11 * i)].position = pos[2];
+        else player[j + (11 * i)].position = pos[3];
     }
 }
 
 console.log(player);
 
-// singleTeam.deleteMany({})
-//   .then(() => {
-//     console.log('All existing items deleted');
+singleTeam.deleteMany({})
+  .then(() => {
+    console.log('All existing items deleted');
 
-//     const newItems = lineupFieldData.map(data => new singleTeam({
-//         name: data.name,
-//         lineup: data.lineup,
-//         fieldName: data.fieldName,
-//         fieldLink: data.fieldLink,
-//         players: playerData.filter(player => player.team === "AEK")
-//     }));
+    const newItems = lineupFieldData.map(data => new singleTeam({
+        name: data.name,
+        lineup: data.lineup,
+        fieldName: data.fieldName,
+        fieldLink: data.fieldLink,
+        players: player.filter(player => player.team === data.name)
+    }));
 
-//     // save the new teams to the database
-//     return singleTeam.insertMany(newItems);
-//   })
-//   .then(result => {
-//     console.log(`${result.length} new items saved`);
-//   })
-//   .catch(error => {
-//     console.error(error);
-//   });
+    // save the new teams to the database
+    return singleTeam.insertMany(newItems);
+  })
+  .then(result => {
+    console.log(`${result.length} new items saved`);
+  })
+  .catch(error => {
+    console.error(error);
+  });
 
   export default { singleTeam }
