@@ -144,7 +144,7 @@ function updateData(){
             //console.log(result);
             result.forEach((team, index) => {
                 Team.updateOne({ _id: team._id }, { $set: { rank: index + 1 } }).then((result1) => {
-                    console.log(result1);
+                    //console.log(result1);
                 })
                 .catch((err) => {
                     console.log(err);
@@ -165,7 +165,7 @@ function updateRank(){
         //console.log(result);
         result.forEach((team, index) => {
             Team.updateOne({ _id: team._id }, { $set: { rank: index + 1 } }).then((result1) => {
-                console.log(result1);
+                //console.log(result1);
             })
             .catch((err) => {
                 console.log(err);

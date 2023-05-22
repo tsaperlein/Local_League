@@ -1,4 +1,6 @@
 import mongoose from 'mongoose';
+import player_obj from './playerData.mjs';
+
 const Schema = mongoose.Schema;
 
 const teamInfoSchema = new Schema({
@@ -43,66 +45,92 @@ const lineupFieldData = [
     { name: "Paris Saint Germain", lineup: "pao-lineup.png", fieldName: "Parc des Princes", fieldLink: "paris-saint-germain.png" },
 ];
 
-let playerData = [
-    {team: "AEK", players: ["Stankovic", "Sidibe", "Mitoglou", "Moukoudi", "Hajisafi", "Szymanski", "Pineda", "Gacinovic", "Elliason", "Araoujo", "Garcia"]},
-    {team: "Panathinaikos", players: ["Brignoli", "Johansson", "Villafanez", "Santos", "Insua", "Kourbelis", "Mavrias", "Kolovetsios", "Chatzigiovannis", "Kampetsis", "Kolovos"]},
-    {team: "Olympiakos", players: ["Paschalakis", "Sokratis", "Ba", "Cisse", "Reabciuk", "M'Vila", "Camara", "Masouras", "Fortounis", "Bruma", "El Arabi"]},
-    {team: "PAOK", players: ["Zivkovic", "Varela", "Ingason", "Crespo", "Giannoulis", "Esiti", "El Kaddouri", "Tzolis", "Pelkas", "Zivkovic", "Swiderski"]},
-    {team: "Arsenal", players: ["Leno", "Bellerin", "Gabriel", "Mari", "Tierney", "Partey", "Xhaka", "Saka", "Odegaard", "Smith Rowe", "Aubameyang"]},
-    {team: "Barcelona", players: ["Ter Stegen", "Dest", "Pique", "Lenglet", "Alba", "Busquets", "De Jong", "Pedri", "Messi", "Griezmann", "Dembele"]},
-    {team: "Fenerbahçe", players: ["Bayindir", "Sangare", "Szalai", "Aziz", "Gonul", "Gustavo", "Tufan", "Valencia", "Pelkas", "Thiam", "Samatta"]},
-    {team: "Juventus", players: ["Szczesny", "Danilo", "De Ligt", "Chiellini", "Alex Sandro", "Bentancur", "Arthur", "McKennie", "Chiesa", "Morata", "Ronaldo"]},
-    {team: "Liverpool", players: ["Alisson", "Alexander-Arnold", "Phillips", "Fabinho", "Robertson", "Wijnaldum", "Thiago", "Jones", "Salah", "Firmino", "Mane"]},
-    {team: "Manchester United", players: ["De Gea", "Wan-Bissaka", "Lindelof", "Maguire", "Shaw", "Fred", "McTominay", "Greenwood", "Fernandes", "Rashford", "Cavani"]},
-    {team: "Manchester City", players: ["Ederson", "Walker", "Stones", "Dias", "Cancelo", "Rodri", "Gundogan", "De Bruyne", "Halland", "Sterling", "Jesus"]},
-    {team: "Milan", players: ["Donnarumma", "Calabria", "Kjaer", "Romagnoli", "Hernandez", "Kessie", "Tonali", "Saelemaekers", "Calhanoglu", "Rebic", "Ibrahimovic"]},
-    {team: "Real Madrid", players: ["Courtois", "Carvajal", "Varane", "Ramos", "Mendy", "Casemiro", "Kroos", "Modric", "Asensio", "Benzema", "Vinicius"]},
-    {team: "Paris Saint Germain", players: ["Navas", "Florenzi", "Marquinhos", "Kimpembe", "Kurzawa", "Paredes", "Gueye", "Di Maria", "Neymar", "Mbappe", "Icardi"]}
-]
+const { Player } = player_obj;
 
-let player = [];
-const pos = ["GK", "DF", "MF", "FW"];
-const nationality = [];
+// let playerData = [
+//     {team: "AEK", players: ["Stankovic", "Sidibe", "Mitoglou", "Moukoudi", "Hajisafi", "Szymanski", "Pineda", "Gacinovic", "Elliason", "Araoujo", "Garcia"]},
+//     {team: "Panathinaikos", players: ["Brignoli", "Johansson", "Villafanez", "Santos", "Insua", "Kourbelis", "Mavrias", "Kolovetsios", "Chatzigiovannis", "Kampetsis", "Kolovos"]},
+//     {team: "Olympiakos", players: ["Paschalakis", "Sokratis", "Ba", "Cisse", "Reabciuk", "M'Vila", "Camara", "Masouras", "Fortounis", "Bruma", "El Arabi"]},
+//     {team: "PAOK", players: ["Zivkovic", "Varela", "Ingason", "Crespo", "Giannoulis", "Esiti", "El Kaddouri", "Tzolis", "Pelkas", "Zivkovic", "Swiderski"]},
+//     {team: "Arsenal", players: ["Leno", "Bellerin", "Gabriel", "Mari", "Tierney", "Partey", "Xhaka", "Saka", "Odegaard", "Smith Rowe", "Aubameyang"]},
+//     {team: "Barcelona", players: ["Ter Stegen", "Dest", "Pique", "Lenglet", "Alba", "Busquets", "De Jong", "Pedri", "Messi", "Griezmann", "Dembele"]},
+//     {team: "Fenerbahçe", players: ["Bayindir", "Sangare", "Szalai", "Aziz", "Gonul", "Gustavo", "Tufan", "Valencia", "Pelkas", "Thiam", "Samatta"]},
+//     {team: "Juventus", players: ["Szczesny", "Danilo", "De Ligt", "Chiellini", "Alex Sandro", "Bentancur", "Arthur", "McKennie", "Chiesa", "Morata", "Ronaldo"]},
+//     {team: "Liverpool", players: ["Alisson", "Alexander-Arnold", "Phillips", "Fabinho", "Robertson", "Wijnaldum", "Thiago", "Jones", "Salah", "Firmino", "Mane"]},
+//     {team: "Manchester United", players: ["De Gea", "Wan-Bissaka", "Lindelof", "Maguire", "Shaw", "Fred", "McTominay", "Greenwood", "Fernandes", "Rashford", "Cavani"]},
+//     {team: "Manchester City", players: ["Ederson", "Walker", "Stones", "Dias", "Cancelo", "Rodri", "Gundogan", "De Bruyne", "Halland", "Sterling", "Jesus"]},
+//     {team: "Milan", players: ["Donnarumma", "Calabria", "Kjaer", "Romagnoli", "Hernandez", "Kessie", "Tonali", "Saelemaekers", "Calhanoglu", "Rebic", "Ibrahimovic"]},
+//     {team: "Real Madrid", players: ["Courtois", "Carvajal", "Varane", "Ramos", "Mendy", "Casemiro", "Kroos", "Modric", "Asensio", "Benzema", "Vinicius"]},
+//     {team: "Paris Saint Germain", players: ["Navas", "Florenzi", "Marquinhos", "Kimpembe", "Kurzawa", "Paredes", "Gueye", "Di Maria", "Neymar", "Mbappe", "Icardi"]}
+// ]
 
-for (let i = 0; i < playerData.length; i++) {
-    for (let j = 0; j < playerData[i].players.length; j++) {
-        player.push({
-            name: playerData[i].players[j],
-            team: playerData[i].team,
-            number: Math.floor(Math.random() * 99) + 1,
-            age: Math.floor(Math.random() * 10) + 20,
-            position: '',
-            nationality: 'Greek'
-        })
-        if(j === 0) player[j + (11 * i)].position = pos[0];
-        else if(j > 0 && j < 5) player[j + (11 * i)].position = pos[1];
-        else if(j > 4 && j < 9) player[j + (11 * i)].position = pos[2];
-        else player[j + (11 * i)].position = pos[3];
-    }
-}
+// let player = [];
+// const pos = ["GK", "DF", "MF", "FW"];
+// const nationality = ["Greek", "French", "Italian", "Spanish", "German", "English", "Portuguese", "Argentinian", "Brazilian", "Dutch", "Belgian", "Turkish"];
 
-console.log(player);
+// for (let i = 0; i < playerData.length; i++) {
+//     for (let j = 0; j < playerData[i].players.length; j++) {
+//         player.push({
+//             name: playerData[i].players[j],
+//             team: playerData[i].team,
+//             number: Math.floor(Math.random() * 99) + 1,
+//             age: Math.floor(Math.random() * 10) + 20,
+//             position: '',
+//             nationality: nationality[Math.floor(Math.random()*nationality.length)]
+//         })
+//         if(j === 0) player[j + (11 * i)].position = pos[0];
+//         else if(j > 0 && j < 5) player[j + (11 * i)].position = pos[1];
+//         else if(j > 4 && j < 9) player[j + (11 * i)].position = pos[2];
+//         else player[j + (11 * i)].position = pos[3];
+//     }
+// }
+
+//console.log(player);
+
+// singleTeam.deleteMany({})
+//   .then(() => {
+//     console.log('All existing items deleted');
+
+//     const newItems = lineupFieldData.map(data => new singleTeam({
+//         name: data.name,
+//         lineup: data.lineup,
+//         fieldName: data.fieldName,
+//         fieldLink: data.fieldLink,
+//         players: player.filter(player => player.team === data.name)
+//     }));
+
+//     // save the new teams to the database
+//     return singleTeam.insertMany(newItems);
+//   })
+//   .then(result => {
+//     console.log(`${result.length} new items saved`);
+//   })
+//   .catch(error => {
+//     console.error(error);
+//   });
 
 singleTeam.deleteMany({})
-  .then(() => {
-    console.log('All existing items deleted');
+    .then(() => {
+        console.log('All existing items deleted');
 
-    const newItems = lineupFieldData.map(data => new singleTeam({
-        name: data.name,
-        lineup: data.lineup,
-        fieldName: data.fieldName,
-        fieldLink: data.fieldLink,
-        players: player.filter(player => player.team === data.name)
-    }));
+        Player.find({}).lean().then(players => {
+            const newItems = lineupFieldData.map(data => new singleTeam({
+                name: data.name,
+                lineup: data.lineup,
+                fieldName: data.fieldName,
+                fieldLink: data.fieldLink,
+                players: players.filter(player => player.team === data.name)
+            }));
 
-    // save the new teams to the database
-    return singleTeam.insertMany(newItems);
-  })
-  .then(result => {
-    console.log(`${result.length} new items saved`);
-  })
-  .catch(error => {
-    console.error(error);
-  });
+            // save the new teams to the database
+            return singleTeam.insertMany(newItems);
+        })
+        .then(result => {
+            console.log(`${result.length} new items saved`);
+        })
+    })
+    .catch(error => {
+        console.error(error);
+    });
 
-  export default { singleTeam }
+export default { singleTeam }
