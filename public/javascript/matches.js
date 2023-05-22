@@ -28,6 +28,9 @@
 // }
 // allStats.sort((a, b) => a.time - b.time);
 
+const header = document.querySelector('#header');
+let headerChildren = header.children;
+
 const upcomingMatches = document.getElementById('upcoming-matches-container');
 const finalMatches = document.getElementById('final-matches-container');
 const match = document.querySelectorAll('div.matches-container div.match')
@@ -50,11 +53,15 @@ match.forEach((match) => {
         const modal = document.getElementById(`${homeTeam}-${awayTeam}-${formattedDate}-match-details-modal`);
 
         modal.style.visibility = 'visible';
-        // If the match is final, then show the modal on top of the upcoming matches
-        if (match.classList.contains('final-match')) {
+        if (match.classList.contains('final-match')) { // If the match is final, then show the modal on top of the upcoming matches
             upcomingMatches.style.zIndex = '0';
         } else finalMatches.style.zIndex = '0';
         document.body.style.overflow = 'hidden';
+        header.style.pointerEvents = 'none';
+        // Set the opacity of the children elements to 0.9
+        for (let i = 0; i < headerChildren.length; i++) {
+            headerChildren[i].style.opacity = '0.8';
+        }
 
         const closeBtn = modal.querySelector('.close-btn');
         closeBtn.addEventListener('click', () => {
@@ -63,6 +70,10 @@ match.forEach((match) => {
                 upcomingMatches.style.zIndex = '1';
             } else finalMatches.style.zIndex = '1';
             document.body.style.overflow = 'visible';
+            header.style.pointerEvents = '';
+            for (let i = 0; i < headerChildren.length; i++) {
+                headerChildren[i].style.opacity = '1';
+            }
         });
         window.addEventListener('click', (event) => {
             if (event.target == modal) {
@@ -71,6 +82,10 @@ match.forEach((match) => {
                     upcomingMatches.style.zIndex = '1';
                 } else finalMatches.style.zIndex = '1';
                 document.body.style.overflow = 'visible';
+                header.style.pointerEvents = '';
+                for (let i = 0; i < headerChildren.length; i++) {
+                    headerChildren[i].style.opacity = '1';
+                }
             }
         });
     });
@@ -261,3 +276,37 @@ if (window.location.pathname === '/Local-League/schedule') {
     adminStatsOptions.style.marginBottom = '0';
     adminStatsOptions.style.borderBottom = 'none';
 }
+
+// // Get the select element
+// let select = document.getElementById('select-team');
+// let matches = document.querySelectorAll('.match');
+
+// // Add event listener for 'change' event
+// select.addEventListener('change', function() {
+//     let selectedValue = select.value;
+//     matches.forEach(match => {
+//         let homeTeam = match.querySelector('.home-team-name');
+//         let awayTeam = match.querySelector('.away-team-name');
+//         if (homeTeam.textContent === formatName(selectedValue) || awayTeam.textContent === formatName(selectedValue)) {
+//             match.style.visibility = 'visible';
+//             match.previousElementSibling.style.visibility = 'visible';
+//         } else {
+//             match.style.visibility = 'collapse';
+//             match.previousElementSibling.style.visibility = 'collapse';
+//         }
+//     });
+// });
+
+// function formatName(string) {
+//     if (string.length > 4) {
+//         // if uppercase letters are morw than 1, then keep the uppercase letters joined by a dot
+//         if (string.match(/[A-Z]/g).length > 1) {
+//             return string.match(/[A-Z]/g).join('')
+//         } else {
+//             // return the first 3 letters in uppercase
+//             return string.slice(0, 3).toUpperCase()
+//         }
+//     } else {
+//         return string
+//     }
+// }

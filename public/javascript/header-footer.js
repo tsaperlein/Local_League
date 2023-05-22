@@ -130,23 +130,23 @@ function teamsForHeader() {
     }
 }
 
-function fixMainContentHeight() {
-    main = document.querySelector('main');
-    header = document.querySelector('header');
-    headerHeight = header.offsetHeight;
+// function fixMainContentHeight() {
+//     main = document.querySelector('main');
+//     header = document.querySelector('header');
+//     headerHeight = header.offsetHeight;
 
-    main.style.paddingTop = `${headerHeight}px`;
-    main.style.transition = 'padding-top 0.5s ease-in-out';
-    // Check always if the header height has changed
-    setInterval(() => {
-        if (headerHeight != header.offsetHeight) {
-            headerHeight = header.offsetHeight;
-            headerHeight -= 1;
-            main.style.paddingTop = `${headerHeight}px`;
-        }
-    }
-        , 400);
-}
+//     main.style.paddingTop = `${headerHeight}px`;
+//     main.style.transition = 'padding-top 0.5s ease-in-out';
+//     // Check always if the header height has changed
+//     setInterval(() => {
+//         if (headerHeight != header.offsetHeight) {
+//             headerHeight = header.offsetHeight;
+//             headerHeight -= 1;
+//             main.style.paddingTop = `${headerHeight}px`;
+//         }
+//     }
+//         , 400);
+// }
 
 // Modal
 headerEl = document.querySelector('.header-options ul').lastElementChild.querySelector('a').textContent;
@@ -154,7 +154,7 @@ if (window.location.pathname === "/Local-League/main-page" && headerEl === "Sign
     createModal();
 }
 
-fixMainContentHeight();
+// fixMainContentHeight();
 
 nav.querySelector('ul').lastElementChild.addEventListener('click', () => {
     if (modalOn) {

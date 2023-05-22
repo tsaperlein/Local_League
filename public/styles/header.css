@@ -6,21 +6,24 @@
 }
 
 .header {
-  position: fixed;
+  position: sticky;
+  top: 0;
   width: 100%;
-  z-index: 980;
+  z-index: 900;
   font-family: Comfortaa, Helvetica, sans-serif;
+  background-color: black;
 }
 
 .header-logo {
   position: relative;
+  width: 100%;
   height: fit-content;
   transition: all 0.5s ease-in-out;
   background-color: black;
 }
 
 .header-image img {
-  width: clamp(40rem, 50vw, 100rem);
+  width: clamp(40rem, 42vw, 90rem);
   height: 100%;
   object-fit: cover;
   transition: all 0.5s ease-in-out;
@@ -29,7 +32,8 @@
 
 nav.header-options {
   position: relative;
-  height: clamp(3rem, 4vw, 7rem);
+  width: 100%;
+  height: clamp(3rem, 3vw, 5rem);
   transition: all 0.3s ease-in-out;
   background-color: rgba(33, 104, 120, 1);
 }
@@ -89,7 +93,8 @@ nav.header-options li:hover a {
 
 .header-team-selector {
   position: relative;
-  height: clamp(3rem, 5vw, 8rem);
+  width: 100%;
+  height: clamp(3rem, 5vw, 7rem);
   background-color: rgb(160, 160, 160);
   transition: all 0.3s ease-in-out;
 }

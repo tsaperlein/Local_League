@@ -41,11 +41,6 @@ main * {
     padding: 2vw;
 }
 
-main div.admin-team-options {
-    z-index: 1;
-    padding-bottom: 0;
-}
-
 div.add-team,
 div.delete-team {
     background-color: rgba(255, 255, 255, 0.7);
@@ -54,16 +49,7 @@ div.delete-team {
     gap: 2vw;
 }
 
-.admin-schedule-options {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    gap: 1vw;
-    margin-bottom: 1vw;
-    padding: 1vw 0;
-    border-bottom: 0.2rem solid rgba(128, 128, 128, 0.4);
-}
-
+.admin-schedule-options,
 .admin-stats-options {
     display: flex;
     flex-direction: row;
@@ -71,17 +57,41 @@ div.delete-team {
     gap: 1vw;
     margin-bottom: 1vw;
     padding: 1vw 0;
+}
+
+.admin-schedule-options {
+    border-bottom: 0.2rem solid rgba(128, 128, 128, 0.4);
+}
+
+#add-match-div,
+#add-stat-div {
+    margin-bottom: 0;
+    border-bottom: 0;
+}
+
+div.admin-team-options {
+    background-color: rgba(255, 255, 255, 0.7);
+    padding: 2vw;
+    border-radius: 1vw;
+    z-index: 1;
+}
+
+div.admin-team-options-container {
+    padding-bottom: 0;
+}
+
+.admin-stats-options {
     border-bottom: 0.15rem solid rgba(128, 128, 128, 0.4);
 }
 
-button.admin {
+button.admin-btn {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     font-size: clamp(1rem, 1.5vw, 2.5rem);
     transition: transform 0.2s ease-in-out;
     margin: 0;
 }
 
-button.admin:hover {
+button.admin-btn:hover {
     cursor: pointer;
     transform: scale(1.1);
 }
@@ -109,4 +119,43 @@ button.edit-field-name {
 button.change-lineup-img,
 button.change-field-img {
     margin-top: 2vw;
+}
+
+.option-modal {
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.option-modal .modal-content {
+    background-color: rgba(255, 255, 255, 0.7);
+    padding: 2vw;
+    border-radius: 1vw;
+    margin-left: clamp(15%, 25vw, 25%);
+    margin-right: clamp(15%, 25vw, 25%)
+}
+
+.option-modal .modal-content {
+    padding-top: clamp(4rem, 4vw, 10rem);
+    padding-right: clamp(0, 2.5vw, 5rem);
+}
+
+.option-modal .modal-content .form-group {
+    height: clamp(3rem, 5vw, 5rem);
+}
+
+.option-modal .modal-content .close-btn {
+    color: black;
+    margin-top: 1rem;
+    margin-right: 1.5rem;
+}
+
+.option-modal .modal-content .control-label {
+    height: 100%;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    color: black;
+}
+
+.option-modal .modal-content .form-group div {
+    height: 100%;
 }

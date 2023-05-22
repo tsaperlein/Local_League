@@ -1,9 +1,9 @@
 <div class="background">
     <img class="background-img" src="/background-images/6.jpg" alt="">
     {{#ifeq role 'admin'}}
-    <div class="admin-team-options custom-container d-flex flex-row justify-content-center align-items-center">
-        <div class="add-team d-flex flex-row justify-content-center align-items-center">
-            <button type="button" class="btn btn-success admin add-team">Add Team</button>
+    <div class="admin-team-options-container custom-container d-flex flex-row justify-content-center align-items-center">
+        <div id="add-team-div" class="admin-team-options admin-options d-flex flex-row justify-content-center align-items-center">
+            <button id="add-team" class="btn admin-btn btn-primary add-btn" type="button">Add New Team</button>
         </div>
     </div>
     {{/ifeq}}
@@ -88,3 +88,5 @@
 </div>
 
 <script src="/javascript/standings.js" defer></script>
+<script src="/javascript/modalAddEdit.js" defer></script>
+<script type="module" src="/controllers/teamsCon.mjs"></script>

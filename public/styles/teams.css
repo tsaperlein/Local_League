@@ -14,6 +14,24 @@
     align-items: center;
 }
 
+.admin-team-lineup-options,
+.admin-team-field-options {
+    margin-top: clamp(1rem, 2vw, 2rem);
+}
+
+.admin-player-options {
+    width: 94%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: clamp(1rem, 2vw, 2rem);
+}
+
+#add-player-div {
+    padding-top: 2vw;
+    border-top: clamp(0.05rem, 0.2vw, 0.2rem) solid rgba(128, 128, 128, 0.3);
+}
+
 .field-info p {
     color: white;
     font-size: clamp(1rem, 2vw, 2.2rem);

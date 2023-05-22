@@ -159,16 +159,15 @@ li.field-name {
     color: gray
 }
 
-.match-details-modal .modal-content .modal-body .match-details * {
-    font-size: clamp(1vw, 2vw, 3rem);
-}
-
 .match-details-modal {
-    position: fixed;
     visibility: hidden;
     overflow: hidden;
-    z-index: 9999;
+    z-index: 999;
     background-color: rgba(0, 0, 0, 0.2);
+}
+
+.match-details-modal .modal-content .modal-body .match-details * {
+    font-size: clamp(1vw, 1.5vw, 2.5rem);
 }
 
 .match-details-modal .modal-content {
@@ -177,7 +176,7 @@ li.field-name {
     border-radius: 1vw;
     padding: clamp(0.5rem, 2.5vw, 5rem);
     overflow: auto;
-    height: clamp(40rem, 30vw, 60rem);
+    height: clamp(40rem, 30vw, 50rem);
 }
 
 .match-details-modal .modal-content .close-btn {
@@ -227,7 +226,6 @@ li.field-name {
 
 .match-details-modal .modal-content div.modal-body {
     padding: clamp(1rem, 2vw, 3rem);
-    margin-top: clamp(1rem, 2vw, 3rem);
 }
 
 .match-details-modal .modal-content .modal-body .match-details .row {
