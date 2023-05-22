@@ -12,6 +12,7 @@ const thisWeek = startDate.toLocaleString('en-US', { month: 'short', day: 'numer
 
 const mainPageStandings = async (req, res) => {
     team_obj.updateData();
+    //team_obj.updateRank();
     await Match.find({ state: 'Final' }).limit(3).lean().then(result => {
         Match.find({ state: 'Upcoming' }).limit(3).lean().then(result1 => {
             Team.find().sort({ rank: 1 }).limit(5).lean().then(result2 => {

@@ -78,7 +78,7 @@ let teamsData = [
     { name: "Paris Saint Germain", logo: "paris-saint-germain.png", matches: 0, wins: 0, draws: 0, losses: 0, homeWins: 0, awayWins: 0, goalsFor: 0, goalsAgainst: 0, goalDifference: 0, points: 0 }
 ];
 
-async function updateData(){
+function updateData(){
     Team.find().lean().then((teams) => {
         for(let i = 0; i < teams.length; i++){
             // reset all teams
@@ -140,13 +140,29 @@ async function updateData(){
             console.log(err);
             });
         }
+        Team.find().sort({ points: -1 }).lean().then((result) => {
+            //console.log(result);
+            result.forEach((team, index) => {
+                Team.updateOne({ _id: team._id }, { $set: { rank: index + 1 } }).then((result1) => {
+                    console.log(result1);
+                })
+                .catch((err) => {
+                    console.log(err);
+                })
+            })
+        })
+        .catch((err) => {
+            console.log(err);
+        });
     })
     .catch((err) => {
         console.log(err);
     });
+}
 
-    await Team.find().sort({ points: -1 }).lean().then((result) => {
-        console.log(result);
+function updateRank(){
+    Team.find().sort({ points: -1 }).lean().then((result) => {
+        //console.log(result);
         result.forEach((team, index) => {
             Team.updateOne({ _id: team._id }, { $set: { rank: index + 1 } }).then((result1) => {
                 console.log(result1);
@@ -171,5 +187,6 @@ async function updateData(){
 
 export default {
     Team,
-    updateData
+    updateData,
+    updateRank
 }

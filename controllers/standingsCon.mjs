@@ -14,6 +14,7 @@ const teamRanking = async (req, res) => {
   if (req.session.username == undefined) res.redirect('/Local-League/main-page');
   else {
     team_obj.updateData();
+    //team_obj.updateRank();
     await Team.find().sort({ rank: 1 }).select({ homeWins: 0, awayWins: 0 }).lean().then(result => {
       User.find().lean().then(result2 => {
         let role = "user";
@@ -33,6 +34,7 @@ const rankByHomeWins = async (req, res) => {
   if (req.session.username == undefined) res.redirect('/Local-League/main-page');
   else {
     team_obj.updateData();
+    //team_obj.updateRank();
     await Team.find().sort({ homeWins: -1 }).select({ wins: 0, awayWins: 0 }).lean().then(result => {
       User.find().lean().then(result2 => {
         let role = "user";
@@ -52,6 +54,7 @@ const rankByAwayWins = async (req, res) => {
   if (req.session.username == undefined) res.redirect('/Local-League/main-page');
   else {
     team_obj.updateData();
+    //team_obj.updateRank();
     await Team.find().sort({ awayWins: -1 }).select({ wins: 0, homeWins: 0 }).lean().then(result => {
       User.find().lean().then(result2 => {
         let role = "user";
