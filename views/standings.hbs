@@ -28,25 +28,25 @@
                                 <a class='header-button team-btn'>Team &nbsp;<i class='fa fa-sort'></i></a>
                             </th>
                             <th>
-                                <a class='header-button matches-btn'>Matches &nbsp;</a>
+                                <a class='header-button matches-btn'>Matches</a>
                             </th>
                             <th>
                                 <a class='header-button wins-btn'>W &nbsp;<i class='fa fa-sort'></i></a>
                             </th>
                             <th>
-                                <a class='header-button draws-btn'>D &nbsp;<i class='fa fa-sort'></i></a>
+                                <a class='header-button draws-btn'>D</a>
                             </th>
                             <th>
-                                <a class='header-button losses-btn'>L &nbsp;<i class='fa fa-sort'></i></a>
+                                <a class='header-button losses-btn'>L</a>
                             </th>
                             <th>
-                                <a class='header-button goals-for-btn'>GF &nbsp;<i class='fa fa-sort'></i></a>
+                                <a class='header-button goals-for-btn'>GF</a>
                             </th>
                             <th>
-                                <a class='header-button goals-against-btn'>GA &nbsp;<i class='fa fa-sort'></i></a>
+                                <a class='header-button goals-against-btn'>GA</a>
                             </th>
                             <th>
-                                <a class='header-button goal-diff-btn'>GD &nbsp;<i class='fa fa-sort'></i></a>
+                                <a class='header-button goal-diff-btn'>GD</a>
                             </th>
                             <th class="sticky-points">
                                 <a class='header-button points-btn'>PTS &nbsp;<i class='fa fa-sort'></i></a>
@@ -65,13 +65,15 @@
                                         href="/Local-League/teams/{{name}}">{{name}}</a></div>
                             </td>
                             <td>{{matches}}</td>
-                            {{#if wins}}
+                            {{#ifexists wins}}
                             <td>{{wins}}</td>
-                            {{else if homeWins}}
+                            {{/ifexists}}
+                            {{#ifexists homeWins}}
                             <td>{{homeWins}}</td>
-                            {{else}}
+                            {{/ifexists}}
+                            {{#ifexists awayWins}}
                             <td>{{awayWins}}</td>
-                            {{/if}}
+                            {{/ifexists}}
                             <td>{{draws}}</td>
                             <td>{{losses}}</td>
                             <td>{{goalsFor}}</td>

@@ -51,4 +51,10 @@ Handlebars.registerHelper('formatName', function (string) {
     }
 })
 
+Handlebars.registerHelper('ifexists', function (wins, opts) {
+    if(wins != undefined){
+        return opts.fn(this)
+    }
+})
+
 export { Handlebars }
