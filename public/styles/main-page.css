@@ -1,7 +1,7 @@
 .information-container {
     max-height: 100%;
     position: relative;
-    margin-top: 2rem;
+    margin: 2rem 0;
     padding: 10px 30px;
     border-radius: 1vw;
 }
@@ -16,6 +16,10 @@
     background-color: rgba(240, 248, 255, 0.7);
     border-radius: 1vw;
     z-index: 1;
+}
+
+div.last-week-results {
+    margin-bottom: 0;
 }
 
 div.auth-error-message {

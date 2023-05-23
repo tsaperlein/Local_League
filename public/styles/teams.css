@@ -59,7 +59,7 @@ th a {
 .team-lineup img,
 .field-info img {
     height: 100%;
-    width: 100%;
+    width: clamp(10rem, 35vw, 50rem);
     border-radius: 1vw;
     object-fit: cover;
 }
@@ -88,7 +88,7 @@ th a {
 
 .team-container .field-name {
     background-color: black;
-    width: 100%;
+    width: clamp(10rem, 35vw, 50rem);
     border-radius: 0 0 1vw 1vw;
     display: flex;
     justify-content: center;

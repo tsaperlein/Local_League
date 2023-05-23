@@ -8,6 +8,7 @@ main * {
 
 .background {
     position: relative;
+    min-height: 80vh;
     max-height: fit-content;
     overflow: hidden;
 }
