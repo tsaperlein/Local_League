@@ -1,3 +1,8 @@
+{{#if errorMessage }}
+<div class="auth-error-message">
+    <p>{{errorMessage}}</p>
+</div>
+{{/if}}
 <div class="background">
     <img class="background-img" src="/background-images/6.jpg" alt="">
     {{#ifeq role 'admin'}}

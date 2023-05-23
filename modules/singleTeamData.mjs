@@ -22,7 +22,7 @@ const teamInfoSchema = new Schema({
     },
     players: {
         type: Array,
-        required: true
+        required: false
     }
 }, {timestamps: true});
 

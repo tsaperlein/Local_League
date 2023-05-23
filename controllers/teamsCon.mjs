@@ -34,18 +34,35 @@ const teamDisplay = (req, res) => {
 }
 
 const addTeam = (req, res) => {
-    console.log(req.body);
-    // Team.findOne({ name: req.body.Name }).lean().then((team) => {
-    //     if(team != null){
-    //         res.render('main-page', { errorMessage: "This team already exists", ...req.session.previousRender })
-    //     }
-    //     else{
-    //         const newTeam = new Team({
-    //             name: req.body.Name,
-    //             logo: req.body.Team-Image,
-    //         });
-    //     }
-    // })
+    //console.log(req.body);
+    Team.findOne({ name: req.body.name }).lean().then((team) => {
+        if(team != null){
+            res.render('standings', { errorMessage: "This team already exists", ...req.session.previousStandingsRender })
+        }
+        else{
+            const newTeam = new Team({
+                name: req.body.name,
+                logo: req.body.teamImage,
+            });
+            const newSingleTeam = new singleTeam({
+                name: req.body.name,
+                lineup: req.body.lineupImage,
+                fieldName: req.body.fieldName,
+                fieldLink: req.body.fieldImage
+            });
+            newTeam.save().then((result) => {
+                newSingleTeam.save().then((result2) => {
+                    res.redirect('/Local-League/teams/' + req.body.name);
+                })
+                .catch((err) => {
+                    console.log(err);
+                })
+            })
+            .catch((err) => {
+                console.log(err);
+            })
+        }
+    })
 }
 
 export default {

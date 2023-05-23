@@ -23,6 +23,16 @@ const teamRanking = async (req, res) => {
             if (result2[i].role == "admin") role = "admin";
           }
         }
+        req.session.previousStandingsRender = {
+          team: result,
+          teams: result,
+          username: req.session.username,
+          thisWeek: thisWeek,
+          role: role,
+          overall: 'picked',
+          home: 'non-picked',
+          guest: 'non-picked'
+        }
         res.render('standings', { team: result, teams: result, username: req.session.username, thisWeek: thisWeek, role: role, overall: 'picked', home: 'non-picked', guest: 'non-picked' })
       })
     })
