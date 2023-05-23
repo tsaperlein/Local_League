@@ -4,19 +4,31 @@
     <div class="schedule-container custom-container d-flex flex-column">
         <div class="schedule-options">
             <div class="week-picker btn-group d-flex flex-row" role="group">
-                <a href="/Local-League/schedule/{{displayPreviousWeek}}">
+                {{#if allTeams}}
+                <a href="/Local-League/schedule/{{displayPreviousWeek}}/All-Teams">
                     <button id="previous-week" type="button" class="btn btn-light">&lt;</button>
                 </a>
-                <a href="/Local-League/schedule/{{displayDate}}">
+                <a href="/Local-League/schedule/{{displayDate}}/All-Teams">
                     <button id="current-week" type="button" class="btn btn-light">{{displayDate}}</button>
                 </a>
-                <a href="/Local-League/schedule/{{displayNextWeek}}">
+                <a href="/Local-League/schedule/{{displayNextWeek}}/All-Teams">
                     <button id="next-week" type="button" class="btn btn-light">&gt;</button>
                 </a>
+                {{else}}
+                <a href="/Local-League/schedule/{{displayPreviousWeek}}/{{teamName}}">
+                    <button id="previous-week" type="button" class="btn btn-light">&lt;</button>
+                </a>
+                <a href="/Local-League/schedule/{{displayDate}}/{{teamName}}">
+                    <button id="current-week" type="button" class="btn btn-light">{{displayDate}}</button>
+                </a>
+                <a href="/Local-League/schedule/{{displayNextWeek}}/{{teamName}}">
+                    <button id="next-week" type="button" class="btn btn-light">&gt;</button>
+                </a>
+                {{/if}}
             </div>
             <div class="team-selection dropdown d-flex align-items-center">
                 <select name="team-selection" id="select-team">
-                    <option value="/Local-League/schedule/{{../displayDate}}/All-Teams" selected>All Teams</option>
+                    <option value="/Local-League/schedule/{{../displayDate}}/All-Teams">All Teams</option>
                     {{#each team}}
                     <option value="/Local-League/schedule/{{../displayDate}}/{{addDash name}}">{{name}}</option>
                     {{/each}}

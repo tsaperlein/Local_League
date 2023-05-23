@@ -49,7 +49,29 @@ const matchFilling = (req, res) => {
                             if (result3[i].role == "admin") role = "admin";
                         }
                     }
-                    res.render('schedule', { match: result, team: result2, teams: result2, username: req.session.username, displayDate: week, displayNextWeek: getNextWeek(week), displayPreviousWeek: getPreviousWeek(week), role: role })
+                    res.render('schedule', { match: result, team: result2, teams: result2, username: req.session.username, displayDate: week, displayNextWeek: getNextWeek(week), displayPreviousWeek: getPreviousWeek(week), role: role, allTeams: true })
+                })
+            })
+        })
+            .catch(err => console.log(err))
+    }
+}
+
+const matchFillingTeam = (req, res) => {
+    if (req.session.username == undefined) res.redirect('/Local-League/main-page');
+    else {
+        const week = req.params.week;
+        const team = req.params.team.split("-").join(" ");
+        Match.find({ $or: [{ "homeTeam.name": team }, { "awayTeam.name": team }], date: { $gte: getWeekRange(week).startDate, $lt: getWeekRange(week).endDate } }).sort({ date: 1 }).lean().then(result => {
+            Team.find().lean().then(result2 => {
+                User.find().lean().then(result3 => {
+                    let role = "user";
+                    for (let i = 0; i < result3.length; i++) {
+                        if (result3[i].username == req.session.username) {
+                            if (result3[i].role == "admin") role = "admin";
+                        }
+                    }
+                    res.render('schedule', { match: result, team: result2, teams: result2, username: req.session.username, displayDate: week, displayNextWeek: getNextWeek(week), displayPreviousWeek: getPreviousWeek(week), role: role, teamName: team, allTeams: false })
                 })
             })
         })
@@ -58,5 +80,6 @@ const matchFilling = (req, res) => {
 }
 
 export default {
-    matchFilling
+    matchFilling,
+    matchFillingTeam
 }

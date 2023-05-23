@@ -3,8 +3,7 @@ let headerChildren = header.children;
 
 const upcomingMatches = document.getElementById('upcoming-matches-container');
 const finalMatches = document.getElementById('final-matches-container');
-const matches = document.querySelectorAll('div.matches-container div.match');
-const match = matches.querySelectorAll('div.match-information');
+const match = document.querySelectorAll('div.matches-container div.match');
 match.forEach((match) => {
     match.addEventListener('click', () => {
         // Get the homeTeam and awayTeam names and the date of the match in fomat dd/mm/yyyy
@@ -152,14 +151,12 @@ if (window.location.pathname === '/Local-League/schedule') {
 
 // --- Dropdown menu for the Schedule page ---
 // If the path is schedule
-if (window.location.pathname === '/Local-League/schedule') {
+if (window.location.pathname.includes('schedule')) {
     const dropdownSelect = document.getElementById('select-team');
     console.log(dropdownSelect);
     dropdownSelect.onchange = function () {
-        if (this.selectedIndex !== 0) {
-            window.location.href = this.value;
-            console.log(this.value);
-        }
+        window.location.href = this.value;
+        console.log(this.value);
     };
     // Alternative method
     /* document.getElementById('select-team').onchange = function() {

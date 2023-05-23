@@ -34,7 +34,7 @@ const teamDisplay = (req, res) => {
 }
 
 const addTeam = (req, res) => {
-    console.log(req.body);
+    console.log(req.body.name);
     // Team.findOne({ name: req.body.Name }).lean().then((team) => {
     //     if(team != null){
     //         res.render('main-page', { errorMessage: "This team already exists", ...req.session.previousRender })

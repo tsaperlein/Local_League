@@ -10,7 +10,9 @@ const router = express.Router()
 
 router.get('/main-page', mainPageFunc.mainPageStandings);
 
-router.get('/schedule/:week', scheduleFunc.matchFilling);
+router.get('/schedule/:week/All-Teams', scheduleFunc.matchFilling);
+
+router.get('/schedule/:week/:team', scheduleFunc.matchFillingTeam);
 
 router.get('/standings', standingsFunc.teamRanking);
 

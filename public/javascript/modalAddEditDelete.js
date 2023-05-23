@@ -134,7 +134,7 @@ if (window.location.pathname.includes("schedule")) {
     editMatchButton.addEventListener("click", () => {
         document.body.style.overflow = 'hidden';
         console.log("edit match");
-        let formModal = createFormModal("'schedule'", ["date", "time", "home-team", "away-team", "main-referee", "assistant-referee"], "edit", "edit-match-modal");
+        let formModal = createFormModal("schedule", ["date", "time", "home-team", "away-team", "main-referee", "assistant-referee"], "edit", "edit-match-modal");
         document.body.appendChild(formModal);
     });
 }
@@ -144,7 +144,7 @@ if (window.location.pathname.includes("standings")) {
     addTeamButton.addEventListener("click", () => {
         document.body.style.overflow = 'hidden';
         console.log("add team");
-        let formModal = createFormModal("'standings'", ["name", "team-image", "lineup-image", "field-image", "field-name"], "add", "add-team-modal");
+        let formModal = createFormModal("standings", ["name", "team-image", "lineup-image", "field-image", "field-name"], "add", "add-team-modal");
         document.body.appendChild(formModal);
     });
 }
