@@ -30,7 +30,8 @@ const createFormModal = (pageOfReturn, labels, option, modalId) => {
 
         let input = document.createElement("input");
         input.type = "text";
-        input.name = labels[i];
+        // Change the input name from string to camelCase
+        input.name = labels[i].replace(/-([a-z])/g, function (g) { return g[1].toUpperCase(); });
         input.id = labels[i];
 
         if (option === "edit") input.value = document.getElementById(labels[i]).textContent;
