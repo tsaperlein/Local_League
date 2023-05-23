@@ -15,43 +15,53 @@ const teamSchema = new Schema({
     },
     matches: {
         type: Number,
-        required: true
+        required: false,
+        default: 0
     },
     wins: {
         type: Number,
-        required: true
+        required: false,
+        default: 0
     },
     draws: {
         type: Number,
-        required: true
+        required: false,
+        default: 0
     },
     losses: {
         type: Number,
-        required: true
+        required: false,
+        default: 0
     },
     homeWins: {
         type: Number,
-        required: true
+        required: false,
+        default: 0
     },
     awayWins: {
         type: Number,
-        required: true
+        required: false,
+        default: 0
     },
     points: {
         type: Number,
-        required: true
+        required: false,
+        default: 0
     },
     goalsFor: {
         type: Number,
-        required: true
+        required: false,
+        default: 0
     },
     goalsAgainst: {
         type: Number,
-        required: true
+        required: false,
+        default: 0
     },
     goalDifference: {
         type: Number,
-        required: true
+        required: false,
+        default: 0
     },
     rank: {
         type: Number,

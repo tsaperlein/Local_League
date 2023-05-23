@@ -33,6 +33,22 @@ const teamDisplay = (req, res) => {
     }
 }
 
+const addTeam = (req, res) => {
+    console.log(req.body);
+    // Team.findOne({ name: req.body.Name }).lean().then((team) => {
+    //     if(team != null){
+    //         res.render('main-page', { errorMessage: "This team already exists", ...req.session.previousRender })
+    //     }
+    //     else{
+    //         const newTeam = new Team({
+    //             name: req.body.Name,
+    //             logo: req.body.Team-Image,
+    //         });
+    //     }
+    // })
+}
+
 export default {
-    teamDisplay
+    teamDisplay,
+    addTeam
 }

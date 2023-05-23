@@ -22,4 +22,6 @@ router.get('/teams/:name', teamFunc.teamDisplay);
 
 router.post('/main-page', authFunc.authenticateUser);
 
+router.post('/standings', teamFunc.addTeam);
+
 export { router }
