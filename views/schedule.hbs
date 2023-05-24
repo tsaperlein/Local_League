@@ -84,7 +84,7 @@
                 {{#ifeq ../role 'admin'}}
                 <div class="admin-schedule-options admin-options">
                     <button id="edit-match-{{formatDate2 date}}-{{formatName homeTeam.name}}" class="btn admin-btn edit-btn edit-match-btn" type="button">Edit</button>
-                    <button id="delete-match" class="btn admin-btn delete-btn" type="button">Delete</button>
+                    <button id="delete-match-{{formatDate2 date}}-{{formatName homeTeam.name}}" class="btn admin-btn delete-btn delete-match-btn" type="button">Delete</button>
                 </div>
                 {{/ifeq}}
             </div>
@@ -148,7 +148,7 @@
                             {{#ifeq ../../role 'admin'}}
                             <div class="admin-stats-options admin-options">
                                 <button id="edit-stat-{{../date}}-{{minute}}-{{addDash type}}" class="btn admin-btn edit-btn edit-stat-btn" type="button">Edit</button>
-                                <button id="delete-stat" class="btn admin-btn delete-btn" type="button">Delete</button>
+                                <button id="delete-stat-{{../date}}-{{minute}}-{{addDash type}}" class="btn admin-btn delete-btn delete-stat-btn" type="button">Delete</button>
                             </div>
                             {{/ifeq}}
                             {{/each}}
@@ -196,7 +196,7 @@
                 {{#ifeq ../role 'admin'}}
                 <div class="admin-schedule-options admin-options">
                     <button id="edit-match-{{formatDate2 date}}-{{formatName homeTeam.name}}" class="btn admin-btn edit-btn edit-match-btn" type="button">Edit</button>
-                    <button id="delete-match" class="btn admin-btn delete-btn" type="button">Delete</button>
+                    <button id="delete-match-{{formatDate2 date}}-{{formatName homeTeam.name}}" class="btn admin-btn delete-btn delete-match-btn" type="button">Delete</button>
                 </div>
                 {{/ifeq}}
             </div>
@@ -260,7 +260,7 @@
                             {{#ifeq ../../role 'admin'}}
                             <div class="admin-stats-options admin-options">
                                 <button id="edit-stat-{{../date}}-{{minute}}-{{addDash type}}" class="btn admin-btn edit-btn edit-stat-btn" type="button">Edit</button>
-                                <button id="delete-stat" class="btn admin-btn delete-btn" type="button">Delete</button>
+                                <button id="delete-stat-{{../date}}-{{minute}}-{{addDash type}}" class="btn admin-btn delete-btn delete-stat-btn" type="button">Delete</button>
                             </div>
                             {{/ifeq}}
                             {{/each}}

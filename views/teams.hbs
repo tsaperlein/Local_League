@@ -12,7 +12,7 @@
             {{#each team}}
             <button id="edit-team-{{name}}-btn" class="btn admin-btn edit-btn edit-team-btn" type="button">Edit Team</button>
             {{/each}}
-            <button id="delete-team" class="btn admin-btn btn-danger" type="button">Delete Team</button>
+            <button class="btn admin-btn btn-danger delete-team-btn" type="button">Delete Team</button>
         </div>
     </div>
     {{/ifeq}}
@@ -67,7 +67,7 @@
                         <td class="edit-delete-player">
                             <div class="admin-player-options admin-options">
                                 <button id="{{name}}-{{number}}" class="btn admin-btn edit-btn edit-player-btn" type="button">Edit</button>
-                                <button id="delete-player" class="btn admin-btn delete-btn" type="button">Delete</button>
+                                <button class="btn admin-btn delete-btn delete-player-btn" type="button">Delete</button>
                             </div>
                         </td>
                         {{/ifeq}}
