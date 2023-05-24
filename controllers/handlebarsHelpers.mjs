@@ -17,6 +17,11 @@ Handlebars.registerHelper('formatDate', function (date) {
     return moment(date).format('dddd MMM D')
 })
 
+// Gets the date and writes it in the format: yyyy-mm-dd
+Handlebars.registerHelper('formatDate2', function (date) {
+    return moment(date).format('YYYY-MM-DD')
+})
+
 // Gets the date and writes it in the format: dddd MMM D
 Handlebars.registerHelper('formatId', function (homeTeam, awayTeam, date) {
     // Use the formatName helper to format the team names

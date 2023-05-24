@@ -1,9 +1,17 @@
+{{#if errorMessage }}
+<div class="auth-error-message">
+    <p>{{errorMessage}}</p>
+</div>
+{{/if}}
 <div class="background">
     <img id="teams-background-img" class="background-img" src="/background-images/6.jpg"
         alt="Background Image of a soccer field">
     {{#ifeq role 'admin'}}
     <div class="admin-team-options-container custom-container d-flex flex-row justify-content-center align-items-center">
         <div class="admin-team-options admim-options d-flex flex-row justify-content-center align-items-center">
+            {{#each team}}
+            <button id="edit-team-{{name}}-btn" class="btn admin-btn edit-btn edit-team-btn" type="button">Edit Team</button>
+            {{/each}}
             <button id="delete-team" class="btn admin-btn btn-danger" type="button">Delete Team</button>
         </div>
     </div>
@@ -11,8 +19,8 @@
     <div class="team-container custom-container d-flex flex-column flex-wrap justify-content-center align-items-center">
         <div class="lineup-field-container d-flex flex-row justify-content-around">
             {{#each team}}
-            <div class="team-lineup">
-                <img class="team-lineup-img" src="/lineups/{{lineup}}" alt="Lineup of the players">
+            <div class="team-lineup {{name}}-lineup">
+                <img class="team-lineup-img get-lineup-image" src="/lineups/{{lineup}}" alt="Lineup of the players">
                 {{#ifeq ../role 'admin'}}
                 <div class="admin-team-lineup-options admim-options d-flex flex-row justify-content-center align-items-center">
                     <button id="change-lineup" class="btn admin-btn btn-primary change-btn" type="button">Change Lineup</button>
@@ -20,9 +28,9 @@
                 {{/ifeq}}
             </div>
             <div class="field-info">
-                <img class="field-img" src="/fields/{{fieldLink}}" alt="{{fieldName}}">
+                <img class="field-img get-field-image" src="/fields/{{fieldLink}}" alt="{{fieldName}}">
                 <div class="field-name d-flex flex-row">
-                    <p>{{fieldName}}</p>
+                    <p class="get-field-name">{{fieldName}}</p>
                     {{#ifeq ../role 'admin'}}
                     <div class="admin-team-field-name-options admim-options d-flex flex-row justify-content-center align-items-center">
                         <button id="edit-field-name" class="btn admin-btn edit-btn">Edit</button>
@@ -43,20 +51,22 @@
         </div>
         {{/ifeq}}
         <div class="player-info">
-            <table id="players-table">
+            {{#each team}}
+            <table id="players-table-{{name}}" class="get-team-name players-table">
+            {{/each}}
                 <thead id="thead"></thead>
                 <tbody id="tbody">
                     {{#each players}}
                     <tr>
-                        <td class="name-sticky">{{name}}</td>
-                        <td class="player-number">{{number}}</td>
-                        <td>{{age}}</td>
-                        <td>{{position}}</td>
-                        <td>{{nationality}}</td>
+                        <td class="name-sticky get-name">{{name}}</td>
+                        <td class="player-number get-jersey-number">{{number}}</td>
+                        <td class="get-age">{{age}}</td>
+                        <td class="get-position">{{position}}</td>
+                        <td class="get-nationality">{{nationality}}</td>
                         {{#ifeq ../role 'admin'}}
                         <td class="edit-delete-player">
                             <div class="admin-player-options admin-options">
-                                <button id="edit-player" class="btn admin-btn edit-btn" type="button">Edit</button>
+                                <button id="{{name}}-{{number}}" class="btn admin-btn edit-btn edit-player-btn" type="button">Edit</button>
                                 <button id="delete-player" class="btn admin-btn delete-btn" type="button">Delete</button>
                             </div>
                         </td>

@@ -28,7 +28,7 @@ function createHeaderRow() {
 }
 
 // Get the table element and its head and body
-const table = document.querySelector("#players-table");
+const table = document.querySelector(".players-table");
 const tableHead = table.querySelector("thead");
 
 // create table header and append it to the table head

@@ -1,5 +1,5 @@
 // Function the creates a modal that takes as input html code for form wiht method POST
-const createFormModal = (pageOfReturn, labels, option, modalId) => {
+const createFormModal = (pageOfReturn, labels, option, modalId, button) => {
     const modal = document.createElement("div");
     modal.classList.add('modal', 'option-modal', 'd-flex', 'justify-content-center', 'align-items-center');
     modal.setAttribute("id", modalId);
@@ -15,6 +15,27 @@ const createFormModal = (pageOfReturn, labels, option, modalId) => {
     form.action = '/Local-League/' + pageOfReturn;
     form.method = "POST";
     form.classList.add("form");
+
+    let matchElement, matchDateElement, statElement, statModalElement, teamPlayersTableElement, playerTrElement, teamLineupElement, fieldInfoElement;
+    if (option === "edit") {
+        if (modalId === 'edit-match-modal') {
+            // Get the match element
+            matchElement = button.parentElement.parentElement; // div.match
+            matchDateElement = matchElement.previousElementSibling; // div.match-date
+        } else if (modalId === 'edit-stat-modal') {
+            statElement = button.parentElement.previousElementSibling; // div.row for each stat
+            statModalElement = statElement.parentElement.parentElement.previousElementSibling; // div.modal-header for each stat
+        } else if (modalId === 'edit-team-modal') {
+            // Get the id of the button
+            const teamId = button.id.split("-")[2];
+            teamLineupElement = button.parentElement.parentElement.nextElementSibling.querySelector(`.${teamId}-lineup`); // div.team-lineup
+            fieldInfoElement = teamLineupElement.nextElementSibling; // div.field-info
+        } else if (modalId === 'edit-player-modal') {
+            teamPlayersTableElement = button.parentElement.parentElement.parentElement.parentElement.parentElement; // div.players-table-{{team.name}}
+            playerTrElement = button.parentElement.parentElement.parentElement; // tr.player
+        }
+    }
+
     // Form groups
     for (let i = 0; i < labels.length; i++) {
         let formGroup = document.createElement("div");
@@ -34,38 +55,180 @@ const createFormModal = (pageOfReturn, labels, option, modalId) => {
         input.name = labels[i].replace(/-([a-z])/g, function (g) { return g[1].toUpperCase(); });
         input.id = labels[i];
 
-        if (option === "edit") input.value = document.getElementById(labels[i]).textContent;
+        if (option === "edit") {
+            if (modalId === "edit-match-modal") {
+                if (labels[i] === "date") {
+                    value = findTheDate(matchDateElement.textContent);
+                }
+                else if (labels[i].includes('referee')) {
+                    value = matchElement.querySelector(".get-" + labels[i]).textContent.split(":")[1].trim();
+                }
+                else {
+                    if (labels[i] === "time" && matchElement.querySelector(".get-" + labels[i]) === null) continue;
+                    value = matchElement.querySelector(".get-" + labels[i]).textContent;
+                }
+            }
+            else if (modalId === "edit-stat-modal") {
+                if (labels[i].includes('team')) {
+                    // Check wether the team is home or away depending on if the textContent of the elements is empty or not
+                    if (statElement.querySelector(".home-team-player").firstElementChild !== null) {
+                        value = statModalElement.querySelector(".get-home-" + labels[i]).textContent;
+                    } else {
+                        value = statModalElement.querySelector(".get-away-" + labels[i]).textContent;
+                    }
+                }
+                else if (labels[i].includes('player')) {
+                    // Check wether the team is home or away depending on if the textContent of the elements is empty or not
+                    if (statElement.querySelector(".get-" + labels[i]) !== null) {
+                        value = statElement.querySelector(".get-" + labels[i]).textContent;
+                    } else {
+                        value = statElement.querySelector(".get-" + labels[i]).textContent;
+                    }
+                }
+                else if (labels[i].includes('type')) {
+                    if (button.id.split("-")[5] !== undefined) value = button.id.split("-")[4] + " " + button.id.split("-")[5];
+                    else value = button.id.split("-")[4];
+                }
+                else if (labels[i].includes('minute')) {
+                    value = button.id.split("-")[3];
+                }
+            }
+            else if (modalId === "edit-player-modal") {
+                if (labels[i].includes('team')) {
+                    value = teamPlayersTableElement.id.split("-")[2];
+                }
+                else {
+                    console.log(".get-" + labels[i]);
+                    console.log(playerTrElement.querySelector(".get-" + labels[i]));
+                    value = playerTrElement.querySelector(".get-" + labels[i]).textContent;
+                }
+            }
+            else if (modalId === "edit-team-modal") {
+                if (labels[i] === "name") {
+                    value = button.id.split("-")[2];
+                }
+                else if (labels[i].includes('team-image')) {
+                    // The value is the name of the team in lowercase and the words connected with '-' and .png
+                    let teamName = button.id.split("-")[2];
+                    teamName = teamName.toLowerCase();
+                    value = teamName.replace(/ /g, "-") + ".png";
+                }
+                else if (labels[i].includes('lineup')) {
+                    value = teamLineupElement.querySelector(".get-" + labels[i]).textContent;
+                }
+                else if (labels[i].includes('field-name')) {
+                    value = fieldInfoElement.querySelector(".get-" + labels[i]).textContent;
+                }
+                else if (labels[i].includes('field-image')) {
+                    // The value is the name of the field in lowercase and the words connected with '-' and .png
+                    let fieldName = fieldInfoElement.querySelector(".get-" + labels[i]).src;
+                    fieldName = fieldName.split("/")[fieldName.split("/").length - 1];
+                }
+            }
+            input.value = value;
+        }
 
-        // If the label consists the word 'score' then the input is a number
+            // ------------- Score/Number ----------
         if (labels[i].includes("score") || labels[i].includes("number")) {
             input.type = "number";
+            // Dont allow letters
+            input.addEventListener("keyup", () => {
+                input.value = input.value.replace(/[a-z]/g, "");
+            });
             input.min = 0;
-            input.placeholder = "0";
+            input.maxLength = 2;
+            input.placeholder = "max 2 digits";
+            input.required = true;
         }
+            // ------------- Date ------------------
         else if (labels[i].includes("date")) {
             input.type = "date";
+            input.required = true;
         }
+            // ------------- Time ------------------
         else if (labels[i].includes("time")) {
             input.type = "time";
-            input.placeholder = "00:00";
+            // Step is half hour
+            input.step = 1800;
+            input.required = true;
         }
-        else if (labels[i].includes("image")) {
+            // ------------- Images ----------------
+        else if (labels[i].includes("image") || labels[i].includes("icon")) {
             input.type = "file";
             input.accept = "image/*";
+            input.required = true;
         }
+            // ------------- Position -------------
         else if (labels[i].includes("position")) {
             input.type = "text";
-            input.maxLength = 3;
-            // turn the letters to uppercase
+            // Dont allow numbers and turn the letters to uppercase
             input.addEventListener("keyup", () => {
+                input.value = input.value.replace(/[0-9]/g, "");
                 input.value = input.value.toUpperCase();
             });
+            input.maxLength = 3;
+            input.placeholder = "max 3 letters, e.g. GK";
+            input.required = true;
         }
+            // ------------- Minute --------------
         else if (labels[i].includes("minute")) {
             input.type = "number";
+            // Dont allow letters
+            input.addEventListener("keyup", () => {
+                input.value = input.value.replace(/[a-z]/g, "");
+            });
             input.min = 0;
             input.max = 120;
+            input.step = 1;
+            input.placeholder = "max 120th minute";
+            input.required = true;
         }
+            // ------------- Referee -------------
+        else if (labels[i].includes("referee")) {
+            input.type = "text";
+            // Dont allow numbers
+            input.addEventListener("keyup", () => {
+                input.value = input.value.replace(/[0-9]/g, "");
+            });
+            input.placeholder = "e.g. John Doe";
+        }
+            // ------------- Name -------------
+        else if (labels[i].includes("name")) {
+            input.type = "text";
+            input.required = true;
+        }
+            // ------------- Stat Type -------------
+        else if (labels[i].includes("type")) {
+            input.type = "text";
+            input.addEventListener("keyup", () => {
+                input.value = input.value.replace(/[0-9]/g, "");
+            });
+            input.maxLength = 11;
+            input.placeholder = "max 11 letters, e.g. yellow card";
+            // If the type is none of the options, the input is invalid
+            input.addEventListener("change", () => {
+                if (input.value !== "goal" && input.value !== "yellow card" && input.value !== "red card") {
+                    input.setCustomValidity("Please choose one of the options: goal, yellow card, red card");
+                }
+                else {
+                    input.setCustomValidity("");
+                }
+            });
+            input.required = true;
+        }
+            // ------------- Age -------------
+        else if (labels[i].includes("age")) {
+            input.type = "number";
+            // Dont allow letters
+            input.addEventListener("keyup", () => {
+                input.value = input.value.replace(/[a-z]/g, "");
+            });
+            input.min = 18;
+            input.max = 45;
+            input.step = 1;
+            input.placeholder = "min 18 years old";
+            input.required = true;
+        }  
         else input.type = "text";
 
         input.classList.add("form-control");
@@ -102,60 +265,159 @@ const createFormModal = (pageOfReturn, labels, option, modalId) => {
     return modal;
 }
 
-// Add match, team, player, stats buttons
+function findTheDate(date) {
+    let dateArray = date.split(" ");
+    let day = dateArray[2];
+    if (day.length === 1) day = '0' + day;
+
+    let month = dateArray[1];
+    switch (month) {
+        case "Jan":
+            month = '01';
+            break;
+        case "Feb":
+            month = '02';
+            break;
+        case "Mar":
+            month = '03';
+            break;
+        case "Apr":
+            month = '04';
+            break;
+        case "May":
+            month = '05';
+            break;
+        case "Jun":
+            month = '06';
+            break;
+        case "Jul":
+            month = '07';
+            break;
+        case "Aug":
+            month = '08';
+            break;
+        case "Sep":
+            month = '09';
+            break;
+        case "Oct":
+            month = '10';
+            break;
+        case "Nov":
+            month = '11';
+            break;
+        case "Dec":
+            month = '12';
+            break;
+    }
+
+    let year = '2023';
+
+    return year + "-" + month + "-" + day;
+}
+
+// Add match, team, player, stat buttons
 const addMatchButton = document.getElementById("add-match");
 const addTeamButton = document.getElementById("add-team");
 const addPlayerButton = document.getElementById("add-player");
-const addStatButton = document.getElementById("add-stat");
 
-// Edit match, team, player, stats buttons
-const editMatchButton = document.getElementById("edit-match");
-const editTeamButton = document.getElementById("edit-team");
-const editPlayerButton = document.getElementById("edit-player");
-const editStatButton = document.getElementById("edit-stat");
+const addStatButtons = document.querySelectorAll(".add-stat-btn");
 
-// Delete match, team, player buttons
+// Edit match, team, player, stat buttons
+const editMatchButtons = document.querySelectorAll(".edit-match-btn");
+const editTeamButton = document.querySelector(".edit-team-btn");
+const editPlayerButtons = document.querySelectorAll(".edit-player-btn");
+const editStatButtons = document.querySelectorAll(".edit-stat-btn");
+
+// Delete match, team, player, stat buttons
+const deleteMatchButton = document.getElementById("delete-match");
+const deleteTeamButton = document.getElementById("delete-team");
+const deletePlayerButton = document.getElementById("delete-player");
+const deleteStatButton = document.getElementById("delete-stat");
 
 if (window.location.pathname.includes("schedule")) {
     // Add buttons
     addMatchButton.addEventListener("click", () => {
         document.body.style.overflow = 'hidden';
         console.log("add match");
-        let formModal = createFormModal("'schedule'", ["date", "time", "home-team", "away-team", "main-referee", "assistant-referee"], "add", "add-match-modal");
+        let formModal = createFormModal("schedule", ["date", "time", "home-team", "away-team", "field-name", "main-referee", "assistant-referee"], "add", "add-match-modal", '');
         document.body.appendChild(formModal);
     });
-    addStatButton.addEventListener("click", () => {
-        document.body.style.overflow = 'hidden';
-        console.log("add stat");
-        let formModal = createFormModal("'stats'", ["team-name", "player-name", "type", "minute"], "add", "add-stat-modal");
-        document.body.appendChild(formModal);
+    addStatButtons.forEach((button) => {
+        button.addEventListener("click", (button) => {
+            let id = button.target.id;
+            let addStatButton = document.getElementById(id);
+            document.body.style.overflow = 'hidden';
+            console.log("add stat");
+            let formModal = createFormModal("schedule", ["team-name", "player-name", "type", "minute"], "add", "add-stat-modal", addStatButton);
+            document.body.appendChild(formModal);
+        });
     });
 
     // Edit buttons
-    editMatchButton.addEventListener("click", () => {
-        document.body.style.overflow = 'hidden';
-        console.log("edit match");
-        let formModal = createFormModal("schedule", ["date", "time", "home-team", "away-team", "main-referee", "assistant-referee"], "edit", "edit-match-modal");
-        document.body.appendChild(formModal);
+    editMatchButtons.forEach((button) => {
+        button.addEventListener("click", (button) => {
+            let id = button.target.id;
+            let editMatchButton = document.getElementById(id);
+            document.body.style.overflow = 'hidden';
+            console.log("edit match");
+            let formModal = createFormModal("schedule", ["date", "time", "home-team", "away-team", "field-name", "main-referee", "assistant-referee"], "edit", "edit-match-modal", editMatchButton);
+            document.body.appendChild(formModal);
+        });
+    });
+    editStatButtons.forEach((button) => {
+        button.addEventListener("click", (button) => {
+            let id = button.target.id;
+            let editStatButton = document.getElementById(id);
+            document.body.style.overflow = 'hidden';
+            console.log("edit stat");
+            let formModal = createFormModal("schedule", ["team-name", "player-name", "type", "minute"], "edit", "edit-stat-modal", editStatButton);
+            document.body.appendChild(formModal);
+        });
     });
 }
 
-// Add team modal
 if (window.location.pathname.includes("standings")) {
+    // Add team modal
     addTeamButton.addEventListener("click", () => {
         document.body.style.overflow = 'hidden';
         console.log("add team");
-        let formModal = createFormModal("standings", ["name", "team-image", "lineup-image", "field-image", "field-name"], "add", "add-team-modal");
+        let formModal = createFormModal("standings", ["name", "team-icon", "lineup-image", "field-image", "field-name"], "add", "add-team-modal", '');
         document.body.appendChild(formModal);
     });
 }
 
-// Add player modal
 if (window.location.pathname.includes("teams")) {
+    // Add player modal
     addPlayerButton.addEventListener("click", () => {
         document.body.style.overflow = 'hidden';
-        // console.log("add player");
-        let formModal = createFormModal("'players'", ["name", "team", "jesrey-number", "position", "nationality"], "add", "add-player-modal");
+        console.log("add player");
+        let formModal = createFormModal("teams", ["name", "team", "jersey-number", "position", "nationality"], "add", "add-player-modal", '');
         document.body.appendChild(formModal);
     });
+
+    // Edit team modal
+    editTeamButton.addEventListener("click", () => {
+        document.body.style.overflow = 'hidden';
+        console.log("edit team");
+        let formModal = createFormModal("teams", ["name", "team-image", "lineup-image", "field-image", "field-name"], "edit", "edit-team-modal", editTeamButton);
+        document.body.appendChild(formModal);
+    });
+    // Edit player modal
+    editPlayerButtons.forEach((button) => {
+        button.addEventListener("click", (button) => {
+            let id = button.target.id;
+            let editPlayerButton = document.getElementById(id);
+            document.body.style.overflow = 'hidden';
+            console.log("edit player");
+            let formModal = createFormModal("teams", ["name", "team", "jersey-number", "age", "position", "nationality"], "edit", "edit-player-modal", editPlayerButton);
+            document.body.appendChild(formModal);
+        });
+    });
 }
+
+// --------- Resets the Local Storage ---------
+const selectedOption = localStorage.getItem('selectedOption');
+// If the user goes to the pages which url includes "standings", "teams", "main-page", erase the selectedOption from localStorage
+if (window.location.pathname.includes("standings") || window.location.pathname.includes("teams") || window.location.pathname.includes("main-page")) {
+    localStorage.removeItem('selectedOption');
+}// -------------------------------------------

@@ -59,7 +59,7 @@ th a {
 .team-lineup img,
 .field-info img {
     height: 100%;
-    width: clamp(10rem, 35vw, 50rem);
+    width: clamp(10rem, 40vw, 73rem);
     border-radius: 1vw;
     object-fit: cover;
 }
@@ -88,7 +88,7 @@ th a {
 
 .team-container .field-name {
     background-color: black;
-    width: clamp(10rem, 35vw, 50rem);
+    width: clamp(10rem, 40vw, 73rem);
     border-radius: 0 0 1vw 1vw;
     display: flex;
     justify-content: center;
@@ -106,8 +106,8 @@ th a {
     overflow-x: scroll;
 }
 
-#players-table th,
-#players-table td {
+.players-table th,
+.players-table td {
     white-space: nowrap;
 }
 
@@ -117,13 +117,13 @@ th a {
     text-align: center;
 }
 
-table#players-table thead tr th {
+table.players-table thead tr th {
     padding: 1.5vw 1vw;
     text-align: center;
     white-space: nowrap;
 }
 
-table#players-table tbody td {
+table.players-table tbody td {
     min-width: 10vw;
 }
 
