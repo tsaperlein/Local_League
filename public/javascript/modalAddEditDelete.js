@@ -9,7 +9,7 @@ const createFormModal = (pageOfReturn, labels, option, modalId, button) => {
         // Create a hidden input with the name of the id of the element to delete
         const input = document.createElement("input");
         input.type = "hidden";
-        input.name = (modalId.split("-")[1] + "Information").replace(/ /g, '');;
+        input.name = (modalId.split("-")[1] + "Information").replace(/ /g, '');
         input.value = button.id.split("-").slice(2).join("-");
 
         form.appendChild(input);
@@ -458,11 +458,21 @@ if (window.location.pathname.includes("teams")) {
 
     // Delete team modal
     deleteTeamButton.addEventListener("click", () => {
-        document.body.style.overflow = 'hidden';
-        console.log("delete team");
+        //document.body.style.overflow = 'hidden';
+        //console.log("delete team");
         let result = confirm("Are you sure you want to delete this team?");
         if (result) {
-            createFormModal("teams", [], "delete", "delete-team-modal", deleteTeamButton);
+            //createFormModal("teams", [], "delete", "delete-team-modal", deleteTeamButton);
+            //document.body.style.overflow = 'visible';
+            const endPoint = `/Local-League/teams/${deleteTeamButton.dataset.doc}`;
+            // console.log(endPoint);
+            fetch(endPoint, {
+                method: "DELETE",
+            })
+            .then((response) => response.json())
+            .then((data) => window.location.href = data.redirect)
+            .catch((err) => console.log(err));
+            //console.log(deleteTeamButton.dataset.doc);
         }
     });
     // Delete player modal

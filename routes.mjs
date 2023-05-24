@@ -26,4 +26,6 @@ router.post('/main-page', authFunc.authenticateUser);
 
 router.post('/standings', teamFunc.addTeam);
 
+router.delete('/teams/:name', teamFunc.deleteTeam);
+
 export { router }

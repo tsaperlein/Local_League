@@ -11,8 +11,8 @@
         <div class="admin-team-options admim-options d-flex flex-row justify-content-center align-items-center">
             {{#each team}}
             <button id="edit-team-{{name}}-btn" class="btn admin-btn edit-btn edit-team-btn" type="button">Edit Team</button>
+            <button class="btn admin-btn btn-danger delete-team-btn" type="button" data-doc="{{name}}">Delete Team</button>
             {{/each}}
-            <button class="btn admin-btn btn-danger delete-team-btn" type="button">Delete Team</button>
         </div>
     </div>
     {{/ifeq}}

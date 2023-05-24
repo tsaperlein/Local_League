@@ -42,7 +42,7 @@ const addTeam = (req, res) => {
         else{
             const newTeam = new Team({
                 name: req.body.name,
-                logo: req.body.teamImage,
+                logo: req.body.teamIcon,
             });
             const newSingleTeam = new singleTeam({
                 name: req.body.name,
@@ -65,7 +65,23 @@ const addTeam = (req, res) => {
     })
 }
 
+const deleteTeam = (req, res) => {
+    const teamName = req.params.name;
+    singleTeam.findOneAndDelete({ name: teamName }).lean().then((result) => {
+        Team.findOneAndDelete({ name: teamName }).lean().then((result2) => {
+            res.json({ redirect: '/Local-League/standings' });
+        })
+        .catch((err) => {
+            console.log(err);
+        })
+    })
+    .catch((err) => {
+        console.log(err);
+    })
+}
+
 export default {
     teamDisplay,
-    addTeam
+    addTeam,
+    deleteTeam
 }
