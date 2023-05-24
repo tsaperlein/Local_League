@@ -25,7 +25,10 @@ const teamDisplay = (req, res) => {
                             if (result3[i].role == "admin") role = "admin";
                         }
                     }
-                    res.render('teams', { team: result, players: result[0].players, teams: result2, username: req.session.username, thisWeek: thisWeek, role: role })
+                    let teamPLayers = result[0];
+                    if (teamPLayers == undefined) teamPLayers = [];
+                    else teamPLayers = teamPLayers.players;
+                    res.render('teams', { team: result, players: teamPLayers, teams: result2, username: req.session.username, thisWeek: thisWeek, role: role })
                 })
             })
         })
@@ -80,8 +83,18 @@ const deleteTeam = (req, res) => {
     })
 }
 
+const deletePlayer = (req, res) => {
+    const teamName = req.params.teamName;
+    const playerName = req.params.playerName;
+    // Find the player in the team and delete it
+    singleTeam.findOneAndUpdate({ name: teamName }, { $pull: { players: { name: playerName } } }).lean().then((result) => {
+        res.json({ redirect: '/Local-League/teams/' + teamName });
+    })
+}
+
 export default {
     teamDisplay,
     addTeam,
-    deleteTeam
+    deleteTeam,
+    deletePlayer
 }

@@ -7,19 +7,19 @@
     <img id="teams-background-img" class="background-img" src="/background-images/6.jpg"
         alt="Background Image of a soccer field">
     {{#ifeq role 'admin'}}
+    {{#each team}}
     <div class="admin-team-options-container custom-container d-flex flex-row justify-content-center align-items-center">
         <div class="admin-team-options admim-options d-flex flex-row justify-content-center align-items-center">
-            {{#each team}}
             <button id="edit-team-{{name}}-btn" class="btn admin-btn edit-btn edit-team-btn" type="button">Edit Team</button>
             <button class="btn admin-btn btn-danger delete-team-btn" type="button" data-doc="{{name}}">Delete Team</button>
-            {{/each}}
         </div>
     </div>
+    {{/each}}
     {{/ifeq}}
     <div class="team-container custom-container d-flex flex-column flex-wrap justify-content-center align-items-center">
         <div class="lineup-field-container d-flex flex-row justify-content-around">
             {{#each team}}
-            <div class="team-lineup {{name}}-lineup">
+            <div id="{{name}}-lineup" class="team-lineup {{name}}-lineup">
                 <img class="team-lineup-img get-lineup-image" src="/lineups/{{lineup}}" alt="Lineup of the players">
                 {{#ifeq ../role 'admin'}}
                 <div class="admin-team-lineup-options admim-options d-flex flex-row justify-content-center align-items-center">
@@ -50,6 +50,7 @@
             <button id="add-player" class="btn admin-btn btn-primary add-btn" type="button">Add New Player</button>
         </div>
         {{/ifeq}}
+        {{#if players}}
         <div class="player-info">
             {{#each team}}
             <table id="players-table-{{name}}" class="get-team-name players-table">
@@ -67,7 +68,7 @@
                         <td class="edit-delete-player">
                             <div class="admin-player-options admin-options">
                                 <button id="{{name}}-{{number}}" class="btn admin-btn edit-btn edit-player-btn" type="button">Edit</button>
-                                <button class="btn admin-btn delete-btn delete-player-btn" type="button">Delete</button>
+                                <button id="{{#each ../team}}{{name}}{{/each}}-{{name}}" class="btn admin-btn delete-btn delete-player-btn" type="button" data-doc="{{#each ../team}}{{name}}{{/each}}-{{name}}">Delete</button>
                             </div>
                         </td>
                         {{/ifeq}}
@@ -96,6 +97,7 @@
                 </tbody>
             </table>
         </div>
+        {{/if}}
     </div>
 </div>
 

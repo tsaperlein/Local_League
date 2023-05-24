@@ -27,5 +27,7 @@ router.post('/main-page', authFunc.authenticateUser);
 router.post('/standings', teamFunc.addTeam);
 
 router.delete('/teams/:name', teamFunc.deleteTeam);
+router.delete('/teams/:teamName/:playerName', teamFunc.deletePlayer);
+router.delete('/schedule/:week/:teamName/:opponentName', scheduleFunc.deleteMatch);
 
 export { router }

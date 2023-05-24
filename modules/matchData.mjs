@@ -28,7 +28,7 @@ const matchSchema = new Schema({
             type: Number,
             required: false
         },
-        possecion: {
+        possession: {
             type: Number,
             required: false
         }
@@ -46,7 +46,7 @@ const matchSchema = new Schema({
             type: Number,
             required: false
         },
-        possecion: {
+        possession: {
             type: Number,
             required: false
         }
@@ -156,13 +156,13 @@ for (let i = 0; i < teamsData.length; i++) {
                     name: teamsData[i].name,
                     logo: teamsData[i].logo,
                     score: '',
-                    possecion: '',
+                    possession: '',
                 },
                 awayTeam: {
                     name: teamsData[j].name,
                     logo: teamsData[j].logo,
                     score: '',
-                    possecion: '',
+                    possession: '',
                 },
                 startTime: startTimes[Math.floor(Math.random() * startTimes.length)],
                 field: lineupFieldData[i].fieldName,
@@ -188,13 +188,13 @@ for(let i = 0; i < matchesData.length; i++) {
     const matchState = matchDate < today ? 'Final' : 'Upcoming';
     const matchHomeScore = matchState == 'Final' ? Math.floor(Math.random() * 5) : null;
     const matchGuestScore = matchState == 'Final' ? Math.floor(Math.random() * 5) : null;
-    const matchPossecion = matchState == 'Final' ? getRandomInt2(100) : null;
+    const matchPossession = matchState == 'Final' ? getRandomInt2(100) : null;
     matchesData[i].date = matchDate.toISOString().slice(0,10);
     matchesData[i].state = matchState;
     matchesData[i].homeTeam.score = matchHomeScore;
     matchesData[i].awayTeam.score = matchGuestScore;
-    matchesData[i].homeTeam.possecion = matchPossecion;
-    matchesData[i].awayTeam.possecion = 100 - matchPossecion;
+    matchesData[i].homeTeam.possession = matchPossession;
+    matchesData[i].awayTeam.possession = 100 - matchPossession;
 }
 
 for(let i = 0; i < matchesData.length; i++) {
@@ -220,6 +220,7 @@ function generatePlayerGoals(){
                         }
                         minutes.push(minute1);
                         matchesData[i].stats.push({
+                            id: '',
                             team: playersData[j].team,
                             name: playersData[j].players[getRandomInt(playersData[j].players.length)],
                             type: 'goal',
@@ -235,6 +236,7 @@ function generatePlayerGoals(){
                         }
                         minutes.push(minute2);
                         matchesData[i].stats.push({
+                            id: '',
                             team: playersData[j].team,
                             name: playersData[j].players[getRandomInt(playersData[j].players.length)],
                             type: 'goal',
@@ -257,6 +259,7 @@ function generateCards(){
                 if(matchesData[i].homeTeam.name == playersData[j].team){
                     for( let k = 0; k < getRandomInt(5); k++){
                         matchesData[i].stats.push({
+                            id: '',
                             team: playersData[j].team,
                             name: playersData[j].players[getRandomInt(playersData[j].players.length)],
                             type: 'yellow card',
@@ -268,12 +271,13 @@ function generateCards(){
                         if(matchesData[i].stats[matchesData[i].stats.length -1].type == "yellow card" && matchesData[i].stats[matchesData[i].stats.length -1].name == playerName){
                             let rMinute = matchesData[i].stats[matchesData[i].stats.length -1].minute + getRandomInt3(90 - matchesData[i].stats[matchesData[i].stats.length -1].minute);
                             matchesData[i].stats.push({
+                                id: '',
                                 team: playersData[j].team,
                                 name: playerName,
                                 type: 'red card',
                                 minute: rMinute
-                            },
-                            {
+                            }, {
+                                id: '',
                                 team: playersData[j].team,
                                 name: playerName,
                                 type: 'yellow card',
@@ -285,6 +289,7 @@ function generateCards(){
                 else if(matchesData[i].awayTeam.name == playersData[j].team){
                     for( let k = 0; k < getRandomInt(5); k++){
                         matchesData[i].stats.push({
+                            id: '',
                             team: playersData[j].team,
                             name: playersData[j].players[getRandomInt(playersData[j].players.length)],
                             type: 'yellow card',
@@ -296,12 +301,13 @@ function generateCards(){
                         if(matchesData[i].stats[matchesData[i].stats.length -1].type == "yellow card" && matchesData[i].stats[matchesData[i].stats.length -1].name == playerName){
                             let rMinute = matchesData[i].stats[matchesData[i].stats.length -1].minute + getRandomInt3(90 - matchesData[i].stats[matchesData[i].stats.length -1].minute);
                             matchesData[i].stats.push({
+                                id: '',
                                 team: playersData[j].team,
                                 name: playerName,
                                 type: 'red card',
                                 minute: rMinute
-                            },
-                            {
+                            }, {
+                                id: '',
                                 team: playersData[j].team,
                                 name: playerName,
                                 type: 'yellow card',
@@ -335,6 +341,7 @@ function generateRedCards(){
                         else{
                             let rMinute = getRandomInt(90);
                             matchesData[i].stats.push({
+                                id: '',
                                 team: playersData[j].team,
                                 name: playerName,
                                 type: 'red card',
@@ -356,6 +363,7 @@ function generateRedCards(){
                         else{
                             let rMinute = getRandomInt(90);
                             matchesData[i].stats.push({
+                                id: '',
                                 team: playersData[j].team,
                                 name: playerName,
                                 type: 'red card',
@@ -368,7 +376,6 @@ function generateRedCards(){
         }
     }
 }
-
 
 generatePlayerGoals();
 generateCards();
@@ -388,7 +395,7 @@ function checkRedCard(){
                             // console.log("Found");
                             // console.log("Match: ", matchesData[i]);
                             // console.log("Player: ", matchesData[i].stats[j].name);
-                            //matchesData[i].stats.splice(k, 1);
+                            matchesData[i].stats.splice(k, 1);
                         }
                     }
                 }
@@ -411,7 +418,7 @@ function checkYellowCard(){
                             // console.log("Found");
                             // console.log("Match: ", matchesData[i]);
                             // console.log("Player: ", matchesData[i].stats[j].name);
-                            //matchesData[i].stats.splice(k, 1);
+                            matchesData[i].stats.splice(k, 1);
                         }
                     }
                 }
@@ -420,13 +427,31 @@ function checkYellowCard(){
     }
 }
 
+// Function that sorts the stats by minute for each match
+function sortStats() {
+    for (let i = 0; i < matchesData.length; i++) {
+        matchesData[i].stats.sort((a, b) => (a.minute > b.minute) ? 1 : -1);
+    }
+}
+
+// Function that generates an id for each stat of each match
+function generateStatId() {
+    for (let i = 0; i < matchesData.length; i++) {
+        for (let j = 0; j < matchesData[i].stats.length; j++) {
+            matchesData[i].stats[j].id = j;
+        }
+    }
+}
+
 // checkRedCard();
 // checkYellowCard();
 
+sortStats();
+generateStatId();
 
-//console.log(matchesData);
+// console.log(matchesData);
 
-//Delete all matches from the database and add the new ones
+// // Delete all matches from the database and add the new ones
 // Match.deleteMany({})
 //     .then(() => {
 //         console.log('Deleted all matches');

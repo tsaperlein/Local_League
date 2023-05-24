@@ -49,9 +49,6 @@ const matchFilling = (req, res) => {
                             if (result3[i].role == "admin") role = "admin";
                         }
                     }
-                    for (let i = 0; i < result.length; i++) {
-                        result[i].stats.sort((a, b) => (a.minute > b.minute) ? 1 : -1);
-                    }
                     res.render('schedule', { match: result, team: result2, teams: result2, username: req.session.username, displayDate: week, displayNextWeek: getNextWeek(week), displayPreviousWeek: getPreviousWeek(week), role: role, allTeams: true })
                 })
             })
@@ -74,18 +71,25 @@ const matchFillingTeam = (req, res) => {
                             if (result3[i].role == "admin") role = "admin";
                         }
                     }
-                    for (let i = 0; i < result.length; i++) {
-                        result[i].stats.sort((a, b) => (a.minute > b.minute) ? 1 : -1);
-                    }
                     res.render('schedule', { match: result, team: result2, teams: result2, username: req.session.username, displayDate: week, displayNextWeek: getNextWeek(week), displayPreviousWeek: getPreviousWeek(week), role: role, teamName: team, allTeams: false })
                 })
             })
         })
             .catch(err => console.log(err))
     }
-}       
+}
+
+const deleteMatch = (req, res) => {
+    if (req.session.username == undefined) res.redirect('/Local-League/main-page');
+}
+
+const deleteStat = (req, res) => {
+    if (req.session.username == undefined) res.redirect('/Local-League/main-page');
+}
 
 export default {
     matchFilling,
-    matchFillingTeam
+    matchFillingTeam,
+    deleteMatch,
+    deleteStat
 }
