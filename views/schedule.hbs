@@ -147,8 +147,8 @@
                             {{!-- ADMIN --}}
                             {{#ifeq ../../role 'admin'}}
                             <div class="admin-stats-options admin-options">
-                                <button id="edit-stat-{{../date}}-{{minute}}-{{addDash type}}" class="btn admin-btn edit-btn edit-stat-btn" type="button">Edit</button>
-                                <button id="delete-stat-{{../date}}-{{minute}}-{{addDash type}}" class="btn admin-btn delete-btn delete-stat-btn" type="button">Delete</button>
+                                <button id="edit-stat-{{../date}}-{{formatName ../homeTeam.name}}-{{id}}-{{minute}}-{{type}}" class="btn admin-btn edit-btn edit-stat-btn" type="button">Edit</button>
+                                <button id="delete-stat-{{../date}}-{{addDash ../homeTeam.name}}-{{id}}" class="btn admin-btn delete-btn delete-stat-btn" data-doc="{{../date}}-{{../homeTeam.name}}-{{id}}" type="button">Delete</button>
                             </div>
                             {{/ifeq}}
                             {{/each}}
@@ -259,8 +259,11 @@
                             {{!-- ADMIN --}}
                             {{#ifeq ../../role 'admin'}}
                             <div class="admin-stats-options admin-options">
-                                <button id="edit-stat-{{../date}}-{{minute}}-{{addDash type}}" class="btn admin-btn edit-btn edit-stat-btn" type="button">Edit</button>
-                                <button id="delete-stat-{{../date}}-{{minute}}-{{addDash type}}" class="btn admin-btn delete-btn delete-stat-btn" type="button">Delete</button>
+                                <button id="edit-stat-{{../date}}-{{formatName ../homeTeam.name}}-{{id}}-{{minute}}-{{type}}"
+                                    class="btn admin-btn edit-btn edit-stat-btn" type="button">Edit</button>
+                                <button id="delete-stat-{{../date}}-{{addDash ../homeTeam.name}}-{{id}}"
+                                    class="btn admin-btn delete-btn delete-stat-btn" data-doc="{{../date}}-{{../homeTeam.name}}-{{id}}"
+                                    type="button">Delete</button>
                             </div>
                             {{/ifeq}}
                             {{/each}}

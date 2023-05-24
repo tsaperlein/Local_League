@@ -73,6 +73,9 @@ const createFormModal = (pageOfReturn, labels, option, modalId, button) => {
                 else if (labels[i].includes('referee')) {
                     value = matchElement.querySelector(".get-" + labels[i]).textContent.split(":")[1].trim();
                 }
+                else if (labels[i].includes('state')) {
+                    
+                }
                 else {
                     if (labels[i] === "time" && matchElement.querySelector(".get-" + labels[i]) === null) continue;
                     value = matchElement.querySelector(".get-" + labels[i]).textContent;
@@ -96,11 +99,11 @@ const createFormModal = (pageOfReturn, labels, option, modalId, button) => {
                     }
                 }
                 else if (labels[i].includes('type')) {
-                    if (button.id.split("-")[5] !== undefined) value = button.id.split("-")[4] + " " + button.id.split("-")[5];
-                    else value = button.id.split("-")[4];
+                    if (button.id.split("-")[7] !== undefined) value = button.id.split("-")[6] + " " + button.id.split("-")[7];
+                    else value = button.id.split("-")[6];
                 }
                 else if (labels[i].includes('minute')) {
-                    value = button.id.split("-")[3];
+                    value = button.id.split("-")[5];
                 }
             }
             else if (modalId === "edit-player-modal") {
@@ -370,7 +373,7 @@ if (window.location.pathname.includes("schedule")) {
             let editMatchButton = document.getElementById(id);
             document.body.style.overflow = 'hidden';
             console.log("edit match");
-            let formModal = createFormModal("schedule", ["date", "time", "home-team", "away-team", "field-name", "main-referee", "assistant-referee"], "edit", "edit-match-modal", editMatchButton);
+            let formModal = createFormModal("schedule", ["date", "state", "time", "home-team", "away-team", "field-name", "main-referee", "assistant-referee"], "edit", "edit-match-modal", editMatchButton);
             document.body.appendChild(formModal);
         });
     });
@@ -407,10 +410,17 @@ if (window.location.pathname.includes("schedule")) {
         button.addEventListener("click", (button) => {
             let id = button.target.id;
             let deleteStatButton = document.getElementById(id);
+            let dataDoc = deleteStatButton.dataset.doc;
+            let matchDate = dataDoc.split("-")[0];
+            let homeTeam = dataDoc.split("-")[1];
+            let statId = dataDoc.split("-")[2];
+            // Get the week and the team name from the path of the current page
+            let week = window.location.pathname.split("/")[3];
+            let team = window.location.pathname.split("/")[4];
             console.log("delete stat");
             let result = confirm("Are you sure you want to delete this stat?");
             if (result) {
-                const endPoint = `/Local-League/teams/${deleteStatButton.dataset.doc}`;
+                const endPoint = `/Local-League/schedule/${week}/${team}/${matchDate}/${homeTeam}/${statId}`;
                 fetch(endPoint, {
                     method: "DELETE",
                 })

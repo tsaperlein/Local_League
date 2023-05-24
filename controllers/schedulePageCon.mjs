@@ -79,12 +79,48 @@ const matchFillingTeam = (req, res) => {
     }
 }
 
+const addMatch = (req, res) => {
+    if (req.session.username == undefined) res.redirect('/Local-League/main-page');
+}
+
+const addStat = (req, res) => {
+    if (req.session.username == undefined) res.redirect('/Local-League/main-page');
+}
+
+const editMatch = (req, res) => {
+    if (req.session.username == undefined) res.redirect('/Local-League/main-page');
+}
+
+const editStat = (req, res) => {
+    if (req.session.username == undefined) res.redirect('/Local-League/main-page');
+}
+
 const deleteMatch = (req, res) => {
     if (req.session.username == undefined) res.redirect('/Local-League/main-page');
 }
 
 const deleteStat = (req, res) => {
     if (req.session.username == undefined) res.redirect('/Local-League/main-page');
+    else {
+        const week = req.params.week;
+        const team = req.params.team.split("-").join(" ");
+        const matchDate = req.params.date;
+        const homeTeam = req.params.homeTeam.split("-").join(" ");
+        const statId = req.params.statId;
+        Match.findOne({ date: matchDate, "homeTeam.name": homeTeam }).then(result => {
+            const stats = result.stats;
+            for (let i = 0; i < stats.length; i++) {
+                if (stats[i].id == statId) {
+                    stats.splice(i, 1);
+                    break;
+                }
+            }
+            Match.updateOne({ date: matchDate, "homeTeam.name": homeTeam }, { $set: { "stats": stats } }).then(result2 => {
+                res.json({ redirect: `/Local-League/schedule/${week}/${team}` });
+            })
+        })
+        .catch(err => console.log(err))
+    }
 }
 
 export default {

@@ -1,10 +1,12 @@
 import single_team_obj from '../modules/singleTeamData.mjs'
 import team_obj from '../modules/teamData.mjs'
 import user_obj from '../modules/userData.mjs'
+import player_obj from '../modules/playerData.mjs'
 
 const { singleTeam } = single_team_obj;
 const { Team } = team_obj;
 const { User } = user_obj;
+const { Player } = player_obj;
 
 const startDate = new Date();
 const endDate = new Date();
@@ -68,6 +70,19 @@ const addTeam = (req, res) => {
     })
 }
 
+const addPlayer = (req, res) => {
+    const newPlayer = new Player({
+    })
+}
+
+const editTeam = (req, res) => {
+    const teamName = req.params.name;
+}
+
+const editPlayer = (req, res) => {
+    const playerName = req.params.playerName;
+}
+
 const deleteTeam = (req, res) => {
     const teamName = req.params.name;
     singleTeam.findOneAndDelete({ name: teamName }).lean().then((result) => {
@@ -84,11 +99,28 @@ const deleteTeam = (req, res) => {
 }
 
 const deletePlayer = (req, res) => {
-    const teamName = req.params.teamName;
     const playerName = req.params.playerName;
     // Find the player in the team and delete it
-    singleTeam.findOneAndUpdate({ name: teamName }, { $pull: { players: { name: playerName } } }).lean().then((result) => {
-        res.json({ redirect: '/Local-League/teams/' + teamName });
+    Player.findOneAndDelete({ name: playerName }).lean().then((result) => {
+        // Find the team and delete the player from the team
+        singleTeam.findOne({ name: req.params.teamName }).lean().then((result2) => {
+            let players = result2.players;
+            for (let i = 0; i < players.length; i++) {
+                if (players[i].name == playerName) {
+                    players.splice(i, 1);
+                    break;
+                }
+            }
+            singleTeam.findOneAndUpdate({ name: req.params.teamName }, { players: players }).lean().then((result3) => {
+                res.json({ redirect: '/Local-League/teams/' + req.params.teamName });
+            })
+            .catch((err) => {
+                console.log(err);
+            })
+        })
+        .catch((err) => {
+            console.log(err);
+        })
     })
 }
 
