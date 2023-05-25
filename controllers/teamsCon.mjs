@@ -108,7 +108,18 @@ const addPlayer = (req, res) => {
 }
 
 const editTeam = (req, res) => {
-    const teamName = req.params.name;
+    //console.log(req.body);
+    singleTeam.findOneAndUpdate({ name: req.body.name }, { lineup: req.body.lineupImage, fieldName: req.body.fieldName, fieldLink: req.body.fieldImage }).lean().then((result) => {
+        Team.findOneAndUpdate({ name: req.body.name }, { logo: req.body.teamImage }).lean().then((result2) => {
+            res.redirect('/Local-League/teams/' + req.body.name);
+        })
+        .catch((err) => {
+            console.log(err);
+        })
+    })
+    .catch((err) => {
+        console.log(err);
+    })
 }
 
 const editPlayer = (req, res) => {
@@ -161,5 +172,6 @@ export default {
     addTeam,
     deleteTeam,
     deletePlayer,
-    addPlayer
+    addPlayer,
+    editTeam
 }
