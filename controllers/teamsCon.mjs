@@ -30,6 +30,14 @@ const teamDisplay = (req, res) => {
                     let teamPLayers = result[0];
                     if (teamPLayers == undefined) teamPLayers = [];
                     else teamPLayers = teamPLayers.players;
+                    req.session.previousTeamRender = {
+                        team: result,
+                        players: teamPLayers,
+                        teams: result2,
+                        username: req.session.username,
+                        thisWeek: thisWeek,
+                        role: role
+                    }
                     res.render('teams', { team: result, players: teamPLayers, teams: result2, username: req.session.username, thisWeek: thisWeek, role: role })
                 })
             })
@@ -71,8 +79,32 @@ const addTeam = (req, res) => {
 }
 
 const addPlayer = (req, res) => {
-    const newPlayer = new Player({
-    })
+    Player.findOne({ name: req.body.name }).lean().then((player) => {
+        if(player != null){
+            res.render('teams', { errorMessage: "This player already exists", ...req.session.previousTeamRender })
+        }
+        else{
+            const newPlayer = new Player({
+                name: req.body.name,
+                team: req.body.team,
+                number: req.body.jerseyNumber,
+                age: req.body.age,
+                position: req.body.position,
+                nationality: req.body.nationality
+            });
+            newPlayer.save().then((result) => {
+                singleTeam.findOneAndUpdate({ name: req.body.team }, { $push: { players: result } }).lean().then((result2) => {
+                    res.redirect('/Local-League/teams/' + req.body.team);
+                })
+                .catch((err) => {
+                    console.log(err);
+                })
+            })
+            .catch((err) => {
+                console.log(err);
+            })
+        }
+    });
 }
 
 const editTeam = (req, res) => {
@@ -128,5 +160,6 @@ export default {
     teamDisplay,
     addTeam,
     deleteTeam,
-    deletePlayer
+    deletePlayer,
+    addPlayer
 }

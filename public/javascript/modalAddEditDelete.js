@@ -447,7 +447,7 @@ if (window.location.pathname.includes("teams")) {
     addPlayerButton.addEventListener("click", () => {
         document.body.style.overflow = 'hidden';
         console.log("add player");
-        let formModal = createFormModal("teams", ["name", "team", "jersey-number", "position", "nationality"], "add", "add-player-modal", addPlayerButton);
+        let formModal = createFormModal("teams", ["name", "team", "jersey-number", "age", "position", "nationality"], "add", "add-player-modal", addPlayerButton);
         document.body.appendChild(formModal);
     });
 

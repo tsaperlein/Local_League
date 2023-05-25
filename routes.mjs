@@ -24,6 +24,7 @@ router.post('/main-page', authFunc.authenticateUser);
 
 // Add Forms
 router.post('/standings', teamFunc.addTeam);
+router.post('/teams', teamFunc.addPlayer);
 
 // Delete Forms
 router.delete('/teams/:name', teamFunc.deleteTeam);
