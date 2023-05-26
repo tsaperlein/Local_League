@@ -11,7 +11,40 @@
             <div class="standings">
                 <div class="standings-table">
                     <table id="teams-table">
-                        <thead id="thead"></thead>
+                        <thead id="thead">
+                            <tr>
+                                <th class="sticky-rank">
+                                    <a class='header-button rank-btn'>Rank &nbsp;<i class='fa fa-sort'></i></a>
+                                </th>
+                                <th class="team-th sticky-team">
+                                    <a class='header-button team-btn'>Team &nbsp;<i class='fa fa-sort'></i></a>
+                                </th>
+                                <th>
+                                    <a class='header-button matches-btn'>Matches</a>
+                                </th>
+                                <th>
+                                    <a class='header-button wins-btn'>W &nbsp;<i class='fa fa-sort'></i></a>
+                                </th>
+                                <th>
+                                    <a class='header-button draws-btn'>D</a>
+                                </th>
+                                <th>
+                                    <a class='header-button losses-btn'>L</a>
+                                </th>
+                                <th>
+                                    <a class='header-button goals-for-btn'>GF</a>
+                                </th>
+                                <th>
+                                    <a class='header-button goals-against-btn'>GA</a>
+                                </th>
+                                <th>
+                                    <a class='header-button goal-diff-btn'>GD</a>
+                                </th>
+                                <th class="sticky-points">
+                                    <a class='header-button points-btn'>PTS &nbsp;<i class='fa fa-sort'></i></a>
+                                </th>
+                            </tr>
+                        </thead>
                         <tbody id="tbody">
                             {{#each team}}
                             <tr>
@@ -76,6 +109,62 @@
                         </div>
                     </div>
                 </div>
+                <div id="{{formatId homeTeam.name awayTeam.name date}}-match-details-modal"
+                    class="modal match-details-modal d-flex justify-content-center align-items-center">
+                    <div class="modal-content">
+                        <div class="close-btn-div d-flex justify-content-end">
+                            <span class="close-btn">x</span>
+                        </div>
+                        <div class="modal-header">
+                            <div class="logo-name d-flex justify-content-center align-items-center">
+                                <h2 id="{{homeTeam.name}}-{{date}}" class="get-home-team-name">{{formatName homeTeam.name}}</h2>
+                                <img class="team-logo" src="{{homeTeam.logo}}" alt="{{homeTeam.name}} icon">
+                            </div>
+                            <h3>Time</h3>
+                            <div class="logo-name d-flex justify-content-center align-items-center">
+                                <img class="team-logo" src="{{awayTeam.logo}}" alt="{{awayTeam.name}} icon">
+                                <h2 id="{{awayTeam.name}}-{{date}}" class="get-away-team-name">{{formatName awayTeam.name}}</h2>
+                            </div>
+                        </div>
+                        <div class="modal-body">
+                            <div class="match-details">
+                                {{#each stats}}
+                                <div class="row">
+                                    <div class="ht-player col-4">
+                                        <div class="home-team-player">
+                                            {{#ifeq team ../homeTeam.name}}
+                                            <div class="get-player-name">{{name}}</div>
+                                            {{/ifeq}}
+                                        </div>
+                                    </div>
+                                    <div class="stat-time col-4">
+                                        <div class="stat-and-time">
+                                            <div class="home-stat col-4">
+                                                {{#ifeq team ../homeTeam.name}}
+                                                <img src="{{formatStat type}}" alt="{{type}}">
+                                                {{/ifeq}}
+                                            </div>
+                                            <div class="time col-4">{{minute}}</div>
+                                            <div class="away-stat col-4">
+                                                {{#ifeq team ../awayTeam.name}}
+                                                <img src="{{formatStat type}}" alt="{{type}}">
+                                                {{/ifeq}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="at-player col-4">
+                                        <div class="away-team-player">
+                                            {{#ifeq team ../awayTeam.name}}
+                                            <div class="get-player-name">{{name}}</div>
+                                            {{/ifeq}}
+                                        </div>
+                                    </div>
+                                </div>
+                                {{/each}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 {{/ifeq}}
                 {{/each}}
             </div>
@@ -114,6 +203,62 @@
                                 <li class="referee main-referee">Main: {{referees.main}}</li>
                                 <li class="referee assistant-referee">Assistant: {{referees.assistant}}</li>
                             </ul>
+                        </div>
+                    </div>
+                </div>
+                <div id="{{formatId homeTeam.name awayTeam.name date}}-match-details-modal"
+                    class="modal match-details-modal d-flex justify-content-center align-items-center">
+                    <div class="modal-content">
+                        <div class="close-btn-div d-flex justify-content-end">
+                            <span class="close-btn">x</span>
+                        </div>
+                        <div class="modal-header">
+                            <div class="logo-name d-flex justify-content-center align-items-center">
+                                <h2 class="get-home-team-name">{{formatName homeTeam.name}}</h2>
+                                <img class="team-logo" src="{{homeTeam.logo}}" alt="{{homeTeam.name}} icon">
+                            </div>
+                            <h3>Time</h3>
+                            <div class="logo-name d-flex justify-content-center align-items-center">
+                                <img class="team-logo" src="{{awayTeam.logo}}" alt="{{awayTeam.name}} icon">
+                                <h2 class="get-away-team-name">{{formatName awayTeam.name}}</h2>
+                            </div>
+                        </div>
+                        <div class="modal-body">
+                            <div class="match-details">
+                                {{#each stats}}
+                                <div class="row">
+                                    <div class="ht-player col-4">
+                                        <div class="home-team-player">
+                                            {{#ifeq team ../homeTeam.name}}
+                                            <div>{{name}}</div>
+                                            {{/ifeq}}
+                                        </div>
+                                    </div>
+                                    <div class="stat-time col-4">
+                                        <div class="stat-and-time">
+                                            <div class="home-stat col-4">
+                                                {{#ifeq team ../homeTeam.name}}
+                                                <img class="get-type" src="{{formatStat type}}" alt="{{type}}">
+                                                {{/ifeq}}
+                                            </div>
+                                            <div class="time col-4 get-minute">{{minute}}</div>
+                                            <div class="away-stat col-4">
+                                                {{#ifeq team ../awayTeam.name}}
+                                                <img class="get-type" src="{{formatStat type}}" alt="{{type}}">
+                                                {{/ifeq}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="at-player col-4">
+                                        <div class="away-team-player">
+                                            {{#ifeq team ../awayTeam.name}}
+                                            <div>{{name}}</div>
+                                            {{/ifeq}}
+                                        </div>
+                                    </div>
+                                </div>
+                                {{/each}}
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -2,17 +2,59 @@ import single_team_obj from '../modules/singleTeamData.mjs'
 import team_obj from '../modules/teamData.mjs'
 import user_obj from '../modules/userData.mjs'
 import player_obj from '../modules/playerData.mjs'
+import match_obj from '../modules/matchData.mjs'
 
 const { singleTeam } = single_team_obj;
 const { Team } = team_obj;
 const { User } = user_obj;
 const { Player } = player_obj;
+const { Match } = match_obj;
 
 const startDate = new Date();
 const endDate = new Date();
 startDate.setDate(startDate.getDate() - 3);
 endDate.setDate(startDate.getDate() + 7);
 const thisWeek = startDate.toLocaleString('en-US', { month: 'short', day: 'numeric' }) + " - " + endDate.toLocaleString('en-US', { month: 'short', day: 'numeric' });
+
+const calculatePlayersStats = async (req, res) => {
+    try {
+        const teamName = req.params.name;
+        const players = await Player.find({ team: teamName }).lean();
+        
+        const playersStats = {};
+        const matches = await Match.find({ $or: [{ 'homeTeam.name': teamName }, { 'awayTeam.name': teamName }] }).lean();
+        
+        for (let i = 0; i < players.length; i++) {
+            const player = players[i];
+            let goals = 0;
+            let yellowCards = 0;
+            let redCards = 0;
+
+            for (let j = 0; j < matches.length; j++) {
+                const match = matches[j];
+                for (let k = 0; k < match.stats.length; k++) {
+                const stat = match.stats[k];
+                if (stat.name === player.name) {
+                    if (stat.type === "goal") goals++;
+                    else if (stat.type === "yellow card") yellowCards++;
+                    else if (stat.type === "red card") redCards++;
+                }
+                }
+            }
+            
+            playersStats[player.name] = {
+                goals: goals,
+                yellowCards: yellowCards,
+                redCards: redCards
+            };
+        }
+
+        return playersStats;
+    } catch (err) {
+        console.error(err);
+        throw err;
+    }
+};
 
 const teamDisplay = (req, res) => {
     if(req.session.username == undefined) res.redirect('/Local-League/main-page');
@@ -27,18 +69,29 @@ const teamDisplay = (req, res) => {
                             if (result3[i].role == "admin") role = "admin";
                         }
                     }
-                    let teamPLayers = result[0];
-                    if (teamPLayers == undefined) teamPLayers = [];
-                    else teamPLayers = teamPLayers.players;
-                    req.session.previousTeamRender = {
-                        team: result,
-                        players: teamPLayers,
-                        teams: result2,
-                        username: req.session.username,
-                        thisWeek: thisWeek,
-                        role: role
+                    let teamPlayers = result[0];
+                    if (teamPlayers == undefined) teamPlayers = [];
+                    else teamPlayers = teamPlayers.players;
+                    req.session.team = req.params.name;
+
+                    // Add new attribute stats to each player
+                    for (let i = 0; i < teamPlayers.length; i++) {
+                        const player = teamPlayers[i];
+                        player.stats = {};
                     }
-                    res.render('teams', { team: result, players: teamPLayers, teams: result2, username: req.session.username, thisWeek: thisWeek, role: role })
+
+                    // Get the stats for each player from the dictionary that returns calculatePlayersStats, by using the player name as key
+                    calculatePlayersStats(req, res)
+                        .then(playersStats => {
+                            // Add the stats to the players array
+                            for (let i = 0; i < teamPlayers.length; i++) {
+                                const player = teamPlayers[i];
+                                player.stats = playersStats[player.name];
+                            }
+                            res.render('teams', { team: result, players: teamPlayers, teams: result2, username: req.session.username, thisWeek: thisWeek, role: role, errorMessage: req.session.errorMessage })
+                            req.session.errorMessage = "";
+                        })
+                        .catch(err => console.log(err))
                 })
             })
         })
@@ -47,10 +100,12 @@ const teamDisplay = (req, res) => {
 }
 
 const addTeam = (req, res) => {
-    //console.log(req.body);
+    let error = false;
     Team.findOne({ name: req.body.name }).lean().then((team) => {
-        if(team != null){
-            res.render('standings', { errorMessage: "This team already exists", ...req.session.previousStandingsRender })
+        if (team != null) {
+            error = true;
+            req.session.errorMessage = "This team already exists";
+            res.redirect('/Local-League/standings');
         }
         else{
             const newTeam = new Team({
@@ -63,25 +118,36 @@ const addTeam = (req, res) => {
                 fieldName: req.body.fieldName,
                 fieldLink: req.body.fieldImage
             });
-            newTeam.save().then((result) => {
-                newSingleTeam.save().then((result2) => {
-                    res.redirect('/Local-League/teams/' + req.body.name);
+            if (!error) {
+                newTeam.save().then((result) => {
+                    newSingleTeam.save().then((result2) => {
+                        req.session.team = req.body.name;
+                        redirectToTeams(req, res);
+                    })
+                        .catch((err) => {
+                            console.log(err);
+                        })
                 })
-                .catch((err) => {
-                    console.log(err);
-                })
-            })
-            .catch((err) => {
-                console.log(err);
-            })
+                    .catch((err) => {
+                        console.log(err);
+                    })
+            }
+            else {
+                req.session.team = req.body.name;
+                redirectToTeams(req, res);
+            }
         }
     })
 }
 
 const addPlayer = (req, res) => {
+    let error = false;
     Player.findOne({ name: req.body.name }).lean().then((player) => {
         if(player != null){
-            res.render('teams', { errorMessage: "This player already exists", ...req.session.previousTeamRender })
+            error = true;
+            req.session.errorMessage = "This player already exists";
+            req.session.team = req.body.team;
+            redirectToTeams(req, res);
         }
         else{
             const newPlayer = new Player({
@@ -92,38 +158,162 @@ const addPlayer = (req, res) => {
                 position: req.body.position,
                 nationality: req.body.nationality
             });
-            newPlayer.save().then((result) => {
-                singleTeam.findOneAndUpdate({ name: req.body.team }, { $push: { players: result } }).lean().then((result2) => {
-                    res.redirect('/Local-League/teams/' + req.body.team);
+            if (!error) {
+                newPlayer.save().then((result) => {
+                    singleTeam.findOneAndUpdate({ name: req.body.team }, { $push: { players: result } }).lean().then((result2) => {
+                        req.session.team = req.body.team;
+                        redirectToTeams(req, res);
+                    })
+                        .catch((err) => {
+                            console.log(err);
+                        })
                 })
-                .catch((err) => {
-                    console.log(err);
-                })
-            })
-            .catch((err) => {
-                console.log(err);
-            })
+                    .catch((err) => {
+                        console.log(err);
+                    })
+            }
+            else {
+                req.session.team = req.body.team;
+                redirectToTeams(req, res);
+            }
         }
     });
 }
 
 const editTeam = (req, res) => {
-    //console.log(req.body);
-    singleTeam.findOneAndUpdate({ name: req.body.name }, { lineup: req.body.lineupImage, fieldName: req.body.fieldName, fieldLink: req.body.fieldImage }).lean().then((result) => {
-        Team.findOneAndUpdate({ name: req.body.name }, { logo: req.body.teamImage }).lean().then((result2) => {
-            res.redirect('/Local-League/teams/' + req.body.name);
+    let error = false;
+    if (req.body.name != req.body.previousName) {
+        // Check if the new team name is the same as another team
+        singleTeam.findOne({ name: req.body.name }).lean().then((result) => {
+            if (result != null) {
+                error = true;
+                req.session.errorMessage = "This team already exists";
+                req.session.team = req.body.previousName;
+                redirectToTeams(req, res);
+            }
+            else {
+                if (!error) {
+                    // Update the team and the single team
+                    Team.findOneAndUpdate({ name: req.body.previousName }, { name: req.body.name, logo: req.body.teamImage }).lean().then((result2) => {
+                        singleTeam.findOneAndUpdate({ name: req.body.previousName }, { name: req.body.name }).lean().then((result3) => {
+                            // Find all the matches from the previous team and change the team name
+                            Match.find({ $or: [{ 'homeTeam.name': req.body.previousName }, { 'awayTeam.name': req.body.previousName }] }).lean().then((result4) => {
+                                for (let i = 0; i < result4.length; i++) {
+                                    if (result4[i].homeTeam.name == req.body.previousName) {
+                                        Match.findOneAndUpdate({ _id: result4[i]._id }, { homeTeam: { name: req.body.name, logo: '/team-icons/' + req.body.teamImage, score: result4[i].homeTeam.score, possession: result4[i].homeTeam.possession } }).lean().then((result5) => {
+                                            req.session.team = req.body.name;
+                                        })
+                                            .catch((err) => console.log(err));
+                                    }
+                                    else if (result4[i].awayTeam.name == req.body.previousName) {
+                                        Match.findOneAndUpdate({ _id: result4[i]._id }, { awayTeam: { name: req.body.name, logo: '/team-icons/' + req.body.teamImage, score: result4[i].awayTeam.score, possession: result4[i].awayTeam.possession } }).lean().then((result5) => {
+                                            req.session.team = req.body.name;
+                                        })
+                                            .catch((err) => console.log(err));
+                                    }
+                                }
+                                // Change the team attribute in all players of the previous team
+                                Player.find({ team: req.body.previousName }).lean().then((result4) => {
+                                    for (let i = 0; i < result4.length; i++) {
+                                        Player.findOneAndUpdate({ name: result4[i].name }, { team: req.body.name }).lean().then((result5) => {
+                                            req.session.team = req.body.name;
+                                            redirectToTeams(req, res);
+                                        })
+                                            .catch((err) => console.log(err));
+                                    }
+                                })
+                                    .catch((err) => console.log(err));
+                            })
+                                .catch((err) => console.log(err));
+                        })
+                            .catch((err) => console.log(err));
+                    })
+                        .catch((err) => console.log(err));
+                }
+                else {
+                    req.session.team = req.body.previousName;
+                    redirectToTeams(req, res);
+                }
+            }
         })
-        .catch((err) => {
-            console.log(err);
-        })
-    })
-    .catch((err) => {
-        console.log(err);
-    })
+            .catch((err) => console.log(err));
+    }
+    else {
+        if (!error) {
+            Team.findOneAndUpdate({ name: req.body.name }, { logo: req.body.teamImage }).lean().then((result) => {
+                req.session.team = req.body.name;
+                redirectToTeams(req, res);
+            })
+                .catch((err) => console.log(err));
+        }
+    }
 }
 
 const editPlayer = (req, res) => {
-    const playerName = req.params.playerName;
+    let error = false;
+    // Check if the jersey number changed
+    Player.findOne({ name: req.body.name }).lean().then((result) => {
+        if (result.number != req.body.jerseyNumber) {
+            // Search all players to see if the jersey number is already taken
+            Player.find().lean().then((result) => {
+                // Check all jersey numbers to see if the new number is already taken
+                for (let i = 0; i < result.length; i++) {
+                    if (result[i].number == req.body.jerseyNumber && result[i].name != req.body.name) {
+                        error = true;
+                        req.session.errorMessage = "This jersey number is already taken";
+                        req.session.team = req.body.previousTeam;
+                        redirectToTeams(req, res);
+                    }
+                }
+            })
+                .catch((err) => console.log(err));
+        }
+        // Update the player
+        if (!error) {
+            // Find if the new team exists
+            singleTeam.findOne({ name: req.body.team }).lean().then((result) => {
+                if (result == null) {
+                    error = true;
+                    req.session.errorMessage = "This team does not exist";
+                    req.session.team = req.body.previousTeam;
+                    redirectToTeams(req, res);
+                }
+                else {
+                    if (!error) {
+                        // Update the player and the single team
+                        console.log(req.body.team);
+                        Player.findOneAndUpdate({ name: req.body.name }, { team: req.body.team, number: req.body.jerseyNumber, age: req.session.age, position: req.session.position, nationality: req.session.nationality }).lean().then((result) => {
+                            // If the team changed, update the single team
+                            console.log(req.body.team);
+                            if (req.body.team != req.body.previousTeam) {
+                                console.log("1");
+                                console.log(req.body.previousTeam);
+                                // Previous Team
+                                singleTeam.findOneAndUpdate({ name: req.body.previousTeam }, { $pull: { players: result } }).lean().then((result2) => {
+                                    // New Team
+                                    singleTeam.findOneAndUpdate({ name: req.body.team }, { $push: { players: result } }).lean().then((result3) => {
+                                        req.session.team = req.body.team;
+                                        redirectToTeams(req, res);
+                                    })
+                                        .catch((err) => console.log(err));
+                                })
+                                    .catch((err) => console.log(err));
+                            }
+                            else {
+                                console.log("2");
+                                req.session.team = req.body.team;
+                                redirectToTeams(req, res);
+                            }
+                        })
+                            .catch((err) => console.log(err));
+                    }
+                    else redirectToTeams(req, res);
+                }
+            })
+                .catch((err) => console.log(err));
+        }
+    })  
+        .catch((err) => console.log(err));
 }
 
 const deleteTeam = (req, res) => {
@@ -167,11 +357,16 @@ const deletePlayer = (req, res) => {
     })
 }
 
+const redirectToTeams = (req, res) => {
+    res.redirect('/Local-League/teams/' + req.session.team);
+};
+
 export default {
     teamDisplay,
     addTeam,
-    deleteTeam,
-    deletePlayer,
     addPlayer,
-    editTeam
+    editTeam,
+    editPlayer,
+    deleteTeam,
+    deletePlayer
 }

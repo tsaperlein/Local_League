@@ -24,12 +24,12 @@ div.last-week-results {
 
 div.auth-error-message {
     position: fixed;
-    top: 10%;
+    top: 15%;
     left: 50%;
     transform: translate(-50%, -50%);
-    /* Decrease the opacity of the message after 5 seconds */
-    animation: fadeOut 3s ease-in-out forwards;
     z-index: 999;
+    /* Decrease the opacity of the message after 5 seconds */
+    animation: fadeOut 5s ease-in-out forwards;
     width: fit-content;
     height: fit-content;
     display: flex;
@@ -51,10 +51,16 @@ div.auth-error-message {
 @keyframes fadeOut {
     80% {
         opacity: 1;
+        z-index: 999;
+    }
+
+    99% {
+        z-index: 999;
     }
 
     100% {
         opacity: 0;
+        z-index: -1;
     }
 }
 

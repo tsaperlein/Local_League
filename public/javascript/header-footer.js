@@ -1,6 +1,6 @@
 const nav = document.querySelector('.header-options');
 let modal;
-let modalOn = false;
+let modalOn = 0;
 
 function createModal() {
     // When the user clicks the Sign In/Register button, create a modal
@@ -89,7 +89,7 @@ function createModal() {
 
     // If the modal is open, don't allow the user to scroll
     document.body.style.overflow = 'hidden';
-    modalOn = true;
+    modalOn++;
 
     document.body.appendChild(modal);
     if (modal) {
@@ -99,68 +99,55 @@ function createModal() {
     modal.querySelector('.close-btn').addEventListener('click', () => {
         modal.remove();
         document.body.style.overflow = 'visible';
-        modalOn = false;
+        modalOn = 0;
     });
     // When the user clicks outside the modal, close the modal
     window.addEventListener('click', (event) => {
         if (event.target == modal) {
             modal.remove();
             document.body.style.overflow = 'visible';
-            modalOn = false;
+            modalOn = 0;
         }
     });
 }
 
-function teamsForHeader() {
-    // Create a div for the team selector
-    const teamSelector = document.querySelector('.header-team-selector');
-    // Create a div element for each team in the league
-    for (let i = 0; i < teamsIconsData.length; i++) {
-        const team = document.createElement('div');
-        team.classList.add('header-team', 'd-flex', 'justify-content-center', 'align-items-center');
-        team.innerHTML = `
-            <img src="/team-icons/${teamsIconsData[i].icon}" alt="${teamsIconsData[i].name}">
-        `;
-        teamSelector.appendChild(team);
-        // Add an event listener to each team div
-        team.addEventListener('click', () => {
-            // Go to the team's page of the team that was clicked
-            window.location.href = `/Local-League/teams/${teamsIconsData[i].name}`;
-        });
-    }
-}
-
-// function fixMainContentHeight() {
-//     main = document.querySelector('main');
-//     header = document.querySelector('header');
-//     headerHeight = header.offsetHeight;
-
-//     main.style.paddingTop = `${headerHeight}px`;
-//     main.style.transition = 'padding-top 0.5s ease-in-out';
-//     // Check always if the header height has changed
-//     setInterval(() => {
-//         if (headerHeight != header.offsetHeight) {
-//             headerHeight = header.offsetHeight;
-//             headerHeight -= 1;
-//             main.style.paddingTop = `${headerHeight}px`;
-//         }
-//     }
-//         , 400);
-// }
+// Get the href of the div that is clicked and redirect to that page
+let headerTeamDivs = document.querySelectorAll('.header-team');
+headerTeamDivs.forEach(div => {
+    div.addEventListener('click', () => {
+        window.location.href = div.getAttribute('href');
+    });
+});
 
 // Modal
 headerEl = document.querySelector('.header-options ul').lastElementChild.querySelector('a').textContent;
 if (window.location.pathname === "/Local-League/main-page" && headerEl === "Sign In / Register") {
     createModal();
 }
+else if (window.location.pathname === "/Local-League/main-page" && headerEl !== "Sign In / Register") {
+    // If the user clicks on the last li element, create a dropdown menu
+    let lastLi = document.querySelector('.header-options ul').lastElementChild;
+    lastLi.addEventListener('click', () => {
+        if (lastLi.querySelector('ul') === null) {
+            let ul = document.createElement('ul');
+            ul.innerHTML = `
+                <li><a href="/Local-League/logout">Logout</a></li>
+            `;
+            lastLi.appendChild(ul);
+        }
+        else {
+            lastLi.querySelector('ul').remove();
+        }
+    });
+}
 
 // fixMainContentHeight();
 
 nav.querySelector('ul').lastElementChild.addEventListener('click', () => {
-    if (modalOn) {
-        modalOn = false;
+    if (modalOn === 1) {
         modal.remove();
         document.body.style.overflow = 'visible';
+        modalOn = 0;
     }
     else {
         createModal();

@@ -163,12 +163,13 @@ li.field-name {
     visibility: hidden;
     overflow: hidden;
     position: sticky;
-    z-index: 999;
+    z-index: 1100 !important;
     background-color: rgba(0, 0, 0, 0.2);
 }
 
 .match-details-modal .modal-content .modal-body .match-details * {
     font-size: clamp(1vw, 1.5vw, 2.5rem);
+    z-index: 100;
 }
 
 .match-details-modal .modal-content {
@@ -178,7 +179,7 @@ li.field-name {
     padding: clamp(0.5rem, 2.5vw, 5rem);
     overflow: auto;
     height: clamp(40rem, 30vw, 50rem);
-    z-index: 999;
+    z-index: 1100 !important;
 }
 
 .match-details-modal .modal-content div.close-btn-div {

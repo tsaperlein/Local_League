@@ -3,7 +3,7 @@ let headerChildren = header.children;
 
 const upcomingMatches = document.getElementById('upcoming-matches-container');
 const finalMatches = document.getElementById('final-matches-container');
-const match = document.querySelectorAll('div.matches-container div.match-information')
+const match = document.querySelectorAll('div.match-information')
 match.forEach((match) => {
     match.addEventListener('click', () => {
         // Get the homeTeam and awayTeam names and the date of the match in fomat dd/mm/yyyy
@@ -28,6 +28,7 @@ match.forEach((match) => {
         // Set the opacity of the children elements to 0.9
         for (let i = 0; i < headerChildren.length; i++) {
             headerChildren[i].style.opacity = '0.8';
+            headerChildren[i].style.transition = 'opacity 0s';
         }
 
         const closeBtn = modal.querySelector('span.close-btn');

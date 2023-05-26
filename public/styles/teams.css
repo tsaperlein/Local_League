@@ -29,7 +29,7 @@
 
 #add-player-div {
     padding-top: 2vw;
-    border-top: clamp(0.05rem, 0.2vw, 0.2rem) solid rgba(128, 128, 128, 0.3);
+    border-top: clamp(0.05rem, 0.2vw, 0.3rem) solid rgba(128, 128, 128, 0.4);
 }
 
 .field-info p {
@@ -164,7 +164,7 @@ td.name-sticky:hover {
 }
 
 
-a.header-button {
+.team-container a.header-button {
     width: fit-content;
     margin: 0 auto;
     padding: 0.5vw;
@@ -174,11 +174,6 @@ a.header-button {
     text-decoration: none;
     color: black;
     position: relative;
-    cursor: pointer;
-}
-
-thead th a.header-button:hover {
-    background-color: rgba(231, 231, 231, 0.7);
 }
 
 /* MODAL */

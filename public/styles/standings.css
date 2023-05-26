@@ -98,7 +98,7 @@ td.points-td {
     padding: 0 clamp(0.5rem, 1vw, 1rem);
 }
 
-.standings-container a.header-button {
+.standings-table a.header-button {
     width: fit-content;
     margin: 0 auto;
     padding: 0.5vw;
@@ -108,12 +108,21 @@ td.points-td {
     text-decoration: none;
     color: black;
     position: relative;
-    cursor: pointer;
     opacity: ease-in-out 0.5s;
 }
 
-thead th a.header-button:hover {
-    opacity: 0.9;
+.standings-table a.rank-btn,
+.standings-table a.team-btn,
+.standings-table a.wins-btn,
+.standings-table a.points-btn {
+    cursor: pointer;
+}
+
+.standings-table a.rank-btn:hover,
+.standings-table a.team-btn:hover,
+.standings-table a.wins-btn:hover,
+.standings-table a.points-btn:hover {
+    background-color: rgba(220, 220, 220, 0.8);
 }
 
 .team-th a.header-button {

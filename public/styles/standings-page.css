@@ -44,7 +44,7 @@
 .standings-choice-buttons-group a.non-picked {
     background-color: rgb(174, 174, 174);
     text-decoration: none;
-    color: rgb(0, 0, 0);
+    color: rgb(92, 92, 92);
 }
 
 .standings-choice-buttons-group:hover a.non-picked {

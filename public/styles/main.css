@@ -102,6 +102,7 @@ div.admin-team-options {
     padding: 2vw;
     border-radius: 1vw;
     z-index: 1;
+    gap: clamp(1rem, 1vw, 2rem);
 }
 
 div.admin-team-options-container {

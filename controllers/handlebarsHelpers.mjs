@@ -40,7 +40,7 @@ Handlebars.registerHelper('formatStat', function (stat) {
     stat = stat.split(' ').join('-')
     if (stat === 'goal') return 'https://ssl.gstatic.com/onebox/sports/game_feed/goal_icon.svg'
     else if (stat === 'yellow-card') return 'https://ssl.gstatic.com/onebox/sports/soccer_timeline/yellow-card.svg'
-    else if (stat === 'red-card') return 'https://ssl.gstatic.com/onebox/sports/soccer_timeline/yellow-card.svg'
+    else if (stat === 'red-card') return 'https://ssl.gstatic.com/onebox/sports/soccer_timeline/red-card.svg'
 })
 
 // Format too much letters in a string to only 3-4 letters

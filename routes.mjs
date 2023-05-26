@@ -23,14 +23,25 @@ router.get('/teams/:name', teamFunc.teamDisplay);
 router.post('/main-page', authFunc.authenticateUser);
 
 // Add Forms
+router.post('/schedule/addMatch', scheduleFunc.addMatch);
+router.post('/schedule/addStat', scheduleFunc.addStat);
+
 router.post('/standings', teamFunc.addTeam);
-router.post('/teams', teamFunc.addPlayer);
-// router.post('/teams', teamFunc.editTeam);
+
+router.post('/teams/addPlayer', teamFunc.addPlayer);
+
+// Update Forms
+router.post('/schedule/editMatch', scheduleFunc.editMatch);
+router.post('/schedule/editStat', scheduleFunc.editStat);
+
+router.post('/teams/editTeam', teamFunc.editTeam);
+router.post('/teams/editPlayer', teamFunc.editPlayer);
 
 // Delete Forms
+router.delete('/schedule/:week/:team/:date/:homeTeam', scheduleFunc.deleteMatch);
+router.delete('/schedule/:week/:team/:date/:homeTeam/:statId', scheduleFunc.deleteStat);
+
 router.delete('/teams/:name', teamFunc.deleteTeam);
 router.delete('/teams/:teamName/:playerName', teamFunc.deletePlayer);
-
-router.delete('/schedule/:week/:team/:date/:homeTeam/:statId', scheduleFunc.deleteStat);
 
 export { router }

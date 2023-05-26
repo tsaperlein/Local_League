@@ -8,33 +8,30 @@ const createUser = (req, res) => {
     req.body.password = bcrypt.hashSync(req.body.password, 10);
     User.findOne({ username: req.body.username }).lean().then((user) => {
         if (user != null) {
-            res.render('main-page', { errorMessage: "An account with this username already exists", ...req.session.previousRender })
+            req.session.errorMessage = "An account with this username already exists";
+            redirectToMainPage(req, res);
         }
         else if (user == null) {
             User.findOne({ email: req.body.email }).lean().then((result) => {
                 if (result != null) {
-                    res.render('main-page', { errorMessage: "An account with this email already exists", ...req.session.previousRender })
+                    req.session.errorMessage = "An account with this email already exists";
+                    redirectToMainPage(req, res);
                 }
                 else {
                     const newUser = new User(req.body);
                     newUser.save()
                         .then((result) => {
-                            res.redirect('/Local-League/main-page');
+                            redirectToMainPage(req, res);
+                            req.session.mainPageRole = "user";
                             req.session.username = req.body.username;
                         })
-                        .catch((err) => {
-                            console.log(err);
-                        })
+                        .catch((err) => console.log(err));
                 }
             })
-                .catch((err) => {
-                    console.log(err);
-                })
+                .catch((err) => console.log(err));
         }
     })
-        .catch((err) => {
-            console.log(err);
-        })
+        .catch((err) => console.log(err));
 }
 
 const authenticateUser = (req, res) => {
@@ -43,25 +40,35 @@ const authenticateUser = (req, res) => {
             if (user != null) {
                 if (user.username == req.body.usernameSignIn && bcrypt.compareSync(req.body.passwordSignIn, user.password)) {
                     req.session.username = req.body.usernameSignIn;
-                    res.redirect('/Local-League/main-page');
+                    // Find the role of the user
+                    User.findOne({ username: req.body.usernameSignIn }).lean().then((result) => {
+                        req.session.mainPageRole = result.role;
+                        redirectToMainPage(req, res);
+                    })
+                        .catch((err) => console.log(err))
                 }
                 else if (user.username == req.body.usernameSignIn && !bcrypt.compareSync(req.body.passwordSignIn, user.password)) {
-                    res.render('main-page', { errorMessage: "Wrong password", ...req.session.previousRender })
+                    req.session.errorMessage = "Incorrect password";
+                    redirectToMainPage(req, res);
                 }
             }
             else {
-                res.render('main-page', { errorMessage: "User not found", ...req.session.previousRender })
+                req.session.errorMessage = "User not found";
+                redirectToMainPage(req, res);
             }
         })
-            .catch((err) => {
-                console.log(err);
-            })
-    } else if (req.body.username != undefined) {
+            .catch((err) => console.log(err));
+    }
+    else if (req.body.username != undefined) {
         createUser(req, res);
     }
     else {
-        res.redirect('/Local-League/main-page');
+        redirectToMainPage(req, res);
     }
+}
+
+const redirectToMainPage = (req, res) => {
+    res.redirect('/Local-League/main-page');
 }
 
 export default {

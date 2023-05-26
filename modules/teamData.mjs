@@ -154,11 +154,18 @@ function updateData(){
             //console.log(result);
             result.forEach((team, index) => {
                 Team.updateOne({ _id: team._id }, { $set: { rank: index + 1 } }).then((result1) => {
-                    //console.log(result1);
+                    // Make sure that the rank is correct before updating the team
+                    Team.find().sort({ points: -1 }).lean().then((result2) => {
+                        result2.forEach((team1, index1) => {
+                            Team.updateOne({ _id: team1._id }, { $set: { rank: index1 + 1 } }).then((result3) => {
+                                //console.log(result3);
+                            })
+                                .catch((err) => console.log(err));
+                        })
+                    })
+                        .catch((err) => console.log(err));
                 })
-                .catch((err) => {
-                    console.log(err);
-                })
+                    .catch((err) => console.log(err));
             })
         })
         .catch((err) => {

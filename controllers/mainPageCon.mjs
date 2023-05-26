@@ -17,15 +17,8 @@ const mainPageStandings = async (req, res) => {
         Match.find({ state: 'Upcoming' }).limit(3).lean().then(result1 => {
             Team.find().sort({ rank: 1 }).limit(5).lean().then(result2 => {
                 Team.find().lean().then(result3 => {
-                    req.session.previousRender = {
-                        match: result,
-                        matchUpc: result1,
-                        team: result2,
-                        teams: result3,
-                        username: req.session.username,
-                        thisWeek: thisWeek
-                    }
-                    res.render('main-page', { match: result, matchUpc: result1, team: result2, teams: result3, username: req.session.username, thisWeek: thisWeek })
+                    res.render('main-page', { match: result, matchUpc: result1, team: result2, teams: result3, username: req.session.username, thisWeek: thisWeek, role: req.session.mainPageRole, errorMessage: req.session.errorMessage })
+                    req.session.errorMessage = "";
                 })
             })
         })
