@@ -6,38 +6,7 @@ main {
     position: relative;
     max-height: fit-content;
     overflow: hidden;
-}
-
-@media (min-width: 500px) {
-    .background {
-        animation: increaseMinHeight 2s ease-in-out forwards;
-    }
-}
-
-@media (max-width: 500px) {
-    .background {
-        animation: decreaseMinHeight 3s ease-in-out backwards;
-    }
-}
-
-@keyframes increaseMinHeight {
-    0% {
-        min-height: 0;
-    }
-
-    100% {
-        min-height: 80vh;
-    }
-}
-
-@keyframes decreaseMinHeight {
-    0% {
-        min-height: 80vh;
-    }
-
-    100% {
-        min-height: 0;
-    }
+    min-height: 100vh;
 }
 
 .background-img {

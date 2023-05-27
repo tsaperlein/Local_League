@@ -279,6 +279,7 @@ span.close-btn:hover {
 .dropbtn {
   background-color: inherit;
   color: white;
+  font-weight: bold;
   border: none;
   height: 100%;
   width: 100%;
