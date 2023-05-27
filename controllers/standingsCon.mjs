@@ -15,26 +15,30 @@ const teamRanking = (req, res) => {
   else {
     team_obj.updateData();
     Team.find().sort({ rank: 1 }).select({ homeWins: 0, awayWins: 0 }).lean().then(result => {
-      User.find().lean().then(result2 => {
-        let role = "user";
-        for (let i = 0; i < result2.length; i++) {
-          if (result2[i].username == req.session.username) {
-            if (result2[i].role == "admin") role = "admin";
+      Team.find().lean().then(result2 => {
+        User.find().lean().then(result3 => {
+          let role = "user";
+          for (let i = 0; i < result2.length; i++) {
+            if (result2[i].username == req.session.username) {
+              if (result2[i].role == "admin") role = "admin";
+            }
           }
-        }
-        req.session.previousStandingsRender = {
-          team: result,
-          teams: result,
-          username: req.session.username,
-          thisWeek: thisWeek,
-          role: role,
-          overall: 'picked',
-          home: 'non-picked',
-          guest: 'non-picked'
-        }
-        res.render('standings', { team: result, teams: result, username: req.session.username, thisWeek: thisWeek, role: role, overall: 'picked', home: 'non-picked', guest: 'non-picked', errorMessage: req.session.errorMessage })
-        req.session.errorMessage = "";
+          req.session.previousStandingsRender = {
+            team: result,
+            teams: result,
+            username: req.session.username,
+            thisWeek: thisWeek,
+            role: role,
+            overall: 'picked',
+            home: 'non-picked',
+            guest: 'non-picked'
+          }
+          res.render('standings', { team: result, teams: result2, username: req.session.username, thisWeek: thisWeek, role: role, overall: 'picked', home: 'non-picked', guest: 'non-picked', errorMessage: req.session.errorMessage })
+          req.session.errorMessage = "";
+        })
+          .catch(err => console.log(err))
       })
+        .catch(err => console.log(err))
     })
       .catch(err => console.log(err))
   }
