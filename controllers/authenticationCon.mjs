@@ -21,9 +21,9 @@ const createUser = (req, res) => {
                     const newUser = new User(req.body);
                     newUser.save()
                         .then((result) => {
-                            redirectToMainPage(req, res);
                             req.session.mainPageRole = "user";
                             req.session.username = req.body.username;
+                            redirectToMainPage(req, res);
                         })
                         .catch((err) => console.log(err));
                 }
