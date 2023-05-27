@@ -1,6 +1,5 @@
 {
   "dependencies": {
-    "axios": "^1.4.0",
     "bcrypt": "^5.1.0",
     "cookie-parser": "^1.4.6",
     "dotenv": "^16.0.3",
@@ -8,14 +7,11 @@
     "express-handlebars": "^7.0.7",
     "express-session": "^1.17.3",
     "handlebars": "^4.7.7",
-    "heroku": "^8.1.4",
-    "jsdom": "^22.0.0",
     "memorystore": "^1.6.7",
     "moment": "^2.29.4",
-    "mongoose": "^7.1.0",
-    "req-flash": "^0.0.3"
+    "mongoose": "^7.1.0"
   },
-  "main": "index.js",
+  "main": "index.mjs",
   "scripts": {
     "start": "node index.mjs",
     "dev": "nodemon index.mjs"

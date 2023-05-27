@@ -127,12 +127,19 @@ button.change-field-img {
     padding: 2vw;
     border-radius: 1vw;
     margin-left: clamp(15%, 25vw, 25%);
-    margin-right: clamp(15%, 25vw, 25%)
+    margin-right: clamp(15%, 25vw, 25%);
 }
 
 .option-modal .modal-content {
     padding-top: clamp(4rem, 4vw, 10rem);
     padding-right: clamp(0, 2.5vw, 5rem);
+}
+
+@media (max-width: 450px) {
+    .option-modal .modal-content {
+        margin-left: clamp(5%, 15vw, 25%);
+        margin-right: clamp(5%, 15vw, 25%);
+    }
 }
 
 .option-modal .modal-content .form-group {
