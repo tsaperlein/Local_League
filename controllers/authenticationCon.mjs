@@ -67,10 +67,16 @@ const authenticateUser = (req, res) => {
     }
 }
 
+const logoutUser = (req, res) => {
+    req.session.destroy();
+    redirectToMainPage(req, res);
+}
+
 const redirectToMainPage = (req, res) => {
     res.redirect('/Local-League/main-page');
 }
 
 export default {
-    authenticateUser
+    authenticateUser,
+    logoutUser
 }
