@@ -54,10 +54,19 @@ nav.header-options ul li {
   padding: 0 20px;
 }
 
+/* Dont add padding for the last li */
+nav.header-options ul .dropdown-li {
+  padding: 0;
+}
+
 nav.header-options ul li:hover {
   padding: 0 20px;
   background-color: rgba(0, 0, 0, 0.2);
   transition: all 0.1s ease-in-out;
+}
+
+nav.header-options ul .dropdown-li:hover {
+  padding: 0;
 }
 
 nav.header-options ul li a {
@@ -264,4 +273,57 @@ span.close-btn:hover {
 #signin-signup-modal button:hover {
   transform: scale(1.1);
   transition: all 0.3s ease-in-out;
+}
+
+/* Log Out */
+.dropbtn {
+  background-color: inherit;
+  color: white;
+  border: none;
+  height: 100%;
+  width: 100%;
+  padding: 0 20px;
+  font-size: clamp(1rem, 1.8vw, 2.5rem);
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  position: relative;
+  height: 100%;
+  width: fit-content;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  /* Have the same width as the parent */
+  height: clamp(3rem, 3vw, 5rem);
+  z-index: 1;
+  width: 100%;
+  border-bottom-left-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+}
+
+.dropdown-content button {
+  border: 0;
+  font-size: clamp(1rem, 1.5vw, 2rem);
+  white-space: nowrap;
+  background-color: rgba(33, 104, 120);
+  height: 100%;
+  width: 100%;
+  border-bottom-left-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content button:hover {
+  background-color: rgb(27, 84, 96);
+  color: white
+}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

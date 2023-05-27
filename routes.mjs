@@ -22,7 +22,7 @@ router.get('/teams/:name', teamFunc.teamDisplay);
 // Authentication Form
 router.post('/main-page', authFunc.authenticateUser);
 // Note: Create a logout button as a form with a post method to /main-page/logout
-// router.post('/main-page/logout', authFunc.logoutUser);
+router.post('/main-page/logout', authFunc.logoutUser);
 
 // Add Forms
 router.post('/schedule/addMatch', scheduleFunc.addMatch);

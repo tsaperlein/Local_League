@@ -120,7 +120,7 @@ headerTeamDivs.forEach(div => {
 });
 
 // Modal
-headerEl = document.querySelector('.header-options ul').lastElementChild.querySelector('a').textContent;
+if (window.location.pathname === "/Local-League/main-page") headerEl = document.querySelector('.header-options ul').lastElementChild.querySelector('a').textContent;
 if (window.location.pathname === "/Local-League/main-page" && headerEl === "Sign In / Register") {
     createModal();
 }

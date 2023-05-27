@@ -198,17 +198,6 @@ const createFormModal = (pageOfReturn, labels, option, modalId, button) => {
                     teamName = teamName.toLowerCase();
                     value = teamName.replace(/ /g, "-") + ".png";
                 }
-                // else if (labels[i].includes('lineup')) {
-                //     value = teamLineupElement.querySelector(".get-" + labels[i]).textContent;
-                // }
-                // else if (labels[i].includes('field-name')) {
-                //     value = fieldInfoElement.querySelector(".get-" + labels[i]).textContent;
-                // }
-                // else if (labels[i].includes('field-image')) {
-                //     // The value is the name of the field in lowercase and the words connected with '-' and .png
-                //     let fieldName = fieldInfoElement.querySelector(".get-" + labels[i]).src;
-                //     fieldName = fieldName.split("/")[fieldName.split("/").length - 1];
-                // }
             }
             input.value = value;
         }
@@ -225,7 +214,7 @@ const createFormModal = (pageOfReturn, labels, option, modalId, button) => {
             input.placeholder = "max 2 digits";
             input.required = true;
         }
-        else if (labels[i].includes("state")) {
+        else if (labels[i] === "state") {
             input.type = "text";
             // The first letter is uppercase and the rest are lowercase
             input.addEventListener("keyup", () => {
@@ -433,7 +422,12 @@ if (window.location.pathname.includes("schedule")) {
             let editMatchButton = document.getElementById(id);
             document.body.style.overflow = 'hidden';
             console.log("edit match");
-            let formModal = createFormModal("schedule/editMatch", ["current-match-date", "date", "state", "time", "previous-home-team", "home-team", "previous-away-team", "away-team", "field-name", "main-referee", "assistant-referee"], "edit", "edit-match-modal", editMatchButton);
+            let matchState = editMatchButton.parentElement.previousElementSibling.querySelector('.get-state').textContent;
+            let formModal;
+            if (matchState === "Final") {
+                formModal = createFormModal("schedule/editMatch", ["current-match-date", "date", "time", "previous-home-team", "home-team", "previous-away-team", "away-team", "field-name", "main-referee", "assistant-referee"], "edit", "edit-match-modal", editMatchButton);
+            }
+            else formModal = createFormModal("schedule/editMatch", ["current-match-date", "date", "state", "time", "previous-home-team", "home-team", "previous-away-team", "away-team", "field-name", "main-referee", "assistant-referee"], "edit", "edit-match-modal", editMatchButton);
             document.body.appendChild(formModal);
         });
     });

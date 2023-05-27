@@ -19,8 +19,13 @@
             <a href="#">Sign In / Register</a>
         </li>
         {{else}}
-        <li>
-            <a href="#">{{username}}{{#ifeq role 'admin'}}&nbsp;({{role}}){{/ifeq}}</a>
+        <li class="dropdown-li">
+            <div class="dropdown">
+                <button class="dropbtn">{{username}}</button>
+                <form action="/Local-League/main-page/logout" method="POST" class="dropdown-content">
+                    <button class="logout-btn" type="submit">Log Out</button>
+                </form>
+            </div>
         </li>
         {{/unless}}
     </ul>

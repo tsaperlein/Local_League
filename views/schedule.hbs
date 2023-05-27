@@ -169,7 +169,7 @@
                         <li class="d-flex align-items-center get-state">{{state}}</li>
                     </div>
                     <div class="teams-score d-flex flex-row justify-items-center">
-                        <label class="team-name home-team-name d-flex align-items-center get-home-team" for="home-team">{{formatName
+                        <label id="label-{{homeTeam.name}}-{{formatDate date}}" class="team-name home-team-name d-flex align-items-center get-home-team" for="home-team">{{formatName
                             homeTeam.name}}</label>
                         <div class="team d-flex flex-row">
                             <img class="home-team" src="{{homeTeam.logo}}"
@@ -181,7 +181,7 @@
                         <div class="team d-flex flex-row">
                             <img class="away-team" src="{{awayTeam.logo}}" alt="Away Team {{formatName awayTeam.name}}">
                         </div>
-                        <label class="team-name away-team-name d-flex align-items-center get-away-team" for="away-team">{{formatName
+                        <label id="label-{{awayTeam.name}}-{{formatDate date}}" class="team-name away-team-name d-flex align-items-center get-away-team" for="away-team">{{formatName
                             awayTeam.name}}</label>
                     </div>
                     <div class="extra-information d-flex align-items-center">
