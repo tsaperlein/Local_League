@@ -258,6 +258,15 @@ const editLineup = (req, res) => {
     .catch((err) => console.log(err));
 }
 
+const editFieldImg = (req, res) => {
+    //console.log(req.body);
+    singleTeam.findOneAndUpdate({ name: req.params.team }, { fieldLink: req.body.fieldImage }).lean().then((result) => {
+        req.session.team = req.params.team;
+        redirectToTeams(req, res);
+    })
+    .catch((err) => console.log(err));
+}
+
 const editPlayer = (req, res) => {
     let error = false;
     // Check if the jersey number changed
@@ -378,5 +387,6 @@ export default {
     editPlayer,
     deleteTeam,
     deletePlayer,
-    editLineup
+    editLineup,
+    editFieldImg
 }

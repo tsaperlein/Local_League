@@ -208,6 +208,11 @@ const createFormModal = (pageOfReturn, labels, option, modalId, button) => {
                 teamName = teamName.toLowerCase();
                 value = teamName.replace(/ /g, "-") + "-lineup" + ".png";
             }
+            else if (modalId === "edit-field-image-modal") {
+                let teamName = button.id.split("-")[2];
+                teamName = teamName.toLowerCase();
+                value = teamName.replace(/ /g, "-") + ".png";
+            }
             input.value = value;
         }
 
@@ -398,7 +403,8 @@ const editMatchButtons = document.querySelectorAll(".edit-match-btn");
 const editTeamButton = document.querySelector(".edit-team-btn");
 const editPlayerButtons = document.querySelectorAll(".edit-player-btn");
 const editStatButtons = document.querySelectorAll(".edit-stat-btn");
-const editLineupButton = document.querySelector(".change-btn");
+const editLineupButton = document.querySelectorAll(".change-btn")[0];
+const editFieldImgButton = document.querySelectorAll(".change-btn")[1];
 
 // Delete match, team, player, stat buttons
 const deleteMatchButtons = document.querySelectorAll(".delete-match-btn");
@@ -536,6 +542,14 @@ if (window.location.pathname.includes("teams")) {
         console.log("edit lineup");
         let team = editLineupButton.id.split("-")[2];
         let formModal = createFormModal(`teams/${team}/editLineup`, ["lineup-image"], "edit", "edit-lineup-modal", editLineupButton);
+        document.body.appendChild(formModal);
+    });
+
+    editFieldImgButton.addEventListener("click", () => {
+        document.body.style.overflow = 'hidden';
+        console.log("edit field image");
+        let team = editFieldImgButton.id.split("-")[2];
+        let formModal = createFormModal(`teams/${team}/editFieldImg`, ["field-image"], "edit", "edit-field-image-modal", editFieldImgButton);
         document.body.appendChild(formModal);
     });
 

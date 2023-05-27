@@ -37,6 +37,7 @@ router.post('/schedule/editStat', scheduleFunc.editStat);
 
 router.post('/teams/editTeam', teamFunc.editTeam);
 router.post('/teams/:team/editLineup', teamFunc.editLineup);
+router.post('/teams/:team/editFieldImg', teamFunc.editFieldImg);
 router.post('/teams/editPlayer', teamFunc.editPlayer);
 
 // Delete Forms
