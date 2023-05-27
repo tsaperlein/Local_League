@@ -34,6 +34,10 @@ const createFormModal = (pageOfReturn, labels, option, modalId, button) => {
             teamPlayersTableElement = button.parentElement.parentElement.parentElement.parentElement.parentElement; // div.players-table-{{team.name}}
             playerTrElement = button.parentElement.parentElement.parentElement; // tr.player
         }
+        else if(modalId === "edit-lineup-modal"){
+            const teamId = button.id.split("-")[2];
+            teamLineupElement = button.parentElement.parentElement.nextElementSibling.querySelector(`.${teamId}-lineup`); // div.team-lineup
+        }
     }
 
     // Form groups
@@ -198,6 +202,11 @@ const createFormModal = (pageOfReturn, labels, option, modalId, button) => {
                     teamName = teamName.toLowerCase();
                     value = teamName.replace(/ /g, "-") + ".png";
                 }
+            }
+            else if (modalId === "edit-lineup-modal") {
+                let teamName = button.id.split("-")[2];
+                teamName = teamName.toLowerCase();
+                value = teamName.replace(/ /g, "-") + "-lineup" + ".png";
             }
             input.value = value;
         }
@@ -389,6 +398,7 @@ const editMatchButtons = document.querySelectorAll(".edit-match-btn");
 const editTeamButton = document.querySelector(".edit-team-btn");
 const editPlayerButtons = document.querySelectorAll(".edit-player-btn");
 const editStatButtons = document.querySelectorAll(".edit-stat-btn");
+const editLineupButton = document.querySelector(".change-btn");
 
 // Delete match, team, player, stat buttons
 const deleteMatchButtons = document.querySelectorAll(".delete-match-btn");
@@ -431,6 +441,7 @@ if (window.location.pathname.includes("schedule")) {
             document.body.appendChild(formModal);
         });
     });
+
     editStatButtons.forEach((button) => {
         button.addEventListener("click", (button) => {
             let id = button.target.id;
@@ -466,6 +477,7 @@ if (window.location.pathname.includes("schedule")) {
             }
         });
     });
+
     deleteStatButtons.forEach((button) => {
         button.addEventListener("click", (button) => {
             let id = button.target.id;
@@ -518,6 +530,15 @@ if (window.location.pathname.includes("teams")) {
         let formModal = createFormModal("teams/editTeam", ["previous-name", "name", "team-image"], "edit", "edit-team-modal", editTeamButton);
         document.body.appendChild(formModal);
     });
+
+    editLineupButton.addEventListener("click", () => {
+        document.body.style.overflow = 'hidden';
+        console.log("edit lineup");
+        let team = editLineupButton.id.split("-")[2];
+        let formModal = createFormModal(`teams/${team}/editLineup`, ["lineup-image"], "edit", "edit-lineup-modal", editLineupButton);
+        document.body.appendChild(formModal);
+    });
+
     // Edit player modal
     editPlayerButtons.forEach((button) => {
         button.addEventListener("click", (button) => {
@@ -544,6 +565,7 @@ if (window.location.pathname.includes("teams")) {
             .catch((err) => console.log(err));
         }
     });
+    
     // Delete player modal
     deletePlayerButtons.forEach((button) => {
         button.addEventListener("click", (button) => {

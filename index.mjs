@@ -23,8 +23,7 @@ const app = express()
 
 const port = process.env.PORT || 3000;
 
-const dbURI = 'mongodb+srv://MugiwaraStef2:TheFlash01@localleague.iuwbgts.mongodb.net/local-league?retryWrites=true&w=majority';
-mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })   // async operation
+mongoose.connect(process.env.dbURI, { useNewUrlParser: true, useUnifiedTopology: true })   // async operation
     .then((result) => app.listen(port, () => console.log(`Server is running in http://localhost:${port}/Local-League/main-page`)))
     .catch((err) => console.log(err));
 

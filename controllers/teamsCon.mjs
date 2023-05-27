@@ -236,7 +236,7 @@ const editTeam = (req, res) => {
                 }
             }
         })
-            .catch((err) => console.log(err));
+        .catch((err) => console.log(err));
     }
     else {
         if (!error) {
@@ -244,9 +244,18 @@ const editTeam = (req, res) => {
                 req.session.team = req.body.name;
                 redirectToTeams(req, res);
             })
-                .catch((err) => console.log(err));
+            .catch((err) => console.log(err));
         }
     }
+}
+
+const editLineup = (req, res) => {
+    //console.log(req.body);
+    singleTeam.findOneAndUpdate({ name: req.params.team }, { lineup: req.body.lineupImage }).lean().then((result) => {
+        req.session.team = req.params.team;
+        redirectToTeams(req, res);
+    })
+    .catch((err) => console.log(err));
 }
 
 const editPlayer = (req, res) => {
@@ -368,5 +377,6 @@ export default {
     editTeam,
     editPlayer,
     deleteTeam,
-    deletePlayer
+    deletePlayer,
+    editLineup
 }
