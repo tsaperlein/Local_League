@@ -16,6 +16,7 @@ router.get('/schedule/:week/:team', scheduleFunc.matchFillingTeam);
 router.get('/standings', standingsFunc.teamRanking);
 router.get('/standings/homewins', standingsFunc.rankByHomeWins);
 router.get('/standings/guestwins', standingsFunc.rankByAwayWins);
+router.get('/standings/players', standingsFunc.playerRanking);
 
 router.get('/teams/:name', teamFunc.teamDisplay);
 
@@ -38,6 +39,7 @@ router.post('/schedule/editStat', scheduleFunc.editStat);
 router.post('/teams/editTeam', teamFunc.editTeam);
 router.post('/teams/:team/editLineup', teamFunc.editLineup);
 router.post('/teams/:team/editFieldImg', teamFunc.editFieldImg);
+router.post('/teams/:team/editFieldName', teamFunc.editFieldName);
 router.post('/teams/editPlayer', teamFunc.editPlayer);
 
 // Delete Forms

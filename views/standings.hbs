@@ -21,7 +21,10 @@
                     class="standings-choice-buttons-group-button home {{home}}"><span>Home</span></a>
                 <a href="/Local-League/standings/guestwins"
                     class="standings-choice-buttons-group-button guest {{guest}}"><span>Guest</span></a>
+                <a href="/Local-League/standings/players"
+                    class="standings-choice-buttons-group-button guest {{players}}"><span>Players</span></a>
             </div>
+            {{#ifeq players 'non-picked'}}
             <div class="standings-table">
                 <table id="teams-table">
                     <thead id="thead">
@@ -90,6 +93,47 @@
                     </tbody>
                 </table>
             </div>
+            {{/ifeq}}
+            {{#ifeq players 'picked'}}
+            <div class="standings-table">
+                <table id="teams-table">
+                    <thead id="thead">
+                        <tr>
+                            <th class="sticky-rank">
+                                <a class='header-button rank-btn'>Rank &nbsp;<i class='fa fa-sort'></i></a>
+                            </th>
+                            <th class="team-th sticky-team">
+                                <a class='header-button team-btn'>Name &nbsp;<i class='fa fa-sort'></i></a>
+                            </th>
+                            <th>
+                                <a class='header-button wins-btn'>Goals &nbsp;<i class='fa fa-sort'></i></a>
+                            </th>
+                            <th>
+                                <a class='header-button wins-btn'>Yellow Cards &nbsp;<i class='fa fa-sort'></i></a>
+                            </th>
+                            <th>
+                                <a class='header-button wins-btn'>Red Cards &nbsp;<i class='fa fa-sort'></i></a>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbody">
+                        {{#each player}}
+                        <tr>
+                            <td class="rank-td">
+                                <div class="ranking{{rank}}">{{rank}}</div>
+                            </td>
+                            <td class="team-td">
+                                <div class="team"><a class="name-team" href="/Local-League/teams/{{team}}">{{name}}</a></div>
+                            </td>
+                            <td>{{stats.goals}}</td>
+                            <td>{{stats.yellowCards}}</td>
+                            <td>{{stats.redCards}}</td>
+                        </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+            </div>
+            {{/ifeq}}
         </div>
     </div>
 </div>

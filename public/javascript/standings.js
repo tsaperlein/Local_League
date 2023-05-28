@@ -121,9 +121,6 @@ function reverseSortByWins(){
 }
 
 const rankBtn = document.querySelector('.rank-btn');
-const pointsBtn = document.querySelector('.points-btn');
-const teamBtn = document.querySelector('.team-btn');
-const wBtn = document.querySelector('.wins-btn');
 let ranked = 0;
 rankBtn.addEventListener('click', () => {
   ranked++;
@@ -134,16 +131,7 @@ rankBtn.addEventListener('click', () => {
   }
 });
 
-pointsBtn.addEventListener('click', () => {
-  ranked++;
-  if (ranked % 2 == 0) {
-    straightRank();
-  }
-  else {
-    reverseRank();
-  }
-});
-
+const teamBtn = document.querySelector('.team-btn');
 let teamBtnClicked = 0;
 teamBtn.addEventListener('click', () => {
   teamBtnClicked++;
@@ -154,12 +142,26 @@ teamBtn.addEventListener('click', () => {
   }
 });
 
-let wBtnClicked = 0;
-wBtn.addEventListener('click', () => {
-  wBtnClicked++;
-  if (wBtnClicked % 2 == 0) {
-    reverseSortByWins();
-  } else {
-    sortByWins();
-  }
-});
+if(window.location.pathname == '/Local-League/standings' || window.location.pathname == '/Local-League/main-page'){
+  const pointsBtn = document.querySelector('.points-btn');
+  pointsBtn.addEventListener('click', () => {
+    ranked++;
+    if (ranked % 2 == 0) {
+      straightRank();
+    }
+    else {
+      reverseRank();
+    }
+  });
+
+  const wBtn = document.querySelector('.wins-btn');
+  let wBtnClicked = 0;
+  wBtn.addEventListener('click', () => {
+    wBtnClicked++;
+    if (wBtnClicked % 2 == 0) {
+      reverseSortByWins();
+    } else {
+      sortByWins();
+    }
+  });
+}

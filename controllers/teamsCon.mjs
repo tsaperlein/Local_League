@@ -34,11 +34,11 @@ const calculatePlayersStats = async (req, res) => {
                 const match = matches[j];
                 for (let k = 0; k < match.stats.length; k++) {
                 const stat = match.stats[k];
-                if (stat.name === player.name) {
-                    if (stat.type === "goal") goals++;
-                    else if (stat.type === "yellow card") yellowCards++;
-                    else if (stat.type === "red card") redCards++;
-                }
+                    if (stat.name === player.name) {
+                        if (stat.type === "goal") goals++;
+                        else if (stat.type === "yellow card") yellowCards++;
+                        else if (stat.type === "red card") redCards++;
+                    }
                 }
             }
             
@@ -73,7 +73,6 @@ const teamDisplay = (req, res) => {
                     if (teamPlayers == undefined) teamPlayers = [];
                     else teamPlayers = teamPlayers.players;
                     req.session.team = req.params.name;
-
                     // Add new attribute stats to each player
                     for (let i = 0; i < teamPlayers.length; i++) {
                         const player = teamPlayers[i];
@@ -219,7 +218,7 @@ const editTeam = (req, res) => {
                                             req.session.team = req.body.name;
                                             redirectToTeams(req, res);
                                         })
-                                            .catch((err) => console.log(err));
+                                        .catch((err) => console.log(err));
                                     }
                                 })
                                     .catch((err) => console.log(err));
@@ -267,11 +266,21 @@ const editFieldImg = (req, res) => {
     .catch((err) => console.log(err));
 }
 
+const editFieldName = (req, res) => {
+    //console.log(req.body);
+    singleTeam.findOneAndUpdate({ name: req.params.team }, { fieldName: req.body.fieldName }).lean().then((result) => {
+        req.session.team = req.params.team;
+        redirectToTeams(req, res);
+    })
+    .catch((err) => console.log(err));
+}
+
 const editPlayer = (req, res) => {
     let error = false;
     // Check if the jersey number changed
-    Player.findOne({ name: req.body.name }).lean().then((result) => {
-        if (result.number != req.body.jerseyNumber) {
+    Player.find({ name: req.body.name }).lean().then((result) => {
+        //console.log(result);
+        if (result[0].number != req.body.jerseyNumber) {
             // Search all players to see if the jersey number is already taken
             Player.find().lean().then((result) => {
                 // Check all jersey numbers to see if the new number is already taken
@@ -284,7 +293,7 @@ const editPlayer = (req, res) => {
                     }
                 }
             })
-                .catch((err) => console.log(err));
+            .catch((err) => console.log(err));
         }
         // Update the player
         if (!error) {
@@ -299,13 +308,12 @@ const editPlayer = (req, res) => {
                 else {
                     if (!error) {
                         // Update the player and the single team
-                        console.log(req.body.team);
-                        Player.findOneAndUpdate({ name: req.body.name }, { team: req.body.team, number: req.body.jerseyNumber, age: req.session.age, position: req.session.position, nationality: req.session.nationality }).lean().then((result) => {
+                        Player.findOneAndUpdate({ name: req.body.name }, { team: req.body.team, number: req.body.jerseyNumber, age: req.body.age, position: req.body.position, nationality: req.body.nationality }).lean().then((result) => {
                             // If the team changed, update the single team
-                            console.log(req.body.team);
+                            //console.log(req.body.team);
                             if (req.body.team != req.body.previousTeam) {
-                                console.log("1");
-                                console.log(req.body.previousTeam);
+                                //console.log("1");
+                                //console.log(req.body.previousTeam);
                                 // Previous Team
                                 singleTeam.findOneAndUpdate({ name: req.body.previousTeam }, { $pull: { players: result } }).lean().then((result2) => {
                                     // New Team
@@ -313,17 +321,17 @@ const editPlayer = (req, res) => {
                                         req.session.team = req.body.team;
                                         redirectToTeams(req, res);
                                     })
-                                        .catch((err) => console.log(err));
-                                })
                                     .catch((err) => console.log(err));
+                                })
+                                .catch((err) => console.log(err));
                             }
                             else {
-                                console.log("2");
+                                //console.log("2");
                                 req.session.team = req.body.team;
                                 redirectToTeams(req, res);
                             }
                         })
-                            .catch((err) => console.log(err));
+                        .catch((err) => console.log(err));
                     }
                     else redirectToTeams(req, res);
                 }
@@ -388,5 +396,6 @@ export default {
     deleteTeam,
     deletePlayer,
     editLineup,
-    editFieldImg
+    editFieldImg,
+    editFieldName
 }
