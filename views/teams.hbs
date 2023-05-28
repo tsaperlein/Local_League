@@ -4,8 +4,8 @@
 </div>
 {{/if}}
 <div class="background">
-    <img id="teams-background-img" class="background-img" src="/background-images/6.jpg"
-        alt="Background Image of a soccer field">
+    <img id="teams-background-img" class="background-img" src="/background-images/3.jpg"
+        alt="Background Image: Soccer field of Manchester United">
     {{#ifeq role 'admin'}}
     {{#each team}}
     <div class="admin-team-options-container custom-container d-flex flex-row justify-content-center align-items-center">
@@ -20,7 +20,7 @@
         <div class="lineup-field-container d-flex flex-row justify-content-around">
             {{#each team}}
             <div id="{{addDash name}}-lineup" class="team-lineup {{name}}-lineup">
-                <img class="team-lineup-img get-lineup-image" src="/lineups/{{lineup}}" alt="Lineup of the players">
+                <img class="team-lineup-img get-lineup-image" src="/lineups/{{lineup}}" alt="Player lineup of {{name}}">
                 {{#ifeq ../role 'admin'}}
                 <div class="admin-team-lineup-options admim-options d-flex flex-row justify-content-center align-items-center">
                     <button id="change-lineup-{{name}}" class="btn admin-btn btn-primary change-btn" type="button">Change Lineup</button>

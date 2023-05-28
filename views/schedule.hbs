@@ -59,7 +59,7 @@
                             homeTeam.name}}</label>
                         <div class="team d-flex flex-row">
                             <img class="home-team" src="{{homeTeam.logo}}"
-                                alt="Home Team ({{formatName homeTeam.name}})">
+                                alt="Home Team ({{homeTeam.name}})">
                         </div>
                         <div class="score d-flex justif-content-center align-items-center">
                             <li class="score home-score">{{homeTeam.score}}</li>
@@ -67,7 +67,7 @@
                             <li class="score away-score">{{awayTeam.score}}</li>
                         </div>
                         <div class="team d-flex flex-row">
-                            <img class="away-team" src="{{awayTeam.logo}}" alt="Away Team {{formatName awayTeam.name}}">
+                            <img class="away-team" src="{{awayTeam.logo}}" alt="Away Team ({{awayTeam.name}})">
                         </div>
                         <label id="label-{{awayTeam.name}}-{{formatDate date}}" class="team-name away-team-name d-flex align-items-center get-away-team" for="away-team">{{formatName
                             awayTeam.name}}</label>
@@ -125,13 +125,13 @@
                                     <div class="stat-and-time">
                                         <div class="home-stat col-4">
                                             {{#ifeq team ../homeTeam.name}}
-                                            <img src="{{formatStat type}}" alt="{{type}}">
+                                            <img src="{{formatStat type}}" alt="{{type}} stat">
                                             {{/ifeq}}
                                         </div>
                                         <div class="time col-4">{{minute}}</div>
                                         <div class="away-stat col-4">
                                             {{#ifeq team ../awayTeam.name}}
-                                            <img src="{{formatStat type}}" alt="{{type}}">
+                                            <img src="{{formatStat type}}" alt="{{type}} stat">
                                             {{/ifeq}}
                                         </div>
                                     </div>
@@ -173,13 +173,13 @@
                             homeTeam.name}}</label>
                         <div class="team d-flex flex-row">
                             <img class="home-team" src="{{homeTeam.logo}}"
-                                alt="Home Team ({{formatName homeTeam.name}})">
+                                alt="Home Team ({{homeTeam.name}})">
                         </div>
                         <div class="match-time d-flex flex-row justify-content-center align-items-center list-unstyled">
                             <li class="get-time">{{startTime}}</li>
                         </div>
                         <div class="team d-flex flex-row">
-                            <img class="away-team" src="{{awayTeam.logo}}" alt="Away Team {{formatName awayTeam.name}}">
+                            <img class="away-team" src="{{awayTeam.logo}}" alt="Away Team ({{formatName awayTeam.name}})">
                         </div>
                         <label id="label-{{awayTeam.name}}-{{formatDate date}}" class="team-name away-team-name d-flex align-items-center get-away-team" for="away-team">{{formatName
                             awayTeam.name}}</label>
@@ -238,13 +238,13 @@
                                     <div class="stat-and-time">
                                         <div class="home-stat col-4">
                                             {{#ifeq team ../homeTeam.name}}
-                                            <img class="get-type" src="{{formatStat type}}" alt="{{type}}">
+                                            <img class="get-type" src="{{formatStat type}}" alt="{{type}} stat">
                                             {{/ifeq}}
                                         </div>
                                         <div class="time col-4 get-minute">{{minute}}</div>
                                         <div class="away-stat col-4">
                                             {{#ifeq team ../awayTeam.name}}
-                                            <img class="get-type" src="{{formatStat type}}" alt="{{type}}">
+                                            <img class="get-type" src="{{formatStat type}}" alt="{{type}} stat">
                                             {{/ifeq}}
                                         </div>
                                     </div>

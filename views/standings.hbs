@@ -4,7 +4,7 @@
 </div>
 {{/if}}
 <div class="background">
-    <img class="background-img" src="/background-images/6.jpg" alt="">
+    <img class="background-img" src="/background-images/6.jpg" alt="Background Image: Full football stadium due to match">
     {{#ifeq role 'admin'}}
     <div class="admin-team-options-container custom-container d-flex flex-row justify-content-center align-items-center">
         <div id="add-team-div" class="admin-team-options admin-options d-flex flex-row justify-content-center align-items-center">
@@ -68,9 +68,12 @@
                                 <div class="ranking{{rank}}">{{rank}}</div>
                             </td>
                             <td class="team-td">
-                                <div class="team"><a class="logo-team" href="/Local-League/teams/{{name}}"><img
-                                            src="/team-icons/{{logo}}" alt="{{name}}"></a><a class="name-team"
-                                        href="/Local-League/teams/{{name}}">{{name}}</a></div>
+                                <div class="team">
+                                    <a class="logo-team" href="/Local-League/teams/{{name}}">
+                                        <img src="/team-icons/{{logo}}" alt="{{name}} icon">
+                                    </a>
+                                    <a class="name-team" href="/Local-League/teams/{{name}}">{{name}}</a>
+                                </div>
                             </td>
                             <td>{{matches}}</td>
                             {{#ifexists wins}}
@@ -125,7 +128,7 @@
                             <td class="team-td">
                                 <div class="team">
                                     <a href="/Local-League/teams/{{team}}">
-                                        <img src="/team-icons/{{teamLogo team}}.png" alt="{{team}}">
+                                        <img src="/team-icons/{{teamLogo team}}.png" alt="{{team}} icon">
                                     </a>
                                     <a class="name-team" href="/Local-League/teams/{{team}}">{{name}}</a>
                                 </div>
