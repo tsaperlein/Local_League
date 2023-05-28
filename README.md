@@ -1,5 +1,8 @@
 # Local_League
-## Simple website for a Local League made with HTML, CSS, JavaScript, (Nodejs)
+## Simple website for a Local Soccer League made with HTML, CSS, JavaScript, (Nodejs)
+
+- Γλώσσες Προγραμματισμού: HTML, CSS, JavaScript, NodeJs, Express, Handlebars
+- Βάση Δεδομένων: MongoDB
 
 Για απλή επίσκεψη της ιστοσελίδας, πληκτρολόγησε το link https://local-league.herokuapp.com/Local-League/main-page ή απλά κάνε click.
 

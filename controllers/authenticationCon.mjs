@@ -1,4 +1,4 @@
-import userObj from '../modules/userData.mjs'
+import userObj from '../models/userData.mjs'
 import bcrypt from 'bcrypt'
 import session from 'express-session';
 

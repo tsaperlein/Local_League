@@ -1,8 +1,8 @@
-import single_team_obj from '../modules/singleTeamData.mjs'
-import team_obj from '../modules/teamData.mjs'
-import user_obj from '../modules/userData.mjs'
-import player_obj from '../modules/playerData.mjs'
-import match_obj from '../modules/matchData.mjs'
+import single_team_obj from '../models/singleTeamData.mjs'
+import team_obj from '../models/teamData.mjs'
+import user_obj from '../models/userData.mjs'
+import player_obj from '../models/playerData.mjs'
+import match_obj from '../models/matchData.mjs'
 
 const { singleTeam } = single_team_obj;
 const { Team } = team_obj;
