@@ -1,5 +1,5 @@
 # Local_League
-## Simple website for a Local Soccer League made with HTML, CSS, JavaScript, (Nodejs)
+## Simple website for a Local Soccer League
 
 - Γλώσσες Προγραμματισμού: HTML, CSS, JavaScript, NodeJs, Express, Handlebars
 - Βάση Δεδομένων: MongoDB
