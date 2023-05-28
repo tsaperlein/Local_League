@@ -117,8 +117,8 @@ if (window.location.pathname.includes('schedule')) {
 
 if (window.location.pathname.includes('schedule')) {
     // Remove the margin-bottom and the border-bottom from the last stat shown in stats
-    const stats = document.querySelectorAll('.match-details .stat-row');
-    const adminStatsOptions = stats[stats.length - 1].querySelector('.admin-stats-options');
+    // Find the last .admin-stats-options element
+    const adminStatsOptions = document.querySelector('.admin-stats-options:last-child');
     adminStatsOptions.style.marginBottom = '0';
     adminStatsOptions.style.borderBottom = 'none';
 }
