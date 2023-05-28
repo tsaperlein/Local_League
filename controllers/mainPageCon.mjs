@@ -1,5 +1,5 @@
-import team_obj from '../modules/teamData.mjs'
-import match_obj from '../modules/matchData.mjs'
+import team_obj from '../models/teamData.mjs'
+import match_obj from '../models/matchData.mjs'
 
 const { Match } = match_obj;
 const Team = team_obj.Team;

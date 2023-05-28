@@ -9,7 +9,9 @@
     "handlebars": "^4.7.7",
     "memorystore": "^1.6.7",
     "moment": "^2.29.4",
-    "mongoose": "^7.1.0"
+    "mongoose": "^7.1.0",
+    "node": "^20.2.0",
+    "nodemon": "^2.0.22"
   },
   "main": "index.mjs",
   "scripts": {

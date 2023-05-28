@@ -38,11 +38,6 @@
     margin: clamp(0.5rem, 1vw, 1rem);
 }
 
-.field-info p:hover {
-    color: rgb(220, 220, 220);
-    cursor: pointer;
-}
-
 th a {
     display: flex;
     flex-wrap: nowrap;
