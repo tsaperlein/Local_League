@@ -8,7 +8,7 @@
 .standings-choice-buttons-group {
     display: flex;
     justify-content: space-around;
-    width: 90%;
+    width: 100%;
     padding: 0 clamp(0.5rem, 5vw, 3rem);
     height: clamp(3rem, 7vw, 12rem);
     align-items: center;
@@ -21,7 +21,7 @@
 
 .standings-choice-buttons-group-button {
     background-color: white;
-    padding: clamp(0.3rem, 0.8vw, 1rem) clamp(1rem, 5vw, 10rem);
+    padding: clamp(0.3rem, 0.8vw, 1rem) clamp(1rem, 3.5vw, 8rem);
     border-radius: clamp(0.5rem, 1vw, 2rem);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
     text-decoration: none;

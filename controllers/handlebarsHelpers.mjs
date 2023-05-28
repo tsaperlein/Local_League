@@ -63,6 +63,11 @@ Handlebars.registerHelper('addDash', function (string) {
     return string.split(' ').join('-')
 })
 
+// Replace the spaces with dashes and lowercase the string
+Handlebars.registerHelper('teamLogo', function (string) {
+    return string.split(' ').join('-').toLowerCase()
+})
+
 // Checks if the value is undefined
 Handlebars.registerHelper('ifexists', function (wins, opts) {
     if(wins != undefined){

@@ -1,8 +1,10 @@
 import mongoose from 'mongoose';
 import natchObj from './matchData.mjs';
+import singleTeamData from './singleTeamData.mjs';
 
 const Schema = mongoose.Schema;
 const { Match } = natchObj;
+const { SingleTeam } = singleTeamData;
 
 const teamSchema = new Schema({
     name: {
@@ -73,12 +75,12 @@ const Team = mongoose.model('Team', teamSchema);
 
 let teamsData = [
     { name: "AEK", logo: "aek.png", matches: 0, wins: 0, draws: 0, losses: 0, homeWins: 0, awayWins: 0, goalsFor: 0, goalsAgainst: 0, goalDifference: 0, points: 0 },
-    { name: "Panathinaikos", logo: "pao.png", matches: 0, wins: 0, draws: 0, losses: 0, homeWins: 0, awayWins: 0, goalsFor: 0, goalsAgainst: 0, goalDifference: 0, points: 0 },
-    { name: "Olympiakos", logo: "osfp.png", matches: 0, wins: 0, draws: 0, losses: 0, homeWins: 0, awayWins: 0, goalsFor: 0, goalsAgainst: 0, goalDifference: 0, points: 0 },
+    { name: "Panathinaikos", logo: "panathinaikos.png", matches: 0, wins: 0, draws: 0, losses: 0, homeWins: 0, awayWins: 0, goalsFor: 0, goalsAgainst: 0, goalDifference: 0, points: 0 },
+    { name: "Olympiakos", logo: "olympiakos.png", matches: 0, wins: 0, draws: 0, losses: 0, homeWins: 0, awayWins: 0, goalsFor: 0, goalsAgainst: 0, goalDifference: 0, points: 0 },
     { name: "PAOK", logo: "paok.png", matches: 0, wins: 0, draws: 0, losses: 0, homeWins: 0, awayWins: 0, goalsFor: 0, goalsAgainst: 0, goalDifference: 0, points: 0 },
     { name: "Arsenal", logo: "arsenal.png", matches: 0, wins: 0, draws: 0, losses: 0, homeWins: 0, awayWins: 0, goalsFor: 0, goalsAgainst: 0, goalDifference: 0, points: 0 },
     { name: "Barcelona", logo: "barcelona.png", matches: 0, wins: 0, draws: 0, losses: 0, homeWins: 0, awayWins: 0, goalsFor: 0, goalsAgainst: 0, goalDifference: 0, points: 0 },
-    { name: "Fenerbahçe", logo: "fenerbahce.png", matches: 0, wins: 0, draws: 0, losses: 0, homeWins: 0, awayWins: 0, goalsFor: 0, goalsAgainst: 0, goalDifference: 0, points: 0 },
+    { name: "Fenerbahçe", logo: "fenerbahçe.png", matches: 0, wins: 0, draws: 0, losses: 0, homeWins: 0, awayWins: 0, goalsFor: 0, goalsAgainst: 0, goalDifference: 0, points: 0 },
     { name: "Juventus", logo: "juventus.png", matches: 0, wins: 0, draws: 0, losses: 0, homeWins: 0, awayWins: 0, goalsFor: 0, goalsAgainst: 0, goalDifference: 0, points: 0 },
     { name: "Liverpool", logo: "liverpool.png", matches: 0, wins: 0, draws: 0, losses: 0, homeWins: 0, awayWins: 0, goalsFor: 0, goalsAgainst: 0, goalDifference: 0, points: 0},
     { name: "Manchester United", logo: "manchester-united.png", matches: 0, wins: 0, draws: 0, losses: 0, homeWins: 0, awayWins: 0, goalsFor: 0, goalsAgainst: 0, goalDifference: 0, points: 0 },
@@ -88,7 +90,7 @@ let teamsData = [
     { name: "Paris Saint Germain", logo: "paris-saint-germain.png", matches: 0, wins: 0, draws: 0, losses: 0, homeWins: 0, awayWins: 0, goalsFor: 0, goalsAgainst: 0, goalDifference: 0, points: 0 }
 ];
 
-function updateData(){
+function updateData() {
     Team.find().lean().then((teams) => {
         for(let i = 0; i < teams.length; i++){
             // reset all teams

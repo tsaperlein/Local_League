@@ -61,38 +61,38 @@ const teamDisplay = (req, res) => {
     else{
         const teamName = req.params.name;
         singleTeam.find({ name: teamName }).lean().then(result => {
-            Team.find().lean().then(result2 => {
-                User.find().lean().then(result3 => {
-                    let role = "user";
-                    for (let i = 0; i < result3.length; i++) {
-                        if (result3[i].username == req.session.username) {
-                            if (result3[i].role == "admin") role = "admin";
-                        }
-                    }
-                    let teamPlayers = result[0];
-                    if (teamPlayers == undefined) teamPlayers = [];
-                    else teamPlayers = teamPlayers.players;
-                    req.session.team = req.params.name;
-                    // Add new attribute stats to each player
-                    for (let i = 0; i < teamPlayers.length; i++) {
-                        const player = teamPlayers[i];
-                        player.stats = {};
-                    }
-
-                    // Get the stats for each player from the dictionary that returns calculatePlayersStats, by using the player name as key
-                    calculatePlayersStats(req, res)
-                        .then(playersStats => {
-                            // Add the stats to the players array
-                            for (let i = 0; i < teamPlayers.length; i++) {
-                                const player = teamPlayers[i];
-                                player.stats = playersStats[player.name];
+            Player.find({ team: teamName }).lean().then(result1 => {
+                Team.find().lean().then(result2 => {
+                    User.find().lean().then(result3 => {
+                        let role = "user";
+                        for (let i = 0; i < result3.length; i++) {
+                            if (result3[i].username == req.session.username) {
+                                if (result3[i].role == "admin") role = "admin";
                             }
-                            res.render('teams', { team: result, players: teamPlayers, teams: result2, username: req.session.username, thisWeek: thisWeek, role: role, errorMessage: req.session.errorMessage })
-                            req.session.errorMessage = "";
-                        })
+                        }
+                        let teamPlayers = result1;
+                        if (teamPlayers == undefined) teamPlayers = [];
+                        else teamPlayers = teamPlayers;
+                        req.session.team = req.params.name;
+
+                        // Get the stats for each player from the dictionary that returns calculatePlayersStats, by using the player name as key
+                        calculatePlayersStats(req, res)
+                            .then(playersStats => {
+                                // Add the stats to the players array
+                                for (let i = 0; i < teamPlayers.length; i++) {
+                                    const player = teamPlayers[i];
+                                    player.stats = playersStats[player.name];
+                                }
+                                res.render('teams', { team: result, players: teamPlayers, teams: result2, username: req.session.username, thisWeek: thisWeek, role: role, errorMessage: req.session.errorMessage })
+                                req.session.errorMessage = "";
+                            })
+                            .catch(err => console.log(err))
+                    })
                         .catch(err => console.log(err))
                 })
+                    .catch(err => console.log(err))
             })
+                .catch(err => console.log(err))
         })
         .catch(err => console.log(err))
     }
@@ -282,7 +282,7 @@ const editPlayer = (req, res) => {
         //console.log(result);
         if (result[0].number != req.body.jerseyNumber) {
             // Search all players to see if the jersey number is already taken
-            Player.find().lean().then((result) => {
+            Player.find({team: req.body.team}).lean().then((result) => {
                 // Check all jersey numbers to see if the new number is already taken
                 for (let i = 0; i < result.length; i++) {
                     if (result[i].number == req.body.jerseyNumber && result[i].name != req.body.name) {
@@ -308,16 +308,14 @@ const editPlayer = (req, res) => {
                 else {
                     if (!error) {
                         // Update the player and the single team
+                        console.log(req.body);
                         Player.findOneAndUpdate({ name: req.body.name }, { team: req.body.team, number: req.body.jerseyNumber, age: req.body.age, position: req.body.position, nationality: req.body.nationality }).lean().then((result) => {
                             // If the team changed, update the single team
-                            //console.log(req.body.team);
                             if (req.body.team != req.body.previousTeam) {
-                                //console.log("1");
-                                //console.log(req.body.previousTeam);
                                 // Previous Team
-                                singleTeam.findOneAndUpdate({ name: req.body.previousTeam }, { $pull: { players: result } }).lean().then((result2) => {
+                                singleTeam.findOneAndUpdate({ name: req.body.previousTeam }, { $pull: { players: result.name } }).lean().then((result2) => {
                                     // New Team
-                                    singleTeam.findOneAndUpdate({ name: req.body.team }, { $push: { players: result } }).lean().then((result3) => {
+                                    singleTeam.findOneAndUpdate({ name: req.body.team }, { $push: { players: result.name } }).lean().then((result3) => {
                                         req.session.team = req.body.team;
                                         redirectToTeams(req, res);
                                     })
@@ -326,7 +324,6 @@ const editPlayer = (req, res) => {
                                 .catch((err) => console.log(err));
                             }
                             else {
-                                //console.log("2");
                                 req.session.team = req.body.team;
                                 redirectToTeams(req, res);
                             }

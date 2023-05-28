@@ -10,7 +10,7 @@
     {{#each team}}
     <div class="admin-team-options-container custom-container d-flex flex-row justify-content-center align-items-center">
         <div class="admin-team-options admim-options d-flex flex-row justify-content-center align-items-center">
-            <button id="edit-team-{{name}}-btn" class="btn admin-btn edit-btn edit-team-btn" type="button">Edit Team</button>
+            <button id="edit-team-{{addDash name}}-btn" class="btn admin-btn edit-btn edit-team-btn" type="button">Edit Team</button>
             <button class="btn admin-btn btn-danger delete-team-btn" type="button" data-doc="{{name}}">Delete Team</button>
         </div>
     </div>
@@ -19,7 +19,7 @@
     <div class="team-container custom-container d-flex flex-column flex-wrap justify-content-center align-items-center">
         <div class="lineup-field-container d-flex flex-row justify-content-around">
             {{#each team}}
-            <div id="{{name}}-lineup" class="team-lineup {{name}}-lineup">
+            <div id="{{addDash name}}-lineup" class="team-lineup {{name}}-lineup">
                 <img class="team-lineup-img get-lineup-image" src="/lineups/{{lineup}}" alt="Lineup of the players">
                 {{#ifeq ../role 'admin'}}
                 <div class="admin-team-lineup-options admim-options d-flex flex-row justify-content-center align-items-center">

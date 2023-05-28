@@ -95,7 +95,6 @@ const calculateStats = async (req, res) => {
   try {
       const teamName = await Team.find().select({ name: 1, _id: 0 }).lean();
       const playersStats = {};
-      //console.log(teamName);
       for(let z = 0; z < teamName.length; z++){
         const players = await Player.find({ team: teamName[z].name }).lean();
         

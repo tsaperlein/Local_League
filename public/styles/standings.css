@@ -114,14 +114,16 @@ td.points-td {
 .standings-table a.rank-btn,
 .standings-table a.team-btn,
 .standings-table a.wins-btn,
-.standings-table a.points-btn {
+.standings-table a.points-btn,
+.standings-table a.player-btn {
     cursor: pointer;
 }
 
 .standings-table a.rank-btn:hover,
 .standings-table a.team-btn:hover,
 .standings-table a.wins-btn:hover,
-.standings-table a.points-btn:hover {
+.standings-table a.points-btn:hover,
+.standings-table a.player-btn:hover {
     background-color: rgba(220, 220, 220, 0.8);
 }
 
@@ -138,7 +140,8 @@ td.points-td {
 .rank-btn,
 .team-btn,
 .points-btn,
-.matches-btn {
+.matches-btn,
+.player-btn {
     display: flex;
     justify-content: center;
 }

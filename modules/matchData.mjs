@@ -101,12 +101,12 @@ const startTimes = ['16:00', '16:30', '17:00', '17:30', '18:00', '18:30', '19:00
 
 let teamsData = [
     { name: "AEK", logo: "/team-icons/aek.png", matches: 27, wins: 19, draws: 3, losses: 5, points: 60 },
-    { name: "Panathinaikos", logo: "/team-icons/pao.png", matches: 27, wins: 16, draws: 8, losses: 2, points: 59 },
-    { name: "Olympiakos", logo: "/team-icons/osfp.png", matches: 27, wins: 14, draws: 9, losses: 2, points: 57 },
+    { name: "Panathinaikos", logo: "/team-icons/panathinaikos.png", matches: 27, wins: 16, draws: 8, losses: 2, points: 59 },
+    { name: "Olympiakos", logo: "/team-icons/olympiakos.png", matches: 27, wins: 14, draws: 9, losses: 2, points: 57 },
     { name: "PAOK", logo: "/team-icons/paok.png", matches: 27, wins: 14, draws: 8, losses: 2, points: 59 },
     { name: "Arsenal", logo: "/team-icons/arsenal.png", matches: 27, wins: 14, draws: 8, losses: 2, points: 59 },
     { name: "Barcelona", logo: "/team-icons/barcelona.png", matches: 27, wins: 14, draws: 8, losses: 2, points: 59 },
-    { name: "Fenerbahçe", logo: "/team-icons/fenerbahce.png", matches: 27, wins: 14, draws: 8, losses: 2, points: 59 },
+    { name: "Fenerbahçe", logo: "/team-icons/fenerbahçe.png", matches: 27, wins: 14, draws: 8, losses: 2, points: 59 },
     { name: "Juventus", logo: "/team-icons/juventus.png", matches: 27, wins: 14, draws: 8, losses: 2, points: 59 },
     { name: "Liverpool", logo: "/team-icons/liverpool.png", matches: 27, wins: 14, draws: 8, losses: 2, points: 59 },
     { name: "Manchester United", logo: "/team-icons/manchester-united.png", matches: 27, wins: 14, draws: 8, losses: 2, points: 59 },

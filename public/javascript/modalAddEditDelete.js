@@ -27,8 +27,18 @@ const createFormModal = (pageOfReturn, labels, option, modalId, button) => {
             statModalElement = statElement.parentElement.parentElement.previousElementSibling; // div.modal-header for each stat
         } else if (modalId === 'edit-team-modal') {
             // Get the id of the button
-            const teamId = button.id.split("-")[2];
-            teamLineupElement = button.parentElement.parentElement.nextElementSibling.querySelector(`.${teamId}-lineup`); // div.team-lineup
+            console.log(button.id);
+            if (button.id.split("-")[3] === "btn") {
+                teamId = button.id.split("-")[2]
+            }
+            else if (button.id.split("-")[4] === "btn") {
+                teamId = button.id.split("-")[2] + "-" + button.id.split("-")[3]
+            }
+            else {
+                teamId = button.id.split("-")[2] + "-" + button.id.split("-")[3] + "-" + button.id.split("-")[4]
+            }
+            console.log(teamId);
+            teamLineupElement = button.parentElement.parentElement.nextElementSibling.querySelector(`#${teamId}-lineup`); // div.team-lineup
             fieldInfoElement = teamLineupElement.nextElementSibling; // div.field-info
         } else if (modalId === 'edit-player-modal') {
             teamPlayersTableElement = button.parentElement.parentElement.parentElement.parentElement.parentElement; // div.players-table-{{team.name}}
@@ -190,11 +200,27 @@ const createFormModal = (pageOfReturn, labels, option, modalId, button) => {
             }
             else if (modalId === "edit-team-modal") {
                 if (labels[i] === "previous-name") {
-                    value = button.id.split("-")[2];
+                    if (button.id.split("-")[3] === "btn") {
+                        value = button.id.split("-")[2]
+                    }
+                    else if (button.id.split("-")[4] === "btn") {
+                        value = button.id.split("-")[2] + " " + button.id.split("-")[3]
+                    }
+                    else {
+                        value = button.id.split("-")[2] + " " + button.id.split("-")[3] + " " + button.id.split("-")[4]
+                    }
                     formGroup.style.display = "none";
                 }
                 else if (labels[i] === "name") {
-                    value = button.id.split("-")[2];
+                    if (button.id.split("-")[3] === "btn") {
+                        value = button.id.split("-")[2]
+                    }
+                    else if (button.id.split("-")[4] === "btn") {
+                        value = button.id.split("-")[2] + " " + button.id.split("-")[3]
+                    }
+                    else {
+                        value = button.id.split("-")[2] + " " + button.id.split("-")[3] + " " + button.id.split("-")[4]
+                    }
                 }
                 else if (labels[i].includes('team-image')) {
                     // The value is the name of the team in lowercase and the words connected with '-' and .png
@@ -215,9 +241,7 @@ const createFormModal = (pageOfReturn, labels, option, modalId, button) => {
             }
             else if (modalId === "edit-field-name-modal") {
                 let teamName = document.querySelector("p.get-field-name").textContent;
-                console.log(teamName);
-                teamName = teamName.toLowerCase();
-                value = teamName.replace(/ /g, "-");
+                value = teamName;
             }
             input.value = value;
         }
@@ -360,7 +384,8 @@ const createFormModal = (pageOfReturn, labels, option, modalId, button) => {
                 input.value = input.value.replace(/[0-9]/g, "");
             });
             input.required = true;
-            }
+        }
+            
         else input.type = "text";
 
         input.classList.add("form-control");
