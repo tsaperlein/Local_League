@@ -152,7 +152,7 @@ const addPlayer = (req, res) => {
             const newPlayer = new Player({
                 name: req.body.name,
                 team: req.body.team,
-                number: req.body.jerseyNumber,
+                number: parseInt(req.body.jerseyNumber),
                 age: req.body.age,
                 position: req.body.position,
                 nationality: req.body.nationality
@@ -280,12 +280,12 @@ const editPlayer = (req, res) => {
     // Check if the jersey number changed
     Player.find({ name: req.body.name }).lean().then((result) => {
         //console.log(result);
-        if (result[0].number != req.body.jerseyNumber) {
+        if (result[0].number != parseInt(req.body.jerseyNumber)) {
             // Search all players to see if the jersey number is already taken
             Player.find({team: req.body.team}).lean().then((result) => {
                 // Check all jersey numbers to see if the new number is already taken
                 for (let i = 0; i < result.length; i++) {
-                    if (result[i].number == req.body.jerseyNumber && result[i].name != req.body.name) {
+                    if (result[i].number == parseInt(req.body.jerseyNumber) && result[i].name != req.body.name) {
                         error = true;
                         req.session.errorMessage = "This jersey number is already taken";
                         req.session.team = req.body.previousTeam;
@@ -309,7 +309,7 @@ const editPlayer = (req, res) => {
                     if (!error) {
                         // Update the player and the single team
                         console.log(req.body);
-                        Player.findOneAndUpdate({ name: req.body.name }, { team: req.body.team, number: req.body.jerseyNumber, age: req.body.age, position: req.body.position, nationality: req.body.nationality }).lean().then((result) => {
+                        Player.findOneAndUpdate({ name: req.body.name }, { team: req.body.team, number: parseInt(req.body.jerseyNumber), age: parseInt(req.body.age), position: req.body.position, nationality: req.body.nationality }).lean().then((result) => {
                             // If the team changed, update the single team
                             if (req.body.team != req.body.previousTeam) {
                                 // Previous Team

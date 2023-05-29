@@ -386,118 +386,137 @@ const addStat = (req, res) => {
                     else {
                         // Find the match that the stat will be added to
                         Match.findOne({ date: req.body.matchDate, "homeTeam.name": req.body.homeTeam }).then(result => {
-                            // Add a new stat that contains the team name, player name, type, minute, but put it in the right order of the stats array
-                            let newStat = {
-                                id: '',
-                                team: req.body.teamName,
-                                name: req.body.playerName,
-                                type: req.body.type,
-                                minute: req.body.minute
-                            }
-                            let stats = [];
-                            if (result.stats != null) stats = result.stats;
-                            // Put the new stat in the right order, give it an id, and fixed the ids of the other stats
-                            if (stats.length == 0) {
-                                newStat.id = 0;
-                                stats.push(newStat);
+                            if (result == null) {
+                                error = true;
+                                req.session.errorMessage = "This match does not exist";
+                                redirectToSchedule(req, res);
                             }
                             else {
-                                // Compare the minutes of the new goal with the minutes of a possible red card or two yellow cards, and if the new goal is after the red card or two yellow cards, then the new goal cannot be added
-                                if (newStat.type == "goal") {
-                                    for (let i = 0; i < stats.length; i++) {
-                                        if (stats[i].type == "red card" && stats[i].name == newStat.name) {
-                                            if (stats[i].minute <= newStat.minute) {
-                                                error = true;
-                                                req.session.errorMessage = "This player has a red card, so he cannot score a goal";
-                                            }
-                                        }
-                                        for (let j = i + 1; j < stats.length; j++) {
-                                            if (stats[i].type == "yellow card" && stats[j].type == "yellow card" && stats[i].name == newStat.name && stats[j].name == newStat.name) {
-                                                if (stats[j].minute <= newStat.minute) {
-                                                    error = true;
-                                                    req.session.errorMessage = "This player has two yellow cards, so he cannot score a goal";
-                                                }
-                                            }
-                                        }
-                                    }
+                                // Add a new stat that contains the team name, player name, type, minute, but put it in the right order of the stats array
+                                let newStat = {
+                                    id: '',
+                                    team: req.body.teamName,
+                                    name: req.body.playerName,
+                                    type: req.body.type,
+                                    minute: parseInt(req.body.minute)
                                 }
-                                else if (newStat.type == "red card") {
-                                    for (let i = 0; i < stats.length; i++) {
-                                        if (stats[i].type == "goal" && stats[i].name == newStat.name) {
-                                            if (stats[i].minute >= newStat.minute) {
-                                                error = true;
-                                                req.session.errorMessage = "This player has a goal, so he cannot get a red card";
-                                            }
-                                        }
-                                        else if (stats[i].type == "red card" && stats[i].name == newStat.name) {
-                                            error = true;
-                                            eq.session.errorMessage = "This player has a red card, so he cannot get another red card";
-                                        }
-                                        for (let j = i + 1; j < stats.length; j++) {
-                                            if (stats[i].type == "yellow card" && stats[j].type == "yellow card" && stats[i].name == newStat.name && stats[j].name == newStat.name) {
-                                                error = true;
-                                                req.session.errorMessage = "This player has two yellow cards, so he cannot get a red card";
-                                            }
-                                            else if (stats[i].type == "yellow card" && stats[j].type == "goal" && stats[i].name == newStat.name && stats[j].name == newStat.name) {
-                                                if (stats[j].minute >= newStat.minute) {
-                                                    error = true;
-                                                    req.session.errorMessage = "This player has a goal, so he cannot get a red card";
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                                else if (newStat.type == "yellow card") {
-                                    // The player cannot get a yellow card if he has a red card before, or if he has two yellow cards before the minut of the yellow card that we want to add
-                                    for (let i = 0; i < stats.length; i++) {
-                                        if (stats[i].type == "red card" && stats[i].name == newStat.name) {
-                                            if (stats[i].minute <= newStat.minute) {
-                                                error = true;
-                                                req.session.errorMessage = "This player has a red card, so he cannot get a yellow card";
-                                            }
-                                        }
-                                        for (let j = i + 1; j < stats.length; j++) {
-                                            if (stats[i].type == "yellow card" && stats[j].type == "yellow card" && stats[i].name == newStat.name && stats[j].name == newStat.name) {
-                                                error = true;
-                                                req.session.errorMessage = "This player has two yellow cards, so he cannot get another yellow card";
-                                            }
-                                        }
-                                    }
-                                }
-                                let i = 0;
-                                while (i < stats.length && stats[i].minute < newStat.minute) i++;
-                                if (i == stats.length) {
-                                    newStat.id = stats.length + 1;
+                                let stats = [];
+                                if (result.stats != null) stats = result.stats;
+                                // Put the new stat in the right order, give it an id, and fixed the ids of the other stats
+                                if (stats.length == 0) {
+                                    newStat.id = 0;
                                     stats.push(newStat);
                                 }
                                 else {
-                                    newStat.id = i;
-                                    stats.splice(i, 0, newStat);
-                                    for (let j = i + 1; j < stats.length; j++) stats[j].id++;
+                                    // Compare the minutes of the new goal with the minutes of a possible red card or two yellow cards, and if the new goal is after the red card or two yellow cards, then the new goal cannot be added
+                                    if (newStat.type == "goal") {
+                                        for (let i = 0; i < stats.length; i++) {
+                                            if (stats[i].type == "red card" && stats[i].name == newStat.name) {
+                                                if (stats[i].minute <= newStat.minute) {
+                                                    error = true;
+                                                    req.session.errorMessage = "This player has a red card, so he cannot score a goal";
+                                                }
+                                            }
+                                            for (let j = i + 1; j < stats.length; j++) {
+                                                if (stats[i].type == "yellow card" && stats[j].type == "yellow card" && stats[i].name == newStat.name && stats[j].name == newStat.name) {
+                                                    if (stats[j].minute <= newStat.minute) {
+                                                        error = true;
+                                                        req.session.errorMessage = "This player has two yellow cards, so he cannot score a goal";
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                    else if (newStat.type == "red card") {
+                                        for (let i = 0; i < stats.length; i++) {
+                                            if (stats[i].type == "goal" && stats[i].name == newStat.name) {
+                                                if (stats[i].minute >= newStat.minute) {
+                                                    error = true;
+                                                    req.session.errorMessage = "This player has scored a goal, so he cannot get a red card";
+                                                }
+                                            }
+                                            else if (stats[i].type == "red card" && stats[i].name == newStat.name) {
+                                                error = true;
+                                                req.session.errorMessage = "This player has a red card, so he cannot get another red card";
+                                            }
+                                            else if (stats[i].type == "yellow card" && stats[i].name == newStat.name) {
+                                                if (stats[i].minute >= newStat.minute) {
+                                                    error = true;
+                                                    req.session.errorMessage = "This player has a yellow card, so he cannot get a red card before the yellow card";
+                                                }
+                                            }
+                                            for (let j = i + 1; j < stats.length; j++) {
+                                                if (stats[i].type == "yellow card" && stats[j].type == "yellow card" && stats[i].name == newStat.name && stats[j].name == newStat.name) {
+                                                    error = true;
+                                                    req.session.errorMessage = "This player has two yellow cards, so he cannot get a red card";
+                                                }
+                                            }
+                                        }
+                                    }
+                                    else if (newStat.type == "yellow card") {
+                                        // The player cannot get a yellow card if he has a red card before, or if he has two yellow cards before the minut of the yellow card that we want to add
+                                        for (let i = 0; i < stats.length; i++) {
+                                            if (stats[i].type == "red card" && stats[i].name == newStat.name) {
+                                                if (stats[i].minute <= newStat.minute) {
+                                                    error = true;
+                                                    req.session.errorMessage = "This player has a red card, so he cannot get a yellow card";
+                                                }
+                                            }
+                                            for (let j = i + 1; j < stats.length; j++) {
+                                                if (stats[i].type == "yellow card" && stats[j].type == "yellow card" && stats[i].name == newStat.name && stats[j].name == newStat.name) {
+                                                    error = true;
+                                                    req.session.errorMessage = "This player has two yellow cards, so he cannot get another yellow card";
+                                                }
+                                                else if (stats[i].type == "yellow card" && stats[j].type == "goal" && stats[i].name == newStat.name && stats[j].name == newStat.name) {
+                                                    if (stats[j].minute >= newStat.minute) {
+                                                        error = true;
+                                                        req.session.errorMessage = "This player has scored a goal, so he cannot get a second yellow card before the goal";
+                                                    }
+                                                }
+                                                else if (stats[i].type == "yellow card" && stats[j].type == "red card" && stats[i].name == newStat.name && stats[j].name == newStat.name) {
+                                                    if (stats[j].minute <= newStat.minute) {
+                                                        error = true;
+                                                        req.session.errorMessage = "This player has a red card, so he cannot get a second yellow card before the red card";
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
                                 }
-                            }
-                            // If the match is upcoming, then change it to final and add the stat and the scores for the teams
-                            if (result.state == "Upcoming") {
-                                result.state = "Final";
-                                result.homeTeam.score = 0;
-                                result.awayTeam.score = 0;
-                            }
-                            // If new stat is a goal, then update the score of the match
-                            if (newStat.type == "goal") {
-                                if (newStat.team == result.homeTeam.name) result.homeTeam.score++;
-                                else result.awayTeam.score++;
-                            }
+                                // Double check that the order of the stats is correct
+                                stats.sort((a, b) => {
+                                    if (a.minute < b.minute) return -1;
+                                    else if (a.minute > b.minute) return 1;
+                                    else return 0;
+                                });
+
+                                for (let i = 0; i < stats.length; i++) {
+                                    stats[i].id = i + 1;
+                                }
+
+                                // If the match is upcoming, then change it to final and add the stat and the scores for the teams
+                                if (result.state == "Upcoming") {
+                                    result.state = "Final";
+                                    result.homeTeam.score = 0;
+                                    result.awayTeam.score = 0;
+                                }
+                                // If new stat is a goal, then update the score of the match
+                                if (newStat.type == "goal") {
+                                    if (newStat.team == result.homeTeam.name) result.homeTeam.score++;
+                                    else result.awayTeam.score++;
+                                }
                             
-                            if (!error) {
-                                if (result.state == "Final") {
-                                    Match.updateOne({ date: result.date, "homeTeam.name": result.homeTeam.name }, { $set: { stats: stats, state: result.state, "homeTeam.score": result.homeTeam.score, "awayTeam.score": result.awayTeam.score } })
-                                        .then(() => {
-                                            redirectToSchedule(req, res);
-                                        })
-                                        .catch(err => console.log(err));
+                                if (!error) {
+                                    if (result.state == "Final") {
+                                        Match.updateOne({ date: result.date, "homeTeam.name": result.homeTeam.name }, { $set: { stats: stats, state: result.state, "homeTeam.score": result.homeTeam.score, "awayTeam.score": result.awayTeam.score } })
+                                            .then(() => {
+                                                redirectToSchedule(req, res);
+                                            })
+                                            .catch(err => console.log(err));
+                                    }
                                 }
+                                else redirectToSchedule(req, res);
                             }
-                            else redirectToSchedule(req, res);
                         })
                             .catch(err => console.log(err));
                     }
@@ -534,7 +553,7 @@ const editStat = (req, res) => {
                         let stat = stats.find(stat => stat.id == req.body.id);
                         stat.name = req.body.name;
                         stat.type = req.body.type;
-                        stat.minute = req.body.minute;
+                        stat.minute = parseInt(req.body.minute);
 
                         if (stat.type == "goal") {
                             for (let i = 0; i < stats.length; i++) {
@@ -559,23 +578,23 @@ const editStat = (req, res) => {
                                 if (stats[i].type == "goal" && stats[i].name == stat.name) {
                                     if (stats[i].minute >= stat.minute) {
                                         error = true;
-                                        req.session.errorMessage = "This player has a goal, so he cannot get a red card";
+                                        req.session.errorMessage = "This player has scored a goal, so he cannot get a red card";
                                     }
                                 }
                                 else if (stats[i].type == "red card" && stats[i].name == stat.name) {
                                     error = true;
-                                    eq.session.errorMessage = "This player has a red card, so he cannot get another red card";
+                                    req.session.errorMessage = "This player has a red card, so he cannot get another red card";
+                                }
+                                else if (stats[i].type == "yellow card" && stats[i].name == stat.name) {
+                                    if (stats[i].minute >= stat.minute) {
+                                        error = true;
+                                        req.session.errorMessage = "This player has a yellow card, so he cannot get a red card before the yellow card";
+                                    }
                                 }
                                 for (let j = i + 1; j < stats.length; j++) {
                                     if (stats[i].type == "yellow card" && stats[j].type == "yellow card" && stats[i].name == stat.name && stats[j].name == stat.name) {
                                         error = true;
                                         req.session.errorMessage = "This player has two yellow cards, so he cannot get a red card";
-                                    }
-                                    else if (stats[i].type == "yellow card" && stats[j].type == "goal" && stats[i].name == stat.name && stats[j].name == stat.name) {
-                                        if (stats[j].minute >= stat.minute) {
-                                            error = true;
-                                            req.session.errorMessage = "This player has a goal, so he cannot get a red card";
-                                        }
                                     }
                                 }
                             }
@@ -594,8 +613,31 @@ const editStat = (req, res) => {
                                         error = true;
                                         req.session.errorMessage = "This player has two yellow cards, so he cannot get another yellow card";
                                     }
+                                    // If the player has a yellow card and then a goal, then he cannot get another yellow card before the goal
+                                    else if (stats[i].type == "yellow card" && stats[j].type == "goal" && stats[i].name == stat.name && stats[j].name == stat.name) {
+                                        if (stats[j].minute >= stat.minute) {
+                                            error = true;
+                                            req.session.errorMessage = "This player has scored a goal, so he cannot get a second yellow card";
+                                        }
+                                    }
+                                    else if (stats[i].type == "yellow card" && stats[j].type == "goal" && stats[i].name == stat.name && stats[j].name == stat.name) {
+                                        if (stats[j].minute <= stat.minute) {
+                                            error = true;
+                                            req.session.errorMessage = "This player has scored a goal, so he cannot get a second yellow card before the goal";
+                                        }
+                                    }
                                 }
+                                
                             }
+                        }
+                        stats.sort((a, b) => {
+                            if (a.minute < b.minute) return -1;
+                            else if (a.minute > b.minute) return 1;
+                            else return 0;
+                        });
+
+                        for (let i = 0; i < stats.length; i++) {
+                            stats[i].id = i + 1;
                         }
 
                         if (stat.type == "goal") {

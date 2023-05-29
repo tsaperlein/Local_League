@@ -124,20 +124,11 @@ if (window.location.pathname === "/Local-League/main-page") headerEl = document.
 if (window.location.pathname === "/Local-League/main-page" && headerEl === "Sign In / Register") {
     createModal();
 }
-else if (window.location.pathname === "/Local-League/main-page" && headerEl !== "Sign In / Register") {
+else if (headerEl !== "Sign In / Register") {
     // If the user clicks on the last li element, create a dropdown menu
     let lastLi = document.querySelector('.header-options ul').lastElementChild;
-    lastLi.addEventListener('click', () => {
-        if (lastLi.querySelector('ul') === null) {
-            let ul = document.createElement('ul');
-            ul.innerHTML = `
-                <li><a href="/Local-League/logout">Logout</a></li>
-            `;
-            lastLi.appendChild(ul);
-        }
-        else {
-            lastLi.querySelector('ul').remove();
-        }
+    lastLi.removeEventListener('click', () => {
+        createModal();
     });
 }
 
@@ -165,7 +156,7 @@ function checkInputs() {
     // Regular expressions for email, username and password
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+[a-zA-Z]{1,}$/;                                               // πχ. yourname@gmail.com
     const usernameRegex = /^[a-zA-Z0-9]/;                                                               // only letters and numbers
-    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&#])[A-Za-z\d$@$!%*?&#]{8,15}/;    // at least one lowercase, one uppercase, one number, one special character and 8-15 characters long
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&#:])[A-Za-z\d$@$!%*?&#:]{8,15}/;    // at least one lowercase, one uppercase, one number, one special character and 8-15 characters long
 
     const inputNameFieldRegex = [
         { name: "email", field: emailField, regex: emailRegex },
