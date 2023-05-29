@@ -163,7 +163,7 @@ function checkInputs() {
     const passwordConfirmField = document.getElementById("confirm-password");
 
     // Regular expressions for email, username and password
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;                                                    // πχ. yourname@gmail.com
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+[a-zA-Z]{1,}$/;                                               // πχ. yourname@gmail.com
     const usernameRegex = /^[a-zA-Z0-9]/;                                                               // only letters and numbers
     const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&#])[A-Za-z\d$@$!%*?&#]{8,15}/;    // at least one lowercase, one uppercase, one number, one special character and 8-15 characters long
 
