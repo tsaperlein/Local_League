@@ -57,7 +57,7 @@ const matchFilling = (req, res) => {
                         displayDate: week,
                         teamName: 'All-Teams'
                     }
-                    res.render('schedule', { match: result, team: result2, teams: result2, username: req.session.username, displayDate: week, displayNextWeek: getNextWeek(week), displayPreviousWeek: getPreviousWeek(week), role: role, allTeams: true, errorMessage: req.session.errorMessage })
+                    res.render('schedule', { match: result, team: result2, teams: result2, username: req.session.username, displayDate: week, thisWeek: week, displayNextWeek: getNextWeek(week), displayPreviousWeek: getPreviousWeek(week), role: role, allTeams: true, errorMessage: req.session.errorMessage })
                     req.session.errorMessage = "";
                 })
             })
@@ -84,7 +84,7 @@ const matchFillingTeam = (req, res) => {
                         displayDate: week,
                         teamName: team
                     }
-                    res.render('schedule', { match: result, team: result2, teams: result2, username: req.session.username, displayDate: week, displayNextWeek: getNextWeek(week), displayPreviousWeek: getPreviousWeek(week), role: role, teamName: team, allTeams: false, errorMessage: req.session.errorMessage })
+                    res.render('schedule', { match: result, team: result2, teams: result2, username: req.session.username, displayDate: week, thisWeek: week, displayNextWeek: getNextWeek(week), displayPreviousWeek: getPreviousWeek(week), role: role, teamName: team, allTeams: false, errorMessage: req.session.errorMessage })
                     req.session.errorMessage = "";
                 })
             })

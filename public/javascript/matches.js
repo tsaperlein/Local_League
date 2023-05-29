@@ -89,6 +89,11 @@ function verticalAlignOfTheScoreTime() {
 
 verticalAlignOfTheScoreTime();
 
+if (window.location.pathname.includes('All-Teams')) {
+    // change the value of the select element to 'All Teams'
+    localStorage.setItem('selectedOption', 'All-Teams');
+}
+
 // --- Dropdown menu for the Schedule page ---
 if (window.location.pathname.includes('schedule')) {
     document.getElementById('select-team').onchange = function () {
