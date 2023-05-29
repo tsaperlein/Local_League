@@ -483,6 +483,10 @@ const addStat = (req, res) => {
                                         }
                                     }
                                 }
+                                // Push the new stat in the stats array
+                                if (!error) {
+                                    stats.push(newStat);
+                                }
                                 // Double check that the order of the stats is correct
                                 stats.sort((a, b) => {
                                     if (a.minute < b.minute) return -1;
@@ -626,8 +630,7 @@ const editStat = (req, res) => {
                                             req.session.errorMessage = "This player has scored a goal, so he cannot get a second yellow card before the goal";
                                         }
                                     }
-                                }
-                                
+                                }   
                             }
                         }
                         stats.sort((a, b) => {
@@ -637,7 +640,7 @@ const editStat = (req, res) => {
                         });
 
                         for (let i = 0; i < stats.length; i++) {
-                            stats[i].id = i + 1;
+                            stats[i].id = i;
                         }
 
                         if (stat.type == "goal") {
