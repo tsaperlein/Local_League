@@ -695,7 +695,7 @@ const deleteStat = (req, res) => {
         Match.findOne({ date: matchDate, "homeTeam.name": homeTeam }).then(result => {
             const stats = result.stats;
             for (let i = 0; i < stats.length; i++) {
-                if (stats[i].type == "goal") {
+                if (stats[i].type == "goal" && stats[i].id == statId) {
                     // Update the score of the match
                     if (stats[i].team == result.homeTeam.name) result.homeTeam.score--;
                     else result.awayTeam.score--;
