@@ -21,7 +21,7 @@
         {{else}}
         <li class="dropdown-li">
             <div class="dropdown">
-                <button class="dropbtn">{{username}}</button>
+                <button class="dropbtn">{{username}}{{#ifeq role 'admin'}}&nbsp;({{role}}){{/ifeq}}</button>
                 <form action="/Local-League/main-page/logout" method="POST" class="dropdown-content">
                     <button class="logout-btn" type="submit">Log Out</button>
                 </form>
